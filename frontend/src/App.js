@@ -130,7 +130,7 @@ function App() {
         />  */}
          <ProtectedRoute exact path="/process/payment" component={Payment} />
 
-        <Route path="*" component={NotFound} />
+        {/* <Route path="*" component={NotFound} /> */}
         <ProtectedRoute exact path="/shipping" component={Shipping} />
 
         <ProtectedRoute exact path="/success" component={OrderSuccess} />
