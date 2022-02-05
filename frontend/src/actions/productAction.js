@@ -33,7 +33,7 @@ import {
 
 // Get All Products
 export const getProduct =
-  (keyword = "", currentPage = 1, category) =>
+  (keyword = "", currentPage = 2, category) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });

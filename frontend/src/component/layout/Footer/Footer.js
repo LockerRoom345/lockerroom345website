@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <footer id="footer">
       <div className="leftFooter">
-      <a href="mailto:Customer.Service@dcsg.com?Subject=Dick's%20Sporting%20Goods%20-%20Sports%20Matter%20Campaign">CONTACT US</a>
-       <a href="https://www.sportsmatter.org/s/terms-of-use">TERMS OF USE</a>
-       <a href="https://www.sportsmatter.org/s/privacy-policy">PRIVACY POLICY</a>       
-       <a href="https://www.sportsmatter.org/s/accessibility-policy">ACCESSIBILITY POLICY</a>
+      <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">CONTACT US</a>
+       <a href="">TERMS OF USE</a>
+       <a href="">PRIVACY POLICY</a>       
+       <a href="">ACCESSIBILITY POLICY</a>
       </div>
 
       <div className="midFooter">        
@@ -21,10 +21,10 @@ const Footer = () => {
 
       <div className="rightFooter">
         <h4>Follow Us</h4>
-        <a href="https://www.instagram.com/dickssportinggoods/">Instagram</a>
-        <a href="https://www.youtube.com/user/DicksSportingGoods">Youtube</a>
-        <a href="https://www.facebook.com/dickssportinggoods">Facebook</a>
-        <a href="https://twitter.com/dicks">Twitter</a>
+        <a href="">Instagram</a>
+        <a href="">Youtube</a>
+        <a href="">Facebook</a>
+        <a href="">Twitter</a>
       </div>
     </footer>
   );
