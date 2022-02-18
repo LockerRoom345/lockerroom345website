@@ -14,11 +14,12 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   //   crop: "scale",
   // });
 
-  const { name, email, password } = req.body;
+  const { name, email, password, address} = req.body;
 
   const user = await User.create({
     name,
     email,
+    address,
     password,
     avatar: {
       public_id: "avatars/pgezji1vvyhd6jfrjjap",
@@ -40,7 +41,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   // checking if user has given password and email both
 
   if (!email || !password) {
-    return next(new ErrorHander("Please Enter Email & Password", 400));
+    return next(new ErrorHander("Please Enter Login ID & Password", 400));
   }
 
   const user = await User.findOne({ email }).select("+password");

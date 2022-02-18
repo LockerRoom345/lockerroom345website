@@ -36,7 +36,7 @@ const UpdateProduct = ({ history, match }) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
-  const [Size, setSize] = useState("");
+  const [ProductSize, setSize] = useState("");
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
@@ -48,9 +48,12 @@ const UpdateProduct = ({ history, match }) => {
     "Sports",    
   ];
 
+
+
   const productId = match.params.id;
 
   useEffect(() => {
+    //console.log(product.ProductSize[0].Toddler);
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
     } else {
@@ -59,7 +62,7 @@ const UpdateProduct = ({ history, match }) => {
       // setPrice(product.price);
       setCategory(product.category);
       setSubCategory(product.SubCategory);
-      setSize(product.Size);
+      setSize(product.ProductSize);
       setStock(product.Stock);
       setOldImages(product.images);
     }
@@ -98,7 +101,7 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("SubCategory", SubCategory);
-    myForm.set("Size", Size);
+    myForm.set("Size", ProductSize);
     myForm.set("Stock", Stock);
 
     images.forEach((image) => {
@@ -188,12 +191,17 @@ const UpdateProduct = ({ history, match }) => {
             
             <div>
               <HeightIcon />
-              <input
-                type="text"
-                placeholder="Size"
-                required
+              <select
+                value={ProductSize[0]}
                 onChange={(e) => setSize(e.target.value)}
-              />
+              >
+                <option value="">Choose Category</option>
+                 {products.ProductSize[0].Toddler.map((cate) => (
+                  <option key={cate} value={cate}>
+                    {cate}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>

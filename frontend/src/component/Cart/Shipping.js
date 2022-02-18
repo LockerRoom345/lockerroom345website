@@ -39,7 +39,7 @@ const Shipping = ({ history }) => {
       return;
     }
     dispatch(      
-    saveShippingInfo({userName:user.name,receivingPersonName, userLoggedInDesignation, address, city, state, country, pinCode, phoneNo })
+    saveShippingInfo({userName:user.name,receivingPersonName, userLoggedInDesignation, userAddress:user.address, phoneNo })
     );
     history.push("/order/confirm");
   };
@@ -91,30 +91,8 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="Address"
                 required
-                value={address}
+                value={user.address}
                 onChange={(e) => setAddress(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <LocationCityIcon />
-              <input
-                type="text"
-                placeholder="City"
-                required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <PinDropIcon />
-              <input
-                type="number"
-                placeholder="Pin Code"
-                required
-                value={pinCode}
-                onChange={(e) => setPinCode(e.target.value)}
               />
             </div>
 
@@ -129,44 +107,6 @@ const Shipping = ({ history }) => {
                 size="10"
               />
             </div>
-
-            <div>
-              <PublicIcon />
-
-              <select
-                required
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                <option value="">Country</option>
-                {Country &&
-                  Country.getAllCountries().map((item) => (
-                    <option key={item.isoCode} value={item.isoCode}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-
-            {country && (
-              <div>
-                <TransferWithinAStationIcon />
-
-                <select
-                  required
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                >
-                  <option value="">State</option>
-                  {State &&
-                    State.getStatesOfCountry(country).map((item) => (
-                      <option key={item.isoCode} value={item.isoCode}>
-                        {item.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            )}
 
             <input
               type="submit"

@@ -26,11 +26,17 @@ const LoginSignUp = ({ history, location }) => {
 
   const [user, setUser] = useState({
     name: "",
+    building: "",
     email: "",
     password: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+
   });
 
-  const { name, email, password } = user;
+  const { name, email, password, address, city, state, pincode, country, building } = user;
 
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -46,8 +52,14 @@ const LoginSignUp = ({ history, location }) => {
     const myForm = new FormData();
 
     myForm.set("name", name);
+    myForm.set("building", building);
     myForm.set("email", email);
     myForm.set("password", password);
+    myForm.set("address", address);
+    myForm.set("city", city);
+    myForm.set("state", state);
+    myForm.set("pincode", pincode);
+    myForm.set("country", country);
     myForm.set("avatar", avatar);
     dispatch(register(myForm));
   };
@@ -110,7 +122,7 @@ const LoginSignUp = ({ history, location }) => {
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                  
                 </div>
                 <button ref={switcherTab}></button>
               </div>
@@ -118,8 +130,8 @@ const LoginSignUp = ({ history, location }) => {
                 <div className="loginEmail">
                   <MailOutlineIcon />
                   <input
-                    type="email"
-                    placeholder="Email"
+                    type="text"
+                    placeholder="Login ID"
                     required
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
@@ -145,21 +157,32 @@ const LoginSignUp = ({ history, location }) => {
                 onSubmit={registerSubmit}
               >
                 <div className="signUpName">
-                  <FaceIcon />
                   <input
                     type="text"
-                    placeholder="Name"
+                    placeholder="School Name"
                     required
                     name="name"
                     value={name}
                     onChange={registerDataChange}
                   />
                 </div>
+                <div className="signUpName">
+                  
+                  <input
+                    type="text"
+                    placeholder="School Building"
+                    required
+                    name="building"
+                    value={building}
+                    onChange={registerDataChange}
+                  />
+                </div>
+
                 <div className="signUpEmail">
-                  <MailOutlineIcon />
+                  
                   <input
                     type="email"
-                    placeholder="Email"
+                    placeholder="Login ID"
                     required
                     name="email"
                     value={email}
@@ -167,7 +190,7 @@ const LoginSignUp = ({ history, location }) => {
                   />
                 </div>
                 <div className="signUpPassword">
-                  <LockOpenIcon />
+
                   <input
                     type="password"
                     placeholder="Password"
@@ -177,6 +200,57 @@ const LoginSignUp = ({ history, location }) => {
                     onChange={registerDataChange}
                   />
                 </div>
+                <div className="signUpName">
+                <input
+                    type="text"
+                    placeholder="Address"
+                    required
+                    name="address"
+                    value={address}
+                    onChange={registerDataChange}
+                  />
+                  </div>
+                  <div className="signUpName">
+                  <input
+                    type="text"
+                    placeholder="City"
+                    required
+                    name="city"
+                    value={city}
+                    onChange={registerDataChange}
+
+                  />
+                  </div>
+                  <div className="signUpName">
+                  <input
+                    type="text"
+                    placeholder="Pin Code"
+                    required
+                    name="pincode"
+                    value={pincode}
+                    onChange={registerDataChange}
+                  />
+                  </div>
+                  <div className="signUpName">
+                  <input
+                    type="text"
+                    placeholder="State"
+                    required
+                    name="state"
+                    value={state}
+                    onChange={registerDataChange}
+                  />
+                  </div>
+                  <div className="signUpName">
+                  <input
+                    type="text"
+                    placeholder="Country"
+                    required
+                    name="country"
+                    value={country}
+                    onChange={registerDataChange}
+                  />
+                  </div>
 
                 <div id="registerImage">
                   <img src={avatarPreview} alt="Avatar Preview" />
