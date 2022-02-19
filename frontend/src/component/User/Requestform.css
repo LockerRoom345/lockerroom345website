@@ -67,7 +67,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    font: 300 0.9vmax "Roboto";
     outline: none;
   }
   
@@ -136,7 +136,7 @@
   
     .RequestForm > div > input{
       padding: 2.5vmax 5vmax;
-      font: 300 1.7vmax cursive;
+      font: 300 1.7vmax "Roboto";
     }
   
     .RequestForm > div > svg{
@@ -157,7 +157,7 @@
   .RequestForm > div > div >select {
     /* margin-bottom: 10px;
     margin-top: 10px;
-    font-family: cursive, sans-serif;
+    font-family: Roboto, sans-serif;
     outline: 0;
     background: #ffff;
     color: rgb(112, 110, 110);
@@ -172,7 +172,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    font: 300 0.9vmax "Roboto";
     outline: none;
   
   }
@@ -198,7 +198,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    font: 300 0.9vmax "Roboto";
     outline: none;
   }
   .box{
@@ -217,7 +217,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 0.9vmax cursive;
+    font: 300 0.9vmax "Roboto";
     outline: none;
   }
 

@@ -67,6 +67,13 @@ const OrderDetails = ({ match }) => {
                       `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
                   </span>
                 </div>
+                <div>
+                  <p>Additional Comments:</p>
+                  <span>
+                    {order.shippingInfo &&
+                      `${order.shippingInfo.additionalComments}`}
+                  </span>
+                </div>
               </div>
               
               <Typography>Order Status</Typography>
@@ -101,7 +108,7 @@ const OrderDetails = ({ match }) => {
                       <span>Subcategory({item.SubCategory})</span>
                     </div>
                     <div className="cartitemholdersize">
-                      <span>Size({item.ProductSize})</span>
+                      <span>Size({item.ProductSize.split(",",1)})</span>
                     </div>
                     <div className="cartitemholderquantity">
                       <span>

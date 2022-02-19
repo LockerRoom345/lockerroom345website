@@ -16,8 +16,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import HeightIcon from '@mui/icons-material/Height';
-
+import HeightIcon from "@mui/icons-material/Height";
 
 const UpdateProduct = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -36,31 +35,38 @@ const UpdateProduct = ({ history, match }) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
-  const [Size, setSize] = useState("");
+  const [ProductSize, setProductSize] = useState("");
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [    
-    "FootWears",
-    "Clothing",
-    "Sports",    
-  ];
+  const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
 
   const productId = match.params.id;
 
+  
+
   useEffect(() => {
+    //console.log((product.ProductSize).length);
+    //for(let i =0; i< 3; i++){
+    // for (const [key, value] of Object.entries(product.ProductSize[0])) {
+    //   console.log(`${key}: ${value}`);
+    // }
+    //}
+    console.log("enter");
     if (product && product._id !== productId) {
+      console.log("entering getProductDetails");
       dispatch(getProductDetails(productId));
     } else {
+      console.log("length", product.ProductSize.indexOf((x)=> x.size == product.ProductSize.size ));
       setName(product.name);
       setDescription(product.description);
       // setPrice(product.price);
       setCategory(product.category);
       setSubCategory(product.SubCategory);
-      setSize(product.Size);
-      setStock(product.Stock);
+      setProductSize(product.ProductSize[0].size);
+      setStock(product.ProductSize[0].stock);
       setOldImages(product.images);
     }
     if (error) {
@@ -93,12 +99,13 @@ const UpdateProduct = ({ history, match }) => {
     e.preventDefault();
 
     const myForm = new FormData();
+    
 
-    myForm.set("name", name);    
+    myForm.set("name", name);
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("SubCategory", SubCategory);
-    myForm.set("Size", Size);
+    myForm.set("ProductSize", [ProductSize]);
     myForm.set("Stock", Stock);
 
     images.forEach((image) => {
@@ -107,9 +114,13 @@ const UpdateProduct = ({ history, match }) => {
     dispatch(updateProduct(productId, myForm));
   };
 
+  const handlesizeChange = (e) => {
+    //console.log(product.ProductSize[0].size);
+    setStock(e.target.value);
+  };
+
   const updateProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
-
     setImages([]);
     setImagesPreview([]);
     setOldImages([]);
@@ -139,7 +150,7 @@ const UpdateProduct = ({ history, match }) => {
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <h1>Create Product</h1>
+            <h1>Update Product</h1>
 
             <div>
               <SpellcheckIcon />
@@ -150,7 +161,7 @@ const UpdateProduct = ({ history, match }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-            </div> 
+            </div>
             {/* <div>
               <DescriptionIcon />
               <textarea
@@ -178,22 +189,70 @@ const UpdateProduct = ({ history, match }) => {
             </div>
             <div>
               <FilterAltIcon />
-              <input
+              {/* <input
                 type="text"
                 placeholder="SubCategory"
                 required
                 onChange={(e) => setSubCategory(e.target.value)}
-              />
+              /> */}
+              <select
+                name="category"
+                id="category"
+                onChange={(e) => {
+                  setSubCategory(e.target.value);
+                }}
+              >
+                <option value="SelectCategory">Select SubCategory</option>
+                <option value="men">Mens sizing</option>
+                <option value="women">Womens sizing</option>
+                <option value="boys">Boys' sizing</option>
+                <option value="girls">Girls' sizing</option>
+                <option value="toddler">Toddlers sizing</option>
+              </select>
             </div>
-            
+
             <div>
               <HeightIcon />
-              <input
+              {/* <input
                 type="text"
                 placeholder="Size"
                 required
                 onChange={(e) => setSize(e.target.value)}
-              />
+              /> */}
+              {/* <h1>{JSON.stringify(product.ProductSize)}</h1> */}
+              {product && product.ProductSize && (
+                <select
+                  name="size"
+                  id="size"
+                  onChange={(e) => {
+                    handlesizeChange(e);
+                  }}
+                >
+                  <option value="selectsize">Select Size</option>
+                  {/* {Object.keys(product.ProductSize).forEach((x) => {
+                    console.log(
+                      product.ProductSize[x].size,
+                      product.ProductSize[x].stock
+                    );
+                    <option
+                      key={product.ProductSize[x].size}
+                      value={product.ProductSize[x].stock}
+                    >
+                      {product.ProductSize[x].size}
+                    </option>;
+                  })} */}
+                  {product.ProductSize.map((item, index) => (
+                    <option key={item.size} value={item.stock}>
+                      {item.size}
+                    </option>
+                  ))}
+
+                  {/* {                    
+                  [...Object.entries(product.ProductSize[0])].map((k, v) => {
+                    return <option key={k[1]} value={v[1]}>{k}</option>;
+                  })} */}
+                </select>
+              )}
             </div>
 
             <div>

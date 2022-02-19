@@ -27,16 +27,17 @@ const productSchema = mongoose.Schema({
     type: String,
     required: [true, "Please Enter Sub Category of Product"],
   },
-  Size:{
-    type: String,
-    required: [true, "Please Enter Size of Product"],
-  },
-  Stock: {
-    type: Number,
-    required: [true, "Please Enter product Stock"],
-    maxLength: [4, "Stock cannot exceed 4 characters"],
-    default: 1,
-  },
+  ProductSize:[{
+    size: String,
+    // required: [true, "Please Enter Size of Product"],
+    stock : Number
+  }],
+  // Stock: {
+  //   type: Number,
+  //   required: [true, "Please Enter product Stock"],
+  //   maxLength: [4, "Stock cannot exceed 4 characters"],
+  //   default: 1,
+  // },
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
@@ -46,6 +47,10 @@ const productSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  additionalComments:{
+    type: String,
+    required: false
+  }
 });
 
 module.exports = mongoose.model("Product", productSchema);

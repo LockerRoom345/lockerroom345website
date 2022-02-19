@@ -29,9 +29,11 @@ const Shipping = ({ history }) => {
   const [country, setCountry] = useState(shippingInfo.country);
   const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  const [addComments, setaddComments] = useState(shippingInfo.additionalComments);
 
   const shippingSubmit = (e) => {
     e.preventDefault();
+    console.log("addComments",addComments);
     
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
@@ -39,20 +41,20 @@ const Shipping = ({ history }) => {
       return;
     }
     dispatch(      
-    saveShippingInfo({userName:user.name,receivingPersonName, userLoggedInDesignation, address, city, state, country, pinCode, phoneNo })
+    saveShippingInfo({userName:user.name,receivingPersonName,additionalComments:addComments,userLoggedInDesignation, address, city, state, country, pinCode, phoneNo })
     );
     history.push("/order/confirm");
   };
 
   return (
     <Fragment>
-      <MetaData title="Shipping Details" />
+      <MetaData title="Delivery Details" />
 
       <CheckoutSteps activeStep={0} />
 
       <div className="shippingContainer">
         <div className="shippingBox">
-          <h2 className="shippingHeading">Shipping Details</h2>
+          <h2 className="shippingHeading">Delivery Details</h2>
 
           <form
             className="shippingForm"
@@ -175,7 +177,11 @@ const Shipping = ({ history }) => {
               disabled={state ? false : true}
             />
           </form>
+          
         </div>
+        <div className="additionalComments">
+                <textarea placeholder="Add if you have any additional comments or request for items here..." onChange={(e) => setaddComments(e.target.value)}>{addComments}</textarea>
+          </div>
       </div>
     </Fragment>
   );

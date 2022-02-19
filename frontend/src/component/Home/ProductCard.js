@@ -29,10 +29,12 @@ const ProductCard = ({ product, history }) => {
     window.location.href = "http://localhost:3000/requestform";
   };
 
-  const [SubCategory, setSubCategory] = useState(""); 
+  const [SubCategory, setSubCategory] = useState("");
   const [ProductSize, setProductSize] = useState("");
 
   const increaseQuantity = () => {
+    //console.log("product",product.name);
+    console.log("product", product);
     if (product.Stock <= quantity) return;
 
     const qty = quantity + 1;
@@ -40,6 +42,11 @@ const ProductCard = ({ product, history }) => {
   };
 
   const decreaseQuantity = () => {
+    for (let i = 0; i < product.ProductSize.length; i++) {
+      for (const [key, value] of Object.entries(product.ProductSize[0])) {
+        console.log(`${key}: ${value}`);
+      }
+    }
     if (1 >= quantity) return;
 
     const qty = quantity - 1;
@@ -52,14 +59,13 @@ const ProductCard = ({ product, history }) => {
   };
 
   const handlesizeChange = (e) => {
+    console.log(product);
     setProductSize(e.target.value);
-    //console.log((ProductSize[e.target.value]))
   };
   const addToCartHandler = () => {
     dispatch(addItemsToCart(product._id, quantity, SubCategory, ProductSize));
     alert.success("Item Added To Cart");
   };
-  
 
   return (
     // <Link className="productCard" to={`/product/${product._id}`}>
@@ -80,10 +86,14 @@ const ProductCard = ({ product, history }) => {
           </div>
           {/* ({product.numOfReviews} Reviews) */}
         </div>
-        <div className="category">        
-          <select name="category" id="category" onChange={
-            (e) => {handlesubcatChange(e);}
-          }>
+        <div className="category">
+          <select
+            name="category"
+            id="category"
+            onChange={(e) => {
+              handlesubcatChange(e);
+            }}
+          >
             <option value="SelectCategory">Select SubCategory</option>
             <option value="men">Mens sizing</option>
             <option value="women">Womens sizing</option>
@@ -92,31 +102,37 @@ const ProductCard = ({ product, history }) => {
             <option value="toddler">Toddlers sizing</option>
           </select>
         </div>
-        <div className="size">        
-          <select name="size" id="size" onChange={(e)=>{
-            handlesizeChange(e);
-          }}>
-            <option value="selectsize">Select Size</option>
-            <option value="2T">2T</option>
-            <option value="3T">3T</option>
-            <option value="4T">4T</option>
-            <option value="XX Small">XX Small</option>
-            <option value="X Small">X Small</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-            <option value="X Large">X Large</option>
-            <option value="XX Large">XX Large</option>
-            <option value="XXX Large">XXX Large</option>
-            <option value="4X Large">4X Large</option>
-          </select>
+        <div className="size">
+          {product && product.ProductSize && (
+            <select
+              name="size"
+              id="size"
+              onChange={(e) => {
+                handlesizeChange(e);
+              }}
+            >
+              <option value="selectsize">Select Size</option>
+              {/* {Object.entries(product.ProductSize[0]).map((k,v) =>              
+                <option value={k}>
+                  {k[0]}
+                </option>              
+            )}           */}
+            {product.ProductSize.map((item, index) => (
+                    <option key={item.size} value={item.size}>
+                      {item.size}
+                    </option>
+                  ))}
+            
+            </select>
+          )}
         </div>
         <div className="stock">
           <p>
             Status:
             <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
               {product.Stock < 1 ? "OutOfStock" : "InStock"}
-            </b> <br/>
+            </b>{" "}
+            <br />
             {/* <button
                     disabled={product.Stock < 1 ? false : true}                    
                     onClick={takeToRequestForm}

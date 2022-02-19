@@ -10,7 +10,7 @@ import PrintIcon from "@mui/icons-material/Print";
 import { addItemsToCart } from "../../actions/cartAction";
 import store from "../../store.js";
 
-const ConfirmOrder = ({ history }) => {
+const ConfirmOrder = ({ history,addComments}) => {
   const dispatch = useDispatch();
   const { shippingInfo, cartItems } = useSelector((state) =>state.cart);
   const { user } = useSelector((state) => state.user);
@@ -79,6 +79,10 @@ const ConfirmOrder = ({ history }) => {
                 <p>Address:</p>
                 <span>{address}</span>
               </div>
+              <div>
+                <p>Additional Comments:</p>
+                <span>{shippingInfo.additionalComments}</span>
+              </div>
             </div>
           </div>
           <div className="confirmCartItems">
@@ -97,7 +101,7 @@ const ConfirmOrder = ({ history }) => {
                       <span>Subcategory({item.SubCategory})</span>
                     </div>
                     <div className="cartitemholdersize">
-                      <span>Size({item.ProductSize})</span>
+                      <span>Size({item.ProductSize.split(",",1)})</span>
                     </div>
                     <div className="cartitemholderquantity">
                       <span>

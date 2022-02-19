@@ -14,6 +14,10 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    additionalComments:{
+      type: String,
+      required: true,
+    },
     address: {
       type: String,
       required: true,
@@ -22,12 +26,10 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-
     state: {
       type: String,
       required: true,
     },
-
     country: {
       type: String,
       required: true,

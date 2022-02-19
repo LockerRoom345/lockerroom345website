@@ -32,8 +32,6 @@ const ProductList = ({ history }) => {
   };
 
   useEffect(() => {
-
-    
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -51,11 +49,10 @@ const ProductList = ({ history }) => {
     }
 
     dispatch(getAdminProduct());
-    
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", Width:100, flex: 0.2 },
+    { field: "id", headerName: "Product ID", Width: 100, flex: 0.2 },
 
     {
       field: "name",
@@ -75,23 +72,29 @@ const ProductList = ({ history }) => {
       minWidth: 70,
       flex: 0.15,
     },
-    {
-      field: "size",
-      headerName: "Size",
-      minWidth: 50,
-      flex: 0.1,
-    },
+    // {
+    //   field: "size",
+    //   headerName: "Size",
+    //   minWidth: 50,
+    //   flex: 0.1,
+    // },
     {
       field: "stock",
-      headerName: "Stock",     
+      headerName: "Stock",
       minWidth: 50,
       flex: 0.1,
+      cellClassName: (params) => {
+        //console.log("params",params);
+        return params.getValue(params.id, "stock") < 0
+          ? "greenColor"
+          : "redColor";
+      },
     },
     {
-      field: "actions",     
+      field: "actions",
       headerName: "Actions",
       minWidth: 50,
-      flex: 0.1,         
+      flex: 0.1,
       sortable: false,
       renderCell: (params) => {
         return (
@@ -114,17 +117,27 @@ const ProductList = ({ history }) => {
   ];
 
   const rows = [];
-
+  const dummy = [];
+  products.forEach((x) => {
+    dummy.push(x);
+  });
+//  dummy[0].ProductSize[0].map((x) => {
+  console.log(dummy);
+//   });
+//  dummy[0].ProductSize.reduce(function(prev, curr) {
+//    console.log(prev.stock < curr.stock ? prev : curr);
+//  });
+  //console.log(Object.keys(products.ProductSize[0]).sort((a,b) => (products.ProductSize[a] - products.ProductSize[b])));
   products &&
     products.forEach((item) => {
       rows.push({
         id: item._id,
-        stock: item.Stock,
+        stock: item.stock,
         price: item.price,
         name: item.name,
-        size:item.Size,
-        category:item.category,
-        subcategory:item.SubCategory
+        size: item.Size,
+        category: item.category,
+        subcategory: item.SubCategory,
       });
     });
 
