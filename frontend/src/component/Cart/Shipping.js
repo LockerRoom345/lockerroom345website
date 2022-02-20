@@ -12,47 +12,75 @@ import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStatio
 import { Country, State } from "country-state-city";
 import { useAlert } from "react-alert";
 import CheckoutSteps from "../Cart/CheckoutSteps";
-import PersonIcon from '@mui/icons-material/Person';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-
+import PersonIcon from "@mui/icons-material/Person";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const alert = useAlert();
-  const { shippingInfo } = useSelector((state) => state.cart);  
-  const [receivingPersonName, setreceivingPersonName] = useState(shippingInfo.receivingPersonName);
-  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState(shippingInfo.userLoggedInDesignation);
-  const [address, setAddress] = useState(shippingInfo.address);
-  const [city, setCity] = useState(shippingInfo.city);
-  const [state, setState] = useState(shippingInfo.state);
-  const [country, setCountry] = useState(shippingInfo.country);
-  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const { shippingInfo } = useSelector((state) => state.cart);
+  const [receivingPersonName, setreceivingPersonName] = useState(
+    shippingInfo.receivingPersonName
+  );
+  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState(
+    shippingInfo.userLoggedInDesignation
+  );
+  // const [address, setAddress] = useState(shippingInfo.address);
+  // const [city, setCity] = useState(shippingInfo.city);
+  // const [state, setState] = useState(shippingInfo.state);
+  // const [country, setCountry] = useState(shippingInfo.country);
+  // const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
   const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
-
+  const [addComments, setaddComments] = useState(
+    shippingInfo.additionalComments
+  );
+  let orderDate = "";
   const shippingSubmit = (e) => {
     e.preventDefault();
-    
+    console.log("addComments", addComments);
+    let current = new Date();
+    let cDate =
+      current.getFullYear() +
+      "-" +
+      (current.getMonth() + 1) +
+      "-" +
+      current.getDate();
+    let cTime =
+      current.getHours() +
+      ":" +
+      current.getMinutes() +
+      ":" +
+      current.getSeconds();
+    let orderDate = cDate + " " + cTime;
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
       alert.error("Phone Number should be 10 digits Long");
       return;
     }
-    dispatch(      
-    saveShippingInfo({userName:user.name,receivingPersonName, userLoggedInDesignation, address, city, state, country, pinCode, phoneNo })
+    dispatch(
+      saveShippingInfo({
+        userName: user.name,
+        receivingPersonName,
+        additionalComments: addComments,
+        userLoggedInDesignation,
+        userAddress:user.address,
+        orderDate,
+        phoneNo
+      })
     );
     history.push("/order/confirm");
   };
 
   return (
     <Fragment>
-      <MetaData title="Shipping Details" />
+      <MetaData title="Delivery Details" />
 
       <CheckoutSteps activeStep={0} />
 
       <div className="shippingContainer">
         <div className="shippingBox">
-          <h2 className="shippingHeading">Shipping Details</h2>
+          <h2 className="shippingHeading">Delivery Details</h2>
 
           <form
             className="shippingForm"
@@ -63,16 +91,15 @@ const Shipping = ({ history }) => {
               <PersonIcon />
               <input
                 type="text"
-                placeholder="User Logged In"                
-                value={user.name + " (User Placing Order)"}  
-                disabled  
-                                         
+                placeholder="User Logged In"
+                value={user.name + " (User Placing Order)"}
+                disabled
               />
               <input
                 type="text"
-                placeholder="Designation"                
-                value={userLoggedInDesignation} 
-                onChange={(e) => setuserLoggedInDesignation(e.target.value)}               
+                placeholder="Designation"
+                value={userLoggedInDesignation}
+                onChange={(e) => setuserLoggedInDesignation(e.target.value)}
               />
             </div>
             <div>
@@ -91,12 +118,13 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="Address"
                 required
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={user.address}
+                disabled
+                // onChange={(e) => setAddress(e.target.value)}
               />
             </div>
 
-            <div>
+            {/* <div>
               <LocationCityIcon />
               <input
                 type="text"
@@ -116,7 +144,7 @@ const Shipping = ({ history }) => {
                 value={pinCode}
                 onChange={(e) => setPinCode(e.target.value)}
               />
-            </div>
+            </div> */}
 
             <div>
               <PhoneIcon />
@@ -130,7 +158,7 @@ const Shipping = ({ history }) => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <PublicIcon />
 
               <select
@@ -166,15 +194,23 @@ const Shipping = ({ history }) => {
                     ))}
                 </select>
               </div>
-            )}
+            )} */}
 
             <input
               type="submit"
               value="Continue"
               className="shippingBtn"
-              disabled={state ? false : true}
+              // disabled={state ? false : true}
             />
           </form>
+        </div>
+        <div className="additionalComments">
+          <textarea
+            placeholder="Add if you have any additional comments or request for items here..."
+            onChange={(e) => setaddComments(e.target.value)}
+          >
+            {addComments}
+          </textarea>
         </div>
       </div>
     </Fragment>

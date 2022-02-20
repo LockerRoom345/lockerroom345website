@@ -66,6 +66,13 @@ const OrderList = ({ history }) => {
       flex: 0.1,
     },
     {
+      field: "OrderDate",
+      headerName: "Order Date",
+      type: "string",
+      minWidth: 50,
+      flex: 0.1,
+    },
+    {
       field: "status",
       headerName: "Status",
       minWidth: 50,
@@ -117,6 +124,7 @@ const OrderList = ({ history }) => {
         id: item._id,
         itemsQty: item.orderItems.length,
         amount: item.totalPrice,
+        OrderDate: item.shippingInfo.orderDate,
         status: item.orderStatus,
         studentId: item.shippingInfo.receivingPersonName,
         orderfrom: item.shippingInfo.userName       

@@ -13,7 +13,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from "../../constants/productConstants";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import HeightIcon from '@mui/icons-material/Height';
+import HeightIcon from "@mui/icons-material/Height";
 
 const NewProduct = ({ history }) => {
   const dispatch = useDispatch();
@@ -25,12 +25,12 @@ const NewProduct = ({ history }) => {
   // const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
-  const [Size, setSize] = useState(0);
+  const [ProductSize, setProductSize] = useState("");
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = ["FootWears", "Clothing", "Sports","Miscellaneous"];
+  const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
 
   useEffect(() => {
     if (error) {
@@ -49,10 +49,10 @@ const NewProduct = ({ history }) => {
     e.preventDefault();
 
     const myForm = new FormData();
-    myForm.set("name", name);        
+    myForm.set("name", name);
     myForm.set("category", category);
     myForm.set("SubCategory", SubCategory);
-    myForm.set("Size", Size);
+    myForm.set("ProductSize", ProductSize);
     myForm.set("Stock", Stock);
 
     images.forEach((image) => {
@@ -60,6 +60,7 @@ const NewProduct = ({ history }) => {
     });
     dispatch(createProduct(myForm));
   };
+ 
 
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
@@ -116,21 +117,35 @@ const NewProduct = ({ history }) => {
             </div>
             <div>
               <FilterAltIcon />
-              <input
+              {/* <input
                 type="text"
                 placeholder="SubCategory"
                 required
                 onChange={(e) => setSubCategory(e.target.value)}
-              />
+              /> */}
+              <select
+                name="category"
+                id="category"
+                onChange={(e) => {
+                  setSubCategory(e.target.value);
+                }}
+              >
+                <option value="SelectCategory">Select SubCategory</option>
+                <option value="men">Mens sizing</option>
+                <option value="women">Womens sizing</option>
+                <option value="boys">Boys' sizing</option>
+                <option value="girls">Girls' sizing</option>
+                <option value="toddler">Toddlers sizing</option>
+              </select>
             </div>
-            
+
             <div>
               <HeightIcon />
               <input
                 type="text"
                 placeholder="Size"
                 required
-                onChange={(e) => setSize(e.target.value)}
+                onChange={(e) => setProductSize(e.target.value)}
               />
             </div>
             <div>

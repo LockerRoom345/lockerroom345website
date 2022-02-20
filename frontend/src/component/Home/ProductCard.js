@@ -4,6 +4,7 @@ import { Rating } from "@material-ui/lab";
 import { addItemsToCart } from "../../actions/cartAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
+
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductCard = ({ product, history }) => {
@@ -29,10 +30,12 @@ const ProductCard = ({ product, history }) => {
     window.location.href = "http://localhost:3000/requestform";
   };
 
-  const [SubCategory, setSubCategory] = useState(""); 
+  const [SubCategory, setSubCategory] = useState("");
   const [ProductSize, setProductSize] = useState("");
 
   const increaseQuantity = () => {
+    //console.log("product",product.name);
+    //console.log("product", product);
     if (product.Stock <= quantity) return;
 
     const qty = quantity + 1;
@@ -40,6 +43,11 @@ const ProductCard = ({ product, history }) => {
   };
 
   const decreaseQuantity = () => {
+    // for (let i = 0; i < product.ProductSize.length; i++) {
+    //   for (const [key, value] of Object.entries(product.ProductSize[0])) {
+    //     console.log(`${key}: ${value}`);
+    //   }
+    // }
     if (1 >= quantity) return;
 
     const qty = quantity - 1;
@@ -52,85 +60,142 @@ const ProductCard = ({ product, history }) => {
   };
 
   const handlesizeChange = (e) => {
+    console.log(product);
     setProductSize(e.target.value);
-    //console.log((ProductSize[e.target.value]))
   };
-  const addToCartHandler = () => {
-    dispatch(addItemsToCart(product._id, quantity, SubCategory, ProductSize));
-    alert.success("Item Added To Cart");
+  const addToCartHandler = (e) => {
+    e.preventDefault();
+    if (SubCategory.trim() === "" || ProductSize.trim() == "") {
+      alert.show("required Subcategory and Size field");
+    } else {
+      //console.log("clicked");
+      dispatch(addItemsToCart(product._id, quantity, SubCategory, ProductSize));
+      alert.success("Item Added To Cart");
+    }
   };
-  
 
   return (
     // <Link className="productCard" to={`/product/${product._id}`}>
-    <div className="productCard">
-      <img src={product.images[0].url} alt={product.name} />
+    <form
+      onSubmit={(e) => {
+        addToCartHandler(e);
+      }}
+    >
+      <div className="productCard">
+        <img src={product.images[0].url} alt={product.name} />
 
-      <div className="productCardDesc">
-        {/* {"Product Name :"} */}
-        <div className="productname">
-          <p>{product.name}</p>
-        </div>
-        {/* <Rating {...options} />{" "} */}
-        <div className="productCardSpan">
-          <div className="detailsBlock-3-1-1">
-            <button onClick={decreaseQuantity}>-</button>
-            <input readOnly type="number" value={quantity} />
-            <button onClick={increaseQuantity}>+</button>
+        <div className="productCardDesc">
+          {/* {"Product Name :"} */}
+          <div className="productname">
+            <p>{product.name}</p>
           </div>
-          {/* ({product.numOfRviews} Reviews) */}
-        </div>
-        <div className="category">        
-          <select name="category" id="category" onChange={
-            (e) => {handlesubcatChange(e);}
-          }>
-            <option value="SelectCategory">Select SubCategory</option>
-            <option value="men">Mens sizing</option>
-            <option value="women">Womens sizing</option>
-            <option value="boys">Boys' sizing</option>
-            <option value="girls">Girls' sizing</option>
-            <option value="toddler">Toddlers sizing</option>
-          </select>
-        </div>
-        <div className="size">        
-          <select name="size" id="size" onChange={(e)=>{
-            handlesizeChange(e);
-          }}>
-            <option value="selectsize">Select Size</option>
-            <option value="2T">2T</option>
-            <option value="3T">3T</option>
-            <option value="4T">4T</option>
-            <option value="XX Small">XX Small</option>
-            <option value="X Small">X Small</option>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-            <option value="X Large">X Large</option>
-            <option value="XX Large">XX Large</option>
-            <option value="XXX Large">XXX Large</option>
-            <option value="4X Large">4X Large</option>
-          </select>
-        </div>
-        <div className="stock">
-          <p>
-            Status:
-            <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-              {product.Stock < 1 ? "OutOfStock" : "InStock"}
-            </b> <br/>
-            {/* <button
+          {/* <Rating {...options} />{" "} */}
+          <div className="productCardSpan">
+            <div className="detailsBlock-3-1-1">
+              <button onClick={decreaseQuantity}>-</button>
+              <input readOnly type="number" value={quantity} />
+              <button onClick={increaseQuantity}>+</button>
+            </div>
+            {/* ({product.numOfReviews} Reviews) */}
+          </div>
+          <div className="category">
+            <select
+              name="category"
+              id="category"
+              onChange={(e) => {
+                handlesubcatChange(e);
+              }}
+              required
+            >
+              <option value="SelectCategory">Select SubCategory</option>
+              <option value="Mens sizing">Mens sizing</option>
+              <option value="Womens sizing">Womens sizing</option>
+              <option value="Boys' sizing">Boys' sizing</option>
+              <option value="Girls' sizin">Girls' sizing</option>
+              <option value="Toddlers sizing">Toddlers sizing</option>
+            </select>
+          </div>
+          <div className="size">
+            {product && product.ProductSize && (
+              <select
+                name="size"
+                id="size"
+                onChange={(e) => {
+                  handlesizeChange(e);
+                }}
+                required
+              >
+                <option value="selectsize">Select Size</option>
+                {/* {Object.entries(product.ProductSize[0]).map((k,v) =>              
+                <option value={k}>
+                  {k[0]}
+                </option>              
+            )}           */}
+                {product.ProductSize.map((item, index) => (
+                  <option key={item.size} value={item.size}>
+                    {item.size}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+          <div className="stock">
+            <p>
+              Status:
+              <b
+                className={
+                  product &&
+                  product.ProductSize &&
+                  product.ProductSize.find(
+                    (item) => item.size == ProductSize
+                  ) &&
+                  product.ProductSize.find((item) => item.size == ProductSize)
+                    .stock <= 0
+                    ? "redColor"
+                    : "greenColor"
+                }
+              >
+                {product.ProductSize.find((item) => item.size == ProductSize) &&
+                product.ProductSize.find((item) => item.size == ProductSize)
+                  .stock < 1
+                  ? "OutOfStock"
+                  : "InStock"}
+              </b>
+              <br />
+              {/* <button
                     disabled={product.Stock < 1 ? false : true}                    
                     onClick={takeToRequestForm}
                   >Request</button> */}
-          </p>
-        </div>
-        <div className="addshopcart" onClick={addToCartHandler}>
-          <button disabled={product.Stock < 1 ? true : false}>
-            <AddShoppingCartIcon />
-            Add to Cart
-          </button>
+            </p>
+          </div>
+          <div className="addshopcart">
+            <button
+              // onClick={addToCartHandler}
+              disabled={
+                product.ProductSize.find((item) => item.size == ProductSize) &&
+                product.ProductSize.find((item) => item.size == ProductSize)
+                  .stock < 1
+                  ? true
+                  : false
+              }
+            >
+              <AddShoppingCartIcon
+                disabled={
+                  product.ProductSize.find(
+                    (item) => item.size == ProductSize
+                  ) &&
+                  product.ProductSize.find((item) => item.size == ProductSize)
+                    .stock < 1
+                    ? true
+                    : false
+                }
+              />
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
 
     // </Link>
   );

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./Cart.css";
 import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 
 const Cart = ({ history }) => {
   const dispatch = useDispatch();
-  const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems,shippingInfo } = useSelector((state) => state.cart);
+
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -32,7 +33,7 @@ const Cart = ({ history }) => {
   };
 
   const checkoutHandler = () => {
-    // history.push("/login?redirect=shipping");
+    // history.push("/login?redirect=shipping");    
     history.push("/shipping");
   };
 
@@ -102,7 +103,9 @@ const Cart = ({ history }) => {
               </div>
             </div>
           </div>
+         
         </Fragment>
+       
       )}
     </Fragment>
   );

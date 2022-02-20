@@ -11,7 +11,7 @@ const CartItemCard = ({ item, deleteCartItems }) => {
         {/* <span>{`Price: $${item.price}`}</span> */}
         {/* <span>{`Price: $0`}</span> */}
         <span>{`SubCategory: ${item.SubCategory}`}</span>
-        <span>{`Size: ${item.ProductSize}`}</span>
+        <span>{`Size: ${item.ProductSize.split(",",1)}`}</span>
         <p onClick={() => deleteCartItems(item.product)}>Remove</p>
       </div>
     </div>

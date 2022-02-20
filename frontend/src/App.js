@@ -56,6 +56,7 @@ function App() {
 
     // setStripeApiKey(data.stripeApiKey);
   }
+  
 
   useEffect(() => {
     WebFont.load({

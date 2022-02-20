@@ -18,7 +18,12 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     });
     req.body.images = imagesLinks;
     req.body.user = req.user.id;
-    //console.log(req.body);
+    let productSizereq = [{
+      size: req.body.ProductSize,
+      stock:req.body.Stock
+    }];
+    req.body.ProductSize = productSizereq;
+    console.log("If creating order",req.body);
     const product = await Product.create(req.body);
     //console.log(product);
     res.status(201).json({
@@ -45,9 +50,15 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-
+    let productSizereq = [{
+      size: req.body.ProductSize,
+      stock:req.body.Stock
+    }];
+    req.body.ProductSize = productSizereq;
     req.body.images = imagesLinks;
     req.body.user = req.user.id;
+
+    console.log("Else creating order",req.body);
     const product = await Product.create(req.body);
 
     res.status(201).json({
@@ -100,6 +111,7 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
 
 // Get Product Details
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
+  
   const product = await Product.findById(req.params.id);
 
   if (!product) {
@@ -115,12 +127,14 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
 // Update Product -- Admin
 
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
+  // console.log(req.params.id," THis is the product Id for testing")
   let product = await Product.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHander("Product not found", 404));
   }
-
+  
+  // console.log(product);
   // Images Start Here
   let images = [];
 
@@ -148,10 +162,24 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-
+    console.log("before updating stock new values",req.body);
     req.body.images = imagesLinks;
   }
-
+  // let productSizereq = {
+  //   "size": req.body.ProductSize,
+  //   "stock":req.body.Stock
+  // };
+  
+  //product.ProductSize.(productSizereq);
+  // console.log("findindex",product.ProductSize.findIndex(x => x.size == req.body.ProductSize ));
+  let index = product.ProductSize.findIndex(x => x.size == req.body.ProductSize );
+  product.ProductSize[index].stock = req.body.Stock;
+  req.body.ProductSize = product.ProductSize;
+   delete req.body["Stock"];
+   delete req.body["Size"];
+   
+  
+  // console.log("before updating stock new values",req.body);
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,

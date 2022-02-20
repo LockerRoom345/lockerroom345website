@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect,useRef } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import "./orderDetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
@@ -11,10 +11,8 @@ import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
 
 const OrderDetails = ({ match }) => {
- 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { shippingInfo } = useSelector((state) => state.cart);
-  
 
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -46,14 +44,18 @@ const OrderDetails = ({ match }) => {
                   <p>Order Placed by:</p>
                   <span>{order.user && order.user.name}</span>
                   <hr></hr>
-                <span>&nbsp;</span>
-                <p>Designation:</p>
-                <span>{shippingInfo.userLoggedInDesignation}</span>
+                  <span>&nbsp;</span>
+                  <p>Designation:</p>
+                  <span>{shippingInfo.userLoggedInDesignation}</span>
                 </div>
                 <div>
-                <p>Deliver To Student Id:</p>
-                <span>{shippingInfo.receivingPersonName}</span>
-              </div>
+                  <p>Deliver To Student Id:</p>
+                  <span>{shippingInfo.receivingPersonName}</span>
+                </div>
+                <div>
+                      <p>Order Date:</p>
+                      <span>{order.user && order.shippingInfo.orderDate}</span>
+                    </div>
                 <div>
                   <p>Phone:</p>
                   <span>
@@ -63,12 +65,18 @@ const OrderDetails = ({ match }) => {
                 <div>
                   <p>Address:</p>
                   <span>
+                    {order.shippingInfo && order.shippingInfo.userAddress }
+                  </span>
+                </div>
+                <div>
+                  <p>Additional Comments:</p>
+                  <span>
                     {order.shippingInfo &&
-                      `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
+                      `${order.shippingInfo.additionalComments}`}
                   </span>
                 </div>
               </div>
-              
+
               <Typography>Order Status</Typography>
               <div className="orderDetailsContainerBox">
                 <div>
@@ -91,37 +99,34 @@ const OrderDetails = ({ match }) => {
                 {order.orderItems &&
                   order.orderItems.map((item) => (
                     <div className="cartitemholder" key={item.product}>
-                    <div className="cartitemholderimage">
-                      <img src={item.image} alt="Product" />
+                      <div className="cartitemholderimage">
+                        <img src={item.image} alt="Product" />
+                      </div>
+                      <div className="cartitemholdername">
+                        <span>{item.name}</span>
+                      </div>
+                      <div className="cartitemholdercat">
+                        <span>Subcategory({item.SubCategory})</span>
+                      </div>
+                      <div className="cartitemholdersize">
+                        <span>Size({item.ProductSize.split(",", 1)})</span>
+                      </div>
+                      <div className="cartitemholderquantity">
+                        <span>Quantity({item.quantity})</span>
+                      </div>
                     </div>
-                    <div className="cartitemholdername">
-                     <span>{item.name}</span>
-                    </div>
-                    <div className="cartitemholdercat">
-                      <span>Subcategory({item.SubCategory})</span>
-                    </div>
-                    <div className="cartitemholdersize">
-                      <span>Size({item.ProductSize})</span>
-                    </div>
-                    <div className="cartitemholderquantity">
-                      <span>
-                        Quantity({item.quantity})
-                      </span>
-                    </div>
-                  </div>
                   ))}
-                   
               </div>
             </div>
             <div className="printComponent">
-            <ReactToPrint
-              trigger={() => <PrintIcon className="PrintIcon" />}
-              content={() => componentRef.current}
-            />{" "}
-            <p>
-              <span>Print</span>
-            </p>
-          </div>
+              <ReactToPrint
+                trigger={() => <PrintIcon className="PrintIcon" />}
+                content={() => componentRef.current}
+              />{" "}
+              <p>
+                <span>Print</span>
+              </p>
+            </div>
           </div>
         </Fragment>
       )}
