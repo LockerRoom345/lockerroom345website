@@ -45,8 +45,6 @@ const UpdateProduct = ({ history, match }) => {
 
   const productId = match.params.id;
 
-  
-
   useEffect(() => {
     //console.log((product.ProductSize).length);
     //for(let i =0; i< 3; i++){
@@ -59,14 +57,20 @@ const UpdateProduct = ({ history, match }) => {
       console.log("entering getProductDetails");
       dispatch(getProductDetails(productId));
     } else {
-      console.log("length", product.ProductSize.indexOf((x)=> x.size == product.ProductSize.size ));
+      // console.log(
+      //   "length",
+      //   product.ProductSize.indexOf((x) => {
+      //     x.size == product.ProductSize.size;
+      //   })
+      // );
       setName(product.name);
       setDescription(product.description);
       // setPrice(product.price);
       setCategory(product.category);
       setSubCategory(product.SubCategory);
-      setProductSize(product.ProductSize[0].size);
-      setStock(product.ProductSize[0].stock);
+      // setProductSize(product.ProductSize[0].size);
+      // setProductSize(product.ProductSize[0].size);
+      // setStock(product.ProductSize[0].stock);
       setOldImages(product.images);
     }
     if (error) {
@@ -99,7 +103,6 @@ const UpdateProduct = ({ history, match }) => {
     e.preventDefault();
 
     const myForm = new FormData();
-    
 
     myForm.set("name", name);
     myForm.set("description", description);
@@ -115,7 +118,22 @@ const UpdateProduct = ({ history, match }) => {
   };
 
   const handlesizeChange = (e) => {
-    //console.log(product.ProductSize[0].size);
+   
+    // console.log(e.target.options.selectedIndex);    
+    // //console.log("obj",e.target[e.target.selectedIndex].key );
+    // console.log((product.ProductSize[(e.target.options.selectedIndex)-1]).size);
+    
+    //console.log("selectedIndex",selectedIndex);
+    //console.log(e.target.options[selectedIndex].datasets.key);
+    // for (let node of e.target.children) {
+    //   if (node.value === e.target.value) {
+    //     console.log(node);
+    //     // this.setState({
+    //     //   selected: node.getAttribute('data-id')
+    //     // });
+    //   }
+    // }
+    setProductSize((product.ProductSize[(e.target.options.selectedIndex)-1]).size);
     setStock(e.target.value);
   };
 
@@ -203,11 +221,11 @@ const UpdateProduct = ({ history, match }) => {
                 }}
               >
                 <option value="SelectCategory">Select SubCategory</option>
-                <option value="men">Mens sizing</option>
-                <option value="women">Womens sizing</option>
-                <option value="boys">Boys' sizing</option>
-                <option value="girls">Girls' sizing</option>
-                <option value="toddler">Toddlers sizing</option>
+                <option value="Mens sizing">Mens sizing</option>
+                <option value="Womens sizing">Womens sizing</option>
+                <option value="Boys' sizing">Boys' sizing</option>
+                <option value="Girls' sizing">Girls' sizing</option>
+                <option value="Toddlers sizing">Toddlers sizing</option>
               </select>
             </div>
 

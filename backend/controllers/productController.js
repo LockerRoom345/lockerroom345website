@@ -169,17 +169,29 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   //   "size": req.body.ProductSize,
   //   "stock":req.body.Stock
   // };
-  
+  // product &&
+  // product.ProductSize &&
+  // product.ProductSize.find(
+  //   (item) => item.size == ProductSize
+  // ) &&
+  // product.ProductSize.find((item) => item.size == ProductSize)
+  //   .stock <= 0
+  //   ? "redColor"
+  //   : "greenColor"
   //product.ProductSize.(productSizereq);
-  // console.log("findindex",product.ProductSize.findIndex(x => x.size == req.body.ProductSize ));
+  console.log("before updaiting req.body.ProductSize",req.body.ProductSize);
+  console.log("findindex",product.ProductSize.findIndex(x => x.size == req.body.ProductSize ));
   let index = product.ProductSize.findIndex(x => x.size == req.body.ProductSize );
+  console.log("stock",req.body.Stock);
   product.ProductSize[index].stock = req.body.Stock;
+  console.log("new updated req.body.ProductSize",product.ProductSize);
   req.body.ProductSize = product.ProductSize;
    delete req.body["Stock"];
    delete req.body["Size"];
    
+   
   
-  // console.log("before updating stock new values",req.body);
+   console.log("before updating stock new values",req.body);
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
