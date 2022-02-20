@@ -78,7 +78,7 @@ const ProductCard = ({ product, history }) => {
             <input readOnly type="number" value={quantity} />
             <button onClick={increaseQuantity}>+</button>
           </div>
-          {/* ({product.numOfReviews} Reviews) */}
+          {/* ({product.numOfRviews} Reviews) */}
         </div>
         <div className="category">        
           <select name="category" id="category" onChange={
