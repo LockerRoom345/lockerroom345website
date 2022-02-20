@@ -65,7 +65,7 @@ const ProductCard = ({ product, history }) => {
   };
   const addToCartHandler = (e) => {
     e.preventDefault();
-    if (SubCategory.trim() === "" || ProductSize.trim() == "") {
+    if (SubCategory.trim() === "" || ProductSize.trim() == "" || SubCategory.trim() === "SelectCategory" || ProductSize.trim() === "selectsize") {
       alert.show("required Subcategory and Size field");
     } else {
       //console.log("clicked");
