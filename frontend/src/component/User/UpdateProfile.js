@@ -98,8 +98,8 @@ const UpdateProfile = ({ history }) => {
                 <div className="updateProfileEmail">
                   <MailOutlineIcon />
                   <input
-                    type="email"
-                    placeholder="Email"
+                    type="text"
+                    placeholder="Login Id"
                     required
                     name="email"
                     value={email}
