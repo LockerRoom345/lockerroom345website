@@ -31,7 +31,7 @@ const ConfirmOrder = ({ history,addComments}) => {
 
   const totalPrice = 0;
 
-  const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
+  // const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 
   
   const proceedToPayment = () => {
@@ -72,12 +72,16 @@ const ConfirmOrder = ({ history,addComments}) => {
                 <span>{shippingInfo.receivingPersonName}</span>
               </div>
               <div>
+                <p>Order Date:</p>
+                <span>{shippingInfo.orderDate}</span>
+              </div>
+              <div>
                 <p>Phone:</p>
                 <span>{shippingInfo.phoneNo}</span>
               </div>
               <div>
                 <p>Address:</p>
-                <span>{address}</span>
+                <span>{user.address}</span>
               </div>
               <div>
                 <p>Additional Comments:</p>

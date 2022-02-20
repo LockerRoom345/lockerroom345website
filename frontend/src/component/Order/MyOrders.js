@@ -35,6 +35,13 @@ const MyOrders = () => {
       flex: 0.5,
     },
     {
+      field: "OrderDate",
+      headerName: "OrderDate",
+      type: "string",
+      minWidth: 150,
+      flex: 0.5,
+    },
+    {
       field: "status",
       headerName: "Status",
       minWidth: 150,
@@ -76,6 +83,7 @@ const MyOrders = () => {
       rows.push({
         itemsQty: item.orderItems.length,
         id: item._id,
+        OrderDate:item.shippingInfo.orderDate,
         status: item.orderStatus,
         amount: item.totalPrice,
         studentId: item.shippingInfo.receivingPersonName,

@@ -110,7 +110,7 @@ const LoginSignUp = ({ history, location }) => {
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p>
+                  {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
                 </div>
                 <button ref={switcherTab}></button>
               </div>
@@ -118,8 +118,8 @@ const LoginSignUp = ({ history, location }) => {
                 <div className="loginEmail">
                   <MailOutlineIcon />
                   <input
-                    type="email"
-                    placeholder="Email"
+                    type="text"
+                    placeholder="Login ID"
                     required
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}

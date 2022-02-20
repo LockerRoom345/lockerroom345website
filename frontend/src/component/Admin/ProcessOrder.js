@@ -37,8 +37,6 @@ const ProcessOrder = ({ history, match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
- 
-
   useEffect(() => {
     //console.log(order);
     if (error) {
@@ -82,11 +80,20 @@ const ProcessOrder = ({ history, match }) => {
                       <hr></hr>
                       <span>&nbsp;</span>
                       <p>Designation:</p>
-                      <span>{order.user && order.shippingInfo.userLoggedInDesignation}</span>
+                      <span>
+                        {order.user &&
+                          order.shippingInfo.userLoggedInDesignation}
+                      </span>
                     </div>
                     <div>
                       <p>Deliver To Student Id:</p>
-                      <span>{order.user && order.shippingInfo.receivingPersonName}</span>
+                      <span>
+                        {order.user && order.shippingInfo.receivingPersonName}
+                      </span>
+                    </div>
+                    <div>
+                      <p>Order Date:</p>
+                      <span>{order.user && order.shippingInfo.orderDate}</span>
                     </div>
                     <div>
                       <p>Phone:</p>
@@ -97,8 +104,7 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
                       <p>Address:</p>
                       <span>
-                        {order.shippingInfo &&
-                          `${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state}, ${order.shippingInfo.pinCode}, ${order.shippingInfo.country}`}
+                        {order.shippingInfo && order.shippingInfo.userAddress }
                       </span>
                     </div>
                     <div>
@@ -140,7 +146,7 @@ const ProcessOrder = ({ history, match }) => {
                             <span>Subcategory({item.SubCategory})</span>
                           </div>
                           <div className="cartitemholdersize">
-                            <span>Size({item.ProductSize.split(",",1)})</span>
+                            <span>Size({item.ProductSize.split(",", 1)})</span>
                           </div>
                           <div className="cartitemholderquantity">
                             <span>Quantity({item.quantity})</span>

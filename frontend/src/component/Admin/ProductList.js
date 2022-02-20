@@ -85,7 +85,7 @@ const ProductList = ({ history }) => {
       flex: 0.1,
       cellClassName: (params) => {
         //console.log("params",params);
-        return params.getValue(params.id, "stock") < 0
+        return params.getValue(params.id, "stock") > 0
           ? "greenColor"
           : "redColor";
       },
@@ -117,23 +117,37 @@ const ProductList = ({ history }) => {
   ];
 
   const rows = [];
-  const dummy = [];
-  products.forEach((x) => {
-    dummy.push(x);
-  });
-//  dummy[0].ProductSize[0].map((x) => {
-  console.log(dummy);
-//   });
-//  dummy[0].ProductSize.reduce(function(prev, curr) {
-//    console.log(prev.stock < curr.stock ? prev : curr);
-//  });
+  //const dummy = [];
+  // products.forEach((x) => {
+  //   dummy.push(x);
+  //console.log(products);
+  // });
+  //  dummy[0].ProductSize[0].map((x) => {
+  //console.log(products && products[0].ProductSize && products[0].ProductSize.map((x) => x.stock));
+  for (let i = 0; i < products.length; i++) {
+    //console.log(products && products[i].ProductSize && products[i].ProductSize.map((x) => x.stock));
+    console.log(
+      products &&
+        products[i].ProductSize &&
+        products[i].ProductSize.reduce((prev, curr) => 
+           prev.stock < curr.stock ? prev.stock : curr.stock
+        )
+    );
+  }
+
+  //   });
+  //  dummy[0].ProductSize.reduce(function(prev, curr) {
+  //    console.log(prev.stock < curr.stock ? prev : curr);
+  //  });
   //console.log(Object.keys(products.ProductSize[0]).sort((a,b) => (products.ProductSize[a] - products.ProductSize[b])));
   products &&
     products.forEach((item) => {
       rows.push({
         id: item._id,
-        stock: item.stock,
-        price: item.price,
+        stock: item.ProductSize.reduce((prev, curr) => {
+          return prev.stock < curr.stock ? prev.stock : curr.stock;
+        }),
+        // price: item.price,
         name: item.name,
         size: item.Size,
         category: item.category,

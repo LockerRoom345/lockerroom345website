@@ -5,6 +5,18 @@
   grid-template-columns: 0.5fr 8fr;
   position: absolute;
 }
+.dashboardSummary>hr {
+  color: rgb(71, 63, 68);
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  /* font: 300 1.5rem "Roboto";
+  text-align: center;
+  padding: 1.5rem;
+  width: 100%;
+  margin: 0 2rem; */
+}
 
 .dashboardContainer {
   border-left: 1px solid rgba(0, 0, 0, 0.13);
@@ -31,7 +43,7 @@
   justify-content: center;
 }
 .dashboardSummary > div > p {
-  background-color: rgba(70, 117, 218, 0.932);
+  background-color: #a8c4d5;
   color: white;
   font: 300 1.3rem "Roboto";
   text-align: center;
@@ -73,6 +85,7 @@
 
 .doughnutChart {
   width: 30vmax;
+  margin-top:20px;
   margin: auto;
 }
 
