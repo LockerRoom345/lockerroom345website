@@ -124,16 +124,26 @@ const ProductList = ({ history }) => {
   // });
   //  dummy[0].ProductSize[0].map((x) => {
   //console.log(products && products[0].ProductSize && products[0].ProductSize.map((x) => x.stock));
-  for (let i = 0; i < products.length; i++) {
-    //console.log(products && products[i].ProductSize && products[i].ProductSize.map((x) => x.stock));
-    console.log(
-      products &&
-        products[i].ProductSize &&
-        products[i].ProductSize.reduce((prev, curr) => 
-           prev.stock < curr.stock ? prev.stock : curr.stock
-        )
-    );
-  }
+  // for (let i = 0; i < products.length; i++) {
+  //   //console.log(products && products[i].ProductSize && products[i].ProductSize.map((x) => x.stock));
+  //   console.log(
+  //     products &&
+  //       products[i].ProductSize &&
+  //       products[i].ProductSize.reduce((prev, curr) =>
+  //          prev.stock < curr.stock ? prev.stock : curr.stock
+  //       )
+  //   );
+  // }
+
+  let stockarray = products.map((x) =>x.ProductSize.map((y) => y.stock).sort((a, b) => a - b)[0]);
+  // stockarray.map((x) => {
+  //   if (x.includes(0)) {
+  //     outstockincr += 1;
+  //   }
+ // }
+ // );
+
+   console.log("out of stock list", stockarray);
 
   //   });
   //  dummy[0].ProductSize.reduce(function(prev, curr) {
@@ -144,9 +154,7 @@ const ProductList = ({ history }) => {
     products.forEach((item) => {
       rows.push({
         id: item._id,
-        stock: item.ProductSize.reduce((prev, curr) => {
-          return prev.stock < curr.stock ? prev.stock : curr.stock;
-        }),
+        stock: item.ProductSize.map((y) => y.stock).sort((a, b) => a - b)[0],
         // price: item.price,
         name: item.name,
         size: item.Size,

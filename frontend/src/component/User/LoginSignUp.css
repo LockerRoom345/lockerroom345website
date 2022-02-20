@@ -38,7 +38,7 @@
 .LoginSignUpBox > div > button {
   background-color: #065749;
   height: 3px;
-  width: 50%;
+  width: 100%;
   border: none;
   transition: all 0.5s;
 }

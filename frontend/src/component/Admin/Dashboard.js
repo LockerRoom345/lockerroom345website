@@ -21,12 +21,39 @@ const Dashboard = () => {
 
   let outOfStock = 0;
 
-  products &&
-    products.forEach((item) => {
-      if (item.Stock === 0) {
-        outOfStock += 1;
+  let instock = 0;
+  let outstockincr = 0;
+   
+    let stockarray = products.map((x) => x.ProductSize.map((y) => y.stock).sort((a,b)=>a-b));
+    stockarray.map((x) => {
+      if(x.includes(0)){
+        outstockincr += 1;
       }
+      // x.map((y) => {
+      //   if (y.includes(0)) {
+      //     //console.log(x);
+      //     outstockincr += 1;
+          
+      //   }
+      // }      )
+     
     });
+    console.log("out of stock list",stockarray);
+    console.log("overall items out of stock is",outstockincr);
+  
+
+  // for(let i =0; i< 3; i++){
+  //   for (const [key, value] of Object.entries(products.ProductSize[0])) {
+  //     console.log(`${key}: ${value}`);
+  //   }
+  //   }
+
+  // products &&
+  //   products.forEach((item) => {      
+  //     if (item.Stock === 0) {
+  //       outOfStock += 1;
+  //     }
+  //   });
 
   useEffect(() => {
     dispatch(getAdminProduct());
@@ -53,12 +80,12 @@ const Dashboard = () => {
   };
 
   const doughnutState = {
-    labels: ["Out of Stock", "In Stock       "],
+    labels: ["Out of Stock", "In Stock"],
     datasets: [
       {
         backgroundColor: ["#d53f3f", "#7cd583"],
         hoverBackgroundColor: ["#ad2626", "#60d66a"],
-        data: [outOfStock, products.length - outOfStock],
+        data: [outstockincr, products.length - outstockincr],
       },
     ],
   };
@@ -91,7 +118,7 @@ const Dashboard = () => {
               <p>{users && users.length}</p>
             </Link>
           </div>
-       
+
           <div>
             <p>
               Stock Status <br />
