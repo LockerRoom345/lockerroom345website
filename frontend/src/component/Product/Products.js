@@ -66,7 +66,7 @@ const Products = ({ match }) => {
           <h2 className="productsHeading">Products</h2>
 
           <div className="filterBox">
-            <div className="filSize">
+            {/* <div className="filSize">
             <fieldset>
               <Typography component="legend">Size</Typography>
               <Slider
@@ -78,7 +78,7 @@ const Products = ({ match }) => {
                 max={12}
               />
               </fieldset>
-            </div>
+            </div> */}
 
             <div className="filCategories">
               <fieldset>

@@ -33,24 +33,21 @@ const ProductCard = ({ product, history }) => {
   const [SubCategory, setSubCategory] = useState("");
   const [ProductSize, setProductSize] = useState("");
 
-  const increaseQuantity = () => {
-    //console.log("product",product.name);
-    //console.log("product", product);
-    if (product.Stock <= quantity) return;
-
+  const increaseQuantity = () => {    
+    //let stockarray = products.map((x) => x.ProductSize.map((y) => y.stock).sort((a,b)=>a-b));
+    let maxstock = (product.ProductSize.map((y)=> y.stock).sort((a,b)=>b-a))[0];    
+    // console.log("product Stock currently",maxstock);
+    if (maxstock <= quantity) return;
     const qty = quantity + 1;
+    console.log("increase quantity to",qty);
     setQuantity(qty);
   };
 
   const decreaseQuantity = () => {
-    // for (let i = 0; i < product.ProductSize.length; i++) {
-    //   for (const [key, value] of Object.entries(product.ProductSize[0])) {
-    //     console.log(`${key}: ${value}`);
-    //   }
-    // }
+    console.log("product Stock currently",product.Stock);
     if (1 >= quantity) return;
-
     const qty = quantity - 1;
+    console.log("decrease quantity to",qty);
     setQuantity(qty);
   };
 
@@ -60,7 +57,7 @@ const ProductCard = ({ product, history }) => {
   };
 
   const handlesizeChange = (e) => {
-    console.log(product);
+    //console.log(product);
     setProductSize(e.target.value);
   };
   const addToCartHandler = (e) => {
@@ -76,11 +73,11 @@ const ProductCard = ({ product, history }) => {
 
   return (
     // <Link className="productCard" to={`/product/${product._id}`}>
-    <form
-      onSubmit={(e) => {
-        addToCartHandler(e);
-      }}
-    >
+    // <form
+    //   onSubmit={(e) => {
+    //     addToCartHandler(e);
+    //   }}
+    // >
       <div className="productCard">
         <img src={product.images[0].url} alt={product.name} />
 
@@ -170,7 +167,7 @@ const ProductCard = ({ product, history }) => {
           </div>
           <div className="addshopcart">
             <button
-              // onClick={addToCartHandler}
+               onClick={addToCartHandler}
               disabled={
                 product.ProductSize.find((item) => item.size == ProductSize) &&
                 product.ProductSize.find((item) => item.size == ProductSize)
@@ -195,7 +192,7 @@ const ProductCard = ({ product, history }) => {
           </div>
         </div>
       </div>
-    </form>
+    // </form>
 
     // </Link>
   );
