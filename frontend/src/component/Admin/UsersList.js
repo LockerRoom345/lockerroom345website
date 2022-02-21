@@ -89,7 +89,8 @@ const UsersList = ({ history }) => {
         return (
           <Fragment>
             <Link to={`/admin/user/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
+              {/* <EditIcon /> */}
+              <span>Edit</span>
             </Link>
 
             <Button
