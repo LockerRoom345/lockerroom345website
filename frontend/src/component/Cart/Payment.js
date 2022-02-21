@@ -101,8 +101,8 @@ const Payment = ({ history }) => {
       //   },
       // });
       //result.paymentIntent.status === "succeeded";
-
-      if (data.success === true) {
+debugger
+      if ((data.success === true) && (cartItems.length >0)){
         // order.paymentInfo = {
         //   id: result.paymentIntent.id,
         //   status: result.paymentIntent.status,
@@ -110,7 +110,7 @@ const Payment = ({ history }) => {
         dispatch(createOrder(order));
         history.push("/success");
       } else {
-        alert.error("There's some issue while processing payment ");
+        alert.error("No items available in cart. Please try adding the items again");
       }
     } catch (error) {
       payBtn.current.disabled = false;
