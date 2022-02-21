@@ -23,24 +23,24 @@ const Dashboard = () => {
 
   let instock = 0;
   let outstockincr = 0;
-   
-    let stockarray = products.map((x) => x.ProductSize.map((y) => y.stock).sort((a,b)=>a-b));
-    stockarray.map((x) => {
-      if(x.includes(0)){
-        outstockincr += 1;
-      }
-      // x.map((y) => {
-      //   if (y.includes(0)) {
-      //     //console.log(x);
-      //     outstockincr += 1;
-          
-      //   }
-      // }      )
-     
-    });
-    console.log("out of stock list",stockarray);
-    console.log("overall items out of stock is",outstockincr);
-  
+
+  let stockarray = products.map((x) =>
+    x.ProductSize.map((y) => y.stock).sort((a, b) => a - b)
+  );
+  stockarray.map((x) => {
+    if (x.includes(0)) {
+      outstockincr += 1;
+    }
+    // x.map((y) => {
+    //   if (y.includes(0)) {
+    //     //console.log(x);
+    //     outstockincr += 1;
+
+    //   }
+    // }      )
+  });
+  console.log("out of stock list", stockarray);
+  console.log("overall items out of stock is", outstockincr);
 
   // for(let i =0; i< 3; i++){
   //   for (const [key, value] of Object.entries(products.ProductSize[0])) {
@@ -49,7 +49,7 @@ const Dashboard = () => {
   //   }
 
   // products &&
-  //   products.forEach((item) => {      
+  //   products.forEach((item) => {
   //     if (item.Stock === 0) {
   //       outOfStock += 1;
   //     }
@@ -105,13 +105,13 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="dashboardSummaryBox2">
-            <Link to="/admin/products">
-              <p>Item Availability</p>
-              <p>{products && products.length}</p>
-            </Link>
             <Link to="/admin/orders">
               <p>Orders Received</p>
               <p>{orders && orders.length}</p>
+            </Link>
+            <Link to="/admin/products">
+              <p>Item Availability</p>
+              <p>{products && products.length}</p>
             </Link>
             <Link to="/admin/users">
               <p>Manage Users</p>

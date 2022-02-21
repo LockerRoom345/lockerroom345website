@@ -24,7 +24,6 @@ import { PDFDownloadLink, Document, Page, pdf } from "@react-pdf/renderer";
 import ConfirmOrder from "./ConfirmOrder";
 import RequestFormReplica from "./RequestFormReplica";
 
-
 const Payment = ({ history }) => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
@@ -34,38 +33,29 @@ const Payment = ({ history }) => {
   // const elements = useElements();
   const payBtn = useRef(null);
 
- 
-
   // const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.newOrder);
 
-  
-
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
   };
   // const upadtedcartItems = localStorage.getItem("cartItemss");
-  
-
 
   const submitHandler = async (e) => {
+    const order = {
+      shippingInfo,
+      orderItems: cartItems,
+      itemsPrice: orderInfo.subtotal,
+      taxPrice: orderInfo.tax,
+      shippingPrice: orderInfo.shippingCharges,
+      totalPrice: orderInfo.totalPrice,
+    };
 
-  
-  const order = {
-    shippingInfo,
-    orderItems: cartItems,
-    itemsPrice: orderInfo.subtotal,
-    taxPrice: orderInfo.tax,
-    shippingPrice: orderInfo.shippingCharges,
-    totalPrice: orderInfo.totalPrice,
-
-  };
-    
     e.preventDefault();
     // console.log("upadtedcartItemspay",upadtedcartItems);
-    console.log("cartItems",cartItems);
+    console.log("cartItems", cartItems);
     payBtn.current.disabled = true;
 
     try {
@@ -101,8 +91,8 @@ const Payment = ({ history }) => {
       //   },
       // });
       //result.paymentIntent.status === "succeeded";
-debugger
-      if ((data.success === true) && (cartItems.length >0)){
+
+      if (data.success === true && cartItems.length > 0) {
         // order.paymentInfo = {
         //   id: result.paymentIntent.id,
         //   status: result.paymentIntent.status,
@@ -110,15 +100,15 @@ debugger
         dispatch(createOrder(order));
         history.push("/success");
       } else {
-        alert.error("No items available in cart. Please try adding the items again");
+        alert.error(
+          "No items available in cart. Please try adding the items again"
+        );
       }
     } catch (error) {
       payBtn.current.disabled = false;
       alert.error(error.response.data.message);
     }
   };
-
-  
 
   React.useEffect(() => {
     if (error) {
@@ -131,19 +121,19 @@ debugger
     <Fragment>
       <MetaData title="Payment" />
       <CheckoutSteps activeStep={2} />
-      <div className="paymentContainer" >
+      <div className="paymentContainer">
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
           <Typography className="Typography">Order Place</Typography>
-           <hr></hr>
-           <br/>
-           <br/>
+          <hr></hr>
+          <br />
+          <br />
           <input
             type="submit"
             value={`Proceed To Place Order`}
             ref={payBtn}
             className="paymentFormBtn"
           />
-        </form>       
+        </form>
       </div>
     </Fragment>
   );
