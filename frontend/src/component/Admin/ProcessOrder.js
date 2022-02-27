@@ -18,6 +18,8 @@ import "./processOrder.css";
 import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
 
+import { submitHandler } from "../Cart/Payment"
+
 const ProcessOrder = ({ history, match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);

@@ -4,15 +4,15 @@ const orderSchema = new mongoose.Schema({
   shippingInfo: {
     userName :{
       type: String,
-      required: true,
+      required: false,
     },
     userLoggedInDesignation :{
       type: String,
-      required: true,
+      required: false,
     },
     receivingPersonName :{
       type: String,
-      required: true,
+      required: false,
     },
     orderDate :{
       type: String,
@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema({
     },
     userAddress: {
       type: String,
-      required: true,
+      required: false,
     },
     // city: {
     //   type: String,
@@ -43,8 +43,8 @@ const orderSchema = new mongoose.Schema({
     //   required: true,
     // },
     phoneNo: {
-      type: Number,
-      required: true,
+      type: String,
+      required: false,
     },
   },
   orderItems: [

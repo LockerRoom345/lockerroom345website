@@ -97,7 +97,7 @@ const Shipping = ({ history }) => {
               />
               <input
                 type="text"
-                placeholder="Designation"
+                placeholder="Teacher's Name"
                 value={userLoggedInDesignation}
                 onChange={(e) => setuserLoggedInDesignation(e.target.value)}
               />
@@ -107,7 +107,6 @@ const Shipping = ({ history }) => {
               <input
                 type="text"
                 placeholder="Receiving Student Id"
-                required
                 value={receivingPersonName}
                 onChange={(e) => setreceivingPersonName(e.target.value)}
               />
@@ -117,7 +116,6 @@ const Shipping = ({ history }) => {
               <input
                 type="text"
                 placeholder="Address"
-                required
                 value={user.address}
                 disabled
                 // onChange={(e) => setAddress(e.target.value)}
@@ -149,12 +147,10 @@ const Shipping = ({ history }) => {
             <div>
               <PhoneIcon />
               <input
-                type="number"
+                type="text"
                 placeholder="Phone Number"
-                required
                 value={phoneNo}
                 onChange={(e) => setPhoneNo(e.target.value)}
-                size="10"
               />
             </div>
 

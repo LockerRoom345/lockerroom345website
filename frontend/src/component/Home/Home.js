@@ -41,6 +41,8 @@ const Home = ({ history }) => {
     filteredProductsCount,
   } = useSelector((state) => state.products);
 
+
+
   // const keyword = match.params.keyword;
 
   const setCurrentPageNo = (e) => {
@@ -81,11 +83,11 @@ const Home = ({ history }) => {
             <p>Welcome to Locker Room 345 !!!</p>
             <h1>SPORTS MAKE PEOPLE BETTER</h1>
 
-            <a href="#container">
+            {/* <a href="#container">
               <button>
                 Scroll <CgMouse />
               </button>
-            </a>
+            </a> */}
           </div>
           <div className="searchbar">
             <form className="searchBoxbar" onSubmit={searchSubmitHandler}>
@@ -131,10 +133,10 @@ const Home = ({ history }) => {
                 itemsCountPerPage={resultPerPage}
                 totalItemsCount={productsCount}
                 onChange={setCurrentPageNo}
-                nextPageText="Next"
-                prevPageText="Prev"
-                firstPageText="1st"
-                lastPageText="Last"
+                // nextPageText="Next"
+                // prevPageText="Prev"
+                // firstPageText="1st"
+                // lastPageText="Last"
                 itemClass="page-item"
                 linkClass="page-link"
                 activeClass="pageItemActive"

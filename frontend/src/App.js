@@ -76,7 +76,7 @@ function App() {
     <Router>
       <Header />
 
-      {isAuthenticated && <UserOptions user={user} />}
+      {/* {isAuthenticated && <UserOptions user={user} />} */}
 
       {/* { (
         <Elements stripe={loadStripe(stripeApiKey)}>
@@ -99,6 +99,7 @@ function App() {
         <Route exact path="/donate" component={Donate} />
         <Route exact path="/product/:id" component={ProductDetails} />
         <Route exact path="/products" component={Products} />
+        <Route exact path="/orders" component={MyOrders} /> 
         <Route path="/products/:keyword" component={Products} />
 
         <Route exact path="/search" component={Search} />
@@ -124,6 +125,8 @@ function App() {
         <Route exact path="/login" component={LoginSignUp} />
 
         <Route exact path="/cart" component={Cart} /> 
+
+        
         {/* <Route
           component={
             window.location.pathname === "/process/payment" ? null : NotFound
@@ -136,7 +139,7 @@ function App() {
 
         <ProtectedRoute exact path="/success" component={OrderSuccess} />
 
-        <ProtectedRoute exact path="/orders" component={MyOrders} />
+        {/* <ProtectedRoute exact path="/orders" component={MyOrders} /> */}
 
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
 

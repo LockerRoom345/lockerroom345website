@@ -4,6 +4,7 @@ import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import "./Profile.css";
+import Header from "../layout/Header/Header";
 
 const Profile = ({ history }) => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
@@ -13,7 +14,7 @@ const Profile = ({ history }) => {
       history.push("/login");
     }
   }, [history, isAuthenticated]);
-  return (
+  return (<div>
     <Fragment>
       {loading ? (
         <Loader />
@@ -49,6 +50,7 @@ const Profile = ({ history }) => {
         </Fragment>
       )}
     </Fragment>
+    </div>
   );
 };
 

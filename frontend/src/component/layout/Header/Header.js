@@ -1,57 +1,86 @@
 import React from "react";
+import {  Link } from "react-router-dom";
 import { ReactNavbar } from "overlay-navbar";
 // import logo from "../../../images/dicks_logo.svg";
 import logo from "../../../images/lockerroomlogo.PNG";
+import { logout } from "../../../actions/userAction";
+import { Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useAlert } from "react-alert";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import PersonIcon from "@material-ui/icons/Person";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import HomeIcon from '@mui/icons-material/Home';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 
 
-const options = {
-  burgerColorHover: "#eb4034",
-  logo,
-  logoWidth: "20vmax",
-  navColor1: "white",
-  logoHoverSize: "10px",
-  logoHoverColor: "#eb4034",
-  link1Text: "Home",
-  link2Text: "Products",
-  link3Text: "Contact",
-  link4Text: "About",
-  link1Url: "/",
-  link2Url: "/products",
-  link3Url: "/contact",
-  link4Url: "/about",
-  link1Size: "1.3vmax",
-  link1Color: "rgba(35, 35, 35,0.8)",
-  nav1justifyContent: "flex-end",
-  nav2justifyContent: "flex-end",
-  nav3justifyContent: "flex-start",
-  nav4justifyContent: "flex-start",
-  link1ColorHover: "#eb4034",
-  link1Margin: "1vmax",
-  profileIconUrl: "/login",
-  profileIconColor: "rgba(35, 35, 35,0.8)",
-  searchIconColor: "rgba(35, 35, 35,0.8)",
-  cartIconColor: "rgba(35, 35, 35,0.8)",
-  profileIconColorHover: "#eb4034",
-  searchIconColorHover: "#eb4034",
-  cartIconColorHover: "#eb4034",
-  cartIconMargin: "1vmax",
-  logoAnimationTime:0,
-  nav1Transition: 0.1,
-  nav2Transition:0.2,
-  nav3Transition:0.3,
-  nav4Transition:0.4,
-  link1AnimationTime:0.1,
-  link2AnimationTime:0.2,
-  link3AnimationTime:0.3,
-  link4AnimationTime:0.4, 
-  searchIconAnimationTime:0.5,
-  cartIconAnimationTime:0.6,
-  profileIconAnimationTime:0.7
-};
+const Header= () =>{
 
-const Header = () => {
-  return <ReactNavbar {...options} />;
-};
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const alert = useAlert();
+
+  async function logoutUser() {
+
+    dispatch(logout());       
+    alert.success("Logout Successfully");   
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
+    history.push("/");       
+  }
+
+  function account() {
+    history.push("/account");
+  }
+
+  function home() {
+    history.push("/");
+  }
+
+  function products() {
+    history.push("/products");
+  }
+  function orders() {
+    history.push("/orders");
+  }
+
+  function cart() {
+    history.push("/cart");
+  }
+
+  return (
+  <div className="navbar">
+    <li>
+    <HomeIcon />
+    <Button onClick={home}>Home</Button>
+    </li>
+    <li>
+    <Inventory2Icon />
+    <Button onClick={products}>Products</Button>
+    </li>
+    <li>
+    <ListAltIcon />
+    <Button onClick={orders}>All Orders</Button>
+    </li>
+    
+    <li>
+    <PersonIcon />
+      <Button onClick={account}>My Account</Button>
+    </li>
+    <li>
+    <ShoppingCartIcon/>
+    <Button onClick={cart}>My Cart</Button>
+    </li>
+    <li>
+      <ExitToAppIcon />
+      <Button onClick={logoutUser}>Logout</Button>
+    </li>
+   
+  </div>
+  );
+}
 
 export default Header;

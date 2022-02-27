@@ -9,13 +9,23 @@ import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
 import { addItemsToCart } from "../../actions/cartAction";
 import store from "../../store.js";
+import axios from "axios";
+import { createOrder, clearErrors } from "../../actions/orderAction";
 
 const ConfirmOrder = ({ history,addComments}) => {
   const dispatch = useDispatch();
   const { shippingInfo, cartItems } = useSelector((state) =>state.cart);
   const { user } = useSelector((state) => state.user);
 
+  const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+
   const componentRef = useRef();
+
+  const payBtn = useRef(null);
+
+  const paymentData = {
+    amount: Math.round(orderInfo.totalPrice * 100),
+  };
 
   // const subtotal = cartItems.reduce(
   //   (acc, item) => acc + item.quantity * item.price,
@@ -32,7 +42,72 @@ const ConfirmOrder = ({ history,addComments}) => {
   const totalPrice = 0;
 
   // const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
+  const submitHandler = async (e) => {
+    const order = {
+      shippingInfo,
+      orderItems: cartItems,
+      itemsPrice: orderInfo.subtotal,
+      taxPrice: orderInfo.tax,
+      shippingPrice: orderInfo.shippingCharges,
+      totalPrice: orderInfo.totalPrice,
+    };
 
+    e.preventDefault();
+    // console.log("upadtedcartItemspay",upadtedcartItems);
+    console.log("cartItems", cartItems);
+    //payBtn.current.disabled = true;
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/v1/payment/process",
+        paymentData,
+        config
+      );
+
+      //const client_secret = data.client_secret;
+
+      //if (!stripe || !elements) return;
+
+      // const result = await stripe.confirmCardPayment(client_secret, {
+      //   payment_method: {
+      //     card: elements.getElement(CardNumberElement),
+      //     billing_details: {
+      //       name: user.name,
+      //       email: user.email,
+      //       address: {
+      //         line1: shippingInfo.address,
+      //         city: shippingInfo.city,
+      //         state: shippingInfo.state,
+      //         postal_code: shippingInfo.pinCode,
+      //         country: shippingInfo.country,
+      //       },
+      //     },
+      //   },
+      // });
+      //result.paymentIntent.status === "succeeded";
+
+      if (data.success === true && cartItems.length > 0) {
+        // order.paymentInfo = {
+        //   id: result.paymentIntent.id,
+        //   status: result.paymentIntent.status,
+        // };
+        dispatch(createOrder(order));
+        history.push("/success");
+      } else {
+        alert.error(
+          "No items available in cart. Please try adding the items again"
+        );
+      }
+    } catch (error) {
+      //payBtn.current.disabled = false;
+      alert.error(error.response.data.message);
+    }
+  };
   
   const proceedToPayment = () => {
     const data = {
@@ -153,7 +228,7 @@ const ConfirmOrder = ({ history,addComments}) => {
               <span>${totalPrice}</span>
             </div>
 
-            <button onClick={proceedToPayment}>Confirm Order</button>
+            <button onClick={(e) => submitHandler(e)}>Confirm Order</button>
           </div>
         </div>
       </div>

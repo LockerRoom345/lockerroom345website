@@ -3,7 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vmin;
+  height: 50vmin;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -88,17 +88,19 @@ div > div> div > p> button{
 .productCard {
   
   width:100%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   text-decoration: none;
   color: rgb(48, 48, 48);
-  margin: 2vmax;
+  margin: 1vmax;
   transition: all 0.5s;
   /* padding-bottom: 0.5vmax; */
 }
 
 .productCard > img {
   width:15%;
+  height: 150px;
 }
 
 .productCard > div {

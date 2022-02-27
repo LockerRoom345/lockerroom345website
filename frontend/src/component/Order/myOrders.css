@@ -5,17 +5,19 @@
   box-sizing: border-box;
   background-color: rgb(235, 235, 235);
   position: fixed;
-  top: 0;
+  top: 30px;
   left: 0;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
   
 }
 
 #myOrdersHeading {
   text-align: center;
   font: 400 1.2vmax "Roboto";
+  
   padding: 0.5vmax;
   box-sizing: border-box;
   color: rgb(255, 255, 255);
