@@ -24,7 +24,7 @@ const ConfirmOrder = ({ history,addComments}) => {
   const payBtn = useRef(null);
 
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100),
+    amount: Math.round(0 * 100),
   };
 
   // const subtotal = cartItems.reduce(
@@ -46,10 +46,10 @@ const ConfirmOrder = ({ history,addComments}) => {
     const order = {
       shippingInfo,
       orderItems: cartItems,
-      itemsPrice: orderInfo.subtotal,
-      taxPrice: orderInfo.tax,
-      shippingPrice: orderInfo.shippingCharges,
-      totalPrice: orderInfo.totalPrice,
+      itemsPrice: 0,
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice: 0,
     };
 
     e.preventDefault();

@@ -54,10 +54,10 @@ const Shipping = ({ history }) => {
       current.getSeconds();
     let orderDate = cDate + " " + cTime;
 
-    if (phoneNo.length < 10 || phoneNo.length > 10) {
-      alert.error("Phone Number should be 10 digits Long");
-      return;
-    }
+    // if (phoneNo.length < 10 || phoneNo.length > 10) {
+    //   alert.error("Phone Number should be 10 digits Long");
+    //   return;
+    // }
     dispatch(
       saveShippingInfo({
         userName: user.name,
@@ -92,7 +92,7 @@ const Shipping = ({ history }) => {
               <input
                 type="text"
                 placeholder="User Logged In"
-                value={user.name + " (User Placing Order)"}
+                value={user.name}
                 disabled
               />
               <input

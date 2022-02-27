@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  text-align: center;
   
 }
 
@@ -16,26 +17,30 @@
   color: rgb(255, 255, 255);
   transition: all 0.5s;
   margin: 2rem;
-  text-align: center;
+  
  
 }
 
 .productListTable {
   background-color: white;
-  border: 1px solid white;  
-
+  border: 1px solid white;
 }
 
 .productListTable div {
   font: 300 1vmax "Roboto";
   color: rgba(0, 0, 0, 0.678);
-  
+
 }
 
 .productListTable a,
 .productListTable button {
   color: rgb(161, 153, 153);
   transition: all 0.5s;
+
+}
+
+.MuiDataGrid-root .MuiDataGrid-cell--textLeft.MuiDataGrid-cell--withRenderer, .MuiDataGrid-root .MuiDataGrid-cell--textLeft.MuiDataGrid-cell--editing {
+  justify-content: center !important;
 }
 
 .productListTable a:hover {
@@ -51,7 +56,48 @@
 
 .MuiDataGrid-columnHeader div {
   color: rgb(255, 255, 255);
+  column-width: 10px;
 }
+
+.MuiDataGrid-root .MuiDataGrid-cell--textLeft {
+  text-align: center !important;
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  flex: 1;
+  display: flex;
+  padding: 0 6px;
+  overflow: hidden;
+  min-width: 0;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+
+.MuiDataGrid-columnHeader {
+  background-color: #065749;
+  padding: 1vmax !important;
+  border: 1px solid white;
+}
+
+.MuiDataGrid-columnHeader div {
+  color: rgb(255, 255, 255);
+  font: 500 1.1vmax "Roboto" !important;
+}
+
+.MuiDataGrid-iconSeparator {
+  display: none !important;
+  color: rgb(255, 255, 255);
+  
+}
+/* .MuiDataGrid-root .MuiDataGrid-cell {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
+  text-overflow: ellipsis;
+
+} */
 
 @media screen and (max-width: 600px) {
   .productListTable div {

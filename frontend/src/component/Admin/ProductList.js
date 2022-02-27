@@ -52,7 +52,7 @@ const ProductList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", Width: 100, flex: 0.2 },
+    // { field: "id", headerName: "Product ID", Width: 100, flex: 0.2 },
 
     {
       field: "name",

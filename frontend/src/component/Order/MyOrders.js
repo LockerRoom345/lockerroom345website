@@ -20,7 +20,7 @@ const MyOrders = () => {
   const { user } = useSelector((state) => state.user);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },    
+    //{ field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },    
     {
       field: "orderfrom",
       headerName: "Ordered By",

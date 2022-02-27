@@ -12,8 +12,25 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useAlert } from "react-alert";
+import { logout } from "../../actions/userAction";
+import { Button } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const alert = useAlert();
+
+  async function logoutUser() {
+
+    dispatch(logout());       
+    alert.success("Logout Successfully");   
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
+    history.push("/");       
+  }
   return (
     <div className="sidebar">
       <Link to="/">
@@ -52,6 +69,8 @@ const Sidebar = () => {
           <PeopleIcon /> Users
         </p>
       </Link>
+     
+      <Button onClick={logoutUser}>Logout</Button>
       {/* <Link to="/admin/reviews">
         <p>
           <RateReviewIcon />

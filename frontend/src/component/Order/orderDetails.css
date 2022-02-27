@@ -23,6 +23,23 @@
   overflow-y: auto;
 }
 
+.MuiDataGrid-root .MuiDataGrid-cell--textLeft {
+  text-align: center !important;
+}
+
+
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitleContainer {
+  flex: 1;
+  display: flex;
+  padding: 0 6px;
+  overflow: hidden;
+  min-width: 0;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+
 .orderDetailsCartItemsContainer > div {
   display: flex;
   font: 600 1vmax "Roboto";
