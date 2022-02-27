@@ -1,7 +1,12 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import Header from "./component/layout/Header/Header.js";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer";
@@ -56,7 +61,6 @@ function App() {
 
     // setStripeApiKey(data.stripeApiKey);
   }
-  
 
   useEffect(() => {
     WebFont.load({
@@ -89,10 +93,15 @@ function App() {
           exact
           path="/"
           render={() => {
-            return isAuthenticated ? <Redirect to="/home" /> : <Redirect to="/login" />
+            return isAuthenticated ? (
+              <Redirect to="/home" />
+            ) : (
+              <Redirect to="/login" />
+            );
           }}
         />
-        RequestFormReplica
+       
+
         <Route exact path="/replica" component={RequestFormReplica} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/requestform" component={Requestform} />
@@ -100,49 +109,32 @@ function App() {
         <Route exact path="/product/:id" component={ProductDetails} />
         <Route exact path="/products" component={Products} />
         <Route path="/products/:keyword" component={Products} />
-
         <Route exact path="/search" component={Search} />
-
         <Route exact path="/contact" component={Contact} />
-
         <Route exact path="/about" component={About} />
-
         <ProtectedRoute exact path="/account" component={Profile} />
-
         <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
-
         <ProtectedRoute
           exact
           path="/password/update"
           component={UpdatePassword}
         />
-
         <Route exact path="/password/forgot" component={ForgotPassword} />
-
         <Route exact path="/password/reset/:token" component={ResetPassword} />
-
         <Route exact path="/login" component={LoginSignUp} />
-
-        <Route exact path="/cart" component={Cart} /> 
+        <Route exact path="/cart" component={Cart} />
         {/* <Route
           component={
             window.location.pathname === "/process/payment" ? null : NotFound
           }
         />  */}
-         <ProtectedRoute exact path="/process/payment" component={Payment} />
-
+        <ProtectedRoute exact path="/process/payment" component={Payment} />
         {/* <Route path="*" component={NotFound} /> */}
         <ProtectedRoute exact path="/shipping" component={Shipping} />
-
         <ProtectedRoute exact path="/success" component={OrderSuccess} />
-
         <ProtectedRoute exact path="/orders" component={MyOrders} />
-
         <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
-
         <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
-
-
         <ProtectedRoute
           isAdmin={true}
           exact
@@ -161,7 +153,6 @@ function App() {
           isAdmin={true}
           component={NewProduct}
         />
-
         <ProtectedRoute
           exact
           path="/admin/product/:id"
@@ -174,7 +165,6 @@ function App() {
           isAdmin={true}
           component={OrderList}
         />
-
         <ProtectedRoute
           exact
           path="/admin/order/:id"
@@ -187,22 +177,18 @@ function App() {
           isAdmin={true}
           component={UsersList}
         />
-
         <ProtectedRoute
           exact
           path="/admin/user/:id"
           isAdmin={true}
           component={UpdateUser}
         />
-
         <ProtectedRoute
           exact
           path="/admin/reviews"
           isAdmin={true}
           component={ProductReviews}
         />
-
-     
       </Switch>
 
       <Footer />

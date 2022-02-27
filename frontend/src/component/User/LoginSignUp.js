@@ -16,6 +16,7 @@ const LoginSignUp = ({ history, location }) => {
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
+  const { user } = useSelector((state) => state.user);
 
   const loginTab = useRef(null);
   const registerTab = useRef(null);
@@ -24,13 +25,13 @@ const LoginSignUp = ({ history, location }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
-  const [user, setUser] = useState({
+  const [userinfo, setUserinfo] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const { name, email, password } = user;
+  const { name, email, password } = userinfo;
 
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -65,7 +66,7 @@ const LoginSignUp = ({ history, location }) => {
 
       reader.readAsDataURL(e.target.files[0]);
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setUserinfo({ ...userinfo, [e.target.name]: e.target.value });
     }
   };
 
@@ -77,8 +78,10 @@ const LoginSignUp = ({ history, location }) => {
       dispatch(clearErrors());
     }
 
-    if (isAuthenticated) {
+    if (isAuthenticated && user.role === "user") {
       history.push(redirect);
+    } else if (isAuthenticated && user.role === "admin") {
+      history.push("/admin/dashboard");
     }
   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
