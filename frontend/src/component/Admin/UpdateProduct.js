@@ -176,6 +176,7 @@ const UpdateProduct = ({ history, match }) => {
                 type="text"
                 placeholder="Product Name"
                 required
+                disabled
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -193,7 +194,15 @@ const UpdateProduct = ({ history, match }) => {
 
             <div>
               <AccountTreeIcon />
-              <select
+              <input
+                type="text"
+                placeholder="Category"
+                required
+                disabled
+                value = {product.category}
+                // onChange={(e) => setSubCategory(e.target.value)}
+              />
+              {/* <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
@@ -203,17 +212,19 @@ const UpdateProduct = ({ history, match }) => {
                     {cate}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </div>
             <div>
               <FilterAltIcon />
-              {/* <input
+              <input
                 type="text"
                 placeholder="SubCategory"
                 required
-                onChange={(e) => setSubCategory(e.target.value)}
-              /> */}
-              <select
+                disabled
+                value = {product.SubCategory}
+                // onChange={(e) => setSubCategory(e.target.value)}
+              />
+              {/* <select
                 name="category"
                 id="category"
                 onChange={(e) => {
@@ -226,7 +237,7 @@ const UpdateProduct = ({ history, match }) => {
                 <option value="Boys' sizing">Boys' sizing</option>
                 <option value="Girls' sizing">Girls' sizing</option>
                 <option value="Toddlers sizing">Toddlers sizing</option>
-              </select>
+              </select> */}
             </div>
 
             <div>

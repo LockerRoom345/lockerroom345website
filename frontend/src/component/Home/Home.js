@@ -11,24 +11,18 @@ import Donate from "../donate/Donate";
 import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
 
-
 const Home = ({ history }) => {
-
-  const categories = [
-    "FootWears",
-    "Clothing",
-    "Sports","Miscellaneous"    
-  ];
-
+  const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
 
   const alert = useAlert();
   const dispatch = useDispatch();
   // const { loading, error, products } = useSelector((state) => state.products);
-
+  // let hashmap = {}
+  // let mapping = {}
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("");
-
+  const [rows, setRows] = useState([])
   const [ratings, setRatings] = useState(0);
   const [keyword, setKeyword] = useState("");
 
@@ -39,10 +33,41 @@ const Home = ({ history }) => {
     productsCount,
     resultPerPage,
     filteredProductsCount,
-  } = useSelector((state) => state.products);
-
-
-
+  } = useSelector((state) => {
+    const mapping = state.products.products.reduce((acc,x) => {
+      let subcategoryData = x.ProductSize.map((y) => {
+        let obj = {};        
+        obj.size = y.size;
+        obj.url = x.images[0].url;
+        obj.stock = y.stock;
+        obj._id = x._id;
+        return obj;
+    })
+      if(acc[x.name]){
+        return {...acc,
+        [x.name] : {
+            ...acc[x.name], 
+            hashmap:{
+              ...acc[x.name].hashmap, 
+               [x.SubCategory]:subcategoryData,
+            }
+          }
+        }
+        }else{
+          return {...acc, 
+            [x.name]:{
+              id : x._id, 
+              name : x.name,
+              url : x.images[0].url,  
+              hashmap:{
+                [x.SubCategory]:subcategoryData,
+              }
+            }
+          }
+        }
+    },{});
+     return {...state.products, products:mapping}
+  });
   // const keyword = match.params.keyword;
 
   const setCurrentPageNo = (e) => {
@@ -59,10 +84,12 @@ const Home = ({ history }) => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    dispatch(getProduct(keyword, currentPage,category));
+    dispatch(getProduct(keyword, currentPage, category));
+
   }, [dispatch, currentPage, category, error, alert]);
 
   const searchSubmitHandler = (e) => {
+    console.log(products);
     e.preventDefault();
     if (keyword.trim()) {
       history.push(`/products/${keyword}`);
@@ -99,7 +126,7 @@ const Home = ({ history }) => {
               <input type="submit" value="Search" />
             </form>
           </div>
-          <div className="filterBoxhome">  
+          <div className="filterBoxhome">
             <div className="filCategorieshome">
               <fieldset>
                 <Typography component="legend">Categories</Typography>
@@ -115,15 +142,16 @@ const Home = ({ history }) => {
                   ))}
                 </ul>
               </fieldset>
-            </div>            
+            </div>
           </div>
           <h2 className="homeHeading">All Products</h2>
-
           <div className="container" id="container">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+          {
+              [...Object.entries(products)]
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([key, value]) => {
+                  return <ProductCard key={value.id} product={value} />
+                })}
           </div>
 
           {resultPerPage < count && (

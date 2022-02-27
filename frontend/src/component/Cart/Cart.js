@@ -12,21 +12,21 @@ const Cart = ({ history }) => {
   const { cartItems,shippingInfo } = useSelector((state) => state.cart);
 
 
-  const increaseQuantity = (id, quantity, stock) => {
-    const newQty = quantity + 1;
-    if (stock <= quantity) {
-      return;
-    }
-    dispatch(addItemsToCart(id, newQty));
-  };
+  // const increaseQuantity = (id, quantity, stock) => {
+  //   const newQty = quantity + 1;
+  //   if (stock <= quantity) {
+  //     return;
+  //   }
+  //   dispatch(addItemsToCart(id, newQty));
+  // };
 
-  const decreaseQuantity = (id, quantity) => {
-    const newQty = quantity - 1;
-    if (1 >= quantity) {
-      return;
-    }
-    dispatch(addItemsToCart(id, newQty));
-  };
+  // const decreaseQuantity = (id, quantity) => {
+  //   const newQty = quantity - 1;
+  //   if (1 >= quantity) {
+  //     return;
+  //   }
+  //   dispatch(addItemsToCart(id, newQty));
+  // };
 
   const deleteCartItems = (id) => {
     dispatch(removeItemsFromCart(id));
@@ -39,6 +39,7 @@ const Cart = ({ history }) => {
 
   return (
     <Fragment>
+      {/* {JSON.stringify(cartItems)} */}
       {cartItems.length === 0 ? (
         <div className="emptyCart">
           <RemoveShoppingCartIcon />
@@ -58,6 +59,7 @@ const Cart = ({ history }) => {
             {cartItems &&
               cartItems.map((item) => (
                 <div className="cartContainer" key={item.product}>
+                  
                   <CartItemCard item={item} deleteCartItems={deleteCartItems} />
                   <div className="cartInput">
                     {/* <button
