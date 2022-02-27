@@ -70,7 +70,7 @@ const Sidebar = () => {
         </p>
       </Link>
      
-      <Button onClick={logoutUser}>Logout</Button>
+      {/* <Button onClick={logoutUser}>Logout</Button> */}
       {/* <Link to="/admin/reviews">
         <p>
           <RateReviewIcon />

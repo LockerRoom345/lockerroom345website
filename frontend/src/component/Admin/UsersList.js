@@ -50,19 +50,19 @@ const UsersList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted, message]);
 
   const columns = [
-    { field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },
+    //{ field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },
 
     {
       field: "email",
       headerName: "Email",
       minWidth: 200,
-      flex: 1,
+      flex: 0.1,
     },
     {
       field: "name",
       headerName: "Name",
       minWidth: 150,
-      flex: 0.5,
+      flex: 0.1,
     },
 
     {
@@ -70,7 +70,7 @@ const UsersList = ({ history }) => {
       headerName: "Role",
       type: "number",
       minWidth: 150,
-      flex: 0.3,
+      flex: 0.1,
       cellClassName: (params) => {
         return params.getValue(params.id, "role") === "admin"
           ? "greenColor"
@@ -80,7 +80,7 @@ const UsersList = ({ history }) => {
 
     {
       field: "actions",
-      flex: 0.3,
+      flex: 0.1,
       headerName: "Actions",
       minWidth: 150,
       type: "number",

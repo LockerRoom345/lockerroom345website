@@ -20,6 +20,8 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 
 const Header= () =>{
 
+  const { cartItems } = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const alert = useAlert();
@@ -63,7 +65,7 @@ const Header= () =>{
     </li>
     <li>
     <ListAltIcon />
-    <Button onClick={orders}>All Orders</Button>
+    <Button onClick={orders}>My Orders</Button>
     </li>
     
     <li>
@@ -72,7 +74,9 @@ const Header= () =>{
     </li>
     <li>
     <ShoppingCartIcon/>
-    <Button onClick={cart}>My Cart</Button>
+    <Button onClick={cart}>My Cart ({cartItems.length})</Button>
+
+
     </li>
     <li>
       <ExitToAppIcon />

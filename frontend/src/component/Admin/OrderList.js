@@ -56,7 +56,7 @@ const OrderList = ({ history }) => {
       headerName: "Ordered By",
       type: "string",
       minWidth: 50,
-      flex: 0.2,
+      flex: 0.15,
     },
      {
       field: "studentId",
@@ -70,7 +70,7 @@ const OrderList = ({ history }) => {
       headerName: "Order Date",
       type: "string",
       minWidth: 50,
-      flex: 0.2,
+      flex: 0.1,
     },
     {
       field: "status",

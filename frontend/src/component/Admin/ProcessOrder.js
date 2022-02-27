@@ -69,7 +69,7 @@ const ProcessOrder = ({ history, match }) => {
             <div
               className="confirmOrderPage"
               style={{
-                display: order.orderStatus === "Delivered" ? "block" : "grid",
+                display: order.orderStatus === "Delivered" ? "grid" : "grid" ,
               }}
             >
               <div ref={componentRef}>
@@ -170,7 +170,7 @@ const ProcessOrder = ({ history, match }) => {
               {/*  */}
               <div
                 style={{
-                  display: order.orderStatus === "Delivered" ? "none" : "block",
+                  display: order.orderStatus === "Delivered" ? "block" : "block",
                 }}
               >
                 <form
@@ -190,6 +190,22 @@ const ProcessOrder = ({ history, match }) => {
                       {order.orderStatus === "picked" && (
                         <option value="Delivered">Delivered</option>
                       )}
+
+                      {order.orderStatus === "Processing" && (
+                        <option value="Delivered">Picked and Delivered</option>
+                      )}  
+
+                      {order.orderStatus === "Delivered" && (
+                        <option value="picked">Revert to Picked</option>
+                      )}  
+
+                      {order.orderStatus === "Delivered" && (
+                        <option value="Processing">Revert to Processing</option>
+                      )}  
+
+                      {order.orderStatus === "picked" && (
+                        <option value="Processing">Revert to Processing</option>
+                      )}  
                     </select>
                   </div>
 

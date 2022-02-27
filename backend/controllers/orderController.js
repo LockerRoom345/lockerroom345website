@@ -135,9 +135,9 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHander("Order not found with this Id", 404));
   }
 
-  if (order.orderStatus === "Delivered") {
-    return next(new ErrorHander("You have already delivered this order", 400));
-  }
+  // if (order.orderStatus === "Delivered") {
+  //   return next(new ErrorHander("You have already delivered this order", 400));
+  // }
 
   if (req.body.status === "picked") {
     order.orderItems.forEach(async (o) => {

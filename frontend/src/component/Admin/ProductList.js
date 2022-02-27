@@ -66,13 +66,13 @@ const ProductList = ({ history }) => {
       field: "category",
       headerName: "Category",
       minWidth: 70,
-      flex: 0.15,
+      flex: 0.1,
     },
     {
       field: "subcategory",
       headerName: "SubCategory",
       minWidth: 70,
-      flex: 0.15,
+      flex: 0.1,
     },
     // {
     //   field: "size",
@@ -103,7 +103,7 @@ const ProductList = ({ history }) => {
             <div
               data-tip={params.getValue(params.id, "stockinfo")}
               data-for="toolTip1"
-              data-place="right"
+              data-place="bottom"
               data-type="success"
               data-multiline="true"
             >
@@ -262,7 +262,7 @@ const ProductList = ({ history }) => {
         // price: item.price,
         stockinfo: (item.ProductSize.map((y) => {
           let str ="";
-          str+=( "{"+ y.size + " : " + y.stock + "} <br />" );
+          str+=( " "+ y.size + " : " + y.stock + " " );
           return  str;
         })),
         name: item.name,
