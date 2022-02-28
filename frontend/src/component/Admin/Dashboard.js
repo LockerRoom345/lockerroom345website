@@ -9,6 +9,7 @@ import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
+import ReactTooltip from "react-tooltip";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -105,17 +106,40 @@ const Dashboard = () => {
             </p>
           </div>
           <div className="dashboardSummaryBox2">
-            <Link to="/admin/orders">
+            <Link
+              to="/admin/orders"
+              data-tip="Click Me"
+              data-for="toolTip1"
+              data-place="bottom"
+              data-type="info"
+            >
               <p>Orders Received</p>
               <p>{orders && orders.length}</p>
+
+              <ReactTooltip id="toolTip1" />
             </Link>
-            <Link to="/admin/products">
+
+            <Link
+              to="/admin/products"
+              data-tip="Click Me"
+              data-for="toolTip2"
+              data-place="bottom"
+              data-type="info"
+            >
               <p>Item Availability</p>
               <p>{products && products.length}</p>
+              <ReactTooltip id="toolTip2" />
             </Link>
-            <Link to="/admin/users">
+            <Link
+              to="/admin/users"
+              data-tip="Click Me"
+              data-for="toolTip3"
+              data-place="bottom"
+              data-type="info"
+            >
               <p>Manage Users</p>
               <p>{users && users.length}</p>
+              <ReactTooltip id="toolTip3" />
             </Link>
           </div>
 
