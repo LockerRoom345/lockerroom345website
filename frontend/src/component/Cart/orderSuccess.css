@@ -15,8 +15,23 @@
 .orderSuccess > p {
   font-size: 2vmax;
 }
+.orderSuccess > button{
+  background-color: #065749;
+  color: white;
+  width: 20%;
+  padding: 1vmax;
+  border: none;
+  margin: auto;
+  cursor: pointer;
+  transition: 0.5s;
+  font: 400 1vmax "Roboto";
+}
+.orderSuccess > button:hover {
+  background-color: rgb(192, 71, 50);
+}
+
 .orderSuccess > a {
-  background-color: rgb(51, 51, 51);
+  background-color: #065749;
   color: white;
   border: none;
   padding: 1vmax 3vmax;
