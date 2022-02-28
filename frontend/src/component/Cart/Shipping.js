@@ -38,7 +38,7 @@ const Shipping = ({ history }) => {
   let orderDate = "";
   const shippingSubmit = (e) => {
     e.preventDefault();
-    console.log("addComments", addComments);
+    //console.log("addComments", addComments);
     let current = new Date();
     let cDate =
       current.getFullYear() +
@@ -47,7 +47,7 @@ const Shipping = ({ history }) => {
       "-" +
       current.getDate();
     let cTime =
-      current.getHours() +
+      current.getHours().toString().padStart(2, 0) +
       ":" +
       current.getMinutes() +
       ":" +
@@ -64,9 +64,9 @@ const Shipping = ({ history }) => {
         receivingPersonName,
         additionalComments: addComments,
         userLoggedInDesignation,
-        userAddress:user.address,
+        userAddress: user.address,
         orderDate,
-        phoneNo
+        phoneNo,
       })
     );
     history.push("/order/confirm");
@@ -122,28 +122,6 @@ const Shipping = ({ history }) => {
               />
             </div>
 
-            {/* <div>
-              <LocationCityIcon />
-              <input
-                type="text"
-                placeholder="City"
-                required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-            </div>
-
-            <div>
-              <PinDropIcon />
-              <input
-                type="number"
-                placeholder="Pin Code"
-                required
-                value={pinCode}
-                onChange={(e) => setPinCode(e.target.value)}
-              />
-            </div> */}
-
             <div>
               <PhoneIcon />
               <input
@@ -153,44 +131,14 @@ const Shipping = ({ history }) => {
                 onChange={(e) => setPhoneNo(e.target.value)}
               />
             </div>
-
-            {/* <div>
-              <PublicIcon />
-
-              <select
-                required
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
+            <div className="additionalComments">
+              <textarea
+                placeholder="Add if you have any additional comments or request for items here..."
+                onChange={(e) => setaddComments(e.target.value)}
               >
-                <option value="">Country</option>
-                {Country &&
-                  Country.getAllCountries().map((item) => (
-                    <option key={item.isoCode} value={item.isoCode}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
+                {addComments}
+              </textarea>
             </div>
-
-            {country && (
-              <div>
-                <TransferWithinAStationIcon />
-
-                <select
-                  required
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
-                >
-                  <option value="">State</option>
-                  {State &&
-                    State.getStatesOfCountry(country).map((item) => (
-                      <option key={item.isoCode} value={item.isoCode}>
-                        {item.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
-            )} */}
 
             <input
               type="submit"
@@ -199,14 +147,6 @@ const Shipping = ({ history }) => {
               // disabled={state ? false : true}
             />
           </form>
-        </div>
-        <div className="additionalComments">
-          <textarea
-            placeholder="Add if you have any additional comments or request for items here..."
-            onChange={(e) => setaddComments(e.target.value)}
-          >
-            {addComments}
-          </textarea>
         </div>
       </div>
     </Fragment>

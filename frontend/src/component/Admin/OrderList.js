@@ -143,6 +143,16 @@ const OrderList = ({ history }) => {
           <h1 id="productListHeading">ALL ORDERS RECEIVED</h1>
 
           <DataGrid
+           initialState={{
+            sorting: {
+              sortModel: [
+                {
+                  field: 'OrderDate',
+                  sort: 'desc',
+                },
+              ],
+            },
+          }}
             rows={rows}
             columns={columns}
             pageSize={10}

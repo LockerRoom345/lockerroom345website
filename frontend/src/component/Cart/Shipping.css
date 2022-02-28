@@ -7,8 +7,8 @@
   flex-direction: row;
 }
 .additionalComments > textarea{
-  height:200px;
-  width:400px;
+  height:150px;
+  width: 100%;
 }
 
 .shippingBox {
