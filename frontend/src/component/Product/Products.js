@@ -13,7 +13,8 @@ import MetaData from "../layout/MetaData";
 const categories = [
   "FootWears",
   "Clothing",
-  "Sports"
+  "Sports",
+  "Miscellaneous"
 ];
 
 const Products = ({ match }) => {
@@ -27,6 +28,15 @@ const Products = ({ match }) => {
 
   const [ratings, setRatings] = useState(0);
 
+  // const {
+  //   products,
+  //   loading,
+  //   error,
+  //   productsCount,
+  //   resultPerPage,
+  //   filteredProductsCount,
+  // } = useSelector((state) => state.products);
+
   const {
     products,
     loading,
@@ -34,8 +44,41 @@ const Products = ({ match }) => {
     productsCount,
     resultPerPage,
     filteredProductsCount,
-  } = useSelector((state) => state.products);
-
+  } = useSelector((state) => {
+    const mapping = state.products.products.reduce((acc,x) => {
+      let subcategoryData = x.ProductSize.map((y) => {
+        let obj = {};        
+        obj.size = y.size;
+        obj.url = x.images[0].url;
+        obj.stock = y.stock;
+        obj._id = x._id;
+        return obj;
+    })
+      if(acc[x.name]){
+        return {...acc,
+        [x.name] : {
+            ...acc[x.name], 
+            hashmap:{
+              ...acc[x.name].hashmap, 
+               [x.SubCategory]:subcategoryData,
+            }
+          }
+        }
+        }else{
+          return {...acc, 
+            [x.name]:{
+              id : x._id, 
+              name : x.name,
+              url : x.images[0].url,  
+              hashmap:{
+                [x.SubCategory]:subcategoryData,
+              }
+            }
+          }
+        }
+    },{});
+     return {...state.products, products:mapping}
+  });
   const keyword = match.params.keyword;
 
   const setCurrentPageNo = (e) => {
@@ -96,29 +139,20 @@ const Products = ({ match }) => {
                 </ul>
               </fieldset>
             </div>
-
-            {/* <div className="filRatings">
-              <fieldset>
-                <Typography component="legend">Ratings Above</Typography>
-                <Slider
-                  value={ratings}
-                  onChange={(e, newRating) => {
-                    setRatings(newRating);
-                  }}
-                  aria-labelledby="continuous-slider"
-                  valueLabelDisplay="auto"
-                  min={0}
-                  max={5}
-                />
-              </fieldset>
-            </div> */}
+           
           </div>
 
           <div className="products">
-            {products &&
+            {/* {products &&
               products.map((product) => (
                 <ProductCard key={product._id} product={product} />
-              ))}
+              ))} */}
+              {
+              [...Object.entries(products)]
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([key, value]) => {
+                  return <ProductCard key={value.id} product={value} />
+                })}
           </div>
 
           {resultPerPage < count && (
