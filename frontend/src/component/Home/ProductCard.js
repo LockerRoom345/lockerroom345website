@@ -46,7 +46,7 @@ const ProductCard = ({ product, history }) => {
   const decreaseQuantity = () => {    
     if (1 >= quantity) return;
     const qty = quantity - 1;
-    console.log("decrease quantity to", qty);
+    //console.log("decrease quantity to", qty);
     setQuantity(qty);
   };
 
@@ -62,6 +62,14 @@ const ProductCard = ({ product, history }) => {
   };
   const addToCartHandler = (e) => {
     e.preventDefault();
+
+    if(product.hashmap[SubCategory][ProductSize].stock < 1){
+      alert.error("Item Not Available")
+    }
+    else{
+      dispatch(addItemsToCart(product.id, quantity, SubCategory, product.hashmap[SubCategory][ProductSize].size));
+      alert.success("Item Added To Cart");
+    }
     // if (
     //   // SubCategory.trim() === "" ||
     //   ProductSize.size.trim() == ""
@@ -71,8 +79,7 @@ const ProductCard = ({ product, history }) => {
     //   alert.show("required Subcategory and Size field");
     // } else {
       //console.log("clicked");
-      dispatch(addItemsToCart(product.id, quantity, SubCategory, product.hashmap[SubCategory][ProductSize].size));
-      alert.success("Item Added To Cart");
+      
     //}
   };
 
@@ -160,18 +167,18 @@ const ProductCard = ({ product, history }) => {
         <div className="addshopcart">
           <button
             onClick={addToCartHandler}
-            disabled={
-              product.hashmap[SubCategory][ProductSize].stock < 1
-                ? true
-                : false
-            }
+            // disabled={
+            //   product.hashmap[SubCategory][ProductSize].stock < 1
+            //     ? true
+            //     : false
+            // }
           >
             <AddShoppingCartIcon
-              disabled={
-                product.hashmap[SubCategory][ProductSize].stock< 1
-                  ? true
-                  : false
-              }
+              // disabled={
+              //   product.hashmap[SubCategory][ProductSize].stock< 1
+              //     ? true
+              //     : false
+              // }
             />
             Add to Cart
           </button>

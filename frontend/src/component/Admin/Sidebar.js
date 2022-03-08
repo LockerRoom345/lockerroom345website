@@ -33,7 +33,7 @@ const Sidebar = () => {
   }
   return (
     <div className="sidebar">
-      <Link to="/">
+      <Link to="/admin/dashboard">
         <img src={lockerroomlogo} alt="" />
       </Link>
       <Link to="/admin/dashboard">
