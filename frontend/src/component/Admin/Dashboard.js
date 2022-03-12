@@ -110,7 +110,7 @@ const Dashboard = () => {
               <p>{orders && orders.length}</p>
             </Link>
             <Link to="/admin/products">
-              <p>Item Availability</p>
+              <p>Categories Available</p>
               <p>{products && products.length}</p>
             </Link>
             <Link to="/admin/users">
