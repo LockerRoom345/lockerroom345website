@@ -4,7 +4,7 @@ const connectDatabase = require("./config/database");
 const { emailNewOrder } = require("./controllers/orderController");
 const port = 3000;
 var intervalId = setInterval(
-    emailNewOrder, 86400000); 
+    emailNewOrder, 43200000); 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err.message}`);
