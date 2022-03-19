@@ -14,6 +14,7 @@ import { useAlert } from "react-alert";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const Shipping = ({ history }) => {
             onSubmit={shippingSubmit}
           >
             <div>
-              <PersonIcon />
+              <ApartmentIcon />
               <input
                 type="text"
                 placeholder="User Logged In"
@@ -103,7 +104,7 @@ const Shipping = ({ history }) => {
               />
             </div>
             <div>
-              <LocalShippingIcon />
+              <PersonIcon />
               <input
                 type="text"
                 placeholder="Receiving Student Id"

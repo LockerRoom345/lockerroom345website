@@ -98,7 +98,7 @@ const UpdateUser = ({ history, match }) => {
               <div>
                 <MailOutlineIcon />
                 <input
-                  type="email"
+                  type="text"
                   placeholder="Email"
                   required
                   value={email}

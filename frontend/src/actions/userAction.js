@@ -225,6 +225,27 @@ export const updateUser = (id, userData) => async (dispatch) => {
   }
 };
 
+export const AddUser = (id, userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_USER_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `/api/v1/admin/user/${id}`,
+      userData,
+      config
+    );
+
+    dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 // Delete User
 export const deleteUser = (id) => async (dispatch) => {
   try {

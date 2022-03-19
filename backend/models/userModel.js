@@ -25,8 +25,8 @@ const userSchema = new mongoose.Schema({
   address: {
     type: String,
     required: [true, "Please Enter Address"],
-    maxLength: [300, "Name cannot exceed 30 characters"],
-    minLength: [4, "Name should have more than 4 characters"],
+    maxLength: [300, "Address cannot exceed 30 characters"],
+    minLength: [4, "Address should have more than 4 characters"],
   },
   avatar: {
     public_id: {

@@ -43,6 +43,7 @@ import OrderList from "./component/Admin/OrderList";
 import ProcessOrder from "./component/Admin/ProcessOrder";
 import UsersList from "./component/Admin/UsersList";
 import UpdateUser from "./component/Admin/UpdateUser";
+import AddUser from "./component/Admin/AddUser";
 import ProductReviews from "./component/Admin/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
@@ -50,6 +51,7 @@ import NotFound from "./component/layout/Not Found/NotFound";
 import Requestform from "./component/User/Requestform";
 import Donate from "./component/donate/Donate";
 import RequestFormReplica from "./component/Cart/RequestFormReplica";
+import UserSuccess from "./component/Admin/UserSuccess"
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -186,9 +188,15 @@ function App() {
         />
         <ProtectedRoute
           exact
-          path="/admin/reviews"
+          path="/register"
           isAdmin={true}
-          component={ProductReviews}
+          component={AddUser}
+        />
+         <ProtectedRoute
+          exact
+          path="/registersuccess"
+          isAdmin={true}
+          component={UserSuccess}
         />
       </Switch>
 
