@@ -94,7 +94,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       <div className="dashboardContainer">
         <Typography component="h1">Inventory Management</Typography>

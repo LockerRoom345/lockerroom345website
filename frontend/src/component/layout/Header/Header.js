@@ -16,6 +16,10 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import { lightGreen } from "@mui/material/colors";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import AddIcon from "@material-ui/icons/Add";
+import PeopleIcon from "@material-ui/icons/People";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const Header = ({}) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -53,6 +57,32 @@ const Header = ({}) => {
     history.push("/cart");
   }
 
+  function dashboard() {
+    history.push("/admin/dashboard");
+  }
+
+  function adminorders() {
+    history.push("/admin/orders");
+  }
+
+  function adminproducts() {
+    history.push("/admin/products");
+  }
+
+  function adminproduct() {
+    history.push("/admin/product");
+  }
+
+  function adminusers() {
+    history.push("/admin/users");
+  }
+
+  function adminregister() {
+    history.push("/register");
+  }
+
+
+
   return (
     <div className="navbar">
       {user && user.role === "user" && (
@@ -61,6 +91,13 @@ const Header = ({}) => {
           <Button onClick={home}>Home</Button>
         </li>
       )}
+
+        {user && user.role === "admin" && (
+          <li>
+            <DashboardIcon />
+            <Button onClick={dashboard}>Dashboard</Button>
+          </li>
+      )}    
 
       {/* <li>
         <Inventory2Icon />
@@ -72,10 +109,22 @@ const Header = ({}) => {
           <Button onClick={orders}>My Orders</Button>
         </li>
       )}
+       {user && user.role === "admin" && (
+        <li>
+          <ListAltIcon />
+          <Button onClick={adminorders}>All Orders</Button>
+        </li>
+      )}
       {user && user.role === "user" && (
         <li>
           <PersonIcon />
           <Button onClick={account}>My Account</Button>
+        </li>
+      )}
+      {user && user.role === "admin" && (
+        <li>
+          <PostAddIcon />
+          <Button onClick={adminproducts}>All Products</Button>
         </li>
       )}
       {user && user.role === "user" && (
@@ -84,9 +133,28 @@ const Header = ({}) => {
           <Button onClick={cart}>My Cart ({cartItems.length})</Button>
         </li>
       )}
+      {user && user.role === "admin" && (
+        <li>
+          <AddIcon />
+          <Button onClick={adminproduct}>Add Products</Button>
+        </li>
+      )}
 
-      <li className="logoutli">
-        <ExitToAppIcon className="icon" />
+      {user && user.role === "admin" && (
+        <li>
+          <PeopleIcon />
+          <Button onClick={adminusers}>Users</Button>
+        </li>
+      )}
+
+      {user && user.role === "admin" && (
+        <li>
+          <PersonAddIcon />
+          <Button onClick={adminregister}>Add Users</Button>
+        </li>
+      )}
+
+      <li className="logoutli">        <ExitToAppIcon className="icon" />
         <Button onClick={logoutUser}>Logout</Button>
       </li>
     </div>
