@@ -19,12 +19,27 @@
   display: flex;
   flex-direction: row;
 }
+/* .navbar> .logoutli{
+  position: absolute;
+  right: 0;
+  justify-content: end;
+}
+.navbar> .logoutli > button{
+  position: absolute;
+  right:0
+  
+}
+
+.navbar> .logoutli > .icon{
+  position: absolute;
+  
+} */
 
 .navbar  > li{
   list-style-type:none;
   /* background: white; */
   height: 100%;
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -11,7 +11,10 @@
   justify-content: center;
   color: white;  
 }
-
+fieldset{
+  height: 55px;
+  color: rgb(151, 144, 144);
+}
 .banner > h1 {
   margin: 5vmax;
 
@@ -71,7 +74,7 @@ div > div> div > p> button{
   border-bottom: 1px solid rgba(21, 21, 21, 0.5);
   width: 20vmax;
   padding: 1vmax;
-  margin: 5vmax auto;
+  margin: 2vmax auto;
   color: rgb(0, 0, 0, 0.7);
 }
 
@@ -243,7 +246,9 @@ div > div> div > p> button{
 }
 .filCategorieshome{
   flex-basis: 75%;
+ 
 }
+
 
 
 

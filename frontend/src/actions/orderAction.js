@@ -22,6 +22,9 @@ import {
 
 import axios from "axios";
 
+
+var orderId;
+
 // Create Order
 export const createOrder = (order) => async (dispatch) => {
   try {
@@ -34,6 +37,10 @@ export const createOrder = (order) => async (dispatch) => {
     };
     const { data } = await axios.post("/api/v1/order/new", order, config);
 
+    // console.log(data.order._id);
+
+    orderId = data.order._id;
+
     dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -42,6 +49,8 @@ export const createOrder = (order) => async (dispatch) => {
     });
   }
 };
+
+
 
 // My Orders
 export const myOrders = () => async (dispatch) => {
