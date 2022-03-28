@@ -16,6 +16,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import { lightGreen } from "@mui/material/colors";
+import HelpIcon from '@mui/icons-material/Help';
 
 const Header = ({}) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -37,6 +38,10 @@ const Header = ({}) => {
   function account() {
     history.push("/account");
   }
+  function helpuse() {
+    history.push("/helpuse");
+  }
+
 
   function home() {
     history.push("/");
@@ -76,6 +81,12 @@ const Header = ({}) => {
         <li>
           <PersonIcon />
           <Button onClick={account}>My Account</Button>
+        </li>
+      )}
+       {user && (user.role === "user" || user.role === "admin" || user.role === "volunteer") && (
+        <li>
+          <HelpIcon />
+          <Button onClick={helpuse}>How To Use</Button>
         </li>
       )}
       {user && user.role === "user" && (

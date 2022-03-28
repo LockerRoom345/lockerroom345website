@@ -187,7 +187,7 @@ const ProductList = ({ history }) => {
   });
 
   //let hash1 = mapping.get("Sweat Shirts");
-  console.log(mapping);
+  //console.log(mapping);
   //  for(let i=0; i<mapping.size; i++){
   //   console.log(mapping.keys);
   //  }
@@ -255,7 +255,7 @@ const ProductList = ({ history }) => {
 
   products &&
     products.forEach((item) => {
-      console.log(item);
+      //console.log(item);
       rows.push({
         id: item._id,
         stock: item.ProductSize.map((y) => y.stock).sort((a, b) => a - b)[0],

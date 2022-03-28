@@ -23,13 +23,13 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const alert = useAlert();
+  const { user } = useSelector((state) => state.user);
 
   async function logoutUser() {
-
-    dispatch(logout());       
-    alert.success("Logout Successfully");   
-    await new Promise(resolve => setTimeout(resolve, 1000)); 
-    history.push("/");       
+    dispatch(logout());
+    alert.success("Logout Successfully");
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    history.push("/");
   }
   return (
     <div className="sidebar">
@@ -41,35 +41,40 @@ const Sidebar = () => {
           <DashboardIcon /> Dashboard
         </p>
       </Link>
-      <Link to="/admin/orders">
-        <p>
-          <ListAltIcon />
-          Orders
-        </p>
-      </Link>
-      <Link>
-        <TreeView
-          defaultCollapseIcon={<ExpandMoreIcon />}
-          defaultExpandIcon={<ImportExportIcon />}
-        >
-          <TreeItem nodeId="1" label="Items">
-            <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
-            </Link>
+      {(user.role == "volunteer" || user.role == "admin") && (
+        <Link to="/admin/orders">
+          <p>
+            <ListAltIcon />
+            Orders
+          </p>
+        </Link>
+      )}
+      {user.role == "admin" && (
+        <Link>
+          <TreeView
+            defaultCollapseIcon={<ExpandMoreIcon />}
+            defaultExpandIcon={<ImportExportIcon />}
+          >
+            <TreeItem nodeId="1" label="Items">
+              <Link to="/admin/products">
+                <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
+              </Link>
 
-            <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
-            </Link>
-          </TreeItem>
-        </TreeView>
-      </Link>
+              <Link to="/admin/product">
+                <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
+              </Link>
+            </TreeItem>
+          </TreeView>
+        </Link>
+      )}
+      {user.role == "admin" && (
+        <Link to="/admin/users">
+          <p>
+            <PeopleIcon /> Users
+          </p>
+        </Link>
+      )}
 
-      <Link to="/admin/users">
-        <p>
-          <PeopleIcon /> Users
-        </p>
-      </Link>
-     
       {/* <Button onClick={logoutUser}>Logout</Button> */}
       {/* <Link to="/admin/reviews">
         <p>

@@ -19,6 +19,7 @@ const Dashboard = () => {
   const { orders } = useSelector((state) => state.allOrders);
 
   const { users } = useSelector((state) => state.allUsers);
+  const { user } = useSelector((state) => state.user);
 
   let outOfStock = 0;
 
@@ -40,8 +41,8 @@ const Dashboard = () => {
     //   }
     // }      )
   });
-  console.log("out of stock list", stockarray);
-  console.log("overall items out of stock is", outstockincr);
+  // console.log("out of stock list", stockarray);
+  // console.log("overall items out of stock is", outstockincr);
 
   // for(let i =0; i< 3; i++){
   //   for (const [key, value] of Object.entries(products.ProductSize[0])) {
@@ -102,45 +103,51 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Summary <br />
+              Summary <br /> 
             </p>
           </div>
           <div className="dashboardSummaryBox2">
-            <Link
-              to="/admin/orders"
-              data-tip="Click Me"
-              data-for="toolTip1"
-              data-place="bottom"
-              data-type="info"
-            >
-              <p>Orders Received</p>
-              <p>{orders && orders.length}</p>
+            
+            {(user.role == "admin" || user.role == "volunteer") && (
+              <Link
+                to="/admin/orders"
+                data-tip="Click Me"
+                data-for="toolTip1"
+                data-place="bottom"
+                data-type="info"
+              >
+                <p>Orders Received</p>
+                <p>{orders && orders.length}</p>
 
-              <ReactTooltip id="toolTip1" />
-            </Link>
-
-            <Link
-              to="/admin/products"
-              data-tip="Click Me"
-              data-for="toolTip2"
-              data-place="bottom"
-              data-type="info"
-            >
-              <p>Item Availability</p>
-              <p>{products && products.length}</p>
-              <ReactTooltip id="toolTip2" />
-            </Link>
-            <Link
-              to="/admin/users"
-              data-tip="Click Me"
-              data-for="toolTip3"
-              data-place="bottom"
-              data-type="info"
-            >
-              <p>Manage Users</p>
-              <p>{users && users.length}</p>
-              <ReactTooltip id="toolTip3" />
-            </Link>
+                <ReactTooltip id="toolTip1" />
+              </Link>
+            )}
+            {( user.role == "admin") && (
+              <Link
+                to="/admin/products"
+                data-tip="Click Me"
+                data-for="toolTip2"
+                data-place="bottom"
+                data-type="info"
+              >
+                <p>Item Availability</p>
+                <p>{products && products.length}</p>
+                <ReactTooltip id="toolTip2" />
+              </Link>
+            )}
+            {user.role == "admin" && (
+              <Link
+                to="/admin/users"
+                data-tip="Click Me"
+                data-for="toolTip3"
+                data-place="bottom"
+                data-type="info"
+              >
+                <p>Manage Users</p>
+                <p>{users && users.length}</p>
+                <ReactTooltip id="toolTip3" />
+              </Link>
+            )}
           </div>
 
           <div>
