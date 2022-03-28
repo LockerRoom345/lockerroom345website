@@ -100,7 +100,7 @@ const OrderList = ({ history }) => {
           <Fragment>
             <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
               {/* <EditIcon /> */}
-              <span>Edit</span>
+              <span>View Order</span>
             </Link>
 
             {/* <Button

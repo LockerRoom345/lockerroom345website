@@ -36,7 +36,7 @@ const OrderDetails = ({ match }) => {
           <div className="orderDetailsPage" ref={componentRef}>
             <div className="orderDetailsContainer">
               <Typography component="h1">
-                Order #{order && order._id}
+                Order #{order && order.orderId}
               </Typography>
               <Typography>Shipping Info</Typography>
               <div className="orderDetailsContainerBox">

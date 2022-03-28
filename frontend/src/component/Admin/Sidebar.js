@@ -75,13 +75,21 @@ const Sidebar = () => {
         </Link>
       )}
 
-      {/* <Button onClick={logoutUser}>Logout</Button> */}
-      {/* <Link to="/admin/reviews">
+      <Link to="/admin/users">
         <p>
-          <RateReviewIcon />
-          Reviews
+          <PeopleIcon /> Users
         </p>
-      </Link> */}
+      </Link>
+
+      <Link to="/register">
+        <p>
+          <PeopleIcon /> Add User
+        </p>
+      </Link>
+
+      
+     
+      
     </div>
   );
 };

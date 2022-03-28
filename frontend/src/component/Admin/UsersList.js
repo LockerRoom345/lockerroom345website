@@ -54,7 +54,7 @@ const UsersList = ({ history }) => {
 
     {
       field: "email",
-      headerName: "Email",
+      headerName: "Login ID",
       minWidth: 200,
       flex: 0.1,
     },
