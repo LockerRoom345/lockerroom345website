@@ -61,7 +61,7 @@ const ProcessOrder = ({ history, match }) => {
     <Fragment>
       <MetaData title="Process Order" />
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="newProductContainer">
           {loading ? (
             <Loader />

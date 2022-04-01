@@ -65,20 +65,24 @@ const Header = ({}) => {
     history.push("/admin/orders");
   }
 
-  function adminproducts() {
-    history.push("/admin/products");
+  function setProduct(type) {
+    if(type === 'products'){
+      history.push("/admin/products");
+    }
+    else if(type === 'product'){
+      history.push("/admin/product");
+    }
+    
   }
 
-  function adminproduct() {
-    history.push("/admin/product");
-  }
-
-  function adminusers() {
-    history.push("/admin/users");
-  }
-
-  function adminregister() {
-    history.push("/register");
+  function setUsers(type) {
+    if(type === 'users'){
+      history.push("/admin/users");
+    }
+    else if(type === 'addUsers'){
+      history.push("/register");
+    }
+    
   }
 
 
@@ -121,12 +125,6 @@ const Header = ({}) => {
           <Button onClick={account}>My Account</Button>
         </li>
       )}
-      {user && user.role === "admin" && (
-        <li>
-          <PostAddIcon />
-          <Button onClick={adminproducts}>All Products</Button>
-        </li>
-      )}
       {user && user.role === "user" && (
         <li>
           <ShoppingCartIcon />
@@ -136,21 +134,30 @@ const Header = ({}) => {
       {user && user.role === "admin" && (
         <li>
           <AddIcon />
-          <Button onClick={adminproduct}>Add Products</Button>
+          <select
+                onChange={(e) => {
+                  setProduct(e.target.value);
+                }}
+              >
+                <option value=''>PRODUCTS</option>
+                <option value='products'>Show All Products</option>
+                <option value='product'>Add Product</option>
+              </select>
         </li>
       )}
 
       {user && user.role === "admin" && (
         <li>
           <PeopleIcon />
-          <Button onClick={adminusers}>Users</Button>
-        </li>
-      )}
-
-      {user && user.role === "admin" && (
-        <li>
-          <PersonAddIcon />
-          <Button onClick={adminregister}>Add Users</Button>
+          <select
+                onChange={(e) => {
+                  setUsers(e.target.value);
+                }}
+              >
+                <option value=''>USERS</option>
+                <option value='users'>Show All Users</option>
+                <option value='addUsers'>Add Users</option>
+              </select>
         </li>
       )}
 

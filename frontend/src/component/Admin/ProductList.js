@@ -277,7 +277,7 @@ const ProductList = ({ history }) => {
       <MetaData title={`ALL Items Available - Admin`} />
 
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="productListContainer">
           <h1 id="productListHeading">ALL ITEMS </h1>
 

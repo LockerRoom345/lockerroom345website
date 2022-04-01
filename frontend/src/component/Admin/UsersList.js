@@ -123,7 +123,7 @@ const UsersList = ({ history }) => {
       <MetaData title={`ALL USERS - Admin`} />
 
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="productListContainer">
           <h1 id="productListHeading">ALL USERS</h1>
 

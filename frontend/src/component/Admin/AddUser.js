@@ -60,6 +60,7 @@ const AddUser = () => {
     myForm.set("password", password);
     myForm.set("avatar", avatar);
     myForm.set("role", role);
+    console.log(role);
     myForm.set("address", address);
     dispatch(register(myForm));
     history.push('/registersuccess');
@@ -70,7 +71,7 @@ const AddUser = () => {
     <Fragment>
       <MetaData title="Add User" />
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="newProductContainer">
           {loading ? (
             <Loader />
@@ -142,6 +143,7 @@ const AddUser = () => {
                 <select value={role} onChange={(e) => setRole(e.target.value)}>
                   <option value="">Choose Role</option>
                   <option value="admin">Admin</option>
+                  <option value="volunteer">Volunteer</option>
                   <option value="user">User</option>
                 </select>
               </div>
