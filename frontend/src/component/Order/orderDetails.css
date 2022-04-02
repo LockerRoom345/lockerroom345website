@@ -124,6 +124,17 @@
 }
 
 @media screen and (max-width: 600px) {
+    /* .orderDetailsCartItemsContainer{
+    
+} */
+    .orderDetailsPage {
+        background-color: white;
+        margin-left: 0px;
+    }
+    .orderDetailsContainer {
+        padding: 5vmax !important;
+        padding-bottom: 0%;
+    }
     .orderDetailsContainerBox>div:nth-child(1) {
         display: flex;
         flex-direction: column;

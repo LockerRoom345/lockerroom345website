@@ -137,7 +137,7 @@ const ConfirmOrder = ({ history,addComments}) => {
               <div>
                 <p>User Placed Order:</p>
                 <span>{user.name}</span>
-                <hr></hr>
+                {/* <hr></hr> */}
                 <span>&nbsp;</span>
                 <p>Designation:</p>
                 <span>{shippingInfo.userLoggedInDesignation}</span>
