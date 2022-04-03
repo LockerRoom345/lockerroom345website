@@ -8,6 +8,11 @@ const sharp = require("sharp");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {  
 
+console.log(req.body);
+// [...req.body.ProductSize].map(x =>console.log(x))
+// for(let v of Object.values(req.body.ProductSize)){
+//   //console.log(v.size,v.stock);
+// }
   if (req.body.images==undefined) {    
     const _id= "products/"+Math.floor(100000 + Math.random() * 800000);
     const _url = "https://dummyimage.com/600x400/808080/fff.jpg&text="+req.body.name;
@@ -16,13 +21,14 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
       public_id: _id,
       url: _url,
     });
+   
     req.body.images = imagesLinks;
     req.body.user = req.user.id;
-    let productSizereq = [{
-      size: req.body.ProductSize,
-      stock:req.body.Stock
-    }];
-    req.body.ProductSize = productSizereq;
+    // let productSizereq = [{
+    //   size: req.body.ProductSize,
+    //   stock:req.body.Stock     
+    // }];
+    //req.body.ProductSize = productSizereq;
     console.log("If creating order",req.body);
     const product = await Product.create(req.body);
     //console.log(product);
@@ -50,15 +56,15 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-    let productSizereq = [{
-      size: req.body.ProductSize,
-      stock:req.body.Stock
-    }];
-    req.body.ProductSize = productSizereq;
+    // let productSizereq = [{
+    //   size: req.body.ProductSize,
+    //   stock:req.body.Stock
+    // }];
+    // req.body.ProductSize = productSizereq;
     req.body.images = imagesLinks;
     req.body.user = req.user.id;
 
-    console.log("Else creating order",req.body);
+    // console.log("Else creating order",req.body);
     const product = await Product.create(req.body);
 
     res.status(201).json({
@@ -162,7 +168,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-    console.log("before updating stock new values",req.body);
+    // console.log("before updating stock new values",req.body);
     req.body.images = imagesLinks;
   }
   // let productSizereq = {

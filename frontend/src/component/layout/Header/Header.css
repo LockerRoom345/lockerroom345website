@@ -1,24 +1,40 @@
 .speedDial {
-  position: fixed;
-  right: 3vmax;
-  top: 3vmax;
+    position: fixed;
+    right: 3vmax;
+    top: 3vmax;
 }
 
 .speedDialIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 100%;
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
 }
 
 .navbar {
-  position: relative;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  /* background: white; */
-  display: flex;
-  flex-direction: row;
+    /* position: relative;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    /* background: white; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 1px solid rgb(255, 255, 255);
+    -ms-box-orient: vertical;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    /* -webkit-flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
+
+
 /* .navbar> .logoutli{
   position: absolute;
   right: 0;
@@ -35,22 +51,47 @@
   
 } */
 
-.navbar  > li{
-  list-style-type:none;
-  /* background: white; */
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.navbar>li {
+    list-style-type: none;
+    /* background: white; */
+    height: 36px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.navbar  > li > select {
-  border: 0;
-  outline-color: white;
+.navbar>li>select {
+    border: 0;
+    outline-color: white;
 }
 
-
-
-
+@media screen and (max-width: 600px) {
+    .navbar {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        border: 1px solid rgb(255, 255, 255);
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: column;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .navbar>li {
+        list-style-type: none;
+        /* background: white; */
+        height: 36px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+}

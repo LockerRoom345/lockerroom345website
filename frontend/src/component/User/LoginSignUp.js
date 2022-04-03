@@ -83,6 +83,9 @@ const LoginSignUp = ({ history, location }) => {
     } else if (isAuthenticated && user.role === "admin") {
       history.push("/admin/dashboard");
     }
+    else if (isAuthenticated && user.role === "volunteer") {
+      history.push("/admin/dashboard");
+    }
   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
   const switchTabs = (e, tab) => {

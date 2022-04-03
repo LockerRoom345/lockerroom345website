@@ -79,7 +79,7 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
                       <p>Order Placed by:</p>
                       <span>{order.user && order.user.name}</span>
-                      <hr></hr>
+                      {/* <hr></hr> */}
                       <span>&nbsp;</span>
                       <p>Designation:</p>
                       <span>
