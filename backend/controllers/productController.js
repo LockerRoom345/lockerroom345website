@@ -21,12 +21,6 @@ console.log(req.body);
       public_id: _id,
       url: _url,
     });
-  
-    const prodsize = [];
-    prodsize.push({
-      size: _id,
-      stock: _url,
-    });
    
     req.body.images = imagesLinks;
     req.body.user = req.user.id;

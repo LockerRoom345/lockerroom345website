@@ -68,6 +68,20 @@
 }
 
 @media screen and (max-width: 600px) {
+    .myOrdersPage {
+        width: 100vw;
+        max-width: 100%;
+        padding: 0 7vmax;
+        box-sizing: border-box;
+        background-color: rgb(235, 235, 235);
+        position: fixed;
+        top: 30px;
+        left: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin-top: 160px;
+    }
     /* .myOrdersPage {
         padding: 0;
         height: 93vh;

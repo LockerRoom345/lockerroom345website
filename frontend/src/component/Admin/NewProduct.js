@@ -74,7 +74,7 @@ const NewProduct = ({ history }) => {
     obj.category  = category;
     obj.SubCategory = SubCategory;
     obj.ProductSize = inputList;
-    obj.images = images;
+    // obj.images = images;
     var jsonString= obj;
     debugger
 
