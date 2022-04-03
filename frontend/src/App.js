@@ -47,6 +47,7 @@ import AddUser from "./component/Admin/AddUser";
 import ProductReviews from "./component/Admin/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
+import Helpuse from "./component/layout/Helpuse/Helpuse"
 import NotFound from "./component/layout/Not Found/NotFound";
 import Requestform from "./component/User/Requestform";
 import Donate from "./component/donate/Donate";
@@ -116,6 +117,7 @@ function App() {
         <Route exact path="/search" component={Search} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/helpuse" component={Helpuse} />
         <ProtectedRoute exact path="/account" component={Profile} />
         <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
         <ProtectedRoute

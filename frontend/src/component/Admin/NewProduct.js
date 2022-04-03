@@ -25,12 +25,33 @@ const NewProduct = ({ history }) => {
   // const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
-  const [ProductSize, setProductSize] = useState("");
+  const [inputList, setInputList] = useState([{size:"",stock:"" }]);
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
+  // const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }])
+  // handle input change
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...inputList];
+    list[index][name] = value;
+    setInputList(list);
+    console.log([...inputList]);
+  };
+
+  // handle click event of the Remove button
+  const handleRemoveClick = index => {
+    const list = [...inputList];
+    list.splice(index, 1);
+    setInputList(list);
+  };
+
+  // handle click event of the Add button
+  const handleAddClick = () => {
+    setInputList([...inputList, { size: "", stock: "" }]);
+  };
 
   useEffect(() => {
     if (error) {
@@ -48,19 +69,34 @@ const NewProduct = ({ history }) => {
   const createProductSubmitHandler = (e) => {
     e.preventDefault();
 
-    const myForm = new FormData();
-    myForm.set("name", name);
-    myForm.set("category", category);
-    myForm.set("SubCategory", SubCategory);
-    myForm.set("ProductSize", ProductSize);
-    myForm.set("Stock", Stock);
+    var obj = new Object();
+    obj.name = name;
+    obj.category  = category;
+    obj.SubCategory = SubCategory;
+    obj.ProductSize = inputList;
+    obj.images = images;
+    var jsonString= obj;
+    debugger
 
-    images.forEach((image) => {
-      myForm.append("images", image);
-    });
-    dispatch(createProduct(myForm));
+    // const myForm = new FormData();
+    // myForm.set("name", name);
+    // myForm.set("category", category);
+    // myForm.set("SubCategory", SubCategory);
+    // myForm.set("ProductSize", JSON.stringify(inputList));
+    // myForm.set("Stock", Stock);
+    //for(const v of Object.values(JSON.stringify(inputList))){
+      // inputList.forEach(x =>{
+      //   myForm.append("ProductSize", JSON.stringify(x));
+      // })
+    //}
+
+       
+
+    // images.forEach((image) => {
+    //   myForm.append("images", image);
+    // });
+    dispatch(createProduct(jsonString));
   };
- 
 
   const createProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
@@ -131,15 +167,15 @@ const NewProduct = ({ history }) => {
                 }}
               >
                 <option value="SelectCategory">Select SubCategory</option>
-                <option value="men">Mens sizing</option>
-                <option value="women">Womens sizing</option>
-                <option value="boys">Boys' sizing</option>
-                <option value="girls">Girls' sizing</option>
-                <option value="toddler">Toddlers sizing</option>
+                <option value="Mens sizing">Mens sizing</option>
+                <option value="womens sizing">Womens sizing</option>
+                <option value="Boys' sizing">Boys' sizing</option>
+                <option value="Girls' sizing">Girls' sizing</option>
+                <option value="Toddlers sizing">Toddlers sizing</option>
               </select>
             </div>
 
-            <div>
+            {/* <div>
               <HeightIcon />
               <input
                 type="text"
@@ -156,6 +192,41 @@ const NewProduct = ({ history }) => {
                 required
                 onChange={(e) => setStock(e.target.value)}
               />
+            </div> */}
+            <div className="sizestock">
+              {inputList.map((x, i) => {
+                return (
+                  <div className="box">
+                    <input
+                      name="size"
+                      placeholder="size"
+                      value={x.size}
+                      onChange={(e) => handleInputChange(e, i)}
+                    />
+                    <input
+                      className="ml10"
+                      name="stock"
+                      placeholder="stock qty"
+                      value={x.stock}
+                      onChange={(e) => handleInputChange(e, i)}
+                    />
+                    <div className="btn-box">
+                      {inputList.length !== 1 && (
+                        <button
+                          className="mr10"
+                          onClick={() => handleRemoveClick(i)}
+                        >
+                          -
+                        </button>
+                      )}
+                      {inputList.length - 1 === i && (
+                        <button onClick={handleAddClick}>+</button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+              {/* <div style={{ marginTop: 20 }}>{JSON.stringify(inputList)}</div> */}
             </div>
             <div id="createProductFormFile">
               <input

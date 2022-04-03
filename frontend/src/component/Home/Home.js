@@ -22,7 +22,7 @@ const Home = ({ history }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setCategory] = useState("");
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState([]);
   const [ratings, setRatings] = useState(0);
   const [keyword, setKeyword] = useState("");
 
@@ -34,39 +34,41 @@ const Home = ({ history }) => {
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => {
-    const mapping = state.products.products.reduce((acc,x) => {
+    const mapping = state.products.products.reduce((acc, x) => {
       let subcategoryData = x.ProductSize.map((y) => {
-        let obj = {};        
+        let obj = {};
         obj.size = y.size;
         obj.url = x.images[0].url;
         obj.stock = y.stock;
         obj._id = x._id;
         return obj;
-    })
-      if(acc[x.name]){
-        return {...acc,
-        [x.name] : {
-            ...acc[x.name], 
-            hashmap:{
-              ...acc[x.name].hashmap, 
-               [x.SubCategory]:subcategoryData,
-            }
-          }
-        }
-        }else{
-          return {...acc, 
-            [x.name]:{
-              id : x._id, 
-              name : x.name,
-              url : x.images[0].url,  
-              hashmap:{
-                [x.SubCategory]:subcategoryData,
-              }
-            }
-          }
-        }
-    },{});
-     return {...state.products, products:mapping}
+      });
+      if (acc[x.name]) {
+        return {
+          ...acc,
+          [x.name]: {
+            ...acc[x.name],
+            hashmap: {
+              ...acc[x.name].hashmap,
+              [x.SubCategory]: subcategoryData,
+            },
+          },
+        };
+      } else {
+        return {
+          ...acc,
+          [x.name]: {
+            id: x._id,
+            name: x.name,
+            url: x.images[0].url,
+            hashmap: {
+              [x.SubCategory]: subcategoryData,
+            },
+          },
+        };
+      }
+    }, {});
+    return { ...state.products, products: mapping };
   });
   // const keyword = match.params.keyword;
 
@@ -85,7 +87,6 @@ const Home = ({ history }) => {
       dispatch(clearErrors());
     }
     dispatch(getProduct(keyword, currentPage, category));
-
   }, [dispatch, currentPage, category, error, alert]);
 
   const searchSubmitHandler = (e) => {
@@ -146,12 +147,11 @@ const Home = ({ history }) => {
           </div>
           <h2 className="homeHeading">All Products</h2>
           <div className="container" id="container">
-          {
-              [...Object.entries(products)]
-                .sort((a, b) => a[0].localeCompare(b[0]))
-                .map(([key, value]) => {
-                  return <ProductCard key={value.id} product={value} />
-                })}
+            {[...Object.entries(products)]
+              .sort((a, b) => a[0].localeCompare(b[0]))
+              .map(([key, value]) => {
+                return <ProductCard key={value.id} product={value} />;
+              })}
           </div>
 
           {resultPerPage < count && (
