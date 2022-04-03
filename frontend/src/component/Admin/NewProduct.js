@@ -73,9 +73,10 @@ const NewProduct = ({ history }) => {
     obj.name = name;
     obj.category  = category;
     obj.SubCategory = SubCategory;
-    obj.ProductSize = JSON.stringify(inputList);
+    obj.ProductSize = inputList;
     obj.images = images;
-    var jsonString= JSON.stringify(obj);
+    var jsonString= obj;
+    debugger
 
     // const myForm = new FormData();
     // myForm.set("name", name);
@@ -121,7 +122,7 @@ const NewProduct = ({ history }) => {
     <Fragment>
       <MetaData title="Create Product" />
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="newProductContainer">
           <form
             className="createProductForm"
@@ -166,11 +167,11 @@ const NewProduct = ({ history }) => {
                 }}
               >
                 <option value="SelectCategory">Select SubCategory</option>
-                <option value="men">Mens sizing</option>
-                <option value="women">Womens sizing</option>
-                <option value="boys">Boys' sizing</option>
-                <option value="girls">Girls' sizing</option>
-                <option value="toddler">Toddlers sizing</option>
+                <option value="Mens sizing">Mens sizing</option>
+                <option value="womens sizing">Womens sizing</option>
+                <option value="Boys' sizing">Boys' sizing</option>
+                <option value="Girls' sizing">Girls' sizing</option>
+                <option value="Toddlers sizing">Toddlers sizing</option>
               </select>
             </div>
 
@@ -198,14 +199,14 @@ const NewProduct = ({ history }) => {
                   <div className="box">
                     <input
                       name="size"
-                      placeholder="Enter size"
+                      placeholder="size"
                       value={x.size}
                       onChange={(e) => handleInputChange(e, i)}
                     />
                     <input
                       className="ml10"
                       name="stock"
-                      placeholder="Enter stock quantity"
+                      placeholder="stock qty"
                       value={x.stock}
                       onChange={(e) => handleInputChange(e, i)}
                     />

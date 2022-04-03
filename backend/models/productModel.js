@@ -32,7 +32,7 @@ const productSchema = mongoose.Schema({
       size: {
         type: String,
         required: false,
-      },
+       },
       stock: {
         type: String,
         required: false,

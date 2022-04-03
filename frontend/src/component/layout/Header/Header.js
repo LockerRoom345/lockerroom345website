@@ -16,14 +16,11 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import { lightGreen } from "@mui/material/colors";
-<<<<<<< HEAD
 import HelpIcon from '@mui/icons-material/Help';
-=======
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import AddIcon from "@material-ui/icons/Add";
 import PeopleIcon from "@material-ui/icons/People";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
->>>>>>> 9fa916a473df782367112010ae3313790102b095
 
 const Header = ({}) => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -129,17 +126,10 @@ const Header = ({}) => {
           <Button onClick={account}>My Account</Button>
         </li>
       )}
-<<<<<<< HEAD
        {user && (user.role === "user" || user.role === "admin" || user.role === "volunteer") && (
         <li>
           <HelpIcon />
           <Button onClick={helpuse}>How To Use</Button>
-=======
-      {user && user.role === "admin" && (
-        <li>
-          <PostAddIcon />
-          <Button onClick={adminproducts}>All Products</Button>
->>>>>>> 9fa916a473df782367112010ae3313790102b095
         </li>
       )}
       {user && user.role === "user" && (

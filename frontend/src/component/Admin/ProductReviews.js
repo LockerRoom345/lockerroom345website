@@ -132,7 +132,7 @@ const ProductReviews = ({ history }) => {
       <MetaData title={`ALL REVIEWS - Admin`} />
 
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="productReviewsContainer">
           <form
             className="productReviewsForm"

@@ -70,7 +70,7 @@ const AddUser = () => {
     <Fragment>
       <MetaData title="Add User" />
       <div className="dashboard">
-        <SideBar />
+        {/* <SideBar /> */}
         <div className="newProductContainer">
           {loading ? (
             <Loader />

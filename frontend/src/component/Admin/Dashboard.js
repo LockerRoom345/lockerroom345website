@@ -25,14 +25,17 @@ const Dashboard = () => {
 
   let instock = 0;
   let outstockincr = 0;
-
+  console.log(products);
   let stockarray = products.map((x) =>
     x.ProductSize.map((y) => y.stock).sort((a, b) => a - b)
   );
+  console.log(stockarray);
   stockarray.map((x) => {
-    if (x.includes(0)) {
+    if (x.includes('0')) {
       outstockincr += 1;
     }
+    console.log(outstockincr);
+
     // x.map((y) => {
     //   if (y.includes(0)) {
     //     //console.log(x);
@@ -103,11 +106,10 @@ const Dashboard = () => {
         <div className="dashboardSummary">
           <div>
             <p>
-              Summary <br /> 
+              Summary <br />
             </p>
           </div>
           <div className="dashboardSummaryBox2">
-            
             {(user.role == "admin" || user.role == "volunteer") && (
               <Link
                 to="/admin/orders"
@@ -122,7 +124,7 @@ const Dashboard = () => {
                 <ReactTooltip id="toolTip1" />
               </Link>
             )}
-            {( user.role == "admin") && (
+            {user.role == "admin" && (
               <Link
                 to="/admin/products"
                 data-tip="Click Me"
