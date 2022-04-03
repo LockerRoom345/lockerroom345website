@@ -45,3 +45,12 @@
   align-items: center;
   position: relative;
 }
+
+.navbar  > li > select {
+  border: 0;
+  outline-color: white;
+}
+
+
+
+
