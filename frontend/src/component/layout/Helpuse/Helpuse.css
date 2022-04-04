@@ -1,10 +1,12 @@
 .player-wrapper {
-    position: relative;
-    padding-top: 30.25%;
+    position: static;
+    /* padding-top: 30.25%; */
+    height: 70vh;
 }
 
 .react-player {
-    position: absolute;
+    position: relative;
+    margin: auto;
     top: 80px;
 }
 
