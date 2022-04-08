@@ -37,7 +37,7 @@
 }
 
 .confirmshippingArea>p {
-    font: 400 1.8vmax "Roboto";
+    font: 400 20px "Roboto";
 }
 
 .confirmshippingAreaBox,
@@ -65,18 +65,18 @@
 }
 
 .confirmshippingAreaBox>div>p {
-    font: 400 1vmax "Roboto";
+    font: 400 20px "Roboto";
     color: black;
 }
 
 .confirmshippingAreaBox>div>span {
     margin: 0 1vmax;
-    font: 600 1vmax "Roboto";
+    font: 600 20px "Roboto";
     color: #575757;
 }
 
 .confirmCartItems>p {
-    font: 400 1.8vmax "Roboto";
+    font: 400 20px "Roboto";
 }
 
 .confirmCartItemsContainer {
@@ -86,7 +86,7 @@
 
 .confirmCartItemsContainer>div {
     display: flex;
-    font: 400 1vmax "Roboto";
+    font: 400 15px "Roboto";
     align-items: normal;
     justify-content: space-between;
     margin: 1vmax 0;
@@ -104,7 +104,7 @@
 }
 
 .confirmCartItemsContainer>div>span {
-    font: 100 1vmax "Roboto";
+    font: 100 20px "Roboto";
     color: #5e5e5e;
 }
 
@@ -114,7 +114,7 @@
 
 .orderSummary>p {
     text-align: center;
-    font: 400 1.8vmax "Roboto";
+    font: 400 20px "Roboto";
     border-bottom: 1px solid rgba(0, 0, 0, 0.267);
     padding: 1vmax;
     width: 100%;
@@ -124,7 +124,7 @@
 
 .orderSummary>div>div {
     display: flex;
-    font: 300 1vmax "Roboto";
+    font: 300 15px "Roboto";
     justify-content: space-between;
     margin: 2vmax 0;
 }
@@ -135,7 +135,7 @@
 
 .orderSummaryTotal {
     display: flex;
-    font: 300 1vmax "Roboto";
+    font: 300 20px "Roboto";
     justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.363);
     padding: 2vmax 0;
@@ -150,7 +150,7 @@
     margin: auto;
     cursor: pointer;
     transition: 0.5s;
-    font: 400 1vmax "Roboto";
+    font: 400 20px "Roboto";
 }
 
 .orderSummary>button:hover {
