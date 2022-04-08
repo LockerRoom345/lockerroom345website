@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <footer id="footer">
       <div className="leftFooter">
-      <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">CONTACT US</a>
-       <a href="">TERMS OF USE</a>
-       <a href="">PRIVACY POLICY</a>       
-       <a href="">ACCESSIBILITY POLICY</a>
+      <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">Contact Us</a>
+       <a href="">Terms of Use</a>
+       <a href="">Privacy Policy</a>       
+       <a href="">Accessibility Policy</a>
       </div>
 
       <div className="midFooter">        
