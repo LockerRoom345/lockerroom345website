@@ -1,5 +1,5 @@
 footer {
-    /* position: relative; */
+    /* position: fixed; */
     /* margin-top: 100vh; */
     padding: 2vmax;
     background-color: #006554;
@@ -10,8 +10,11 @@ footer {
 
 .leftFooter>a {
     text-decoration: none;
+    font-size: 1.3vmax;
+    font-family: "Roboto";
     color: white;
-    line-height: 30px;
+    transition: all 0.5s;
+    margin: 0.5vmax;
 }
 
 .leftFooter {
