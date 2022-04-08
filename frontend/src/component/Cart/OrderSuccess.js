@@ -6,19 +6,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch} from "react-redux";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 
 const OrderSuccess = () => {
 
   
   const history = useHistory();
-  const dispatch = useDispatch();
+  
 
   async function displayOrder() {
-    const { data } = await axios.get("/api/v1/orders/me");
-    //console.log(data.orders[data.orders.length-1]._id);
-    var orderId = data.orders[data.orders.length-1]._id
-    history.push(`/order/${orderId}`);       
+    history.push(`/orders`);       
   }
   const { cartItems } = useSelector((state) => state.cart);
 
@@ -34,11 +30,8 @@ const OrderSuccess = () => {
   return (
     <div className="orderSuccess">
       <CheckCircleIcon />
-
-     
-
       <Typography>Your Order has been Placed successfully </Typography>
-      <Button onClick={displayOrder}>Display Order</Button>
+      <Button onClick={displayOrder}>Display All Orders</Button>
       {/* <Link to=`/order/${productId}``>View Orders</Link> */}
     </div>
   );

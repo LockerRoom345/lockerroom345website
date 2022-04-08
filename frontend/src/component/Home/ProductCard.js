@@ -55,10 +55,15 @@ const ProductCard = ({ product, history }) => {
   };
 
   const handlesizeChange = (e) => {
-    //console.log(product);
-    let k = product.hashmap[SubCategory][e.target.value];
-    // debugger
-    setProductSize(e.target.value);
+   
+      //console.log(product);
+      let k = product.hashmap[SubCategory][e.target.value];
+      if(k.stock < 1){
+        alert.error("Item Out of Stock")
+      }
+      // debugger
+      setProductSize(e.target.value);
+    
   };
   const addToCartHandler = (e) => {
     e.preventDefault();
@@ -145,23 +150,23 @@ const ProductCard = ({ product, history }) => {
           </select>
         </div>
         {
-          <div className="stock">
-            <p>
-              Status:
-              <b
-                className={
-                  product.hashmap[SubCategory][ProductSize].stock <= 0
-                    ? "redColor"
-                    : "greenColor"
-                }
-              >
-                {product.hashmap[SubCategory][ProductSize].stock < 1
-                  ? "OutOfStock"
-                  : "InStock"}
-              </b>
-              <br />
-            </p>
-          </div>
+          // <div className="stock">
+          //   <p>
+          //     Status:
+          //     <b
+          //       className={
+          //         product.hashmap[SubCategory][ProductSize].stock <= 0
+          //           ? "redColor"
+          //           : "greenColor"
+          //       }
+          //     >
+          //       {product.hashmap[SubCategory][ProductSize].stock < 1
+          //         ? " Out Of Stock"
+          //         : " In Stock"}
+          //     </b>
+          //     <br />
+          //   </p>
+          // </div>
         }
 
         <div className="addshopcart">

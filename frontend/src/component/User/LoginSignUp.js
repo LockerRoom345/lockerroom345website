@@ -8,6 +8,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
+import lockerroomlogo from "../../images/lockerroomlogo.PNG";
 
 const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -111,8 +112,12 @@ const LoginSignUp = ({ history, location }) => {
         <Loader />
       ) : (
         <Fragment>
+          
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
+            <div>
+              <img src={lockerroomlogo} alt = ""/>
+            </div>
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
@@ -141,7 +146,7 @@ const LoginSignUp = ({ history, location }) => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
-                <Link to="/password/forgot">Forgot Password ?</Link>
+                <Link to="/password/forgot">Forgot Password?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
               </form>
               <form
