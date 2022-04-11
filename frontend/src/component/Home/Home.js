@@ -12,7 +12,7 @@ import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
 
 const Home = ({ history }) => {
-  const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
+  const categories = ["All", "FootWears", "Clothing", "Sports", "Miscellaneous"];
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -92,9 +92,11 @@ const Home = ({ history }) => {
   const searchSubmitHandler = (e) => {
     console.log(products);
     e.preventDefault();
+    
     if (keyword.trim()) {
       history.push(`/products/${keyword}`);
-    } else {
+    }
+    else {
       history.push("/products");
     }
   };

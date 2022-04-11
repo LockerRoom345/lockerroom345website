@@ -10,6 +10,8 @@ import { getAllOrders } from "../../actions/orderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
 import ReactTooltip from "react-tooltip";
+import lockerroomlogo from "../../images/lockerroomlogo.PNG";
+
 
 const Dashboard = () => {
   const dispatch = useDispatch();
