@@ -24,7 +24,7 @@ const OrderSuccess = () => {
 
 
   console.log("change done");
-  cartItems.length =0;
+  cartItems.length = 0;
   console.log("change successful");
 
   return (
