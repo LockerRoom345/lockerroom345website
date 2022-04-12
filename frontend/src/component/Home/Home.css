@@ -31,7 +31,7 @@
     top: 200px;
     position: absolute;
     text-align: center;    
-    left: 550px;
+    left: 450px;
     z-index: 1;
 }
 .content >p {   
@@ -204,7 +204,7 @@ div>div>div>p>button {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     /* font-size: larger; */
     color: rgb(112, 110, 110);
-    inline-size: 150px;
+    inline-size: 180px;
     overflow-wrap: break-word;
 }
 
@@ -293,16 +293,17 @@ div>div>div>p>button {
     justify-content: center;
     align-items: center;
     position: relative;
-    font: 600 1.3vmax "Roboto" !important;
+    font: 400 1.2vmax "Roboto" !important;
     cursor: pointer;
 }
 
 .MuiTypography-body1 {
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.00938em;
+    font-weight: 600 !important;
 }
 
 
