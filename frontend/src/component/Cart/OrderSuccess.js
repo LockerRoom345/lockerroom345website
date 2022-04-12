@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch} from "react-redux";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import store from "../../store.js";
 
 const OrderSuccess = () => {
 
@@ -13,18 +14,17 @@ const OrderSuccess = () => {
   const history = useHistory();
   
 
+
+  //console.log(orders);
+
   async function displayOrder() {
+    
     history.push(`/orders`);       
   }
-  const { cartItems } = useSelector((state) => state.cart);
-
-  const { orders } = useSelector((state) => state.allOrders);
-
-  console.log(orders);
 
 
   console.log("change done");
-  cartItems.length = 0;
+  //cartItems.length = 0;
   console.log("change successful");
 
   return (

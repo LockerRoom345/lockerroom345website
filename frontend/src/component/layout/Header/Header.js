@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState ,useEffect} from "react";
 import { Link } from "react-router-dom";
 import { ReactNavbar } from "overlay-navbar";
 // import logo from "../../../images/dicks_logo.svg";
@@ -27,10 +27,11 @@ const Header = ({}) => {
   const { user } = useSelector((state) => state.user);
 
   // const role = user.role
-
+  // const cartlength =0;
   const dispatch = useDispatch();
   const history = useHistory();
   const alert = useAlert();
+  const [cartCount, setcartCount] = useState(0);
 
   async function logoutUser() {
     dispatch(logout());
@@ -90,6 +91,7 @@ const Header = ({}) => {
     
   }
 
+  
 
 
   return (

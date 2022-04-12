@@ -37,7 +37,7 @@ export const createOrder = (order) => async (dispatch) => {
     };
     const { data } = await axios.post("/api/v1/order/new", order, config);
 
-    // console.log(data.order._id);
+     console.log(data);
 
     orderId = data.order._id;
 

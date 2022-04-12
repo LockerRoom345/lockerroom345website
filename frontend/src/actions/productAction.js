@@ -41,11 +41,20 @@ export const getProduct =
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
 
-      let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`;
-
-      if (category) {
+      let link = "";
+      if (currentPage===1 & category=="") {
+        link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`;
+      }
+      else{
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${category}`;
       }
+
+      if (category=="All") {
+        link = `/api/v1/products`;
+      }
+      // if (currentPage==1 && category === category) {
+        
+      // }
       
 
       const { data } = await axios.get(link);

@@ -56,6 +56,7 @@ import UserSuccess from "./component/Admin/UserSuccess"
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  
 
   // const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -81,7 +82,7 @@ function App() {
 
   return (
     <Router>
-      <Header user={user}/>
+      <Header user={user} />
 
       {/* {isAuthenticated && <UserOptions user={user} />}
       {isAuthenticated && <Header user={user} />} */}

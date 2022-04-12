@@ -12,7 +12,13 @@ import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
 
 const Home = ({ history }) => {
-  const categories = ["All", "FootWears", "Clothing", "Sports", "Miscellaneous"];
+  const categories = [
+    "All",
+    "FootWears",
+    "Clothing",
+    "Sports",
+    "Miscellaneous",
+  ];
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -92,11 +98,10 @@ const Home = ({ history }) => {
   const searchSubmitHandler = (e) => {
     console.log(products);
     e.preventDefault();
-    
+
     if (keyword.trim()) {
       history.push(`/products/${keyword}`);
-    }
-    else {
+    } else {
       history.push("/products");
     }
   };
@@ -108,16 +113,19 @@ const Home = ({ history }) => {
       ) : (
         <Fragment>
           <MetaData title="Donate & help" />
-
-          <div className="banner">
-            <p>Welcome to Locker Room 345 !!!</p>
-            <h1>SPORTS MAKE PEOPLE BETTER</h1>
-
-            {/* <a href="#container">
+          <div className="bground">
+            <div className="banner">
+              {/* <a href="#container">
               <button>
                 Scroll <CgMouse />
               </button>
             </a> */}
+            </div>
+            <div className="banner1"></div>
+          </div>
+          <div className="content">
+            <p>Welcome to Locker Room 345 !!!</p>
+            {/* <h1>SPORTS MAKE PEOPLE BETTER</h1> */}
           </div>
           <div className="searchbar">
             <form className="searchBoxbar" onSubmit={searchSubmitHandler}>

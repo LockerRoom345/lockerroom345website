@@ -10,6 +10,50 @@
     align-items: center;
     justify-content: center;
     color: white;
+    flex-basis: 50%;
+    /* -webkit-filter: blur(1px); */
+    box-shadow: inset 0px 0px 10px 10px #ffffff;
+    /* mask-image:linear-gradient(to bottom,rgb(145, 140, 140) ,rgba(0,0,0,0)); */
+    
+    
+}
+.banner1{
+    display: flex;
+    background-image: url("../../images/img-3.f094c578.jpg");
+    flex-direction: column;    
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-basis: 50%;
+    background-color: #d0d8db;
+    filter: blur(45px);    
+}
+.content{
+    top: 200px;
+    position: absolute;
+    text-align: center;    
+    left: 550px;
+    z-index: 1;
+}
+.content >p {   
+ font-family: Pacifico, cursive;
+ /* background: -webkit-linear-gradient(#065749,#065749);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color: #ffffff;
+ font-size: 75px;
+}
+
+.content >h1 {   
+    
+    color: rgb(0, 0, 0) ;
+    font-size: 55px;
+   }
+.bground{
+    display: flex;
+    flex-direction: row;    
+    flex-basis: 100%;
+
+   
 }
 
 fieldset {
@@ -96,7 +140,7 @@ div>div>div>p>button {
     flex-direction: row;
     text-decoration: none;
     color: rgb(48, 48, 48);
-    margin: 1vmax;
+    /* margin: 1vmax; */
     transition: all 0.5s;
     /* padding-bottom: 0.5vmax; */
 }
@@ -152,18 +196,18 @@ div>div>div>p>button {
     display: flex;
     flex-basis: 20%;
     justify-content: center;
-    font-size: 1.5vmax;
+    font-size: 1.2vmax;
 }
 
 .productname>P {
-    font: 500 1vmax "Roboto";
-    font-size: larger;
+    font-size: 1.2vmax;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    /* font-size: larger; */
     color: rgb(112, 110, 110);
-    padding: 1vmax 2vmax;
-    padding-right: 1vmax;
+    inline-size: 150px;
+    overflow-wrap: break-word;
 }
 
-.stock>p {}
 
 .productCardSpan {
     display: flex;
@@ -204,7 +248,8 @@ div>div>div>p>button {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 1.2vmax "Roboto";
+    font-size: 1.2vmax;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     outline: none;
 }
 
@@ -216,7 +261,8 @@ div>div>div>p>button {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font: 300 1.2vmax "Roboto";
+    font-size: 1.2vmax;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     outline: none;
 }
 
@@ -247,12 +293,12 @@ div>div>div>p>button {
     justify-content: center;
     align-items: center;
     position: relative;
-    font: 400 1.3vmax "Roboto" !important;
+    font: 600 1.3vmax "Roboto" !important;
     cursor: pointer;
 }
 
 .MuiTypography-body1 {
-    font-size: 1.2rem !important;
+    font-size: 1.4rem !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     line-height: 1.5;
@@ -322,11 +368,11 @@ div>div>div>p>button {
         font: 500 1.4vmax "Roboto";
         outline: none;
     }
-    .productCard {
+    /* .productCard {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    } */
     .productCard>img {
         width: 40%;
         height: 40%;
@@ -336,7 +382,9 @@ div>div>div>p>button {
         /* top: 50%; */
     }
     .productCard>p {
-        font-size: 1.7vmax;
+        /* font-size: 1.7vmax; */
+        inline-size: 150px;
+    overflow-wrap: break-word;
     }
     .productCard>div {
         margin: 0vmax;
@@ -357,7 +405,7 @@ div>div>div>p>button {
 
 .searchBoxbar {
     width: 100vw;
-    height: 25vh;
+    height: 19vh;
     max-width: 100%;
     display: flex;
     justify-content: center;
@@ -380,7 +428,7 @@ div>div>div>p>button {
     border-bottom-left-radius: 25px;
     font: 300 1.1vmax "Roboto";
     box-sizing: border-box;
-    height: 35%;
+    height: 37%;
     font-size: large;
 }
 

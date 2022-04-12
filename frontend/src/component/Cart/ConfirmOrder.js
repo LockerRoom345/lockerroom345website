@@ -11,6 +11,7 @@ import { addItemsToCart } from "../../actions/cartAction";
 import store from "../../store.js";
 import axios from "axios";
 import { createOrder, clearErrors } from "../../actions/orderAction";
+import { removeAllCartItems } from "../../actions/cartAction";
 
 const ConfirmOrder = ({ history,addComments}) => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const ConfirmOrder = ({ history,addComments}) => {
 
     e.preventDefault();
     // console.log("upadtedcartItemspay",upadtedcartItems);
-    console.log("cartItems", cartItems);
+    console.log("cartItems from confirm order", cartItems);
     //payBtn.current.disabled = true;
 
     try {
@@ -96,7 +97,8 @@ const ConfirmOrder = ({ history,addComments}) => {
         //   id: result.paymentIntent.id,
         //   status: result.paymentIntent.status,
         // };
-        dispatch(createOrder(order));
+        dispatch(createOrder(order));             
+        dispatch(removeAllCartItems());       
         history.push("/success");
       } else {
         alert.error(
@@ -118,7 +120,7 @@ const ConfirmOrder = ({ history,addComments}) => {
       cartItemss
     };
     console.log("cartItems updated",cartItemss);
-    localStorage.setItem("cartItemss",cartItemss);
+    localStorage.setItem("cartItems",cartItemss);
     //const username = useSelector(() => getState().cart.cartItems)
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
    

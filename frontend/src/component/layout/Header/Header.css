@@ -34,6 +34,13 @@
     flex-wrap: wrap; */
 }
 
+.MuiButton-root {
+    color: rgba(0, 0, 0, 0.87);
+    padding: 6px 16px;
+    font-size: 1.2rem !important ;
+    font-weight: bold !important;
+    
+}
 
 /* .navbar> .logoutli{
   position: absolute;
