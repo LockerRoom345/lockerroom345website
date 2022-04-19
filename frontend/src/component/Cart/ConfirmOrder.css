@@ -32,7 +32,10 @@
 }
 
 .confirmCartItems {
-    padding: 5vmax;
+    padding-top: 0vmax;
+    padding-bottom: 5vmax;
+    padding-right: 5vmax;
+    padding-left: 5vmax;
     /* padding-top: 2vmax; */
 }
 
@@ -162,7 +165,16 @@
     transform: scale(2.0);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
+    .cartitemholderimage,
+    .cartitemholdername,
+    .cartitemholdercat,
+    .cartitemholdersize,
+    .cartitemholderquantity>span {
+        display: flex;
+        flex-basis: 50%;
+        font-size: 15px;
+    }
     .confirmshippingAreaBox>div:nth-child(1) {
         display: flex;
         flex-direction: column;
@@ -198,26 +210,27 @@
         border-top: 1px solid rgba(0, 0, 0, 0.247);
     }
     .confirmshippingArea>p {
-        font: 400 6vw "Roboto";
+        font: 400 20px "Roboto";
     }
     .confirmshippingAreaBox>div {
         display: flex;
-        margin: 6vw 0;
+        margin: 20px 0;
     }
     .confirmshippingAreaBox>div>p {
-        font: 400 4vw "Roboto";
+        font: 400 15px "Roboto";
     }
     .confirmshippingAreaBox>div>span {
-        font: 100 4vw "Roboto";
+        font: 100 15px "Roboto";
     }
     .confirmCartItems>p {
-        font: 400 6vw "Roboto";
+        font: 400 20px "Roboto";
     }
     .confirmCartItemsContainer {
         max-height: 50vw;
     }
     .confirmCartItemsContainer>div {
-        font: 400 4vw "Roboto";
+        font: 400 15px "Roboto";
+        width: 100%;
         margin: 4vw 0;
     }
     .confirmCartItemsContainer>div>img {
@@ -228,25 +241,35 @@
         width: 30%;
     }
     .confirmCartItemsContainer>div>div>span {
-        font: 100 4vw "Roboto";
+        font: 100 15px "Roboto";
     }
     .orderSummary {
         padding: 12vw;
     }
     .orderSummary>p {
-        font: 400 6vw "Roboto";
-        padding: 4vw;
+        font: 400 20px "Roboto";
+        padding: 15px;
     }
     .orderSummary>div>div {
-        font: 300 4vw "Roboto";
+        font: 300 15px "Roboto";
     }
     .orderSummaryTotal {
-        font: 300 4vw "Roboto";
+        font: 300 15px "Roboto";
         padding: 5vw 0;
     }
     .orderSummary>button {
         padding: 4vw;
         margin: 4vw auto;
+        font: 400 15px "Roboto";
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .confirmCartItemsContainer>div {
         font: 400 4vw "Roboto";
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 4vw 0;
     }
 }

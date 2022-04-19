@@ -113,20 +113,23 @@ const Home = ({ history }) => {
       ) : (
         <Fragment>
           <MetaData title="Donate & help" />
-          <div className="bground">
+          <div className="banner">
+          <p>Welcome to Locker Room 345 !!!</p>
+                       <h1>SPORTS MAKE PEOPLE BETTER</h1> 
+
+          {/* <div className="bground">
             <div className="banner">
-              {/* <a href="#container">
+               <a href="#container">
               <button>
                 Scroll <CgMouse />
               </button>
-            </a> */}
+            </a> 
             </div>
             <div className="banner1"></div>
-          </div>
-          <div className="content">
-            <p>Welcome to Locker Room 345 !!!</p>
-            {/* <h1>SPORTS MAKE PEOPLE BETTER</h1> */}
-          </div>
+      </div> */}
+      </div>
+          
+           
           <div className="searchbar">
             <form className="searchBoxbar" onSubmit={searchSubmitHandler}>
               <input

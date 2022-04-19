@@ -48,7 +48,7 @@
 
 .page-link {
     text-decoration: none;
-    font: 300 0.7vmax "Roboto";
+    font: 300 15px "Roboto";
     color: rgb(80, 80, 80);
     transition: all 0.3s;
 }
@@ -105,6 +105,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    font: 400 20px "Roboto";
 }
 
 .category-link {
@@ -116,7 +117,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    font: 400 1vmax "Roboto";
+    font: 400 20px "Roboto";
     cursor: pointer;
 }
 
@@ -139,5 +140,17 @@
     }
     .category-link {
         font: 400 25px "Roboto";
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .categoryBox {
+        padding: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font: 400 20px "Roboto";
     }
 }
