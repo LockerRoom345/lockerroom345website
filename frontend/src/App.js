@@ -47,16 +47,15 @@ import AddUser from "./component/Admin/AddUser";
 import ProductReviews from "./component/Admin/ProductReviews";
 import Contact from "./component/layout/Contact/Contact";
 import About from "./component/layout/About/About";
-import Helpuse from "./component/layout/Helpuse/Helpuse"
+import Helpuse from "./component/layout/Helpuse/Helpuse";
 import NotFound from "./component/layout/Not Found/NotFound";
 import Requestform from "./component/User/Requestform";
 import Donate from "./component/donate/Donate";
 import RequestFormReplica from "./component/Cart/RequestFormReplica";
-import UserSuccess from "./component/Admin/UserSuccess"
+import UserSuccess from "./component/Admin/UserSuccess";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  
 
   // const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -82,7 +81,7 @@ function App() {
 
   return (
     <Router>
-      <Header user={user} />
+      {isAuthenticated && <Header user={user} />}
 
       {/* {isAuthenticated && <UserOptions user={user} />}
       {isAuthenticated && <Header user={user} />} */}
@@ -105,7 +104,6 @@ function App() {
             );
           }}
         />
-       
 
         <Route exact path="/replica" component={RequestFormReplica} />
         <Route exact path="/home" component={Home} />
@@ -113,7 +111,7 @@ function App() {
         <Route exact path="/donate" component={Donate} />
         <Route exact path="/product/:id" component={ProductDetails} />
         <Route exact path="/products" component={Products} />
-        <Route exact path="/orders" component={MyOrders} /> 
+        <Route exact path="/orders" component={MyOrders} />
         <Route path="/products/:keyword" component={Products} />
         <Route exact path="/search" component={Search} />
         <Route exact path="/contact" component={Contact} />
@@ -196,7 +194,7 @@ function App() {
           isAdmin={true}
           component={AddUser}
         />
-         <ProtectedRoute
+        <ProtectedRoute
           exact
           path="/registersuccess"
           isAdmin={true}
@@ -204,7 +202,7 @@ function App() {
         />
       </Switch>
 
-      <Footer />
+      {isAuthenticated && <Footer />}
     </Router>
   );
 }

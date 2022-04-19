@@ -83,8 +83,7 @@ const LoginSignUp = ({ history, location }) => {
       history.push(redirect);
     } else if (isAuthenticated && user.role === "admin") {
       history.push("/admin/dashboard");
-    }
-    else if (isAuthenticated && user.role === "volunteer") {
+    } else if (isAuthenticated && user.role === "volunteer") {
       history.push("/admin/dashboard");
     }
   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
@@ -112,12 +111,15 @@ const LoginSignUp = ({ history, location }) => {
         <Loader />
       ) : (
         <Fragment>
-          
           <div className="LoginSignUpContainer">
-            <div className="LoginSignUpBox">
-            <div>
-              <img src={lockerroomlogo} alt = ""/>
+            <div className="left">
+              <h3>WELCOME  <br></br>
+              <h2>TO</h2></h3>
+            
+              <img src={lockerroomlogo} alt="LockerRoom Logo" />
             </div>
+            <div className="right">
+            <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
@@ -146,7 +148,7 @@ const LoginSignUp = ({ history, location }) => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
-                <Link to="/password/forgot">Forgot Password?</Link>
+                <Link to="/password/forgot">Forgot Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
               </form>
               <form
@@ -201,6 +203,12 @@ const LoginSignUp = ({ history, location }) => {
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>
             </div>
+            </div>
+           
+           
+          </div>
+          <div className="newfooter">
+          <p>&copy; All rights reserved to Locker Room 345 </p>
           </div>
         </Fragment>
       )}
