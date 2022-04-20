@@ -93,7 +93,7 @@
     text-decoration: none;
     align-self: flex-end;
     transition: all 0.5s;
-    font: 500 0.8vmax "Gill Sans";
+    font: 500 0.8vmax "Roboto";
   }
   
   .loginForm > a:hover {
