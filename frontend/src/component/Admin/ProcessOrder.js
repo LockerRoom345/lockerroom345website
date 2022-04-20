@@ -24,7 +24,7 @@ const ProcessOrder = ({ history, match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.order);
   const { shippingInfo } = useSelector((state) => state.cart);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("null");
   const componentRef = useRef();
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
@@ -32,6 +32,7 @@ const ProcessOrder = ({ history, match }) => {
     const myForm = new FormData();
 
     myForm.set("status", status);
+    //console.log("select status",status);
 
     dispatch(updateOrder(match.params.id, myForm));
   };
@@ -40,7 +41,7 @@ const ProcessOrder = ({ history, match }) => {
   const alert = useAlert();
 
   useEffect(() => {
-    //console.log(order);
+    ////console.log(order);
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -53,7 +54,8 @@ const ProcessOrder = ({ history, match }) => {
       alert.success("Order Updated Successfully");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
-    console.log("before dispatch");
+    //console.log("before dispatch");
+    //console.log("select status",status)
     dispatch(getOrderDetails(match.params.id));
   }, [dispatch, alert, error, match.params.id, isUpdated, updateError]);
 
@@ -182,7 +184,7 @@ const ProcessOrder = ({ history, match }) => {
                   <div>
                     <AccountTreeIcon />
                     <select onChange={(e) => setStatus(e.target.value)}>
-                      <option value="">Choose Category</option>
+                      <option value="null">Choose Category</option>
                       {order.orderStatus === "Processing" && (
                         <option value="picked">Pick Completed</option>
                       )}
@@ -192,11 +194,11 @@ const ProcessOrder = ({ history, match }) => {
                       )}
 
                       {order.orderStatus === "Processing" && (
-                        <option value="Delivered">Picked and Delivered</option>
+                        <option value="PickedDelivered">Picked and Delivered</option>
                       )}  
 
                       {order.orderStatus === "Delivered" && (
-                        <option value="picked">Revert to Picked</option>
+                        <option value="revertpicked">Revert to Picked</option>
                       )}  
 
                       {order.orderStatus === "Delivered" && (
@@ -213,7 +215,7 @@ const ProcessOrder = ({ history, match }) => {
                     id="createProductBtn"
                     type="submit"
                     disabled={
-                      loading ? true : false || status === "" ? true : false
+                       loading ? true : false ||  status == "null" ? true : false
                     }
                   >
                     Process

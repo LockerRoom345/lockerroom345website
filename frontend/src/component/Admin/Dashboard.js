@@ -27,31 +27,31 @@ const Dashboard = () => {
 
   let instock = 0;
   let outstockincr = 0;
-  console.log(products);
+  //console.log(products);
   let stockarray = products.map((x) =>
     x.ProductSize.map((y) => y.stock).sort((a, b) => a - b)
   );
-  console.log(stockarray);
+  //console.log(stockarray);
   stockarray.map((x) => {
     if (x.includes('0')) {
       outstockincr += 1;
     }
-    console.log(outstockincr);
+    //console.log(outstockincr);
 
     // x.map((y) => {
     //   if (y.includes(0)) {
-    //     //console.log(x);
+    //     ////console.log(x);
     //     outstockincr += 1;
 
     //   }
     // }      )
   });
-  // console.log("out of stock list", stockarray);
-  // console.log("overall items out of stock is", outstockincr);
+  // //console.log("out of stock list", stockarray);
+  // //console.log("overall items out of stock is", outstockincr);
 
   // for(let i =0; i< 3; i++){
   //   for (const [key, value] of Object.entries(products.ProductSize[0])) {
-  //     console.log(`${key}: ${value}`);
+  //     //console.log(`${key}: ${value}`);
   //   }
   //   }
 

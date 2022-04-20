@@ -37,7 +37,7 @@ export const createOrder = (order) => async (dispatch) => {
     };
     const { data } = await axios.post("/api/v1/order/new", order, config);
 
-     console.log(data);
+     //console.log(data);
 
     orderId = data.order._id;
 
@@ -129,9 +129,9 @@ export const deleteOrder = (id) => async (dispatch) => {
 export const getOrderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST });
-    console.log("entered getorderdetail function");
+    //console.log("entered getorderdetail function");
     const { data } = await axios.get(`/api/v1/order/${id}`);
-    console.log("data",data);
+    //console.log("data",data);
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data.order });
   } catch (error) {
     dispatch({
