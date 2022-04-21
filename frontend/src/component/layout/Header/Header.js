@@ -21,11 +21,31 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import AddIcon from "@material-ui/icons/Add";
 import PeopleIcon from "@material-ui/icons/People";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const Header = ({}) => {
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const [anchorEl1, setAnchorEl1] = useState(null);
+  const open1 = Boolean(anchorEl1);
+  const handleClick1 = (event) => {
+    setAnchorEl1(event.currentTarget);
+  };
+  const handleClose1 = () => {
+    setAnchorEl1(null);
+  };
+
   const { cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
-
   // const role = user.role
   // const cartlength =0;
   const dispatch = useDispatch();
@@ -71,24 +91,20 @@ const Header = ({}) => {
     history.push("/admin/orders");
   }
 
-  function setProduct(type) {
-    if(type === 'products'){
-      history.push("/admin/products");
-    }
-    else if(type === 'product'){
-      history.push("/admin/product");
-    }
-    
+  function setProducts() {
+    history.push("/admin/products");
   }
 
-  function setUsers(type) {
-    if(type === 'users'){
-      history.push("/admin/users");
-    }
-    else if(type === 'addUsers'){
+  function setProduct() {
+      history.push("/admin/product");
+  }
+
+  function setUsers() {
+    history.push("/admin/users");
+  }
+
+  function setUser() {
       history.push("/register");
-    }
-    
   }
 
   
@@ -147,7 +163,7 @@ const Header = ({}) => {
       {user && user.role === "admin" && (
         <li>
           <AddIcon />
-          <select
+          {/* <select
                 onChange={(e) => {
                   setProduct(e.target.value);
                 }}
@@ -155,14 +171,36 @@ const Header = ({}) => {
                 <option value=''>PRODUCTS</option>
                 <option value='products'>Show All Products</option>
                 <option value='product'>Add Product</option>
-              </select>
+              </select> */}
+
+              <Button
+                  id="basic-button"
+                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? 'true' : undefined}
+                  onClick={handleClick}
+                >
+                  PRODUCTS
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                >
+                  <MenuItem onClick={() => { handleClose(); setProducts();}}>Show All Products</MenuItem>
+                  <MenuItem onClick={() => { handleClose(); setProduct();}}>Add Product</MenuItem>
+                </Menu>
         </li>
       )}
 
       {user && user.role === "admin" && (
         <li>
           <PeopleIcon />
-          <select
+          {/* <select
                 onChange={(e) => {
                   setUsers(e.target.value);
                 }}
@@ -170,7 +208,29 @@ const Header = ({}) => {
                 <option value=''>USERS</option>
                 <option value='users'>Show All Users</option>
                 <option value='addUsers'>Add Users</option>
-              </select>
+              </select> */}
+
+              <Button
+                  id="basic-button1"
+                  aria-controls={open1 ? 'basic-menu1' : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open1 ? 'true' : undefined}
+                  onClick={handleClick1}
+                >
+                  USERS
+                </Button>
+                <Menu
+                  id="basic-menu1"
+                  anchorEl={anchorEl1}
+                  open={open1}
+                  onClose={handleClose1}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button1',
+                  }}
+                >
+                  <MenuItem onClick={() => { handleClose1(); setUsers();}}>Show All Users</MenuItem>
+                  <MenuItem onClick={() => { handleClose1(); setUser();}}>Add User</MenuItem>
+                </Menu>
         </li>
       )}
 
