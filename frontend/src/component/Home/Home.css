@@ -249,7 +249,7 @@ div>div>div>p>button {
     display: flex;
     flex-basis: 15%;
     justify-content: center;
-    size: 1.5vmax;
+    size: 20px;
 }
 
 .size>select {
@@ -284,12 +284,11 @@ div>div>div>p>button {
     color: white;
     transition: all 0.5s;
     background-color: #065749;
-    font: 500 0.7vmax "Roboto";
+    font: 500 15px "Roboto";
     border-radius: 20px;
     padding: 0.5vmax 2vmax;
     margin: 1vmax;
     outline: none;
-    font-size: 1vmax;
 }
 
 .addshopcart>button:last-child:hover {
@@ -439,7 +438,7 @@ div>div>div>p>button {
     outline: none;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    font: 300 1.1vmax "Roboto";
+    font: 300 15px "Roboto";
     box-sizing: border-box;
     height: 37%;
     font-size: large;
@@ -452,8 +451,8 @@ div>div>div>p>button {
     background-color: #006554;
     border: none;
     padding: 1vmax;
-    width: 10%;
-    font: 300 1.7vmax "Roboto";
+    width: 100px;
+    font: 300 15px "Roboto";
     cursor: pointer;
     color: white;
     transition: all 0.5s;
@@ -474,8 +473,8 @@ div>div>div>p>button {
     background-color: #006554;
     border: none;
     padding: 1vmax;
-    width: 10%;
-    font: 300 1.1vmax "Roboto";
+    width: 100px;
+    font: 300 15px "Roboto";
     cursor: pointer;
     color: white;
     transition: all 0.5s;
