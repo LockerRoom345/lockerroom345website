@@ -171,3 +171,13 @@
         font: 100 15px "Roboto";
     }
 }
+
+@media screen and (max-width: 520px) {
+    .orderDetailsCartItemsContainer>div {
+        font: 400 4vw "Roboto";
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 4vw 0;
+    }
+}

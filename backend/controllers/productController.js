@@ -8,10 +8,10 @@ const sharp = require("sharp");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {  
 
-console.log(req.body);
-// [...req.body.ProductSize].map(x =>console.log(x))
+////console.log(req.body);
+// [...req.body.ProductSize].map(x =>//console.log(x))
 // for(let v of Object.values(req.body.ProductSize)){
-//   //console.log(v.size,v.stock);
+//   ////console.log(v.size,v.stock);
 // }
   if (req.body.images==undefined) {    
     const _id= "products/"+Math.floor(100000 + Math.random() * 800000);
@@ -29,9 +29,9 @@ console.log(req.body);
     //   stock:req.body.Stock     
     // }];
     //req.body.ProductSize = productSizereq;
-    console.log("If creating order",req.body);
+    //console.log("If creating order",req.body);
     const product = await Product.create(req.body);
-    //console.log(product);
+    ////console.log(product);
     res.status(201).json({
       success: true,
       product,
@@ -64,7 +64,7 @@ console.log(req.body);
     req.body.images = imagesLinks;
     req.body.user = req.user.id;
 
-    // console.log("Else creating order",req.body);
+    // //console.log("Else creating order",req.body);
     const product = await Product.create(req.body);
 
     res.status(201).json({
@@ -78,15 +78,15 @@ console.log(req.body);
 exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 100;
   const productsCount = await Product.countDocuments();
-  //console.log(req.query);
+  ////console.log(req.query);
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
     .filter();
 
-    //console.log(apiFeature);
+    ////console.log(apiFeature);
 
   let products = await apiFeature.query;
-  //console.log(products);
+  ////console.log(products);
 
   let filteredProductsCount = products.length;
 
@@ -133,14 +133,14 @@ exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
 // Update Product -- Admin
 
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
-  // console.log(req.params.id," THis is the product Id for testing")
+  // //console.log(req.params.id," THis is the product Id for testing")
   let product = await Product.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHander("Product not found", 404));
   }
   
-  // console.log(product);
+  // //console.log(product);
   // Images Start Here
   let images = [];
 
@@ -168,7 +168,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         url: result.secure_url,
       });
     }
-    // console.log("before updating stock new values",req.body);
+    // //console.log("before updating stock new values",req.body);
     req.body.images = imagesLinks;
   }
   // let productSizereq = {
@@ -185,19 +185,19 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   //   ? "redColor"
   //   : "greenColor"
   //product.ProductSize.(productSizereq);
-  console.log("before updaiting req.body.ProductSize",req.body.ProductSize);
-  console.log("findindex",product.ProductSize.findIndex(x => x.size == req.body.ProductSize ));
+  //console.log("before updaiting req.body.ProductSize",req.body.ProductSize);
+  //console.log("findindex",product.ProductSize.findIndex(x => x.size == req.body.ProductSize ));
   let index = product.ProductSize.findIndex(x => x.size == req.body.ProductSize );
-  console.log("stock",req.body.Stock);
+  //console.log("stock",req.body.Stock);
   product.ProductSize[index].stock = req.body.Stock;
-  console.log("new updated req.body.ProductSize",product.ProductSize);
+  //console.log("new updated req.body.ProductSize",product.ProductSize);
   req.body.ProductSize = product.ProductSize;
    delete req.body["Stock"];
    delete req.body["Size"];
    
    
   
-   console.log("before updating stock new values",req.body);
+   //console.log("before updating stock new values",req.body);
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
