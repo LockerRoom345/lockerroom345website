@@ -111,14 +111,14 @@ const Header = ({}) => {
     <div className="navbar">
       {user && user.role === "user" && (
         <li>
-          <HomeIcon />
+          <HomeIcon className="icon"/>
           <Button onClick={home}>Home</Button>
         </li>
       )}
 
         {user && user.role === "admin" && (
           <li>
-            <DashboardIcon />
+            <DashboardIcon className="icon"/>
             <Button onClick={dashboard}>Dashboard</Button>
           </li>
       )}    
@@ -129,37 +129,37 @@ const Header = ({}) => {
       </li> */}
       {user && user.role === "user" && (
         <li>
-          <ListAltIcon />
+          <ListAltIcon className="icon"/>
           <Button onClick={orders}>My Orders</Button>
         </li>
       )}
        {user && user.role === "admin" && (
         <li>
-          <ListAltIcon />
+          <ListAltIcon className="icon"/>
           <Button onClick={adminorders}>All Orders</Button>
         </li>
       )}
       {user && user.role === "user" && (
         <li>
-          <PersonIcon />
+          <PersonIcon className="icon"/>
           <Button onClick={account}>My Account</Button>
         </li>
       )}
        {user && (user.role === "user" || user.role === "admin" || user.role === "volunteer") && (
         <li>
-          <HelpIcon />
+          <HelpIcon className="icon"/>
           <Button onClick={helpuse}>How To Use</Button>
         </li>
       )}
       {user && user.role === "user" && (
         <li>
-          <ShoppingCartIcon />
+          <ShoppingCartIcon className="icon"/>
           <Button onClick={cart}>My Cart ({cartItems.length})</Button>
         </li>
       )}
       {user && user.role === "admin" && (
         <li>
-          <AddIcon />
+          <AddIcon className="icon"/>
           {/* <select
                 onChange={(e) => {
                   setProduct(e.target.value);
@@ -196,7 +196,7 @@ const Header = ({}) => {
 
       {user && user.role === "admin" && (
         <li>
-          <PeopleIcon />
+          <PeopleIcon className="icon" />
           {/* <select
                 onChange={(e) => {
                   setUsers(e.target.value);
