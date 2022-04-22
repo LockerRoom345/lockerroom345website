@@ -153,6 +153,7 @@ div>div>div>p>button {
     /* margin: 1vmax; */
     transition: all 0.5s;
     /* padding-bottom: 0.5vmax; */
+    flex-basis: 100%;
 }
 
 .productCard>img {
@@ -165,6 +166,7 @@ div>div>div>p>button {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 31px;
 }
 
 .productCardSpan {
@@ -199,7 +201,7 @@ div>div>div>p>button {
     justify-content: flex-end;
     align-items: center;
     align-items: center;
-    flex-basis: 100%;
+    flex-basis: 75%;
 }
 
 .productname {
