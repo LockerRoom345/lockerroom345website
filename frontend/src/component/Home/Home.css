@@ -77,6 +77,7 @@ fieldset {
 }
 
 .banner>p {
+    margin-top: 150px;
     font: 600 1.9vmax "Roboto";
 }
 
@@ -445,6 +446,7 @@ div>div>div>p>button {
 }
 
 .searchBoxbar>input[type="submit"] {
+    
     height: 50px;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
@@ -456,6 +458,7 @@ div>div>div>p>button {
     cursor: pointer;
     color: white;
     transition: all 0.5s;
+    line-height: 10px;
 }
 
 .searchBoxbar>input[type="submit"]:hover {
@@ -465,6 +468,7 @@ div>div>div>p>button {
 @media screen and (max-width: 850px) {}
 
 .searchBoxbar>input[type="submit"] {
+    line-height: 10px;
     height: 45px;
     border-bottom-right-radius: 25px;
     border-top-right-radius: 25px;
