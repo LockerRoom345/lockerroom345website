@@ -107,9 +107,6 @@ const Header = ({}) => {
       history.push("/register");
   }
 
-  
-
-
   return (
     <div className="navbar">
       {user && user.role === "user" && (
