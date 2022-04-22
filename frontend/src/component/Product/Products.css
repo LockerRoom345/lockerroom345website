@@ -139,7 +139,16 @@
         font: 300 25px "Roboto";
     }
     .category-link {
-        font: 400 25px "Roboto";
+        font: 400 20px "Roboto";
+    }
+    .categoryBox {
+        padding: 0%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        font: 400 15px "Roboto";
     }
 }
 
@@ -151,6 +160,6 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        font: 400 20px "Roboto";
+        font: 400 15px "Roboto";
     }
 }
