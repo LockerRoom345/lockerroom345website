@@ -22,7 +22,7 @@
 .dashboardContainer {
     border-left: 1px solid rgba(0, 0, 0, 0.13);
     background-color: rgb(255, 255, 255);
-    padding: 3rem 0;
+    padding: 0rem 0;
     width: 100vw;
 }
 
@@ -106,7 +106,23 @@
     .dashboardSummaryBox2>a {
         padding: 0.5rem;
         margin: 1rem;
-        font: 300 0.9rem "Roboto";
+        font: 300 0.6rem "Roboto";
+    }
+    .dashboardSummaryBox2>a {
+        color: rgb(0, 0, 0);
+        font: 300 1.0rem "Roboto" !important;
+        text-align: center;
+        background-color: rgb(255, 233, 174);
+        text-decoration: none;
+        padding: 1.5rem;
+        width: 6vmax !important;
+        height: 6vmax !important;
+        margin: 2rem;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
