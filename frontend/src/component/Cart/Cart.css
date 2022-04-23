@@ -148,6 +148,7 @@
         grid-template-columns: 3fr 1fr 1fr;
     }
     .cartInput {
+        width: 10vw;
         height: 20vmax;
     }
     .cartInput>button {
@@ -155,6 +156,7 @@
     }
     .cartInput>input {
         padding: 1.5vmax;
+        width: 10vw;
         font: 400 20px "Roboto";
     }
     .cartSubtotal {
