@@ -110,13 +110,13 @@
     }
     .dashboardSummaryBox2>a {
         color: rgb(0, 0, 0);
-        font: 300 1.0rem "Roboto" !important;
+        font: 300 0.8rem "Roboto" !important;
         text-align: center;
         background-color: rgb(255, 233, 174);
         text-decoration: none;
         padding: 1.5rem;
-        width: 6vmax !important;
-        height: 6vmax !important;
+        width: 4vmax !important;
+        height: 4vmax !important;
         margin: 2rem;
         border-radius: 100%;
         display: flex;
@@ -134,8 +134,8 @@
         background-color: rgb(255, 233, 174);
         text-decoration: none;
         padding: 1.5rem;
-        width: 10vmax;
-        height: 10vmax;
+        width: 7vmax;
+        height: 7vmax;
         margin: 2rem;
         border-radius: 100%;
         display: flex;
