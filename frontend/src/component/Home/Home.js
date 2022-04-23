@@ -115,7 +115,7 @@ const Home = ({ history }) => {
           <MetaData title="Donate & help" />
           <div className="banner">
           <p>Welcome to Locker Room 345 !!!</p>
-                       <h1>SPORTS MAKE PEOPLE BETTER</h1> 
+          <h1>SPORTS MAKE PEOPLE BETTER</h1> 
 
           {/* <div className="bground">
             <div className="banner">

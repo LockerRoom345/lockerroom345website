@@ -14,7 +14,7 @@ export const cartReducer = (
       const item = action.payload;
 
       const isItemExist = state.cartItems.find(
-        (i) => i.product === item.product
+        (i) => i.product === item.product && i.SubCategory === item.SubCategory && i.ProductSize === item.ProductSize
       );
 
       if (isItemExist) {
@@ -32,10 +32,16 @@ export const cartReducer = (
       }
 
     case REMOVE_CART_ITEM:
+      const item1 = action.payload;
+      const isItemExist1 = state.cartItems.find(
+        (i) => i.product === item1.product && i.SubCategory === item1.SubCategory && i.ProductSize === item1.ProductSize
+      );
+      
       return {
         ...state,
-        cartItems: state.cartItems.filter((i) => i.product !== action.payload),
+        cartItems: state.cartItems.filter((i) => (i.product != isItemExist1.product  || i.SubCategory != isItemExist1.SubCategory  || i.ProductSize != isItemExist1.ProductSize )),
       };
+    
 
     case REMOVE_ALL_CART_ITEM:
       return {

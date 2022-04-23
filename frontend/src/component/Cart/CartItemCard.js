@@ -13,7 +13,7 @@ const CartItemCard = ({ item, deleteCartItems }) => {
         {/* <span>{`Price: $0`}</span> */}
         <span>{`SubCategory: ${item.SubCategory}`}</span>
         <span>{`Size: ${item.ProductSize}`}</span>
-        <p onClick={() => deleteCartItems(item.product)}>Remove</p>
+        <p onClick={() => deleteCartItems(item.product,item)}>Remove</p>
       </div>
     </div>
   );

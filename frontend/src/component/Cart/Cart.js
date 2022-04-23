@@ -28,8 +28,8 @@ const Cart = ({ history }) => {
   //   dispatch(addItemsToCart(id, newQty));
   // };
 
-  const deleteCartItems = (id) => {
-    dispatch(removeItemsFromCart(id));
+  const deleteCartItems = (id,item) => {
+    dispatch(removeItemsFromCart(id,item));
   };
 
   const checkoutHandler = () => {
