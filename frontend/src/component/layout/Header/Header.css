@@ -10,6 +10,9 @@
     border-radius: 100%;
 }
 
+.navbar > button {
+    text-transform: lowercase;
+}
 .navbar {
     /* position: relative;
     top: 0;
@@ -32,6 +35,13 @@
     flex-direction: row;
     /* -webkit-flex-wrap: wrap;
     flex-wrap: wrap; */
+}
+.MuiButton-label {
+    width: 100%;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    text-transform: none;
 }
 
 .MuiButton-root {
@@ -99,6 +109,13 @@
         /* color: rgba(0, 0, 0, 0.87); */
         font-size: 12px !important;
         font-weight: bold !important;
+    }
+    .MuiButton-label {
+        width: 100%;
+        display: inherit;
+        align-items: inherit;
+        justify-content: inherit;
+        text-transform: none;
     }
 }
 
