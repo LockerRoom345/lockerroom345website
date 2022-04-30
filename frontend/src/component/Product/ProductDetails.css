@@ -68,7 +68,7 @@
 .detailsBlock-3-1-1 > button {
   border: none;
   background-color: rgba(0, 0, 0, 0.616);
-  padding: 0.5vmax;
+  padding: 0.4vmax;
   cursor: pointer;
   color: white;
   transition: all 0.5s;
