@@ -178,14 +178,14 @@ const ProductCard = ({ product, history }) => {
             //     : false
             // }
           >
-            <AddShoppingCartIcon
+            <AddShoppingCartIcon className="shoppingCartButton"
               // disabled={
               //   product.hashmap[SubCategory][ProductSize].stock< 1
               //     ? true
               //     : false
               // }
             />
-            Add to Cart
+            Add
           </button>
         </div>
       </div>

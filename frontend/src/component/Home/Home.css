@@ -155,11 +155,12 @@ div>div>div>p>button {
     transition: all 0.5s;
     /* padding-bottom: 0.5vmax; */
     flex-basis: 100%;
+    justify-content: center;
 }
 
 .productCard>img {
-    width: 15%;
-    height: 150px;
+    width: 10%;
+    height: 10%;
 }
 
 .productCard>div {
@@ -202,7 +203,7 @@ div>div>div>p>button {
     justify-content: flex-end;
     align-items: center;
     align-items: center;
-    flex-basis: 75%;
+    flex-basis: 85%;
 }
 
 .productname {
@@ -213,7 +214,7 @@ div>div>div>p>button {
 }
 
 .productname>P {
-    font-size: 25px;
+    font-size: 20px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     /* font-size: larger; */
     color: rgb(112, 110, 110);
@@ -250,6 +251,10 @@ div>div>div>p>button {
     flex-basis: 15%;
     justify-content: center;
     size: 20px;
+}
+
+.addshopcart > button {
+    text-align: center;
 }
 
 .size>select {
@@ -310,7 +315,7 @@ div>div>div>p>button {
 }
 
 .MuiTypography-body1 {
-    font-size: 1.5rem !important;
+    font-size: 20px !important;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     line-height: 1.5;
@@ -337,20 +342,53 @@ div>div>div>p>button {
 
 @media screen and (max-width: 800px) {
     fieldset {
-        height: 200px;
+        height: 70px;
         color: rgb(151, 144, 144);
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     .banner>h1 {
         margin: 2vmax;
         font: 800 20px "Roboto";
-        color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+    }
+
+    .MuiTypography-body1 {
+        font-size: 18px !important;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+        font-weight: 600 !important;
+    }
+
+    .addshopcart>button:last-child {
+        border: none;
+        cursor: pointer;
+        color: white;
+        transition: all 0.5s;
+        background-color: #065749;
+        font: 500 15px "Roboto";
+        border-radius: 20px;
+        padding: 5px 10px 5px;
+        margin: 1vmax;
+        outline: none;
     }
 
     .banner>p {
         font: 800 15px "Roboto";
-        color: rgb(0, 0, 0);
+        color: rgb(255, 254, 254);
     }
+
+    .addshopcart > button {
+        text-align: center;
+        line-height: 30px !important;
+    }
+
+   .shoppingCartButton {
+       line-height: -20px !important;
+   }
 
     .homeHeading {
         text-align: center;
@@ -497,7 +535,7 @@ div>div>div>p>button {
     background-color: #065749
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 870px) {
     .productname>P {
         font-size: 20px;
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
