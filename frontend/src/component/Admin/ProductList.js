@@ -17,6 +17,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 const ProductList = ({ history }) => {
   const dispatch = useDispatch();
@@ -31,6 +33,23 @@ const ProductList = ({ history }) => {
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
+  };
+
+  const submit = (params) => {
+    confirmAlert({
+      title: 'Delete Item',
+      message: 'Are you sure you want to delete this item from inventory',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => deleteProductHandler(params.getValue(params.id, "id"))
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    })
   };
 
   useEffect(() => {
@@ -52,6 +71,8 @@ const ProductList = ({ history }) => {
 
     dispatch(getAdminProduct());
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
+
+ 
 
   const columns = [
     // { field: "id", headerName: "Product ID", Width: 100, flex: 0.2 },
@@ -130,7 +151,8 @@ const ProductList = ({ history }) => {
 
             <Button
               onClick={() =>
-                deleteProductHandler(params.getValue(params.id, "id"))
+                // deleteProductHandler(params.getValue(params.id, "id"))
+                submit(params)
               }
             >
               <DeleteIcon />
