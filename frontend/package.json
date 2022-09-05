@@ -11,7 +11,7 @@
         "@material-ui/lab": "^4.0.0-alpha.60",
         "@mui/icons-material": "^5.2.5",
         "@mui/material": "^5.2.6",
-        "@react-pdf/renderer": "^2.0.21",
+        "@react-pdf/renderer": "^3.0.0",
         "@stripe/react-stripe-js": "^1.4.1",
         "@stripe/stripe-js": "^1.17.1",
         "@testing-library/jest-dom": "^5.14.1",
