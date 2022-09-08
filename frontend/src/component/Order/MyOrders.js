@@ -18,7 +18,7 @@ const MyOrders = () => {
     "Past"
   ];
 
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("Current");
 
   const dispatch = useDispatch();
   const alert = useAlert();
