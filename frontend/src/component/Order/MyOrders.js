@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./myOrders.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,23 +12,30 @@ import LaunchIcon from "@material-ui/icons/Launch";
 import Header from "../layout/Header/Header";
 
 const MyOrders = () => {
-  const dispatch = useDispatch();
+  const categories = [
+    "All",
+    "Current",
+    "Past"
+  ];
 
+  const [category, setCategory] = useState("All");
+
+  const dispatch = useDispatch();
   const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
   const { user } = useSelector((state) => state.user);
 
   const columns = [
-    //{ field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },    
+    //{ field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },
     {
       field: "orderfrom",
       headerName: "Ordered By",
       type: "string",
       minWidth: 150,
-      flex: 0.5,      
+      flex: 0.5,
     },
-     {
+    {
       field: "studentId",
       headerName: "Student Id",
       type: "string",
@@ -59,7 +66,7 @@ const MyOrders = () => {
       type: "number",
       minWidth: 150,
       flex: 0,
-    }, 
+    },
     {
       field: "actions",
       flex: 0,
@@ -78,20 +85,46 @@ const MyOrders = () => {
   ];
   const rows = [];
 
+ 
   orders &&
     orders.forEach((item, index) => {
-      //console.log(item);
-      rows.push({
-        itemsQty: item.orderItems.length,
-        id: item._id,
-        OrderDate:item.shippingInfo.orderDate,
-        status: item.orderStatus,
-        amount: item.totalPrice,
-        studentId: item.shippingInfo.receivingPersonName,
-        orderfrom:  user.name
-      });
+      console.log(category);
+      console.log(item.orderStatus);
+      if(category == 'All')
+       {
+        rows.push({
+          itemsQty: item.orderItems.length,
+          id: item._id,
+          OrderDate: item.shippingInfo.orderDate,
+          status: item.orderStatus,
+          amount: item.totalPrice,
+          studentId: item.shippingInfo.receivingPersonName,
+          orderfrom: user.name,
+        });}
+      if(category == 'Current' && (item.orderStatus == 'Processing' || item.orderStatus == 'picked'))
+       {
+        rows.push({
+          itemsQty: item.orderItems.length,
+          id: item._id,
+          OrderDate: item.shippingInfo.orderDate,
+          status: item.orderStatus,
+          amount: item.totalPrice,
+          studentId: item.shippingInfo.receivingPersonName,
+          orderfrom: user.name,
+        });}
+      if(category == 'Past' && (item.orderStatus == 'Delivered') )
+       {
+          rows.push({
+          itemsQty: item.orderItems.length,
+          id: item._id,
+          OrderDate: item.shippingInfo.orderDate,
+          status: item.orderStatus,
+          amount: item.totalPrice,
+          studentId: item.shippingInfo.receivingPersonName,
+          orderfrom: user.name,
+        });}
     });
-
+  
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -103,26 +136,50 @@ const MyOrders = () => {
 
   return (
     <div>
-    <Fragment>
-      <MetaData title={`${user.name} - Orders`} />
+      <Fragment>
+        <MetaData title={`${user.name} - Orders`} />
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="myOrdersPage">
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="myOrdersTable"
-            autoHeight
-          />
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="myOrdersPage">
+            <div className="orderToggle" >
+            <fieldset >
+                <Typography component="legend">Filter</Typography>
+                <ul className="categoryBox">
+                  {categories.map((category) => (
+                    <li
+                      className="category-link"
+                      key={category}
+                      onClick={() => setCategory(category)}
+                    >
+                      {category}
+                    </li>
+                  ))}
+                </ul>
+              </fieldset>
+              {/* <div className="eachRadioButton">
+                <input type="radio" value="current" checked={toggle === 'current'} onChange={handleOptionChange1()} /> Current Orders
+              </div>
 
-          <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
-        </div>
-      )}
-    </Fragment>
+              <div className="eachRadioButton">
+                <input type="radio" value="past" checked={toggle === 'past'} onChange={handleOptionChange2()}/> Past Orders
+              </div> */}
+
+            </div>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+              className="myOrdersTable"
+              autoHeight
+            />
+
+            <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+          </div>
+        )}
+      </Fragment>
     </div>
   );
 };

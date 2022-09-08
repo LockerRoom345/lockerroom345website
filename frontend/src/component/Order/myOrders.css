@@ -13,6 +13,31 @@
     margin-top: 9px;
 }
 
+.orderToggle {
+    font-size: 30px;
+    /* font-family: Roboto; */
+    color: rgba(0, 0, 0, 0.87);
+    /* outline: none; */
+    /* position: relative;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%; */
+    /* display: flex; */
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.orderToggle>fieldset {
+    width: 50%;
+    justify-content: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #myOrdersHeading {
     text-align: center;
     font: 400 1.2vmax "Roboto";
