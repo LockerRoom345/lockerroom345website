@@ -90,12 +90,7 @@ const Shipping = ({ history }) => {
           >
             <div>
               <ApartmentIcon />
-              <input
-                type="text"
-                placeholder="User Logged In"
-                value={user.name}
-                disabled
-              />
+              <p> {user.name}</p>
               <input
                 type="text"
                 placeholder="Teacher's Name"

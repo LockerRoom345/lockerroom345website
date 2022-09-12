@@ -27,7 +27,7 @@
     /* display: flex; */
     justify-content: center;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .orderToggle>fieldset {
@@ -36,6 +36,14 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+.orderToggle>p{
+    color: rgba(0, 0, 0, 0.733);
+    font: 300 25px "Roboto";
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
 }
 
 #myOrdersHeading {

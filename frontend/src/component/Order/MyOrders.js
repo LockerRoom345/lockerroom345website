@@ -158,6 +158,7 @@ const MyOrders = () => {
                   ))}
                 </ul>
               </fieldset>
+              <p>Showing {category} orders</p>
               {/* <div className="eachRadioButton">
                 <input type="radio" value="current" checked={toggle === 'current'} onChange={handleOptionChange1()} /> Current Orders
               </div>
