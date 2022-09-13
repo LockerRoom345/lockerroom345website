@@ -53,7 +53,7 @@ import Requestform from "./component/User/Requestform";
 import Donate from "./component/donate/Donate";
 import RequestFormReplica from "./component/Cart/RequestFormReplica";
 import UserSuccess from "./component/Admin/UserSuccess";
-
+import ManualLoginSignUp from "./component/User/ManualLoginSignUp";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -127,6 +127,8 @@ function App() {
         <Route exact path="/password/forgot" component={ForgotPassword} />
         <Route exact path="/password/reset/:token" component={ResetPassword} />
         <Route exact path="/login" component={LoginSignUp} />
+        <Route exact path="/loginmanual" component={ManualLoginSignUp} />
+
         <Route exact path="/cart" component={Cart} />
         {/* <Route
           component={

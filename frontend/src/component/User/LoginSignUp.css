@@ -14,9 +14,8 @@
 .LoginSignUpBox {
     background-color: white;
     border-radius: 20px;
-    ;
     width: 25vw;
-    height: 50vh;
+    height: 60vh;
     box-sizing: border-box;
     overflow: hidden;
     position: absolute;
@@ -58,7 +57,7 @@
     margin: auto;
     padding: 2vmax;
     justify-content: space-evenly;
-    height: 70%;
+    height: 80%;
     transition: all 0.5s;
 }
 
@@ -68,9 +67,11 @@
 
 .loginForm>div,
 .signUpForm>div {
-    display: flex;
+    display: inline;
     width: 100%;
     align-items: center;
+    padding-inline-start: 1vmax vmax;
+    font: 300 15px "Roboto";
 }
 
 .loginForm>div>input,
@@ -81,14 +82,31 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
+    font: 300 15px "Roboto";
+    outline: none;
+}
+
+.loginForm>div>select,
+.signUpForm>div>select {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
     font: 300 0.9vmax "Roboto";
     outline: none;
+}
+
+.loginForm>.Hinttext,
+.signUpForm>.Hinttext {
+    color: #065749;
 }
 
 .loginForm>div>svg,
 .signUpForm>div>svg {
     position: absolute;
-    transform: translateX(1vmax);
+    transform: translateY(0.8vmax) translateX(1vmax);
     font-size: 1.6vmax;
     color: rgba(0, 0, 0, 0.623);
 }
@@ -132,7 +150,13 @@
 #registerImage>input::file-selector-button:hover {
     background-color: rgb(235, 235, 235);
 }
+.loginForm > a{
+    font: 400 15px "Roboto";
+    color: rgba(0, 0, 0, 0.623);
+    margin-top: 15px;
+    align-items: center;
 
+}
 .loginBtn,
 .signUpBtn {
     border: none;

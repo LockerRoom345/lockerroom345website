@@ -9,9 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
-import Select from "react-select";
 
-const LoginSignUp = ({ history, location }) => {
+const ManualLoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -19,21 +18,7 @@ const LoginSignUp = ({ history, location }) => {
     (state) => state.user
   );
   const { user } = useSelector((state) => state.user);
-  const [data, setData] = useState();
-  // useEffect(() => {
-  //   fetch(
-  //     "https://gist.githubusercontent.com/LockerRoom345/8dfc7e829785d3c65e4916aca6a43ceb/raw/loginusername.json",
-  //     {}
-  //   )
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       setData(responseJson['schools']);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-  console.log(typeof data);
+
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
@@ -48,7 +33,6 @@ const LoginSignUp = ({ history, location }) => {
   });
 
   const { name, email, password } = userinfo;
-  const [value, setValue] = React.useState("");
 
   const [avatar, setAvatar] = useState("/Profile.png");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
@@ -90,17 +74,6 @@ const LoginSignUp = ({ history, location }) => {
   const redirect = location.search ? location.search.split("=")[1] : "/home";
 
   useEffect(() => {
-    fetch(
-      "https://gist.githubusercontent.com/LockerRoom345/8dfc7e829785d3c65e4916aca6a43ceb/raw/loginusername.json",
-      {}
-    )
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setData(responseJson["schools"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -131,10 +104,6 @@ const LoginSignUp = ({ history, location }) => {
       loginTab.current.classList.add("shiftToLeft");
     }
   };
-  const handleTypeSelect = (e) => {
-    setLoginEmail(e.value);
-  };
-  const options = data;
 
   return (
     <Fragment>
@@ -144,63 +113,101 @@ const LoginSignUp = ({ history, location }) => {
         <Fragment>
           <div className="LoginSignUpContainer">
             <div className="left">
-              <h3>
-                WELCOME <br></br>
-                <h2>TO</h2>
-              </h3>
-
+              <h3>WELCOME  <br></br>
+              <h2>TO</h2></h3>
+            
               <img src={lockerroomlogo} alt="LockerRoom Logo" />
             </div>
             <div className="right">
-              <div className="LoginSignUpBox">
-                <div>
-                  <div className="login_signUp_toggle">
-                    <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                    {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
-                  </div>
-                  <button ref={switcherTab}></button>
+            <div className="LoginSignUpBox">
+              <div>
+                <div className="login_signUp_toggle">
+                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
+                  {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
                 </div>
-                <form
-                  className="loginForm"
-                  ref={loginTab}
-                  onSubmit={loginSubmit}
-                >
-                  <div className="loginEmail">
-                    {/* {JSON.stringify(value)} */}
-                    <Select
-                      placeholder="Select School Name"
-                      name="School name"
-                      options={options}
-                      // value={options.filter(function(option) {
-                      //   return option.value === loginEmail;
-                      // })}
-                      onChange={handleTypeSelect}
-                      label="Single select"
-                      // getOptionLabel={(data) => data.label}
-                      // getOptionValue={(data) => data.value}
-                    />
-                  </div>
-                  <div className="loginPassword">
-                    <LockOpenIcon />
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      required
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                    />
-                  </div>
-                  <Link to="/loginmanual">
-                    Click here if Username not found in the list
-                  </Link>
-
-                  <input type="submit" value="Login" className="loginBtn" />
-                </form>
+                <button ref={switcherTab}></button>
               </div>
+              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+                <div className="loginEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="text"
+                    placeholder="Login ID"
+                    required
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                  />
+                </div>
+                <div className="loginPassword">
+                  <LockOpenIcon />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                  />
+                </div>
+                <input type="submit" value="Login" className="loginBtn" />
+              </form>
+              <form
+                className="signUpForm"
+                ref={registerTab}
+                encType="multipart/form-data"
+                onSubmit={registerSubmit}
+              >
+                <div className="signUpName">
+                  <FaceIcon />
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    required
+                    name="name"
+                    value={name}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div className="signUpEmail">
+                  <MailOutlineIcon />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    name="email"
+                    value={email}
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <div className="signUpPassword">
+                  <LockOpenIcon />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    required
+                    name="password"
+                    value={password}
+                    onChange={registerDataChange}
+                  />
+                </div>
+
+                <div id="registerImage">
+                  <img src={avatarPreview} alt="Avatar Preview" />
+                  <input
+                    type="file"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={registerDataChange}
+                  />
+                </div>
+                <input type="submit" value="Register" className="signUpBtn" />
+              </form>
             </div>
+            </div>
+           
+           
           </div>
           <div className="newfooter">
-            <p>&copy; All rights reserved to Locker Room 345 </p>
+          <p>&copy; All rights reserved to Locker Room 345 </p>
           </div>
         </Fragment>
       )}
@@ -208,4 +215,4 @@ const LoginSignUp = ({ history, location }) => {
   );
 };
 
-export default LoginSignUp;
+export default ManualLoginSignUp;
