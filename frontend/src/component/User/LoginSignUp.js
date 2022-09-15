@@ -10,6 +10,7 @@ import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
 import Select from "react-select";
+import { getAllUsersWithoutAuth } from "../../actions/userAction";
 
 const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -20,20 +21,6 @@ const LoginSignUp = ({ history, location }) => {
   );
   const { user } = useSelector((state) => state.user);
   const [data, setData] = useState();
-  // useEffect(() => {
-  //   fetch(
-  //     "https://gist.githubusercontent.com/LockerRoom345/8dfc7e829785d3c65e4916aca6a43ceb/raw/loginusername.json",
-  //     {}
-  //   )
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       setData(responseJson['schools']);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
-  console.log(typeof data);
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
@@ -89,23 +76,52 @@ const LoginSignUp = ({ history, location }) => {
 
   const redirect = location.search ? location.search.split("=")[1] : "/home";
 
-  useEffect(() => {
-    fetch(
-      "https://gist.githubusercontent.com/LockerRoom345/8dfc7e829785d3c65e4916aca6a43ceb/raw/loginusername.json",
-      {}
-    )
-      .then((response) => response.json())
-      .then((responseJson) => {
-        setData(responseJson["schools"]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+  let userJsonListObject = [];
+  const { users } = useSelector((state) => state.allUsers);
+  // console.log(users);
+  for (let i = 0; i < users.length; i++) {
+    let email_value = users[i].email;
+    let name_label = users[i].name;
+    const object = { value: email_value, label: name_label };
+    userJsonListObject.push(object);
+    // console.log(email_value,name_label);
+  }
+  // console.log("array", userJsonListObject);
+  // options = userJsonListObject;
+  userJsonListObject.sort((a, b) => {
+    let fa = a.label.toLowerCase(),
+      fb = b.label.toLowerCase();
 
+    if (fa < fb) {
+      return -1;
+    }
+    if (fa > fb) {
+      return 1;
+    }
+    return 0;
+  });
+
+  // console.log("SORTED", userJsonListObject);
+
+  useEffect(() => {
+    dispatch(getAllUsersWithoutAuth());
+    setData(userJsonListObject);
+    // fetch(
+    //   "https://gist.githubusercontent.com/LockerRoom345/8dfc7e829785d3c65e4916aca6a43ceb/raw/loginusername.json",
+    //   {}
+    // )
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     setData(responseJson["schools"]);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+    // if (error) {
+    //   alert.error(error);
+    //   dispatch(clearErrors());
+    // }
+    // console.log(data);
     if (isAuthenticated && user.role === "user") {
       history.push(redirect);
     } else if (isAuthenticated && user.role === "admin") {
@@ -134,7 +150,6 @@ const LoginSignUp = ({ history, location }) => {
   const handleTypeSelect = (e) => {
     setLoginEmail(e.value);
   };
-  const options = data;
 
   return (
     <Fragment>
@@ -170,14 +185,11 @@ const LoginSignUp = ({ history, location }) => {
                     <Select
                       placeholder="Select School Name"
                       name="School name"
-                      options={options}
-                      // value={options.filter(function(option) {
-                      //   return option.value === loginEmail;
-                      // })}
+                      options={userJsonListObject}
+                      
                       onChange={handleTypeSelect}
                       label="Single select"
-                      // getOptionLabel={(data) => data.label}
-                      // getOptionValue={(data) => data.value}
+                     
                     />
                   </div>
                   <div className="loginPassword">

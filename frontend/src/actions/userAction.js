@@ -191,6 +191,18 @@ export const getAllUsers = () => async (dispatch) => {
   }
 };
 
+// get All Users (WITHOUT AUTH)
+export const getAllUsersWithoutAuth = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USERS_REQUEST });
+    const { data } = await axios.get(`/api/v1/getUserList`);
+
+    dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    dispatch({ type: ALL_USERS_FAIL, payload: error.response.data.message });
+  }
+};
+
 // get  User Details
 export const getUserDetails = (id) => async (dispatch) => {
   try {

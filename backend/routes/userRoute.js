@@ -38,6 +38,10 @@ router
   .get(isAuthenticatedUser, authorizeRoles("admin","volunteer"), getAllUser);
 
 router
+  .route("/getUserList")
+  .get(getAllUser);
+
+router
   .route("/admin/user/:id")
   .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
