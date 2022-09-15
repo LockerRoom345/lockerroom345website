@@ -184,7 +184,7 @@ const LoginSignUp = ({ history, location }) => {
                     <LockOpenIcon />
                     <input
                       type="password"
-                      placeholder="Password"
+                      placeholder="BEDS code"
                       required
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
