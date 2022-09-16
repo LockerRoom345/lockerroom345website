@@ -104,6 +104,10 @@ const LoginSignUp = ({ history, location }) => {
   // console.log("SORTED", userJsonListObject);
 
   useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
     dispatch(getAllUsersWithoutAuth());
     setData(userJsonListObject);
     // fetch(
@@ -159,12 +163,19 @@ const LoginSignUp = ({ history, location }) => {
         <Fragment>
           <div className="LoginSignUpContainer">
             <div className="left">
+              {/* <div> */}
               <h3>
                 WELCOME <br></br>
-                <h2>TO</h2>
+                <h2>
+                  TO <Link to="/loginmanual"></Link>
+                </h2>
               </h3>
-
+              <div>
               <img src={lockerroomlogo} alt="LockerRoom Logo" />
+              <Link to="/loginmanual">
+                    BUTTON____
+                  </Link>
+              </div>
             </div>
             <div className="right">
               <div className="LoginSignUpBox">
@@ -186,10 +197,8 @@ const LoginSignUp = ({ history, location }) => {
                       placeholder="Select School Name"
                       name="School name"
                       options={userJsonListObject}
-                      
                       onChange={handleTypeSelect}
                       label="Single select"
-                     
                     />
                   </div>
                   <div className="loginPassword">
@@ -202,9 +211,6 @@ const LoginSignUp = ({ history, location }) => {
                       onChange={(e) => setLoginPassword(e.target.value)}
                     />
                   </div>
-                  <Link to="/loginmanual">
-                    Click here if Username not found in the list
-                  </Link>
 
                   <input type="submit" value="Login" className="loginBtn" />
                 </form>

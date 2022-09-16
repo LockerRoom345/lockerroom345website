@@ -116,7 +116,10 @@ const ManualLoginSignUp = ({ history, location }) => {
               <h3>WELCOME  <br></br>
               <h2>TO</h2></h3>
             
+              <div>
               <img src={lockerroomlogo} alt="LockerRoom Logo" />
+              
+              </div>
             </div>
             <div className="right">
             <div className="LoginSignUpBox">

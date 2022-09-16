@@ -15,11 +15,11 @@
     background-color: white;
     border-radius: 20px;
     width: 25vw;
-    height: 60vh;
+    height: 300px;
     box-sizing: border-box;
     overflow: hidden;
     position: absolute;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .login_signUp_toggle {
@@ -55,9 +55,9 @@
     flex-direction: column;
     align-items: center;
     margin: auto;
-    padding: 2vmax;
+    padding: 30px 2vmax;
     justify-content: space-evenly;
-    height: 80%;
+    height: 60%;
     transition: all 0.5s;
 }
 
@@ -150,13 +150,14 @@
 #registerImage>input::file-selector-button:hover {
     background-color: rgb(235, 235, 235);
 }
-.loginForm > a{
+
+.loginForm>a {
     font: 400 15px "Roboto";
     color: rgba(0, 0, 0, 0.623);
     margin-top: 15px;
     align-items: center;
-
 }
+
 .loginBtn,
 .signUpBtn {
     border: none;
@@ -212,11 +213,27 @@
     align-items: center;
 }
 
-.LoginSignUpContainer>.left>img {
+.LoginSignUpContainer>.left>div {
     height: 20%;
     position: absolute;
     display: flex;
     justify-content: center;
+    border-radius: 25px;
+}
+
+.LoginSignUpContainer>.left>div>a {
+    height: 20%;
+    position: absolute;
+    display: flex;
+    z-index: 200;
+    justify-content: center;
+    border-radius: 25px;
+    margin-right: 60px;
+    margin-top: 5px;
+    color: transparent;
+}
+
+.LoginSignUpContainer>.left>div>img {
     border-radius: 25px;
 }
 
