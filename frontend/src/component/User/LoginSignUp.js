@@ -199,6 +199,7 @@ const LoginSignUp = ({ history, location }) => {
                       options={userJsonListObject}
                       onChange={handleTypeSelect}
                       label="Single select"
+                      maxMenuHeight={130}
                     />
                   </div>
                   <div className="loginPassword">
