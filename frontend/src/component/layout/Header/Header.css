@@ -84,6 +84,8 @@
     border: 0;
     outline-color: white;
     font-size: 20px !important;
+    display: flex;
+flex-direction: column;
 }
 
 .navbar>li>option {

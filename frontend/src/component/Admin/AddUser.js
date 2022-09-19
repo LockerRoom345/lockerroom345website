@@ -128,7 +128,7 @@ const AddUser = () => {
                 />
               </div>
 
-              <div>
+              {/* <div>
                   < ImageIcon />
                   <input
                     type="file"
@@ -136,7 +136,7 @@ const AddUser = () => {
                     accept="image/*"
                     onChange={(e) => setAvatar(e.target.value)}
                   />
-                </div>
+                </div> */}
 
               <div>
                 <VerifiedUserIcon />
