@@ -21,21 +21,25 @@ const Shipping = ({ history }) => {
   const { user } = useSelector((state) => state.user);
   const alert = useAlert();
   const { shippingInfo } = useSelector((state) => state.cart);
-  const [receivingPersonName, setreceivingPersonName] = useState(
+  let [receivingPersonName, setreceivingPersonName] = useState(
     shippingInfo.receivingPersonName
   );
-  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState(
+  receivingPersonName = "";
+  let [userLoggedInDesignation, setuserLoggedInDesignation] = useState(
     shippingInfo.userLoggedInDesignation
   );
+  userLoggedInDesignation = "";
   // const [address, setAddress] = useState(shippingInfo.address);
   // const [city, setCity] = useState(shippingInfo.city);
   // const [state, setState] = useState(shippingInfo.state);
   // const [country, setCountry] = useState(shippingInfo.country);
   // const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
-  const [addComments, setaddComments] = useState(
+  let [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
+  phoneNo = "";
+  let [addComments, setaddComments] = useState(
     shippingInfo.additionalComments
   );
+  addComments = "";
   let orderDate = "";
   const shippingSubmit = (e) => {
     e.preventDefault();

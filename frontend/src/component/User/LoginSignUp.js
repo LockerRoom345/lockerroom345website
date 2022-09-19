@@ -79,11 +79,13 @@ const LoginSignUp = ({ history, location }) => {
   let userJsonListObject = [];
   const { users } = useSelector((state) => state.allUsers);
   // console.log(users);
+  const hiddenLoginValues = ["admin","TEST USER", "TEST ADMIN","TEST VOLUNTEER", "lockerroom345","volunteeer"]
   for (let i = 0; i < users.length; i++) {
     let email_value = users[i].email;
     let name_label = users[i].name;
-    const object = { value: email_value, label: name_label };
-    userJsonListObject.push(object);
+    if(hiddenLoginValues.includes(email_value) == false)
+   { const object = { value: email_value, label: name_label };
+    userJsonListObject.push(object);}
     // console.log(email_value,name_label);
   }
   // console.log("array", userJsonListObject);
@@ -173,7 +175,7 @@ const LoginSignUp = ({ history, location }) => {
               <div>
               <img src={lockerroomlogo} alt="LockerRoom Logo" />
               <Link to="/loginmanual">
-                    BUTTON____
+                    BUTTON
                   </Link>
               </div>
             </div>
