@@ -26,8 +26,8 @@ const LoginSignUp = ({ history, location }) => {
   const switcherTab = useRef(null);
 
   const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
+  let [loginPassword, setLoginPassword] = useState("");
+ 
   const [userinfo, setUserinfo] = useState({
     name: "",
     email: "",
@@ -79,7 +79,7 @@ const LoginSignUp = ({ history, location }) => {
   let userJsonListObject = [];
   const { users } = useSelector((state) => state.allUsers);
   // console.log(users);
-  const hiddenLoginValues = ["admin","TEST USER", "TEST ADMIN","TEST VOLUNTEER", "lockerroom345","volunteeer"]
+  const hiddenLoginValues = ["admin","TEST USER", "TEST ADMIN","TEST VOLUNTEER", "lockerroom345","volunteer"]
   for (let i = 0; i < users.length; i++) {
     let email_value = users[i].email;
     let name_label = users[i].name;
@@ -134,6 +134,10 @@ const LoginSignUp = ({ history, location }) => {
       history.push("/admin/dashboard");
     } else if (isAuthenticated && user.role === "volunteer") {
       history.push("/admin/dashboard");
+    }
+    else{
+      console.log("reset");
+      setLoginPassword("");
     }
   }, [dispatch, error, alert, history, isAuthenticated, redirect]);
 
