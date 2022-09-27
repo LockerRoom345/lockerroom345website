@@ -167,8 +167,10 @@ const NewProduct = ({ history }) => {
                 }}
               >
                 <option value="SelectCategory">Select SubCategory</option>
+                <option value="Unisex Adult sizing">Unisex Adult sizing</option>
                 <option value="Men's sizing">Mens sizing</option>
                 <option value="women's sizing">Womens sizing</option>
+                <option value="Unisex Youth sizing">Unisex Youth sizing</option>
                 <option value="Boy's sizing">Boys' sizing</option>
                 <option value="Girl's sizing">Girls' sizing</option>
                 <option value="Toddlers sizing">Toddlers sizing</option>
