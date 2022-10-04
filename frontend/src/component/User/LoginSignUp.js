@@ -219,7 +219,7 @@ const LoginSignUp = ({ history, location }) => {
                     />
                   </div>
 
-                  <input type="submit" value="Login" className="loginBtn" />
+                  <input type="submit" value="Submit" className="loginBtn" />
                 </form>
               </div>
             </div>
