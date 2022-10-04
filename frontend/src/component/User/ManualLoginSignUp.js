@@ -151,7 +151,7 @@ const ManualLoginSignUp = ({ history, location }) => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
                 </div>
-                <input type="submit" value="Login" className="loginBtn" />
+                <input type="submit" value="Submit" className="loginBtn" />
               </form>
               <form
                 className="signUpForm"
