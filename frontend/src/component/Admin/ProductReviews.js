@@ -166,7 +166,7 @@ const ProductReviews = ({ history }) => {
             <DataGrid
               rows={rows}
               columns={columns}
-              pageSize={10}
+              pageSize={15}
               disableSelectionOnClick
               className="productListTable"
               autoHeight

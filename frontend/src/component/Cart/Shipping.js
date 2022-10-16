@@ -102,7 +102,7 @@ const Shipping = ({ history }) => {
               <PersonIcon />
               <input
                 type="text"
-                placeholder="Receiving Student Id"
+                placeholder="Receiving Student ID"
                 value={receivingPersonName}
                 onChange={(e) => setreceivingPersonName(e.target.value)}
               />

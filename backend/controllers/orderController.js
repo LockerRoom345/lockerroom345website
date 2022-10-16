@@ -140,7 +140,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   //   return next(new ErrorHander("You have already delivered this order", 400));
   // }
 
-  if (req.body.status === "picked" || req.body.status === "PickedDelivered") {
+  if (req.body.status === "packed" || req.body.status === "Delivered") {
     order.orderItems.forEach(async (o) => {
       console.log("orderItems", o);
       await updateStock(o.product, o.quantity, o.ProductSize);
@@ -148,16 +148,16 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (req.body.status === "Processing") {
-    if ((order.orderStatus === "Delivered") || (order.orderStatus === "picked")) {
+    if ((order.orderStatus === "Delivered") || (order.orderStatus === "packed")) {
     order.orderItems.forEach(async (o) => {
       //console.log("orderItems", o);
       await reAddStock(o.product, o.quantity, o.ProductSize);
     });
   }
   }
-  if (req.body.status === "revertpicked") {
+  if (req.body.status === "revertpacked") {
     if (order.orderStatus === "Delivered") {
-      req.body.status = "picked";
+      req.body.status = "Packing";
     }
   }
 

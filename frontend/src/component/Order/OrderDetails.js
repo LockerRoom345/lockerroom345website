@@ -84,7 +84,7 @@ const OrderDetails = ({ match }) => {
                     className={
                       order.orderStatus && order.orderStatus === "Delivered"
                         ? "greenColor"
-                        : "redColor"
+                        :order.orderStatus && order.orderStatus === "Ready for Pickup"?"yellowColor": "redColor"
                     }
                   >
                     {order.orderStatus && order.orderStatus}

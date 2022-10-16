@@ -21,7 +21,10 @@ const OrderSuccess = () => {
     
     history.push(`/orders`);       
   }
-
+  async function displayHomePage() {
+    
+    history.push(`/home`);       
+  }
 
   console.log("change done");
   //cartItems.length = 0;
@@ -31,7 +34,12 @@ const OrderSuccess = () => {
     <div className="orderSuccess">
       <CheckCircleIcon />
       <Typography>Your Order has been Placed successfully </Typography>
+      <div className="buttonWrapper">
       <Button onClick={displayOrder}>Display All Orders</Button>
+      <Button onClick={displayHomePage}>Place New Order</Button>
+      </div>
+     
+
       {/* <Link to=`/order/${productId}``>View Orders</Link> */}
     </div>
   );

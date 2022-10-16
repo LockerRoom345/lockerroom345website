@@ -57,7 +57,7 @@ const MyOrders = () => {
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
-          : "redColor";
+          :params.getValue(params.id, "status") === "Ready for Pickup" ? "yellowColor": "redColor";
       },
     },
     {
@@ -101,7 +101,7 @@ const MyOrders = () => {
           studentId: item.shippingInfo.receivingPersonName,
           orderfrom: user.name,
         });}
-      if(category == 'Current' && (item.orderStatus == 'Processing' || item.orderStatus == 'picked'))
+      if(category == 'Current' && (item.orderStatus == 'Processing' || item.orderStatus == 'Packing'))
        {
         rows.push({
           itemsQty: item.orderItems.length,
@@ -171,7 +171,7 @@ const MyOrders = () => {
             <DataGrid
               rows={rows}
               columns={columns}
-              pageSize={10}
+              pageSize={15}
               disableSelectionOnClick
               className="myOrdersTable"
               autoHeight

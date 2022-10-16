@@ -80,7 +80,7 @@ const OrderList = ({ history }) => {
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
-          : "redColor";
+          :params.getValue(params.id, "status") === "Ready for Pickup"?"yellowColor": "redColor";
       },
     },
     {
@@ -156,7 +156,7 @@ const OrderList = ({ history }) => {
           }}
             rows={rows}
             columns={columns}
-            pageSize={10}
+            pageSize={15}
             disableSelectionOnClick
             className="productListTable"
             autoHeight

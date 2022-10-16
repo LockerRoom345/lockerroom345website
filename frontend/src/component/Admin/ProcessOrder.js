@@ -126,7 +126,7 @@ const ProcessOrder = ({ history, match }) => {
                         className={
                           order.orderStatus && order.orderStatus === "Delivered"
                             ? "greenColor"
-                            : "redColor"
+                            : order.orderStatus && order.orderStatus === "Ready for Pickup"?"yellowColor":"redColor"
                         }
                       >
                         {order.orderStatus && order.orderStatus}
@@ -186,28 +186,50 @@ const ProcessOrder = ({ history, match }) => {
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="null">Choose Category</option>
                       {order.orderStatus === "Processing" && (
-                        <option value="picked">Pick Completed</option>
+                        <option value="Packing">Packing started</option>
                       )}
+                      {order.orderStatus === "Processing" && (
+                        <option value="Delivered">Packed and Delivered</option>
+                      )} 
+                      {order.orderStatus === "Processing" && (
+                        <option value="Ready for Pickup">Ready for Pickup</option>
+                      )} 
 
                       {order.orderStatus === "picked" && (
                         <option value="Delivered">Delivered</option>
                       )}
 
-                      {order.orderStatus === "Processing" && (
-                        <option value="PickedDelivered">Picked and Delivered</option>
-                      )}  
+                       
 
                       {order.orderStatus === "Delivered" && (
-                        <option value="revertpicked">Revert to Picked</option>
+                        <option value="revertpacking">Revert to Packing</option>
                       )}  
 
                       {order.orderStatus === "Delivered" && (
                         <option value="Processing">Revert to Processing</option>
                       )}  
 
-                      {order.orderStatus === "picked" && (
+                      {order.orderStatus === "Packing" && (
+                        <option value="Ready for Pickup">Ready for Pickup</option>
+                      )} 
+
+                      {order.orderStatus === "Packing" && (
+                        <option value="Delivered">Delivered</option>
+                      )}
+
+                      {order.orderStatus === "Ready for Pickup" && (
+                        <option value="Delivered">Delivered</option>
+                      )}  
+                      {order.orderStatus === "Ready for Pickup" && (
+                        <option value="revertpacked">Revert to Packing</option>
+                      )}  
+
+                      {order.orderStatus === "Ready for Pickup" && (
                         <option value="Processing">Revert to Processing</option>
                       )}  
+
+                    
+                     
                     </select>
                   </div>
 
