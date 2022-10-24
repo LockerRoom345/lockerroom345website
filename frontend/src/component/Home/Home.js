@@ -85,8 +85,7 @@ const Home = ({ history }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
-  let count = filteredProductsCount;
-
+  let count = products.length;
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -105,6 +104,9 @@ const Home = ({ history }) => {
       history.push("/products");
     }
   };
+  // console.log("CHECK");
+  // console.log(count, resultPerPage);
+  // console.log(products);
 
   return (
     <Fragment>
@@ -112,9 +114,9 @@ const Home = ({ history }) => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title="Donate & help" />
+          <MetaData title="LR345" />
           <div className="banner">
-          <p>Welcome to Locker Room 345 !!!</p>
+          <p>LOCKER ROOM 345</p>
           <h1>SPORTS MAKE PEOPLE BETTER</h1> 
 
           {/* <div className="bground">

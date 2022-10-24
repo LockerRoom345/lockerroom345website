@@ -14,63 +14,67 @@ import { useAlert } from "react-alert";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import ApartmentIcon from "@mui/icons-material/Apartment";
 
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const alert = useAlert();
+
   const { shippingInfo } = useSelector((state) => state.cart);
-  const [receivingPersonName, setreceivingPersonName] = useState(
-    ""
-  );
-  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState(
-   ""
-  );
+  const [receivingPersonName, setreceivingPersonName] = useState("");
+  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState("");
   // const [address, setAddress] = useState(shippingInfo.address);
   // const [city, setCity] = useState(shippingInfo.city);
   // const [state, setState] = useState(shippingInfo.state);
   // const [country, setCountry] = useState(shippingInfo.country);
   // const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
   const [phoneNo, setPhoneNo] = useState("");
-  const [addComments, setaddComments] = useState(
-    ""
-  );
+  const [addComments, setaddComments] = useState("");
+  const regex = /\w+-\d{1,2}/;
   let orderDate = "";
   const shippingSubmit = (e) => {
-    e.preventDefault();
-    //console.log("addComments", addComments);
-    let current = new Date();
-    let cDate =
-      current.getFullYear() +
-      "-" +
-      (current.getMonth() + 1) +
-      "-" +
-      current.getDate();
-    let cTime =
-      current.getHours().toString().padStart(2, 0) +
-      ":" +
-      current.getMinutes() +
-      ":" +
-      current.getSeconds();
-    let orderDate = cDate + " " + cTime;
+    if (regex.test(receivingPersonName) == false) {
+      e.preventDefault();
+      // alert.error("Check the format of Student ID - Age");
+      alert.error("Check the format of Student ID - Age", {
+        timeout: 2000,
+      });
+    } else {
+      e.preventDefault();
+      //console.log("addComments", addComments);
+      let current = new Date();
+      let cDate =
+        current.getFullYear() +
+        "-" +
+        (current.getMonth() + 1) +
+        "-" +
+        current.getDate();
+      let cTime =
+        current.getHours().toString().padStart(2, 0) +
+        ":" +
+        current.getMinutes() +
+        ":" +
+        current.getSeconds();
+      let orderDate = cDate + " " + cTime;
 
-    // if (phoneNo.length < 10 || phoneNo.length > 10) {
-    //   alert.error("Phone Number should be 10 digits Long");
-    //   return;
-    // }
-    dispatch(
-      saveShippingInfo({
-        userName: user.name,
-        receivingPersonName,
-        additionalComments: addComments,
-        userLoggedInDesignation,
-        userAddress: user.address,
-        orderDate,
-        phoneNo,
-      })
-    );
-    history.push("/order/confirm");
+      // if (phoneNo.length < 10 || phoneNo.length > 10) {
+      //   alert.error("Phone Number should be 10 digits Long");
+      //   return;
+      // }
+      dispatch(
+        saveShippingInfo({
+          userName: user.name,
+          receivingPersonName,
+          additionalComments: addComments,
+          userLoggedInDesignation,
+          userAddress: user.address,
+          orderDate,
+          phoneNo,
+        })
+      );
+      history.push("/order/confirm");
+    }
   };
 
   return (
@@ -102,8 +106,9 @@ const Shipping = ({ history }) => {
               <PersonIcon />
               <input
                 type="text"
-                placeholder="Receiving Student ID"
+                placeholder="Receiving Student ID (Student ID - Age)"
                 value={receivingPersonName}
+                required={true}
                 onChange={(e) => setreceivingPersonName(e.target.value)}
               />
             </div>

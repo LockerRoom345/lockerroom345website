@@ -78,7 +78,9 @@ fieldset {
 
 .banner>p {
     margin-top: 150px;
-    font: 600 1.9vmax "Roboto";
+    font: 3.1vmax "Roboto";
+    letter-spacing: 2px;
+    font-weight: 100;
 }
 
 .banner>a>button {

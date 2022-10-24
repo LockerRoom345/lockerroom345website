@@ -37,14 +37,14 @@ const MyOrders = () => {
     },
     {
       field: "studentId",
-      headerName: "Student Id",
+      headerName: "Student ID",
       type: "string",
       minWidth: 150,
       flex: 0.5,
     },
     {
       field: "OrderDate",
-      headerName: "OrderDate",
+      headerName: "Order Date",
       type: "string",
       minWidth: 150,
       flex: 0.5,
