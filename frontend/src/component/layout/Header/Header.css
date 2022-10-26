@@ -99,6 +99,17 @@
     flex-direction: column;
 }
 
+.MuiButtonBase-root {
+    /* color: rgba(0, 0, 0, 0.87); */
+    display: flex !important;
+    color: inherit;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+}
+
 @media screen and (max-width: 600px) {
     .navbar {
         overflow-x: scroll;
@@ -126,6 +137,16 @@
         justify-content: inherit;
         text-transform: none;
     }
+    .MuiButtonBase-root {
+        /* color: rgba(0, 0, 0, 0.87); */
+        display: flex !important;
+        color: inherit;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+    }
 }
 
 @media screen and (max-width: 1100px) {
@@ -146,5 +167,15 @@
         font-size: 12px !important;
         font-weight: bold !important;
         min-width: 30px!important;
+    }
+    .MuiButtonBase-root {
+        /* color: rgba(0, 0, 0, 0.87); */
+        display: flex !important;
+        color: inherit;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
     }
 }
