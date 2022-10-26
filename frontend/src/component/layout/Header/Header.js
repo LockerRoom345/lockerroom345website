@@ -1,4 +1,4 @@
-import { React, useState ,useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ReactNavbar } from "overlay-navbar";
 // import logo from "../../../images/dicks_logo.svg";
@@ -16,16 +16,15 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@mui/icons-material/Home";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import { lightGreen } from "@mui/material/colors";
-import HelpIcon from '@mui/icons-material/Help';
+import HelpIcon from "@mui/icons-material/Help";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import AddIcon from "@material-ui/icons/Add";
 import PeopleIcon from "@material-ui/icons/People";
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const Header = ({}) => {
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -67,7 +66,6 @@ const Header = ({}) => {
     history.push("/helpuse");
   }
 
-
   function home() {
     history.push("/");
   }
@@ -96,7 +94,7 @@ const Header = ({}) => {
   }
 
   function setProduct() {
-      history.push("/admin/product");
+    history.push("/admin/product");
   }
 
   function setUsers() {
@@ -104,24 +102,24 @@ const Header = ({}) => {
   }
 
   function setUser() {
-      history.push("/register");
+    history.push("/register");
   }
 
   return (
     <div className="navbar">
       {user && user.role === "user" && (
         <li>
-          <HomeIcon className="icon"/>
+          <HomeIcon className="icon" />
           <Button onClick={home}>Home</Button>
         </li>
       )}
 
-        {user && user.role === "admin" && (
-          <li>
-            <DashboardIcon className="icon"/>
-            <Button onClick={dashboard}>Dashboard</Button>
-          </li>
-      )}    
+      {user && user.role === "admin" && (
+        <li>
+          <DashboardIcon className="icon" />
+          <Button onClick={dashboard}>Dashboard</Button>
+        </li>
+      )}
 
       {/* <li>
         <Inventory2Icon />
@@ -129,37 +127,40 @@ const Header = ({}) => {
       </li> */}
       {user && user.role === "user" && (
         <li>
-          <ListAltIcon className="icon"/>
+          <ListAltIcon className="icon" />
           <Button onClick={orders}>My Orders</Button>
         </li>
       )}
-       {user && user.role === "admin" && (
+      {user && user.role === "admin" && (
         <li>
-          <ListAltIcon className="icon"/>
+          <ListAltIcon className="icon" />
           <Button onClick={adminorders}>All Orders</Button>
         </li>
       )}
       {user && user.role === "user" && (
         <li>
-          <PersonIcon className="icon"/>
+          <PersonIcon className="icon" />
           <Button onClick={account}>My Account</Button>
         </li>
       )}
-       {user && (user.role === "user" || user.role === "admin" || user.role === "volunteer") && (
-        <li>
-          <HelpIcon className="icon"/>
-          <Button onClick={helpuse}>How To Use</Button>
-        </li>
-      )}
+      {user &&
+        (user.role === "user" ||
+          user.role === "admin" ||
+          user.role === "volunteer") && (
+          <li>
+            <HelpIcon className="icon" />
+            <Button onClick={helpuse}>How To Use</Button>
+          </li>
+        )}
       {user && user.role === "user" && (
         <li>
-          <ShoppingCartIcon className="icon"/>
+          <ShoppingCartIcon className="icon" />
           <Button onClick={cart}>My Cart ({cartItems.length})</Button>
         </li>
       )}
       {user && user.role === "admin" && (
         <li>
-          <AddIcon className="icon"/>
+          <AddIcon className="icon" />
           {/* <select
                 onChange={(e) => {
                   setProduct(e.target.value);
@@ -170,27 +171,41 @@ const Header = ({}) => {
                 <option value='product'>Add Product</option>
               </select> */}
 
-              <Button
-                  id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
-                  onClick={handleClick}
-                >
-                  PRODUCTS
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                  }}
-                >
-                  <MenuItem onClick={() => { handleClose(); setProducts();}}>Show All Products</MenuItem>
-                  <MenuItem onClick={() => { handleClose(); setProduct();}}>Add Product</MenuItem>
-                </Menu>
+          <Button
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            PRODUCTS
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setProducts();
+              }}
+            >
+              Show All Products
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setProduct();
+              }}
+            >
+              Add Product
+            </MenuItem>
+          </Menu>
         </li>
       )}
 
@@ -207,31 +222,47 @@ const Header = ({}) => {
                 <option value='addUsers'>Add Users</option>
               </select> */}
 
-              <Button
-                  id="basic-button1"
-                  aria-controls={open1 ? 'basic-menu1' : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open1 ? 'true' : undefined}
-                  onClick={handleClick1}
-                >
-                  USERS
-                </Button>
-                <Menu
-                  id="basic-menu1"
-                  anchorEl={anchorEl1}
-                  open={open1}
-                  onClose={handleClose1}
-                  MenuListProps={{
-                    'aria-labelledby': 'basic-button1',
-                  }}
-                >
-                  <MenuItem onClick={() => { handleClose1(); setUsers();}}>Show All Users</MenuItem>
-                  <MenuItem onClick={() => { handleClose1(); setUser();}}>Add User</MenuItem>
-                </Menu>
+          <Button
+            id="basic-button1"
+            aria-controls={open1 ? "basic-menu1" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open1 ? "true" : undefined}
+            onClick={handleClick1}
+          >
+            USERS
+          </Button>
+          <Menu
+            id="basic-menu1"
+            anchorEl={anchorEl1}
+            open={open1}
+            onClose={handleClose1}
+            MenuListProps={{
+              "aria-labelledby": "basic-button1",
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                handleClose1();
+                setUsers();
+              }}
+            >
+              Show All Users
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose1();
+                setUser();
+              }}
+            >
+              Add User
+            </MenuItem>
+          </Menu>
         </li>
       )}
 
-      <li className="logoutli">        <ExitToAppIcon className="icon" />
+      <li className="logoutli">
+        {" "}
+        <ExitToAppIcon className="icon" />
         <Button onClick={logoutUser}>Logout</Button>
       </li>
     </div>

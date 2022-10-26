@@ -10,9 +10,10 @@
     border-radius: 100%;
 }
 
-.navbar > button {
+.navbar>button {
     text-transform: lowercase;
 }
+
 .navbar {
     /* position: relative;
     top: 0;
@@ -36,6 +37,7 @@
     /* -webkit-flex-wrap: wrap;
     flex-wrap: wrap; */
 }
+
 .MuiButton-label {
     width: 100%;
     display: inherit;
@@ -85,11 +87,16 @@
     outline-color: white;
     font-size: 20px !important;
     display: flex;
-flex-direction: column;
+    flex-direction: column;
 }
 
 .navbar>li>option {
     margin-right: 10px;
+}
+
+.navbar>menu {
+    display: flex;
+    flex-direction: column;
 }
 
 @media screen and (max-width: 600px) {
