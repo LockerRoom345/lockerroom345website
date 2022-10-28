@@ -110,6 +110,16 @@
     letter-spacing: 0.00938em;
 }
 
+.MuiList-root {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.MuiMenu-list {
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
 @media screen and (max-width: 600px) {
     .navbar {
         overflow-x: scroll;
@@ -146,6 +156,14 @@
         font-size: 1rem;
         line-height: 1.5;
         letter-spacing: 0.00938em;
+    }
+    .MuiList-root {
+        padding-left: 120px;
+        padding-right: 120px;
+    }
+    .MuiMenu-list {
+        padding-left: 120px;
+        padding-right: 120px;
     }
 }
 

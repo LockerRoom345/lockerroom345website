@@ -25,12 +25,21 @@ const NewProduct = ({ history }) => {
   // const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
-  const [inputList, setInputList] = useState([{size:"",stock:"" }]);
+  const [inputList, setInputList] = useState([{ size: "", stock: "" }]);
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
+  const subCategories = [
+    "Unisex Adult sizing",
+    "Men's sizing",
+    "Women's sizing",
+    "Unisex Youth sizing",
+    "Boy's sizing",
+    "Girl's sizing",
+    "Toddlers sizing",
+  ];
   // const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }])
   // handle input change
   const handleInputChange = (e, index) => {
@@ -42,7 +51,7 @@ const NewProduct = ({ history }) => {
   };
 
   // handle click event of the Remove button
-  const handleRemoveClick = index => {
+  const handleRemoveClick = (index) => {
     const list = [...inputList];
     list.splice(index, 1);
     setInputList(list);
@@ -71,12 +80,12 @@ const NewProduct = ({ history }) => {
 
     var obj = new Object();
     obj.name = name;
-    obj.category  = category;
+    obj.category = category;
     obj.SubCategory = SubCategory;
     obj.ProductSize = inputList;
     // obj.images = images;
-    var jsonString= obj;
-    debugger
+    var jsonString = obj;
+    debugger;
 
     // const myForm = new FormData();
     // myForm.set("name", name);
@@ -85,12 +94,10 @@ const NewProduct = ({ history }) => {
     // myForm.set("ProductSize", JSON.stringify(inputList));
     // myForm.set("Stock", Stock);
     //for(const v of Object.values(JSON.stringify(inputList))){
-      // inputList.forEach(x =>{
-      //   myForm.append("ProductSize", JSON.stringify(x));
-      // })
+    // inputList.forEach(x =>{
+    //   myForm.append("ProductSize", JSON.stringify(x));
+    // })
     //}
-
-       
 
     // images.forEach((image) => {
     //   myForm.append("images", image);
@@ -142,7 +149,7 @@ const NewProduct = ({ history }) => {
             </div>
             <div>
               <AccountTreeIcon />
-              <select onChange={(e) => setCategory(e.target.value)}>
+              <select onChange={(e) => setCategory(e.target.value)} required>
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
                   <option key={cate} value={cate}>
@@ -153,27 +160,20 @@ const NewProduct = ({ history }) => {
             </div>
             <div>
               <FilterAltIcon />
-              {/* <input
-                type="text"
-                placeholder="SubCategory"
-                required
-                onChange={(e) => setSubCategory(e.target.value)}
-              /> */}
               <select
                 name="category"
                 id="category"
                 onChange={(e) => {
                   setSubCategory(e.target.value);
                 }}
+                required
               >
-                <option value="SelectCategory">Select SubCategory</option>
-                <option value="Unisex Adult sizing">Unisex Adult sizing</option>
-                <option value="Men's sizing">Mens sizing</option>
-                <option value="women's sizing">Womens sizing</option>
-                <option value="Unisex Youth sizing">Unisex Youth sizing</option>
-                <option value="Boy's sizing">Boys' sizing</option>
-                <option value="Girl's sizing">Girls' sizing</option>
-                <option value="Toddlers sizing">Toddlers sizing</option>
+                <option value="">Select SubCategory</option>
+                {subCategories.map((cate) => (
+                  <option key={cate} value={cate}>
+                    {cate}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -203,13 +203,16 @@ const NewProduct = ({ history }) => {
                       name="size"
                       placeholder="size"
                       value={x.size}
+                      required
                       onChange={(e) => handleInputChange(e, i)}
                     />
                     <input
                       className="ml10"
                       name="stock"
                       placeholder="stock qty"
+                      type = "number"
                       value={x.stock}
+                      required
                       onChange={(e) => handleInputChange(e, i)}
                     />
                     <div className="btn-box">
