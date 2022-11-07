@@ -10,6 +10,8 @@ import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
+import InfoIcon from "@material-ui/icons/Info";
+
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -23,7 +25,8 @@ import PeopleIcon from "@material-ui/icons/People";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 const Header = ({}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -58,6 +61,24 @@ const Header = ({}) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     history.push("/");
   }
+
+  
+  const submit = () => {
+    confirmAlert({
+      title: 'Logout',
+      message: 'Are you sure you want to Logout',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => logoutUser()
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    })
+  };
 
   function account() {
     history.push("/account");
@@ -139,8 +160,8 @@ const Header = ({}) => {
       )}
       {user && user.role === "user" && (
         <li>
-          <PersonIcon className="icon" />
-          <Button onClick={account}>My Account</Button>
+          <InfoIcon className="icon" />
+          <Button onClick={account}>About Us</Button>
         </li>
       )}
       {user &&
@@ -195,7 +216,7 @@ const Header = ({}) => {
                 setProducts();
               }}
             >
-              Show All Products
+              All Products
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -246,7 +267,7 @@ const Header = ({}) => {
                 setUsers();
               }}
             >
-              Show All Users
+               All Users
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -263,7 +284,7 @@ const Header = ({}) => {
       <li className="logoutli">
         {" "}
         <ExitToAppIcon className="icon" />
-        <Button onClick={logoutUser}>Logout</Button>
+        <Button onClick={()=>submit()}>Logout</Button>
       </li>
     </div>
   );

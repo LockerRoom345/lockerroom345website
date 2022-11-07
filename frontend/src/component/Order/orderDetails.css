@@ -85,6 +85,11 @@
     color: black;
 }
 
+.orderDetailsContainerBox>div>div {
+    font: 600 20px "Roboto";
+    color: black;
+}
+
 .orderDetailsContainerBox>div>span {
     margin: 0 1vmax;
     font: 600 15px "Roboto";

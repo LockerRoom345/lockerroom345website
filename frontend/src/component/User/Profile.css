@@ -1,5 +1,11 @@
+.containerWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
 .profileContainer {
     display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -10,30 +16,61 @@
     margin-top: -45px;
 }
 
-.profileContainer>div {
+.profileContainer>.contentWrapper {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     width: 100vw;
     max-width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+}
+
+.profileContainer>.contentWrapper>.PeopleCard {
+    display: flex;
+    flex-direction: row;
+    border: #006554 2px solid;
+    padding: 5px;
+    border-radius: 7px;
+    width: 70vw;
+    font: 300 15px "Roboto";
+    margin-bottom: 5px;
+}
+
+.profileContainer>.contentWrapper>.PeopleCard>img {
+    border-radius: 12px;
+    max-width: 200px;
+    object-fit: cover;
+}
+
+.profileContainer>.contentWrapper>.PeopleCard>h2 {
+    padding-bottom: 5px;
+}
+
+.peopleContent {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
 }
 
 .profileContainer>div:first-child>h1 {
-    color: rgba(0, 0, 0, 0.555);
-    font: 500 40px "Roboto";
-    transform: translateX(-10vmax) translateY(-2vmax);
+    padding: 20px;
+    color: rgb(1, 70, 52);
+    font: 500 60px "Roboto";
+    /* transform: translateX(-10vmax) translateY(-2vmax); */
 }
 
 .profileContainer>div:first-child>img {
     width: 20vmax;
-    border-radius: 100%;
-    transition: all 0.5s;
+    /* border-radius: 100%;
+    transition: all 0.5s; */
 }
 
-.profileContainer>div:first-child>img:hover {
-    transform: scale(1.05);
+.profileContainer>div>p {
+    font: 400 20px "Roboto";
+    width: 70%;
+    padding-bottom: 15px;
 }
 
 .profileContainer>div:first-child>a {
@@ -55,7 +92,7 @@
 
 .profileContainer>div:last-child {
     justify-content: space-evenly;
-    align-items: flex-start;
+    align-items: center;
     padding: 5vmax;
     box-sizing: border-box;
 }
@@ -66,7 +103,7 @@
 }
 
 .profileContainer>div:last-child>div>p {
-    color: rgba(0, 0, 0, 0.418);
+    color: rgb(255, 255, 255);
     font: 400 20px "Roboto";
     margin: 0.2vmax;
 }
@@ -77,7 +114,8 @@
     width: 60%;
 }
 
-.profileContainer>div:last-child>div:last-child>a {
+
+/* .profileContainer>div:last-child>div:last-child>a {
     border: none;
     background-color: rgb(68, 68, 68);
     font: 400 20px "Roboto";
@@ -87,11 +125,12 @@
     text-align: center;
     transition: all 0.5s;
     margin: 1vmax 0;
-}
+} */
 
-.profileContainer>div:last-child>div:last-child>a:hover {
+
+/* .profileContainer>div:last-child>div:last-child>a:hover {
     background-color: rgb(31, 31, 31);
-}
+} */
 
 @media screen and (max-width: 600px) {
     .profileContainer>div:last-child {

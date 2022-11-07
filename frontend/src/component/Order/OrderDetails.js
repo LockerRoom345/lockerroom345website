@@ -49,7 +49,7 @@ const OrderDetails = ({ match }) => {
                   <span>{shippingInfo.userLoggedInDesignation}</span>
                 </div>
                 <div>
-                  <p>Deliver To Student Id:</p>
+                  <p>Deliver To Student ID:</p>
                   <span>{shippingInfo.receivingPersonName}</span>
                 </div>
                 <div>

@@ -22,9 +22,22 @@ const OrderList = ({ history }) => {
   const alert = useAlert();
 
   const { error, orders } = useSelector((state) => state.allOrders);
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: "orderId",
+      sort: "desc",
+    },
+  ]);
 
+  const handleSortChange = (model) => {
+    /* if statement to prevent the infinite loop by confirming model is 
+     different than the current sortModel state */
+    if (JSON.stringify(model) !== JSON.stringify(sortModel)) {
+      setSortModel(model);
+    }
+  };
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
-  const { order,  loading } = useSelector((state) => state.orderDetails);
+  const { order, loading } = useSelector((state) => state.orderDetails);
   const deleteOrderHandler = (id) => {
     dispatch(deleteOrder(id));
   };
@@ -58,7 +71,7 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.15,
     },
-     {
+    {
       field: "studentId",
       headerName: "Student Id",
       type: "string",
@@ -68,7 +81,7 @@ const OrderList = ({ history }) => {
     {
       field: "OrderDate",
       headerName: "Order Date",
-      type: "string",
+      type: "date",
       minWidth: 50,
       flex: 0.1,
     },
@@ -80,19 +93,21 @@ const OrderList = ({ history }) => {
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
-          :params.getValue(params.id, "status") === "Ready for Pickup"?"yellowColor": "redColor";
+          : params.getValue(params.id, "status") === "Ready for Pickup"
+          ? "BlueColor"
+          : "redColor";
       },
     },
     {
       field: "itemsQty",
-      headerName: "Qty",      
+      headerName: "Quantity",
       minWidth: 50,
       flex: 0.1,
     },
     {
       field: "actions",
       headerName: "Actions",
-      minWidth: 60,  
+      minWidth: 60,
       flex: 0.1,
       sortable: false,
       renderCell: (params) => {
@@ -129,8 +144,7 @@ const OrderList = ({ history }) => {
         OrderDate: item.shippingInfo.orderDate,
         status: item.orderStatus,
         studentId: item.shippingInfo.receivingPersonName,
-        orderfrom: item.shippingInfo.userName       
-         
+        orderfrom: item.shippingInfo.userName,
       });
     });
 
@@ -144,19 +158,17 @@ const OrderList = ({ history }) => {
           <h1 id="productListHeading">ALL ORDERS RECEIVED</h1>
 
           <DataGrid
-           initialState={{
-            sorting: {
-              sortModel: [
-                {
-                  field: 'OrderDate',
-                  sort: 'desc',
-                },
-              ],
-            },
-          }}
+            sortModel={sortModel}
+            onSortModelChange={(model) => handleSortChange(model)}
+            // onSortModelChange={(model) => {
+            //   console.log(model);
+            //   // if(model != sortModel)
+            //   // setSortModel(model);
+            // }}
             rows={rows}
             columns={columns}
             pageSize={15}
+            rowsPerPageOptions={[15]}
             disableSelectionOnClick
             className="productListTable"
             autoHeight

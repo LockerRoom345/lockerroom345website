@@ -116,8 +116,9 @@
 }
 
 .MuiMenu-list {
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    font: 400 20px "Roboto";
 }
 
 @media screen and (max-width: 600px) {
@@ -162,8 +163,9 @@
         padding-right: 120px;
     }
     .MuiMenu-list {
-        padding-left: 120px;
-        padding-right: 120px;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        font: 400 20px "Roboto";
     }
 }
 

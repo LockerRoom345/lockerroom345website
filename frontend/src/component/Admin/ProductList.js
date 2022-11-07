@@ -115,7 +115,7 @@ const ProductList = ({ history }) => {
     },
     {
       field: "stockinfo",
-      headerName: "Stock Info",
+      headerName: "Stock by Size",
       minWidth: 50,
       flex: 0.1,
       renderCell: (params) => {
@@ -280,7 +280,7 @@ const ProductList = ({ history }) => {
       //console.log(item);
       rows.push({
         id: item._id,
-        stock: item.ProductSize.map((y) => y.stock).sort((a, b) => a - b)[0],
+        stock: item.ProductSize.reduce((sum,a)=> Number(sum)+Number(a.stock),0),
         // price: item.price,
         stockinfo: (item.ProductSize.map((y) => {
           let str ="";

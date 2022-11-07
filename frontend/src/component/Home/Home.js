@@ -10,12 +10,13 @@ import { useAlert } from "react-alert";
 import Donate from "../donate/Donate";
 import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
+import Footer from "../../component/layout/Footer/Footer";
 
 const Home = ({ history }) => {
   const categories = [
     "All",
-    "FootWears",
     "Clothing",
+    "FootWear",
     "Sports",
     "Miscellaneous",
   ];
@@ -117,7 +118,7 @@ const Home = ({ history }) => {
           <MetaData title="LR345" />
           <div className="banner">
           <p>LOCKER ROOM 345</p>
-          <h1>SPORTS MAKE PEOPLE BETTER</h1> 
+          <h1>EQUIPPING STUDENTS FOR SUCCESS</h1> 
 
           {/* <div className="bground">
             <div className="banner">
@@ -192,6 +193,8 @@ const Home = ({ history }) => {
           <Donate /> */}
         </Fragment>
       )}
+          <Footer></Footer>
+
     </Fragment>
   );
 };

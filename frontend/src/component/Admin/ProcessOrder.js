@@ -90,7 +90,7 @@ const ProcessOrder = ({ history, match }) => {
                       </span>
                     </div>
                     <div>
-                      <p>Deliver To Student Id:</p>
+                      <p>Deliver To Student ID:</p>
                       <span>
                         {order.user && order.shippingInfo.receivingPersonName}
                       </span>
@@ -121,16 +121,16 @@ const ProcessOrder = ({ history, match }) => {
                   </div>
                   <Typography>Order Status</Typography>
                   <div className="orderDetailsContainerBox">
-                    <div>
-                      <p
+                    <div classaName="statusWrapper">
+                      <div
                         className={
                           order.orderStatus && order.orderStatus === "Delivered"
                             ? "greenColor"
-                            : order.orderStatus && order.orderStatus === "Ready for Pickup"?"yellowColor":"redColor"
+                            : order.orderStatus && order.orderStatus === "Ready for Pickup"?"BlueColor":"redColor"
                         }
                       >
                         {order.orderStatus && order.orderStatus}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -185,25 +185,25 @@ const ProcessOrder = ({ history, match }) => {
                     <AccountTreeIcon />
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="null">Choose Category</option>
-                      {order.orderStatus === "Processing" && (
+                      {/* {order.orderStatus === "Processing" && (
                         <option value="Packing">Packing started</option>
-                      )}
-                      {order.orderStatus === "Processing" && (
+                      )} */}
+                      {/* {order.orderStatus === "Processing" && (
                         <option value="Delivered">Packed and Delivered</option>
-                      )} 
+                      )}  */}
                       {order.orderStatus === "Processing" && (
                         <option value="Ready for Pickup">Ready for Pickup</option>
                       )} 
 
-                      {order.orderStatus === "picked" && (
+                      {order.orderStatus === "Processing" && (
                         <option value="Delivered">Delivered</option>
                       )}
 
                        
 
-                      {order.orderStatus === "Delivered" && (
+                      {/* {order.orderStatus === "Delivered" && (
                         <option value="revertpacking">Revert to Packing</option>
-                      )}  
+                      )}   */}
 
                       {order.orderStatus === "Delivered" && (
                         <option value="Processing">Revert to Processing</option>
@@ -220,9 +220,9 @@ const ProcessOrder = ({ history, match }) => {
                       {order.orderStatus === "Ready for Pickup" && (
                         <option value="Delivered">Delivered</option>
                       )}  
-                      {order.orderStatus === "Ready for Pickup" && (
+                      {/* {order.orderStatus === "Ready for Pickup" && (
                         <option value="revertpacked">Revert to Packing</option>
-                      )}  
+                      )}   */}
 
                       {order.orderStatus === "Ready for Pickup" && (
                         <option value="Processing">Revert to Processing</option>

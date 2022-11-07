@@ -11,6 +11,7 @@ import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
 import ReactTooltip from "react-tooltip";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
+import Footer from "../../component/layout/Footer/Footer";
 
 
 const Dashboard = () => {
@@ -96,7 +97,7 @@ const Dashboard = () => {
       },
     ],
   };
-
+console.log(orders);
   return (
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
@@ -167,6 +168,8 @@ const Dashboard = () => {
         {/* <div className="lineChart">
           <Line data={lineState} />
         </div> */}
+              <Footer></Footer>
+
       </div>
     </div>
   );

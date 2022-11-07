@@ -15,7 +15,7 @@ const MyOrders = () => {
   const categories = [
     "All",
     "Current",
-    "Past"
+    "Previous"
   ];
 
   const [category, setCategory] = useState("Current");
@@ -25,7 +25,19 @@ const MyOrders = () => {
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
   const { user } = useSelector((state) => state.user);
-
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: "OrderDate",
+      sort: "desc",
+    },
+  ]);
+  const handleSortChange = (model) => {
+    /* if statement to prevent the infinite loop by confirming model is 
+     different than the current sortModel state */
+    if (JSON.stringify(model) !== JSON.stringify(sortModel)) {
+      setSortModel(model);
+    }
+  };
   const columns = [
     //{ field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },
     {
@@ -45,7 +57,7 @@ const MyOrders = () => {
     {
       field: "OrderDate",
       headerName: "Order Date",
-      type: "string",
+      type: "date",
       minWidth: 150,
       flex: 0.5,
     },
@@ -57,19 +69,20 @@ const MyOrders = () => {
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
-          :params.getValue(params.id, "status") === "Ready for Pickup" ? "yellowColor": "redColor";
+          :params.getValue(params.id, "status") === "Ready for Pickup" ? "BlueColor": "redColor";
       },
     },
     {
       field: "itemsQty",
-      headerName: "Qty",
+      headerName: "Qunatity",
       type: "number",
-      minWidth: 150,
+      minWidth: 400,
       flex: 0,
     },
     {
       field: "actions",
       flex: 0,
+      filterable: false,
       headerName: "Actions",
       minWidth: 150,
       type: "number",
@@ -112,7 +125,7 @@ const MyOrders = () => {
           studentId: item.shippingInfo.receivingPersonName,
           orderfrom: user.name,
         });}
-      if(category == 'Past' && (item.orderStatus == 'Delivered') )
+      if(category == 'Previous' && (item.orderStatus == 'Delivered') )
        {
           rows.push({
           itemsQty: item.orderItems.length,
@@ -137,7 +150,7 @@ const MyOrders = () => {
   return (
     <div>
       <Fragment>
-        <MetaData title={`${user.name} - Orders`} />
+        <MetaData title={`LR345 - Orders`} />
 
         {loading ? (
           <Loader />
@@ -158,7 +171,7 @@ const MyOrders = () => {
                   ))}
                 </ul>
               </fieldset>
-              <p>Showing {category} orders</p>
+              <p> {category} Orders</p>
               {/* <div className="eachRadioButton">
                 <input type="radio" value="current" checked={toggle === 'current'} onChange={handleOptionChange1()} /> Current Orders
               </div>
@@ -169,6 +182,8 @@ const MyOrders = () => {
 
             </div>
             <DataGrid
+              sortModel={sortModel}
+              onSortModelChange={(model) => handleSortChange(model)}
               rows={rows}
               columns={columns}
               pageSize={15}
@@ -177,7 +192,7 @@ const MyOrders = () => {
               autoHeight
             />
 
-            <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+            <Typography id="myOrdersHeading">My Orders</Typography>
           </div>
         )}
       </Fragment>

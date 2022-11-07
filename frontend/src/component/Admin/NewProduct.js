@@ -136,7 +136,7 @@ const NewProduct = ({ history }) => {
             encType="multipart/form-data"
             onSubmit={createProductSubmitHandler}
           >
-            <h1>Create New Item</h1>
+            <h1>Add Inventory</h1>
             <div>
               <SpellcheckIcon />
               <input
@@ -209,7 +209,7 @@ const NewProduct = ({ history }) => {
                     <input
                       className="ml10"
                       name="stock"
-                      placeholder="stock qty"
+                      placeholder="stock"
                       type = "number"
                       value={x.stock}
                       required

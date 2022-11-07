@@ -5,7 +5,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer id="footer">
+    <div id="footer" className="footer">
       <div className="leftFooter">
       <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">Contact Us</a>
        <a href="">Terms of Use</a>
@@ -15,7 +15,7 @@ const Footer = () => {
 
       <div className="midFooter">        
         <img src={lockerroomlogo} alt="" />
-        <p><span>Presents From Us Not Only On Christmas </span><br /><span>But Everyday !!!</span></p>
+        <p><span>Equipping Students for Success</span></p>
         <p>&copy; 2022 Locker Room 345 </p>
       </div>
 
@@ -26,7 +26,7 @@ const Footer = () => {
         <a href="">Facebook</a>
         <a href="">Twitter</a>
       </div>
-    </footer>
+    </div>
   );
 };
 

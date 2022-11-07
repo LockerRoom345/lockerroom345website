@@ -81,8 +81,9 @@ function App() {
 
   return (
     <Router>
-      {isAuthenticated && <Header user={user} />}
-
+      <div className="fixed-top">
+        {isAuthenticated && <Header user={user} />}
+      </div>
       {/* {isAuthenticated && <UserOptions user={user} />}
       {isAuthenticated && <Header user={user} />} */}
 
@@ -204,7 +205,7 @@ function App() {
         />
       </Switch>
 
-      {isAuthenticated && <Footer />}
+      {/* {isAuthenticated && <Footer />} */}
     </Router>
   );
 }

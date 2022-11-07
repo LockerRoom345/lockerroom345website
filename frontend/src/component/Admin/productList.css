@@ -74,6 +74,7 @@
     min-width: 0;
     white-space: nowrap;
     justify-content: center;
+    flex-direction: row !important;
 }
 
 .MuiDataGrid-columnHeader {
@@ -82,9 +83,17 @@
     border: 1px solid white;
 }
 
+.MuiTablePagination-actions {
+    display: flex;
+}
+
 .MuiDataGrid-columnHeader div {
     color: rgb(255, 255, 255);
     font: 500 1.1vmax "Roboto" !important;
+}
+.MuiDataGrid-columnHeader svg {
+    color: rgb(255, 255, 255);
+    /* font: 500 1.1vmax "Roboto" !important; */
 }
 
 .MuiDataGrid-iconSeparator {

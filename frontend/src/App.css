@@ -1,36 +1,50 @@
 * {
-    margin: 0;
-    scroll-behavior: smooth;
+  margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
-    overflow: auto;
+  overflow: auto;
 }
-
 
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-
 
 /* Firefox */
 
 input[type="number"] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .greenColor {
-    color: green !important;
+  color: green !important;
+  text-transform: capitalize;
 }
 
 .redColor {
-    color: red !important;
+  color: red !important;
+  text-transform: capitalize;
 }
 
-.yellowColor {
-    color: rgb(192, 192, 100) !important;
+.BlueColor {
+  color: rgb(13, 0, 255) !important;
+  text-transform: capitalize;
+}
+.greyColor {
+  color: rgba(0, 0, 0, 0.678);
+  text-transform: capitalize;
+}
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: white;
+  /* margin-bottom: 10px; */
 }

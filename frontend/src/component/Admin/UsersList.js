@@ -11,7 +11,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { getAllUsers, clearErrors, deleteUser } from "../../actions/userAction";
 import { DELETE_USER_RESET } from "../../constants/userConstants";
-
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 const UsersList = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -27,6 +28,35 @@ const UsersList = ({ history }) => {
 
   const deleteUserHandler = (id) => {
     dispatch(deleteUser(id));
+  };
+  const [sortModel, setSortModel] = React.useState([
+    {
+      field: "email",
+      sort: "asc",
+    },
+  ]);
+  const handleSortChange = (model) => {
+    /* if statement to prevent the infinite loop by confirming model is 
+     different than the current sortModel state */
+    if (JSON.stringify(model) !== JSON.stringify(sortModel)) {
+      setSortModel(model);
+    }
+  };
+  const submit = (params) => {
+    confirmAlert({
+      title: "Delete User",
+      message: "Are you sure you want to delete this user",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => deleteUserHandler(params.getValue(params.id, "id")),
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
   };
 
   useEffect(() => {
@@ -72,9 +102,15 @@ const UsersList = ({ history }) => {
       minWidth: 150,
       flex: 0.1,
       cellClassName: (params) => {
-        return ( params.getValue(params.id, "role") === "admin" ? "greenColor" : "" ) || 
-        (params.getValue(params.id, "role") === "user" ? "redColor" : "") || 
-        (params.getValue(params.id, "role") === "volunteer" ? "blueColor" : "");
+        return (
+          (params.getValue(params.id, "role") === "admin"
+            ? "greenColor"
+            : "") ||
+          (params.getValue(params.id, "role") === "user" ? "redColor" : "") ||
+          (params.getValue(params.id, "role") === "volunteer"
+            ? "blueColor"
+            : "")
+        );
       },
     },
 
@@ -93,11 +129,7 @@ const UsersList = ({ history }) => {
               <span>Edit</span>
             </Link>
 
-            <Button
-              onClick={() =>
-                deleteUserHandler(params.getValue(params.id, "id"))
-              }
-            >
+            <Button onClick={() => submit(params)}>
               <DeleteIcon />
             </Button>
           </Fragment>
@@ -128,6 +160,8 @@ const UsersList = ({ history }) => {
           <h1 id="productListHeading">ALL USERS</h1>
 
           <DataGrid
+            sortModel={sortModel}
+            onSortModelChange={(model) => handleSortChange(model)}
             rows={rows}
             columns={columns}
             pageSize={15}
