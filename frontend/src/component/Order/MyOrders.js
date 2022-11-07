@@ -74,7 +74,7 @@ const MyOrders = () => {
     },
     {
       field: "itemsQty",
-      headerName: "Qunatity",
+      headerName: "Quantity",
       type: "number",
       minWidth: 400,
       flex: 0,
