@@ -129,9 +129,11 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
 
 // update Order Status -- Admin
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
+  console.log(req.body);
   const order = await Order.findById(req.params.id);
-  //console.log("order from inventory", order);
-
+  // console.log("order from inventory", order);
+  const newQuantities = req.body.newQuantity.split(",");
+  console.log(newQuantities);
   if (!order) {
     return next(new ErrorHander("Order not found with this Id", 404));
   }
@@ -141,16 +143,17 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   // }
 
   if (req.body.status === "packed" || req.body.status === "Delivered") {
-    order.orderItems.forEach(async (o) => {
-      console.log("orderItems", o);
+    order.orderItems.forEach(async (o,idx) => {
+      o.quantity = newQuantities[idx];
+      console.log("orderItems forward", o);
       await updateStock(o.product, o.quantity, o.ProductSize);
     });
   }
 
   if (req.body.status === "Processing") {
     if ((order.orderStatus === "Delivered") || (order.orderStatus === "packed")) {
-    order.orderItems.forEach(async (o) => {
-      //console.log("orderItems", o);
+    order.orderItems.forEach(async (o,idx) => {
+      console.log("orderItems back", o);
       await reAddStock(o.product, o.quantity, o.ProductSize);
     });
   }

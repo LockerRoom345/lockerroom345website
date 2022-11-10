@@ -35,7 +35,7 @@
 .confirmCartItems {
     padding-top: 0vmax;
     padding-bottom: 5vmax;
-    padding-right: 5vmax;
+    /* padding-right: 5vmax; */
     padding-left: 5vmax;
     /* padding-top: 2vmax; */
 }
@@ -44,8 +44,7 @@
     font: 400 20px "Roboto";
 }
 
-.confirmshippingAreaBox,
-.confirmCartItemsContainer {
+.confirmshippingAreaBox {
     margin: 1.5vmax;
 }
 

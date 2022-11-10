@@ -21,6 +21,16 @@
     outline: none;
 }
 
+.cartitemHeader>div>span {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.cartitemHeader>div {
+    text-align: center;
+}
+
 .updateOrderForm>div>svg {
     position: absolute;
     transform: translateX(1vmax);

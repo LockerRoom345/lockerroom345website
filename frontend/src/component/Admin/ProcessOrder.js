@@ -17,12 +17,81 @@ import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./processOrder.css";
 import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
-
-import { submitHandler } from "../Cart/Payment"
+import Select from "react-select";
+import { TextField } from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { submitHandler } from "../Cart/Payment";
+let deltaList = Array(100).fill(0);
 
 const ProcessOrder = ({ history, match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
-  const { error: updateError, isUpdated } = useSelector((state) => state.order);
+  const { error3, updateError, isUpdated } = useSelector(
+    (state) => state.order
+  );
+  const { error2, products } = useSelector((state) => state.products);
+  // console.log("hehe",state.products);
+  const [dummyRefresher, setdummyRefresher] = useState("");
+  // console.log(deltaList);
+  const increaseQuantity = (idx) => {
+    // console.log("add", order.orderItems[idx].quantity);
+    if (order.orderItems[idx].quantity < 5) {
+      order.orderItems[idx].quantity += 1;
+      deltaList[idx] += 1;
+      // console.log(
+      //   "increased",
+      //   order.orderItems[idx].quantity,
+      //   deltaList[idx],
+      //   idx
+      // );
+      setdummyRefresher("refresh" + order.orderItems[idx].quantity);
+    } else return;
+  };
+
+  const decreaseQuantity = (idx) => {
+    // console.log("sub", order.orderItems[idx].quantity);
+    if (order.orderItems[idx].quantity > 0) {
+      order.orderItems[idx].quantity -= 1;
+      deltaList[idx] -= 1;
+      // console.log(
+      //   "decreased",
+      //   order.orderItems[idx].quantity,
+      //   deltaList[idx],
+      //   idx
+      // );
+      setdummyRefresher("refresh" + order.orderItems[idx].quantity);
+    } else return;
+  };
+  function findInventory(itemName, subCategory, size, idx) {
+    // console.log("inventoryyyyy");
+    // console.log(itemName, subCategory,size[0]);
+    let stockIndex = 0,
+      stock = 0;
+    const index = products.findIndex(
+      (item) => item.name === itemName && item.SubCategory === subCategory
+    );
+    if (index >= 0) {
+      stockIndex = products[index].ProductSize.findIndex(
+        (item) => item.size === size[0]
+      );
+    }
+    if (stockIndex >= 0) {
+      stock = products[index].ProductSize[stockIndex].stock;
+    }
+    if (stockIndex >= 0 && index >= 0) {
+      // console.log(stock, deltaList[idx], idx);
+      return (
+        <div>
+          {stock - deltaList[idx]}
+          {deltaList[idx] < 0 && <ArrowUpwardIcon />}
+          {deltaList[idx] > 0 && <ArrowDownwardIcon />}
+        </div>
+      );
+    } else {
+      return -1;
+    }
+  }
+
   const { shippingInfo } = useSelector((state) => state.cart);
   const [status, setStatus] = useState("null");
   const componentRef = useRef();
@@ -30,8 +99,13 @@ const ProcessOrder = ({ history, match }) => {
     e.preventDefault();
 
     const myForm = new FormData();
-
     myForm.set("status", status);
+    let temp = [];
+    for (let i = 0; i < order.orderItems.length; i++) {
+      temp.push(order.orderItems[i].quantity);
+    }
+    // console.log(temp);
+    myForm.set("newQuantity", temp);
     //console.log("select status",status);
 
     dispatch(updateOrder(match.params.id, myForm));
@@ -71,7 +145,7 @@ const ProcessOrder = ({ history, match }) => {
             <div
               className="confirmOrderPage"
               style={{
-                display: order.orderStatus === "Delivered" ? "grid" : "grid" ,
+                display: order.orderStatus === "Delivered" ? "grid" : "grid",
               }}
             >
               <div ref={componentRef}>
@@ -108,7 +182,7 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
                       <p>Address:</p>
                       <span>
-                        {order.shippingInfo && order.shippingInfo.userAddress }
+                        {order.shippingInfo && order.shippingInfo.userAddress}
                       </span>
                     </div>
                     <div>
@@ -126,7 +200,10 @@ const ProcessOrder = ({ history, match }) => {
                         className={
                           order.orderStatus && order.orderStatus === "Delivered"
                             ? "greenColor"
-                            : order.orderStatus && order.orderStatus === "Ready for Pickup"?"BlueColor":"redColor"
+                            : order.orderStatus &&
+                              order.orderStatus === "Ready for Pickup"
+                            ? "BlueColor"
+                            : "redColor"
                         }
                       >
                         {order.orderStatus && order.orderStatus}
@@ -137,8 +214,29 @@ const ProcessOrder = ({ history, match }) => {
                 <div className="confirmCartItems">
                   <Typography>Your Cart Items:</Typography>
                   <div className="confirmCartItemsContainer">
+                    <div className="cartitemHeader">
+                      <div className="cartitemholderimage">
+                        <span>Image</span>
+                      </div>
+                      <div className="cartitemholdername">
+                        <span>Name</span>
+                      </div>
+                      <div className="cartitemholdercat">
+                        <span>Subcategory</span>
+                      </div>
+                      <div className="cartitemholdersize">
+                        <span>Size</span>
+                      </div>
+                      <div className="cartitemholderquantity">
+                        <span>Quantity</span>
+                      </div>
+                      <div className="cartitemholderquantity">
+                        <span>Inventory</span>
+                      </div>{" "}
+                    </div>
+
                     {order.orderItems &&
-                      order.orderItems.map((item) => (
+                      order.orderItems.map((item, idx) => (
                         <div className="cartitemholder" key={item.product}>
                           <div className="cartitemholderimage">
                             <img src={item.image} alt="Product" />
@@ -147,13 +245,36 @@ const ProcessOrder = ({ history, match }) => {
                             <span>{item.name}</span>
                           </div>
                           <div className="cartitemholdercat">
-                            <span>Subcategory({item.SubCategory})</span>
+                            <span>{item.SubCategory}</span>
                           </div>
                           <div className="cartitemholdersize">
-                            <span>Size({item.ProductSize.split(",", 1)})</span>
+                            <span>{item.ProductSize.split(",", 1)}</span>
                           </div>
                           <div className="cartitemholderquantity">
-                            <span>Quantity({item.quantity})</span>
+                            {order.orderStatus == "Processing" && (
+                              <button onClick={() => decreaseQuantity(idx)}>
+                                -
+                              </button>
+                            )}
+                            <input
+                              readOnly
+                              type="number"
+                              value={item.quantity}
+                            />
+                            {order.orderStatus == "Processing" && (
+                              <button onClick={() => increaseQuantity(idx)}>
+                                +
+                              </button>
+                            )}
+                          </div>
+
+                          <div className="cartitemholderquantity">
+                            {findInventory(
+                              item.name,
+                              item.SubCategory,
+                              item.ProductSize.split(",", 1),
+                              idx
+                            )}
                           </div>
                         </div>
                       ))}
@@ -172,7 +293,8 @@ const ProcessOrder = ({ history, match }) => {
               {/*  */}
               <div
                 style={{
-                  display: order.orderStatus === "Delivered" ? "block" : "block",
+                  display:
+                    order.orderStatus === "Delivered" ? "block" : "block",
                 }}
               >
                 <form
@@ -192,14 +314,14 @@ const ProcessOrder = ({ history, match }) => {
                         <option value="Delivered">Packed and Delivered</option>
                       )}  */}
                       {order.orderStatus === "Processing" && (
-                        <option value="Ready for Pickup">Ready for Pickup</option>
-                      )} 
+                        <option value="Ready for Pickup">
+                          Ready for Pickup
+                        </option>
+                      )}
 
                       {order.orderStatus === "Processing" && (
                         <option value="Delivered">Delivered</option>
                       )}
-
-                       
 
                       {/* {order.orderStatus === "Delivered" && (
                         <option value="revertpacking">Revert to Packing</option>
@@ -207,11 +329,13 @@ const ProcessOrder = ({ history, match }) => {
 
                       {order.orderStatus === "Delivered" && (
                         <option value="Processing">Revert to Processing</option>
-                      )}  
+                      )}
 
                       {order.orderStatus === "Packing" && (
-                        <option value="Ready for Pickup">Ready for Pickup</option>
-                      )} 
+                        <option value="Ready for Pickup">
+                          Ready for Pickup
+                        </option>
+                      )}
 
                       {order.orderStatus === "Packing" && (
                         <option value="Delivered">Delivered</option>
@@ -219,17 +343,14 @@ const ProcessOrder = ({ history, match }) => {
 
                       {order.orderStatus === "Ready for Pickup" && (
                         <option value="Delivered">Delivered</option>
-                      )}  
+                      )}
                       {/* {order.orderStatus === "Ready for Pickup" && (
                         <option value="revertpacked">Revert to Packing</option>
                       )}   */}
 
                       {order.orderStatus === "Ready for Pickup" && (
                         <option value="Processing">Revert to Processing</option>
-                      )}  
-
-                    
-                     
+                      )}
                     </select>
                   </div>
 
@@ -237,7 +358,7 @@ const ProcessOrder = ({ history, match }) => {
                     id="createProductBtn"
                     type="submit"
                     disabled={
-                       loading ? true : false ||  status == "null" ? true : false
+                      loading ? true : false || status == "null" ? true : false
                     }
                   >
                     Process
