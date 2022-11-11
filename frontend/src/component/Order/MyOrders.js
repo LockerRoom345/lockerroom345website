@@ -24,6 +24,7 @@ const MyOrders = () => {
   const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
+  console.log(orders);
   const { user } = useSelector((state) => state.user);
   const [sortModel, setSortModel] = React.useState([
     {

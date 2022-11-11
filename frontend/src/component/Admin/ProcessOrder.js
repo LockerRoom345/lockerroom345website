@@ -166,7 +166,22 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
                       <p>Deliver To Student ID:</p>
                       <span>
-                        {order.user && order.shippingInfo.receivingPersonName}
+                        {order.user &&
+                          order.shippingInfo.receivingPersonName.split("_")[0]}
+                      </span>
+                    </div>
+                    <div>
+                      <p>Student Age:</p>
+                      <span>
+                        {order.user &&
+                          order.shippingInfo.receivingPersonName.split("_")[1]}
+                      </span>
+                    </div>
+                    <div>
+                      <p>Student Gender:</p>
+                      <span>
+                        {order.user &&
+                          order.shippingInfo.receivingPersonName.split("_")[2]}
                       </span>
                     </div>
                     <div>

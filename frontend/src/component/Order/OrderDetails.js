@@ -50,12 +50,20 @@ const OrderDetails = ({ match }) => {
                 </div>
                 <div>
                   <p>Deliver To Student ID:</p>
-                  <span>{shippingInfo.receivingPersonName}</span>
+                  <span>{shippingInfo.receivingPersonName.split("_")[0]}</span>
                 </div>
                 <div>
-                      <p>Order Date:</p>
-                      <span>{order.user && order.shippingInfo.orderDate}</span>
-                    </div>
+                  <p>Student Age:</p>
+                  <span>{shippingInfo.receivingPersonName.split("_")[1]}</span>
+                </div>
+                <div>
+                  <p>Student Gender:</p>
+                  <span>{shippingInfo.receivingPersonName.split("_")[2]}</span>
+                </div>
+                <div>
+                  <p>Order Date:</p>
+                  <span>{order.user && order.shippingInfo.orderDate}</span>
+                </div>
                 <div>
                   <p>Phone:</p>
                   <span>
@@ -65,7 +73,7 @@ const OrderDetails = ({ match }) => {
                 <div>
                   <p>Address:</p>
                   <span>
-                    {order.shippingInfo && order.shippingInfo.userAddress }
+                    {order.shippingInfo && order.shippingInfo.userAddress}
                   </span>
                 </div>
                 <div>
@@ -84,7 +92,10 @@ const OrderDetails = ({ match }) => {
                     className={
                       order.orderStatus && order.orderStatus === "Delivered"
                         ? "greenColor"
-                        :order.orderStatus && order.orderStatus === "Ready for Pickup"?"yellowColor": "redColor"
+                        : order.orderStatus &&
+                          order.orderStatus === "Ready for Pickup"
+                        ? "yellowColor"
+                        : "redColor"
                     }
                   >
                     {order.orderStatus && order.orderStatus}

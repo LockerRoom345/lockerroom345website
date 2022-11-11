@@ -23,6 +23,10 @@ const Shipping = ({ history }) => {
 
   const { shippingInfo } = useSelector((state) => state.cart);
   const [receivingPersonName, setreceivingPersonName] = useState("");
+  const [receivingPersonAge, setreceivingPersonAge] = useState("");
+  const [receivingPersonGender, setreceivingPersonGender] = useState("");
+  const [gender, setGender] = useState("");
+
   const [userLoggedInDesignation, setuserLoggedInDesignation] = useState("");
   // const [address, setAddress] = useState(shippingInfo.address);
   // const [city, setCity] = useState(shippingInfo.city);
@@ -34,15 +38,15 @@ const Shipping = ({ history }) => {
   const regex = /\w+-\d{1,2}/;
   let orderDate = "";
   const shippingSubmit = (e) => {
-    if (regex.test(receivingPersonName) == false) {
+    if (gender == "") {
       e.preventDefault();
-      // alert.error("Check the format of Student ID - Age");
-      alert.error("Check the format of Student ID - Age", {
-        timeout: 2000,
+      alert.error("Please select a gender", {
+        timeout: 4000,
       });
     } else {
+      const studentString =
+        receivingPersonName + "_" + receivingPersonAge + "_" + gender;
       e.preventDefault();
-      //console.log("addComments", addComments);
       let current = new Date();
       let cDate =
         current.getFullYear() +
@@ -65,7 +69,7 @@ const Shipping = ({ history }) => {
       dispatch(
         saveShippingInfo({
           userName: user.name,
-          receivingPersonName,
+          receivingPersonName: studentString,
           additionalComments: addComments,
           userLoggedInDesignation,
           userAddress: user.address,
@@ -106,11 +110,28 @@ const Shipping = ({ history }) => {
               <PersonIcon />
               <input
                 type="text"
-                placeholder="Receiving Student ID (Student ID - Age)"
+                placeholder="Receiving Student ID"
                 value={receivingPersonName}
                 required={true}
                 onChange={(e) => setreceivingPersonName(e.target.value)}
               />
+              <input
+                type="text"
+                placeholder="Receiving Student Age"
+                value={receivingPersonAge}
+                required={true}
+                onChange={(e) => setreceivingPersonAge(e.target.value)}
+              />
+              <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                required={true}
+              >
+                <option value="">Choose Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="NA">Preder not to say</option>
+              </select>
             </div>
             <div>
               <HomeIcon />

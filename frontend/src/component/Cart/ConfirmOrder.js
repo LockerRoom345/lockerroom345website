@@ -13,9 +13,9 @@ import axios from "axios";
 import { createOrder, clearErrors } from "../../actions/orderAction";
 import { removeAllCartItems } from "../../actions/cartAction";
 
-const ConfirmOrder = ({ history,addComments}) => {
+const ConfirmOrder = ({ history, addComments }) => {
   const dispatch = useDispatch();
-  const { shippingInfo, cartItems } = useSelector((state) =>state.cart);
+  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -32,7 +32,7 @@ const ConfirmOrder = ({ history,addComments}) => {
   //   (acc, item) => acc + item.quantity * item.price,
   //   0
   // );
-  const cartItemss = useSelector(() => store.getState().cart.cartItems)
+  const cartItemss = useSelector(() => store.getState().cart.cartItems);
 
   const subtotal = 0;
 
@@ -97,8 +97,8 @@ const ConfirmOrder = ({ history,addComments}) => {
         //   id: result.paymentIntent.id,
         //   status: result.paymentIntent.status,
         // };
-        dispatch(createOrder(order));             
-        dispatch(removeAllCartItems());       
+        dispatch(createOrder(order));
+        dispatch(removeAllCartItems());
         history.push("/success");
       } else {
         alert.error(
@@ -110,20 +110,20 @@ const ConfirmOrder = ({ history,addComments}) => {
       alert.error(error.response.data.message);
     }
   };
-  
+
   const proceedToPayment = () => {
     const data = {
       subtotal,
       shippingCharges,
       tax,
       totalPrice,
-      cartItemss
+      cartItemss,
     };
-    console.log("cartItems updated",cartItemss);
-    localStorage.setItem("cartItems",cartItemss);
+    console.log("cartItems updated", cartItemss);
+    localStorage.setItem("cartItems", cartItemss);
     //const username = useSelector(() => getState().cart.cartItems)
     sessionStorage.setItem("orderInfo", JSON.stringify(data));
-   
+
     history.push("/process/payment");
   };
 
@@ -146,7 +146,15 @@ const ConfirmOrder = ({ history,addComments}) => {
               </div>
               <div>
                 <p>Deliver To Student ID:</p>
-                <span>{shippingInfo.receivingPersonName}</span>
+                <span>{shippingInfo.receivingPersonName.split("_")[0]}</span>
+              </div>
+              <div>
+                <p>Student Age:</p>
+                <span>{shippingInfo.receivingPersonName.split("_")[1]}</span>
+              </div>
+              <div>
+                <p>Student Gender:</p>
+                <span>{shippingInfo.receivingPersonName.split("_")[2]}</span>
               </div>
               <div>
                 <p>Order Date:</p>
@@ -176,18 +184,16 @@ const ConfirmOrder = ({ history,addComments}) => {
                       <img src={item.image} alt="Product" />
                     </div>
                     <div className="cartitemholdername">
-                     <span>{item.name}</span>
+                      <span>{item.name}</span>
                     </div>
                     <div className="cartitemholdercat">
                       <span>Subcategory({item.SubCategory})</span>
                     </div>
                     <div className="cartitemholdersize">
-                      <span>Size({item.ProductSize.split(",",1)})</span>
+                      <span>Size({item.ProductSize.split(",", 1)})</span>
                     </div>
                     <div className="cartitemholderquantity">
-                      <span>
-                        Quantity({item.quantity})
-                      </span>
+                      <span>Quantity({item.quantity})</span>
                     </div>
                   </div>
                 ))}

@@ -135,7 +135,15 @@ const OrderList = ({ history }) => {
 
   orders &&
     orders.forEach((item) => {
-      //console.log(item);
+      console.log(item, item.shippingInfo.receivingPersonName);
+      let tempname = "";
+      if (typeof item.shippingInfo.receivingPersonName === "undefined") {
+        tempname = "";
+
+      } else {
+        tempname = item.shippingInfo.receivingPersonName.split("_")[0];
+
+      }
       rows.push({
         id: item._id,
         orderId: item.orderId,
@@ -143,7 +151,7 @@ const OrderList = ({ history }) => {
         amount: item.totalPrice,
         OrderDate: item.shippingInfo.orderDate,
         status: item.orderStatus,
-        studentId: item.shippingInfo.receivingPersonName,
+        studentId: tempname,
         orderfrom: item.shippingInfo.userName,
       });
     });
