@@ -1,133 +1,222 @@
-.aboutSection {
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  background-color: white;
-  display: grid;
-  grid-template-columns: 4fr 4fr;
-  position: fixed;
+.containerWrapper {
+    display: flex;
+    flex-direction: column;
 }
 
-.aboutSectionGradient {
-  /* background-image: linear-gradient(
-    to bottom right,
-    rgb(28, 129, 53),
-    rgb(28, 129, 53)
-  ); */
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    max-width: 100%;
+    background-color: white;
+    margin-top: -45px;
 }
 
-.aboutSectionContainer {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background-color: rgb(255, 255, 255);
-  width: 80vw;
-  height: 80vh;
-  transform: translateX(-50%) translateY(-50%);
-  /* box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.192); */
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.profileContainer>.contentWrapper {
+    display: flex;
+    /* height: 100vh; */
+    width: 100vw;
+    max-width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.aboutSectionContainer > h1 {
-  font: 400 3vmax "Roboto";
-  color: #065749;
-  margin: 2vmax;
+.profileContainer>.contentWrapper>.PeopleCard {
+    display: flex;
+    flex-direction: row;
+    border: #006554 2px solid;
+    padding: 5px;
+    border-radius: 7px;
+    width: 70vw;
+    font: 300 15px "Roboto";
+    margin-bottom: 5px;
 }
 
-.aboutSectionContainer > div {
-  display: flex;
-  width: 100%;
+.profileContainer>.contentWrapper>.PeopleCard>img {
+    border-radius: 12px;
+    max-width: 200px;
+    object-fit: cover;
 }
 
-.aboutSectionContainer > div > div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2vmax;
-  box-sizing: border-box;
+.profileContainer>.contentWrapper>.PeopleCard>h2 {
+    padding-bottom: 5px;
 }
 
-.aboutSectionContainer > div > div > p {
-  color: rgba(0, 0, 0, 0.623);
-  font: 100 1vmax "Roboto";
+.profileContainer>.contentWrapper>.donation>h1 {
+    /* padding-top: 20px; */
+    padding-bottom: 20px;
+    color: rgb(1, 70, 52);
+    font: 500 40px "Roboto";
 }
 
-.aboutSectionContainer > div > div > button {
-  margin: 1vmax 0;
+.profileContainer>.contentWrapper>.donation {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    background-color: rgba(240, 192, 0, 0.467);
+    padding: 20px;
+    border-radius: 5px;
 }
 
-.aboutSectionContainer > div > div > span {
-  font: 100 1vmax "Roboto";
-  color: rgba(0, 0, 0, 0.616);
+.profileContainer>.contentWrapper>.donation>p {
+    font: 400 20px "Roboto";
+    width: 70%;
+    /* padding-bottom: 15px; */
+    /* padding-left: 20px; */
+}
+
+.peopleContent {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.profileContainer>div:first-child>h1 {
+    padding: 20px;
+    color: rgb(1, 70, 52);
+    font: 500 60px "Roboto";
+    /* transform: translateX(-10vmax) translateY(-2vmax); */
+}
+
+.profileContainer>div:first-child>img {
+    width: 20vmax;
+    padding-right: 40px;
+    /* border-radius: 100%;
+  transition: all 0.5s; */
+}
+
+.profileContainer>div>p {
+    font: 400 20px "Roboto";
+    width: 70%;
+    padding-bottom: 15px;
+    padding-left: 20px;
+}
+
+.profileContainer>div>.boardmemberp {
+    font: 300 20px "Roboto";
+    width: 70%;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.profileContainer>div>h2 {
+    font: bold 23px "Roboto";
+    letter-spacing: 1px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    /* font: 400 20px "Roboto"; */
+    width: 70%;
+    /* padding-bottom: 15px; */
+    /* text-align: justify; */
+    /* text-decoration: solid underline rgba(0, 0, 0, 0.255); */
+}
+
+.profileContainer>div:first-child>a {
+    border: none;
+    background-color: #065749;
+    font: 400 15px "Roboto";
+    color: white;
+    text-decoration: none;
+    padding: 0.5vmax;
+    width: 30%;
+    margin: 4vmax;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.profileContainer>div:first-child>a:hover {
+    background-color: rgb(204, 78, 56);
+}
+
+.profileContainer>div:last-child {
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5vmax;
+    box-sizing: border-box;
+}
+
+.profileContainer>div:last-child>div>h4 {
+    color: black;
+    font: 400 20px "Roboto";
+}
+
+.profileContainer>div:last-child>div>p {
+    color: rgb(255, 255, 255);
+    font: 400 20px "Roboto";
+    margin: 0.2vmax;
+}
+
+.profileContainer>div:last-child>div:last-child {
+    /* display: flex; */
+    flex-direction: column;
+    width: 60%;
+}
+
+
+/* .profileContainer>div:last-child>div:last-child>a {
+  border: none;
+  background-color: rgb(68, 68, 68);
+  font: 400 20px "Roboto";
+  color: white;
+  text-decoration: none;
+  padding: 0.5vmax;
   text-align: center;
-  width: 80%;
-}
+  transition: all 0.5s;
+  margin: 1vmax 0;
+} */
 
-.aboutSectionContainer2 {
-  border-left: 1px solid rgba(0, 0, 0, 0.116);
-}
 
-.aboutSectionContainer2 > h2 {
-  color: rgba(0, 0, 0, 0.623);
-  font: 100 2vmax "Roboto";
-  margin: 2vmax;
-}
-
-.aboutSectionContainer2 > a > svg {
-  font-size: 4vmax;
-}
-
-.youtubeSvgIcon {
-  color: #065749;
-}
-
-.instagramSvgIcon {
-  color: rgb(144, 81, 202);
-}
+/* .profileContainer>div:last-child>div:last-child>a:hover {
+  background-color: rgb(31, 31, 31);
+} */
 
 @media screen and (max-width: 600px) {
-  .aboutSectionContainer > div {
-    display: block;
-  }
-
-  .aboutSectionContainer > h1 {
-    font: 400 5vmax "Roboto";
-    margin: 3vmax;
-  }
-
-  .aboutSectionContainer > div > div > p {
-    font: 100 2vmax "Roboto";
-  }
-
-  .aboutSectionContainer > div > div > span {
-    font: 100 1.4vmax "Roboto";
-    width: 70%;
-  }
-
-  .aboutSectionContainer2 {
-    border-left: none;
-  }
-
-  .aboutSectionContainer2 > h2 {
-    font: 100 3vmax "Roboto";
-    margin: 2vmax;
-  }
-
-  .aboutSectionContainer2 > a > svg {
-    font-size: 6vmax;
-    margin: 1vmax;
-  }
-}
-
-.header{
-  border:2px solid rgba(189, 27, 27, 0);
-  height:500px;
-  width:100%;  
-  /* background-image: url("../../../images/dicks_mission.PNG"); */
-  background-size: cover;
-  
+    .profileContainer>div:last-child {
+        justify-content: space-evenly;
+        align-items: flex-start;
+        padding: 0vmax;
+        box-sizing: border-box;
+    }
+    .profileContainer {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        position: absolute;
+        /* top: 30%; */
+        left: 0%;
+        max-width: 100%;
+        background-color: white;
+        flex-direction: column;
+    }
+    .profileContainer>div:first-child>h1 {
+        font: 500 3.2vmax "Roboto";
+        transform: translateY(-2vmax);
+    }
+    .profileContainer>div:first-child>a {
+        font: 400 1.7vmax "Roboto";
+        padding: 1vmax;
+    }
+    .profileContainer>div:last-child {
+        text-align: center;
+        align-items: center;
+    }
+    .profileContainer>div:last-child>div>h4 {
+        font: 400 2.5vmax "Roboto";
+    }
+    .profileContainer>div:last-child>div>p {
+        font: 400 2vmax "Roboto";
+        margin: 0.5vmax 0;
+    }
+    .profileContainer>div:last-child>div:last-child>a {
+        font: 400 1.8vmax "Roboto";
+        padding: 1vmax;
+        margin: 2vmax 0;
+    }
 }

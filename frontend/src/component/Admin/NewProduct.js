@@ -32,6 +32,7 @@ const NewProduct = ({ history }) => {
 
   const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
   const subCategories = [
+    "One size",
     "Unisex Adult sizing",
     "Men's sizing",
     "Women's sizing",

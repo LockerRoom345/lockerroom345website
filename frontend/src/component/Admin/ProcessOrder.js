@@ -62,6 +62,17 @@ const ProcessOrder = ({ history, match }) => {
       setdummyRefresher("refresh" + order.orderItems[idx].quantity);
     } else return;
   };
+  function findOtherorderQuantity(itemName, subCategory, size){
+    let sum = 0;
+    order.orderItems.map((product) => {
+      console.log(product);
+        if(product.name == itemName && product.subCategory == subCategory && product.ProductSize == size){
+          sum+=product.quantity;
+        }
+    
+    });
+    return sum;
+  }
   function findInventory(itemName, subCategory, size, idx) {
     // console.log("inventoryyyyy");
     // console.log(itemName, subCategory,size[0]);
@@ -157,7 +168,7 @@ const ProcessOrder = ({ history, match }) => {
                       <span>{order.user && order.user.name}</span>
                       {/* <hr></hr> */}
                       <span>&nbsp;</span>
-                      <p>Designation:</p>
+                      <p>Teacher's Name:</p>
                       <span>
                         {order.user &&
                           order.shippingInfo.userLoggedInDesignation}
@@ -247,6 +258,8 @@ const ProcessOrder = ({ history, match }) => {
                       </div>
                       <div className="cartitemholderquantity">
                         <span>Inventory</span>
+                      </div> <div className="cartitemholderquantity">
+                        <span>Other orders</span>
                       </div>{" "}
                     </div>
 
@@ -289,6 +302,13 @@ const ProcessOrder = ({ history, match }) => {
                               item.SubCategory,
                               item.ProductSize.split(",", 1),
                               idx
+                            )}
+                          </div>
+                          <div className="cartitemholderquantity">
+                            {order.orderItems && findOtherorderQuantity(
+                              item.name,
+                              item.SubCategory,
+                              item.ProductSize.split(",", 1)
                             )}
                           </div>
                         </div>

@@ -82,7 +82,7 @@ function App() {
   return (
     <Router>
       <div className="fixed-top">
-        {isAuthenticated && <Header user={user} />}
+        {<Header user={user} />}
       </div>
       {/* {isAuthenticated && <UserOptions user={user} />}
       {isAuthenticated && <Header user={user} />} */}

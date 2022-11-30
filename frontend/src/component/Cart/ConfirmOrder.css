@@ -90,13 +90,14 @@
 .confirmCartItemsContainer>div {
     display: flex;
     font: 400 15px "Roboto";
-    align-items: normal;
+    align-items: center;
     justify-content: space-between;
     margin: 1vmax 0;
 }
 
 .confirmCartItemsContainer>div>div>img {
-    width: 3vmax;
+    /* width: 3vmax; */
+    height: 50px;
 }
 
 .confirmCartItemsContainer>div>a {

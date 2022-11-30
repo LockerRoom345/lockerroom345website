@@ -11,7 +11,7 @@ import { useAlert } from "react-alert";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PersonIcon from "@material-ui/icons/Person";
 import InfoIcon from "@material-ui/icons/Info";
-
+import LoginIcon from '@mui/icons-material/Login';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -25,8 +25,8 @@ import PeopleIcon from "@material-ui/icons/People";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 const Header = ({}) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -62,26 +62,26 @@ const Header = ({}) => {
     history.push("/");
   }
 
-  
   const submit = () => {
+    console.log(user);
     confirmAlert({
-      title: 'Logout',
-      message: 'Are you sure you want to Logout',
+      title: "Logout",
+      message: "Are you sure you want to Logout",
       buttons: [
         {
-          label: 'Yes',
-          onClick: () => logoutUser()
+          label: "Yes",
+          onClick: () => logoutUser(),
         },
         {
-          label: 'No',
-          onClick: () => {}
-        }
-      ]
-    })
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
   };
 
-  function account() {
-    history.push("/account");
+  function about() {
+    history.push("/about");
   }
   function helpuse() {
     history.push("/helpuse");
@@ -101,7 +101,9 @@ const Header = ({}) => {
   function cart() {
     history.push("/cart");
   }
-
+  function login() {
+    history.push("/login");
+  }
   function dashboard() {
     history.push("/admin/dashboard");
   }
@@ -161,7 +163,19 @@ const Header = ({}) => {
       {user && user.role === "user" && (
         <li>
           <InfoIcon className="icon" />
-          <Button onClick={account}>About Us</Button>
+          <Button onClick={about}>About Us</Button>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <InfoIcon className="icon" />
+          <Button onClick={about}>About Us</Button>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <LoginIcon className="icon" />
+          <Button onClick={login}>Login</Button>
         </li>
       )}
       {user &&
@@ -267,7 +281,7 @@ const Header = ({}) => {
                 setUsers();
               }}
             >
-               All Users
+              All Users
             </MenuItem>
             <MenuItem
               onClick={() => {
@@ -280,12 +294,13 @@ const Header = ({}) => {
           </Menu>
         </li>
       )}
-
-      <li className="logoutli">
-        {" "}
-        <ExitToAppIcon className="icon" />
-        <Button onClick={()=>submit()}>Logout</Button>
-      </li>
+      {user && (
+        <li className="logoutli">
+          {" "}
+          <ExitToAppIcon className="icon" />
+          <Button onClick={() => submit()}>Logout</Button>
+        </li>
+      )}
     </div>
   );
 };

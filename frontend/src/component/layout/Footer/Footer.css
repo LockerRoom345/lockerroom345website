@@ -1,11 +1,12 @@
 .footer {
     /* position: fixed !important; */
     /* margin-top: 100vh !important; */
-    padding: 2vmax !important;
+    padding: 0.5vmax !important;
     background-color: #006554 !important;
     color: white !important;
     display: flex !important;
     align-items: center !important;
+    flex-direction: column;
     /* height: 100px; */
 }
 
@@ -13,16 +14,19 @@
     text-decoration: none !important;
     font-size: 1.3vmax !important;
     font-family: "Roboto" !important;
+    font-weight: 200;
     color: white !important;
     transition: all 0.5s !important;
     margin: 0.5vmax !important;
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .leftFooter {
-    width: 20% !important;
+    /* width: 20% !important; */
     display: flex !important;
     text-decoration: none !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
 }
 

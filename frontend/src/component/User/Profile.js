@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "./Profile.css";
 import Header from "../layout/Header/Header";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
+import busbuckslogo from "../../images/busbucks.jpg";
+
 import Footer from "../../component/layout/Footer/Footer";
 
 const Profile = ({ history }) => {
@@ -27,71 +29,64 @@ const Profile = ({ history }) => {
             <div className="profileContainer">
               <div className="contentWrapper">
                 <h1>About Us</h1>
-                <img src={lockerroomlogo} alt="" />
+                <div className="imageWrapper">
+                  <img src={lockerroomlogo} alt="" />
+                  <img src={busbuckslogo} alt="" />
+                </div>
+                {/* <div className="textWrapper"> */}
+
+                <h2>Who we are</h2>
                 <p>
-                  Locker Room 345 is purely a volunteer based organization
-                  donating to students in the greater Binghamton area since
-                  2017. We believe in the transformative power of clean, fitting
-                  clothing for students to properly complete their education. We
-                  value diversity, inclusion, honesty, making a difference and
-                  teamwork. Our mission is “equipping students for success”,
-                  providing the bare clothing necessities to students in need.
-                  39% of students in the US either get bullied or don’t go to
-                  school because they don't have clothes or shoes that are clean
-                  or fitting. That’s where we come in!
+                  Locker Room 345 is a division of B.U.S. BUCKS, led by Kim
+                  Myers supported by Dick’s Sporting Goods and generous donors.
+                  We provide needed footwear and clothing for area students and
+                  families.
                 </p>
+                <h2>What we do</h2>
                 <p>
-                  Winter gear, footwear, pants, shirts, sweatshirts, socks,
-                  undergarments, and more, Locker Room 345 has what students
-                  need to get to school and excel academically. We take special
-                  consideration for students suffering from a traumatic event,
-                  such as house fires. If any of your students are in need of
-                  extra assistance, please do not hesitate to let us know at the
-                  bottom of your order.
+                  Locker Room 345 is located at 345 Court Street in Binghamton.
+                  The majority of inventory is donated by Dick’s Sporting Goods.
+                  Volunteers sort and organize the donations to accommodate
+                  needs quickly. Any school or organization can make a request
+                  on behalf of individual students or families by placing an
+                  order through our website. For additional questions, please
+                  contact Lockerroom345@gmail.com. In-stock items are picked,
+                  packed and delivered within 24 - 48 hours.
                 </p>
+                <h2>Why we do what we do</h2>
+                <hr></hr>
                 <p>
-                  While we want to help all students in need, we provide what we
-                  have available. We take special consideration for students
-                  suffering from a traumatic event, such as house fires. If any
-                  of your students are in need of extra assistance, please do
-                  not hesitate to let us know at the bottom of your order.
-                  Please bear with us as some items may not be in stock as we
-                  are a not-profiting organization, working with donation-only
-                  inventory.
+                  Many children do not attend school due to the lack of the most
+                  basic clothing such as a pair of sneakers, clothing that fits
+                  or a coat to keep them warm. Without these necessities,
+                  students struggle to attend school with dignity and ready to
+                  learn. The need for our program has increased substantially.
                 </p>
+                <h2>How can you help</h2>
 
                 <p>
-                  Locker Room 345 is a team that’s all about students. Kim
-                  Myers, our founder, partnered with Binghamton University to
-                  also help educate students while helping students. Engineers
-                  from both the Computer Science and Industrial and Systems
-                  departments have worked together to bring Locker Room 345 to
-                  an optimized state to enable donations to more students
-                  further out in the county. Our goal is to eventually expand
-                  statewide, and eventually nationwide, helping students in need
-                  in all areas of the country
+                  There are needs our inventory cannot meet. Items such as
+                  children’s clothing in sizes smaller than Dick’s carries,
+                  underwear, socks, or depleted/unusual sizes. We try to
+                  purchase these needed items from various local or online
+                  retail stores. Your monetary donation will be used to help
+                  fulfill these necessities. Your support provides students with
+                  some of the most basic requirements that will increase their
+                  self-confidence and improve attendance: crucial components for
+                  academic success. Please reach out to any of our advisory
+                  board members with questions or to discuss how you can partner
+                  with us. You can also reach out to Kim Myers directly
+                  at Lockerroom345@gmail.com.
                 </p>
-                <p>
-                  Learn more about our team members, and partnering
-                  organizations below, working together to spread joy to
-                  students in need.
+                <h1>B.U.S. Bucks Advisory Board Members</h1>
+                <p  className="boardmemberp">
+                  Kate Allman | Laura Bronstein | Patty Gazda-Grace | Kate Fitzgerald |
+                  Luann Kida | Micki Matthews | Mary Monopoli | Kim Myers | Marc Newman |
+                  Margherita Rossi | Ray Stanton | Jody Zevan | Elissa Brown
                 </p>
-                <p>
-                  Locker Room 345 is a team that’s all about students. Kim
-                  Myers, our founder, partnered with Binghamton University to
-                  also help educate students while helping students. Engineers
-                  from both the Computer Science and Industrial and Systems
-                  departments have worked together to bring Locker Room 345 to
-                  an optimized state to enable donations to more students
-                  further out in the county. Our goal is to eventually expand
-                  statewide, and eventually nationwide, helping students in need
-                  in all areas of the country
-                </p>
-                <p>
-                  Learn more about our team members, and partnering
-                  organizations below, working together to spread joy to
-                  students in need.
-                </p>
+
+                {/* </div>
+
                 <div className="PeopleCard">
                   <img src="data:image/jpeg;base64,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"></img>
                   <div className="peopleContent">
@@ -181,7 +176,7 @@ const Profile = ({ history }) => {
                       necessities.
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <Footer></Footer>
             </div>

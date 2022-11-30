@@ -139,6 +139,18 @@ div>div>div>p>button {
     width: 20vmax;
     padding: 1vmax;
     margin: 2vmax auto;
+    margin-bottom:20px;
+    color: rgb(0, 0, 0, 0.7);
+}
+
+.noteText {
+    text-align: center;
+    font-family: Roboto;
+    font-size: 15px;
+    /* border-bottom: 1px solid rgba(21, 21, 21, 0.5); */
+    /* width: 20vmax; */
+    padding: 1vmax;
+    /* margin: 2vmax auto; */
     color: rgb(0, 0, 0, 0.7);
 }
 
@@ -291,7 +303,6 @@ div>div>div>p>button {
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     outline: none;
     text-transform: capitalize;
-
 }
 
 .addshopcart>button:last-child {
@@ -398,6 +409,16 @@ div>div>div>p>button {
         text-align: center;
         font-family: Roboto;
         font-size: 20px;
+        border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+        width: 20vmax;
+        padding: 1vmax;
+        margin: 2vmax auto;
+        color: rgb(0, 0, 0, 0.7);
+    }
+    .noteText {
+        text-align: center;
+        font-family: Roboto;
+        font-size: 15px;
         border-bottom: 1px solid rgba(21, 21, 21, 0.5);
         width: 20vmax;
         padding: 1vmax;

@@ -63,6 +63,7 @@
 
 .profileContainer>div:first-child>img {
     width: 20vmax;
+    padding-right: 40px;
     /* border-radius: 100%;
     transition: all 0.5s; */
 }
@@ -71,6 +72,27 @@
     font: 400 20px "Roboto";
     width: 70%;
     padding-bottom: 15px;
+    padding-left: 20px;
+}
+
+.profileContainer>div>.boardmemberp {
+    font: 300 20px "Roboto";
+    width: 70%;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+.profileContainer>div>h2 {
+    font: bold 23px "Roboto";
+    letter-spacing: 1px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    /* font: 400 20px "Roboto"; */
+    width: 70%;
+    /* padding-bottom: 15px; */
+    /* text-align: justify; */
+    /* text-decoration: solid underline rgba(0, 0, 0, 0.255); */
 }
 
 .profileContainer>div:first-child>a {
@@ -109,7 +131,7 @@
 }
 
 .profileContainer>div:last-child>div:last-child {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     width: 60%;
 }

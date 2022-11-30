@@ -13,13 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Footer from "../../component/layout/Footer/Footer";
 
 const Home = ({ history }) => {
-  const categories = [
-    "All",
-    "Clothing",
-    "FootWear",
-    "Sports",
-    "Miscellaneous",
-  ];
+  const categories = ["All", "Clothing", "FootWear", "Sports", "Miscellaneous"];
 
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -117,10 +111,10 @@ const Home = ({ history }) => {
         <Fragment>
           <MetaData title="LR345" />
           <div className="banner">
-          <p>LOCKER ROOM 345</p>
-          <h1>EQUIPPING STUDENTS FOR SUCCESS</h1> 
+            <p>LOCKER ROOM 345</p>
+            <h1>EQUIPPING STUDENTS FOR SUCCESS</h1>
 
-          {/* <div className="bground">
+            {/* <div className="bground">
             <div className="banner">
                <a href="#container">
               <button>
@@ -130,9 +124,8 @@ const Home = ({ history }) => {
             </div>
             <div className="banner1"></div>
       </div> */}
-      </div>
-          
-           
+          </div>
+
           <div className="searchbar">
             <form className="searchBoxbar" onSubmit={searchSubmitHandler}>
               <input
@@ -162,6 +155,10 @@ const Home = ({ history }) => {
             </div>
           </div>
           <h2 className="homeHeading">All Products</h2>
+          <h3 className="noteText">
+            *Images are the graphical representation of the product. Brands of
+            specific designs can not be requested
+          </h3>
           <div className="container" id="container">
             {[...Object.entries(products)]
               .sort((a, b) => a[0].localeCompare(b[0]))
@@ -193,8 +190,7 @@ const Home = ({ history }) => {
           <Donate /> */}
         </Fragment>
       )}
-          <Footer></Footer>
-
+      <Footer></Footer>
     </Fragment>
   );
 };
