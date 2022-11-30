@@ -62,14 +62,17 @@ const ProcessOrder = ({ history, match }) => {
       setdummyRefresher("refresh" + order.orderItems[idx].quantity);
     } else return;
   };
-  function findOtherorderQuantity(itemName, subCategory, size){
+  function findOtherorderQuantity(itemName, subCategory, size) {
     let sum = 0;
     order.orderItems.map((product) => {
       console.log(product);
-        if(product.name == itemName && product.subCategory == subCategory && product.ProductSize == size){
-          sum+=product.quantity;
-        }
-    
+      if (
+        product.name == itemName &&
+        product.subCategory == subCategory &&
+        product.ProductSize == size
+      ) {
+        sum += product.quantity;
+      }
     });
     return sum;
   }
@@ -258,9 +261,10 @@ const ProcessOrder = ({ history, match }) => {
                       </div>
                       <div className="cartitemholderquantity">
                         <span>Inventory</span>
-                      {/* </div> <div className="cartitemholderquantity">
+                      </div>
+                      {/* <div className="cartitemholderquantity">
                         <span>Other orders</span>
-                      </div>{" "} */}
+                      </div> */}
                     </div>
 
                     {order.orderItems &&
