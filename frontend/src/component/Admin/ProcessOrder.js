@@ -258,9 +258,9 @@ const ProcessOrder = ({ history, match }) => {
                       </div>
                       <div className="cartitemholderquantity">
                         <span>Inventory</span>
-                      </div> <div className="cartitemholderquantity">
+                      {/* </div> <div className="cartitemholderquantity">
                         <span>Other orders</span>
-                      </div>{" "}
+                      </div>{" "} */}
                     </div>
 
                     {order.orderItems &&
@@ -304,13 +304,13 @@ const ProcessOrder = ({ history, match }) => {
                               idx
                             )}
                           </div>
-                          <div className="cartitemholderquantity">
+                          {/* <div className="cartitemholderquantity">
                             {order.orderItems && findOtherorderQuantity(
                               item.name,
                               item.SubCategory,
                               item.ProductSize.split(",", 1)
                             )}
-                          </div>
+                          </div> */}
                         </div>
                       ))}
                   </div>

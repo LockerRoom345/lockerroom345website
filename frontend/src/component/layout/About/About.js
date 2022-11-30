@@ -60,39 +60,42 @@ const Profile = ({ history }) => {
                   students struggle to attend school with dignity and ready to
                   learn. The need for our program has increased substantially.
                 </p>
-                <h2>How can you help</h2>
+                {user && <h2>How can you help</h2>}
 
-                <p>
-                  There are needs our inventory cannot meet. Items such as
-                  children’s clothing in sizes smaller than Dick’s carries,
-                  underwear, socks, or depleted/unusual sizes. We try to
-                  purchase these needed items from various local or online
-                  retail stores. Your monetary donation will be used to help
-                  fulfill these necessities. Your support provides students with
-                  some of the most basic requirements that will increase their
-                  self-confidence and improve attendance: crucial components for
-                  academic success. Please reach out to any of our advisory
-                  board members with questions or to discuss how you can partner
-                  with us. You can also reach out to Kim Myers directly
-                  at Lockerroom345@gmail.com.
-                </p>
-                <br></br>
-                <br></br>
-
-
-                <div className="donation">
-                {!user && <h1>Donation Information</h1>}
-                {!user && (
+                {user && (
                   <p>
-                    Please make your tax deductible donations payable to
-                    Binghamton Foundation Account 11144 and mail to <br></br> Binghamton
-                    University Foundation, PO Box 6005, Binghamton, NY
-                    13902-6005.<br></br><br></br> Please write “B.U.S.Bucks/Locker Room 345,
-                    Account 11144” in the memo. <br></br>Credit card donations are
-                    accepted at http://Giving.Binghamton.edu or by contacting
-                    the Foundation at 607-777-6929 and referencing our Account
+                    There are needs our inventory cannot meet. Items such as
+                    children’s clothing in sizes smaller than Dick’s carries,
+                    underwear, socks, or depleted/unusual sizes. We try to
+                    purchase these needed items from various local or online
+                    retail stores. Your monetary donation will be used to help
+                    fulfill these necessities. Your support provides students
+                    with some of the most basic requirements that will increase
+                    their self-confidence and improve attendance: crucial
+                    components for academic success. Please reach out to any of
+                    our advisory board members with questions or to discuss how
+                    you can partner with us. You can also reach out to Kim Myers
+                    directly at Lockerroom345@gmail.com.
                   </p>
                 )}
+                <br></br>
+                <br></br>
+
+                <div className="donation">
+                  {!user && <h1>Donation Information</h1>}
+                  {!user && (
+                    <p>
+                      Please make your tax deductible donations payable to
+                      Binghamton Foundation Account 11144 and mail to <br></br>{" "}
+                      Binghamton University Foundation, PO Box 6005, Binghamton,
+                      NY 13902-6005.<br></br>
+                      <br></br> Please write “B.U.S.Bucks/Locker Room 345,
+                      Account 11144” in the memo. <br></br>Credit card donations
+                      are accepted at http://Giving.Binghamton.edu or by
+                      contacting the Foundation at 607-777-6929 and referencing
+                      our Account
+                    </p>
+                  )}
                 </div>
                 <h1>B.U.S. Bucks Advisory Board Members</h1>
                 <p className="boardmemberp">
