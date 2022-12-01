@@ -60,9 +60,9 @@ const Profile = ({ history }) => {
                   students struggle to attend school with dignity and ready to
                   learn. The need for our program has increased substantially.
                 </p>
-                {user && <h2>How can you help</h2>}
+                {!user && <h2>How can you help</h2>}
 
-                {user && (
+                {!user && (
                   <p>
                     There are needs our inventory cannot meet. Items such as
                     children’s clothing in sizes smaller than Dick’s carries,
@@ -81,22 +81,24 @@ const Profile = ({ history }) => {
                 <br></br>
                 <br></br>
 
-                <div className="donation">
-                  {!user && <h1>Donation Information</h1>}
-                  {!user && (
-                    <p>
-                      Please make your tax deductible donations payable to
-                      Binghamton Foundation Account 11144 and mail to <br></br>{" "}
-                      Binghamton University Foundation, PO Box 6005, Binghamton,
-                      NY 13902-6005.<br></br>
-                      <br></br> Please write “B.U.S.Bucks/Locker Room 345,
-                      Account 11144” in the memo. <br></br>Credit card donations
-                      are accepted at http://Giving.Binghamton.edu or by
-                      contacting the Foundation at 607-777-6929 and referencing
-                      our Account
-                    </p>
-                  )}
-                </div>
+                {!user && (
+                  <div className="donation">
+                    {!user && <h1>Donation Information</h1>}
+                    {!user && (
+                      <p>
+                        Please make your tax deductible donations payable to
+                        Binghamton Foundation Account 11144 and mail to{" "}
+                        <br></br> Binghamton University Foundation, PO Box 6005,
+                        Binghamton, NY 13902-6005.<br></br>
+                        <br></br> Please write “B.U.S.Bucks/Locker Room 345,
+                        Account 11144” in the memo. <br></br>Credit card
+                        donations are accepted at http://Giving.Binghamton.edu
+                        or by contacting the Foundation at 607-777-6929 and
+                        referencing our Account
+                      </p>
+                    )}
+                  </div>
+                )}
                 <h1>B.U.S. Bucks Advisory Board Members</h1>
                 <p className="boardmemberp">
                   Kate Allman | Laura Bronstein | Patty Gazda-Grace | Kate
