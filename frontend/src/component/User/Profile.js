@@ -50,8 +50,12 @@ const Profile = ({ history }) => {
                   needs quickly. Any school or organization can make a request
                   on behalf of individual students or families by placing an
                   order through our website. For additional questions, please
-                  contact Lockerroom345@gmail.com. In-stock items are picked,
-                  packed and delivered within 24 - 48 hours.
+                  contact{" "}
+                  <a href="mailto: lockerroom345@gmail.com">
+                    lockerroom345@gmail.com
+                  </a>
+                  . In-stock items are picked, packed and delivered within 24 -
+                  48 hours.
                 </p>
                 <h2>Why we do what we do</h2>
                 <hr></hr>
@@ -75,14 +79,17 @@ const Profile = ({ history }) => {
                   self-confidence and improve attendance: crucial components for
                   academic success. Please reach out to any of our advisory
                   board members with questions or to discuss how you can partner
-                  with us. You can also reach out to Kim Myers directly
-                  at Lockerroom345@gmail.com.
+                  with us. You can also reach out to Kim Myers directly at 
+                  <a href="mailto: lockerroom345@gmail.com">
+                    lockerroom345@gmail.com
+                  </a>
                 </p>
                 <h1>B.U.S. Bucks Advisory Board Members</h1>
-                <p  className="boardmemberp">
-                  Kate Allman | Laura Bronstein | Patty Gazda-Grace | Kate Fitzgerald |
-                  Luann Kida | Micki Matthews | Mary Monopoli | Kim Myers | Marc Newman |
-                  Margherita Rossi | Ray Stanton | Jody Zevan | Elissa Brown
+                <p className="boardmemberp">
+                  Kate Allman | Laura Bronstein | Patty Gazda-Grace | Kate
+                  Fitzgerald | Luann Kida | Micki Matthews | Mary Monopoli | Kim
+                  Myers | Marc Newman | Margherita Rossi | Ray Stanton | Jody
+                  Zevan | Elissa Brown
                 </p>
 
                 {/* </div>
