@@ -101,7 +101,7 @@ function App() {
             return isAuthenticated ? (
               <Redirect to="/home" />
             ) : (
-              <Redirect to="/login" />
+              <Redirect to="/about" />
             );
           }}
         />

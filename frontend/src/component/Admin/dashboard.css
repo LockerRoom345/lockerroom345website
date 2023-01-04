@@ -60,7 +60,7 @@
     color: rgb(255, 255, 255);
     font: 300 1.8rem "Roboto";
     text-align: center;
-    background-color: #5E6258;
+    background-color: #5e6258;
     text-decoration: none;
     padding: 1.5rem;
     width: 10vmax;
@@ -74,12 +74,12 @@
 }
 
 .dashboardSummaryBox2>a:first-child {
-    background-color: #5E6258;
+    background-color: #5e6258;
     color: rgb(255, 255, 255);
 }
 
 .dashboardSummaryBox2>a:last-child {
-    background-color: #5E6258;
+    background-color: #5e6258;
     color: rgb(255, 255, 255);
 }
 
@@ -89,7 +89,64 @@
 }
 
 .doughnutChart {
-    width: 30vmax;
+    /* width: 30vmax; */
+    margin-top: 20px;
+    margin: auto;
+    display: flex;
+    padding-left: 32px;
+    padding-right: 32px;
+    flex-direction: row;
+}
+
+.doughnutChart>.rightWrapper {
+    margin: auto;
+}
+
+.doughnutChart>.rightWrapper>.outOfStockWrapper {
+    width: auto;
+    margin: auto;
+    height: 300px;
+    overflow: scroll;
+    flex-wrap: wrap;
+    display: flex;
+    width: 700px;
+    color: #5e6258;
+    font: 600 16px "Roboto";
+    margin-top: 15px;
+}
+
+.doughnutChart>.rightWrapper>p {
+    color: #ad2626;
+    font: 600 23px "Roboto";
+    margin-top: 10px;
+    text-align: center;
+}
+
+.doughnutChart>.rightWrapper>.outOfStockWrapper>.outofStockProd {
+    margin-bottom: 5px;
+    border: #5e625821 solid 2px;
+    border-radius: 5px;
+    padding: 6px;
+    /* margin: 10px; */
+    margin-right: 10px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.doughnutChart>.rightWrapper>.outOfStockWrapper>.outofStockProd>.size {
+    padding: 5px;
+    background-color: #0146343a;
+    border-radius: 5px;
+    color: #5e6258;
+    font: 600 16px "Roboto";
+    margin-left: 10px;
+    height: min-content;
+    width: min-content;
+}
+
+.doughnutChart>.donutWrapper {
+    width: 300px;
     margin-top: 20px;
     margin: auto;
 }
@@ -113,7 +170,7 @@
         color: rgb(0, 0, 0);
         font: 300 0.8rem "Roboto" !important;
         text-align: center;
-        background-color: #5E6258;
+        background-color: #5e6258;
         text-decoration: none;
         padding: 1.5rem;
         width: 4vmax !important;
@@ -132,7 +189,7 @@
         color: rgb(255, 255, 255);
         font: 300 1.5rem "Roboto";
         text-align: center;
-        background-color: #5E6258;
+        background-color: #5e6258;
         text-decoration: none;
         padding: 1.5rem;
         width: 7vmax;

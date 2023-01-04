@@ -13,7 +13,6 @@ import ReactTooltip from "react-tooltip";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
 import Footer from "../../component/layout/Footer/Footer";
 
-
 const Dashboard = () => {
   const dispatch = useDispatch();
 
@@ -34,7 +33,7 @@ const Dashboard = () => {
   );
   //console.log(stockarray);
   stockarray.map((x) => {
-    if (x.includes('0')) {
+    if (x.includes("0")) {
       outstockincr += 1;
     }
     //console.log(outstockincr);
@@ -97,7 +96,36 @@ const Dashboard = () => {
       },
     ],
   };
-console.log(orders);
+
+  const stockData = () => {
+    var outOfStockProductArray = products.filter(
+      (product) =>
+        product.ProductSize.filter(
+          (item) => item.stock == 0 || item.stock == "0"
+        ).length
+    );
+    var renderText = [];
+    var outOfStockcheck = [];
+    var x = outOfStockProductArray.filter((product) => {
+      product.ProductSize.filter((item) => {
+        if (item.stock == 0 || item.stock == "0") {
+          console.log(product.name, item.size);
+          // if (!outOfStockcheck.includes(product.name))
+          renderText.push(
+            <div className="outofStockProd">
+              {/* {product.name} */}
+              <div className="name">{product.name}</div>
+              <div className="size">{item.size}</div>
+            </div>
+          );
+          outOfStockcheck.push(product.name);
+        }
+      });
+    });
+    console.log(renderText);
+    return renderText;
+  };
+  console.log(products);
   return (
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
@@ -122,7 +150,11 @@ console.log(orders);
                 data-type="info"
               >
                 <p>Orders Received</p>
-                <p>{orders && orders.length}</p>
+                <p>
+                  {orders &&
+                    orders.filter((order) => order.orderStatus == "Processing")
+                      .length}
+                </p>
 
                 <ReactTooltip id="toolTip1" />
               </Link>
@@ -154,22 +186,28 @@ console.log(orders);
               </Link>
             )}
           </div>
-
           <div>
             <p>
               Stock Status <br />
             </p>
           </div>
           <div className="doughnutChart">
-            <Doughnut data={doughnutState} />
+            <div className="donutWrapper">
+              {" "}
+              <Doughnut data={doughnutState} />
+            </div>
+            <div className="rightWrapper">
+              {" "}
+              <p>List of Items Out of Stock</p>
+              <div className="outOfStockWrapper">{stockData()}</div>
+            </div>
           </div>
         </div>
 
         {/* <div className="lineChart">
           <Line data={lineState} />
         </div> */}
-              <Footer></Footer>
-
+        <Footer></Footer>
       </div>
     </div>
   );
