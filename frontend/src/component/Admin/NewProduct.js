@@ -22,6 +22,8 @@ const NewProduct = ({ history }) => {
   const { loading, error, success } = useSelector((state) => state.newProduct);
 
   const [name, setName] = useState("");
+  // const [isShow, setIsShow] = useState(true);
+
   // const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
@@ -84,6 +86,7 @@ const NewProduct = ({ history }) => {
     obj.category = category;
     obj.SubCategory = SubCategory;
     obj.ProductSize = inputList;
+    obj.isShow = true;
     // obj.images = images;
     var jsonString = obj;
     debugger;
@@ -211,7 +214,7 @@ const NewProduct = ({ history }) => {
                       className="ml10"
                       name="stock"
                       placeholder="stock"
-                      type = "number"
+                      type="number"
                       value={x.stock}
                       required
                       onChange={(e) => handleInputChange(e, i)}

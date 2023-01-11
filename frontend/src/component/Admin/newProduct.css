@@ -15,6 +15,26 @@
     text-align: center;
 }
 
+#hideWrapper {
+    padding: 1vmax 1vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    font: 300 15px "Roboto";
+    outline: none;
+    justify-content: space-around;
+}
+
+#hideCheckbox {
+    width: fit-content;
+    /* color: #065749; */
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+}
+
 .createProductForm {
     display: flex;
     flex-direction: column;

@@ -17,9 +17,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
+import { updateProduct } from "../../actions/productAction";
+
+let counter = 0;
 const ProductList = ({ history }) => {
   const dispatch = useDispatch();
 
@@ -37,19 +40,19 @@ const ProductList = ({ history }) => {
 
   const submit = (params) => {
     confirmAlert({
-      title: 'Delete Item',
-      message: 'Are you sure you want to delete this item from inventory',
+      title: "Delete Item",
+      message: "Are you sure you want to delete this item from inventory",
       buttons: [
         {
-          label: 'Yes',
-          onClick: () => deleteProductHandler(params.getValue(params.id, "id"))
+          label: "Yes",
+          onClick: () => deleteProductHandler(params.getValue(params.id, "id")),
         },
         {
-          label: 'No',
-          onClick: () => {}
-        }
-      ]
-    })
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
   };
 
   useEffect(() => {
@@ -65,18 +68,61 @@ const ProductList = ({ history }) => {
 
     if (isDeleted) {
       alert.success("Product Deleted Successfully");
-      history.push("/admin/dashboard");
+      // history.push("/admin/dashboard");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
 
     dispatch(getAdminProduct());
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
- 
+  // const updateProductSubmitHandler = (e) => {
+  //   e.preventDefault();
+
+  //   const myForm = new FormData();
+
+  //   myForm.set("name", name);
+  //   myForm.set("description", description);
+  //   myForm.set("category", category);
+  //   myForm.set("SubCategory", SubCategory);
+  //   myForm.set("ProductSize", [ProductSize]);
+  //   myForm.set("Stock", Stock);
+  //   myForm.set("isShow", true);
+
+  //   images.forEach((image) => {
+  //     myForm.append("images", image);
+  //   });
+  //   dispatch(updateProduct(productId, myForm));
+  // };
 
   const columns = [
     // { field: "id", headerName: "Product ID", Width: 100, flex: 0.2 },
-
+    {
+      field: "show",
+      headerName: "Status",
+      minWidth: 20,
+      flex: 0.07,
+      cellClassName: (params) => {
+        //console.log("params",params);
+        return params.getValue(params.id, "show") == "SHOW"
+          ? "greenColor"
+          : "redColor";
+      },
+      // renderCell: (params) => {
+      //   return (
+      //     <Fragment>
+      //       <div
+      //         style={{
+      //           color: params.getValue(params.id, "isShow")
+      //             ? "greenColor"
+      //             : "redColor",
+      //         }}
+      //       >
+      //         {params.getValue(params.id, "isShow") ? "SHOW" : "HIDDEN"}{" "}
+      //       </div>
+      //     </Fragment>
+      //   );
+      // },
+    },
     {
       field: "name",
       headerName: "Name",
@@ -280,18 +326,58 @@ const ProductList = ({ history }) => {
       //console.log(item);
       rows.push({
         id: item._id,
-        stock: item.ProductSize.reduce((sum,a)=> Number(sum)+Number(a.stock),0),
+        stock: item.ProductSize.reduce(
+          (sum, a) => Number(sum) + Number(a.stock),
+          0
+        ),
         // price: item.price,
-        stockinfo: (item.ProductSize.map((y) => {
-          let str ="";
-          str+=( " "+ y.size + " : " + y.stock + " " );
-          return  str;
-        })),
+        stockinfo: item.ProductSize.map((y) => {
+          let str = "";
+          str += " " + y.size + " : " + y.stock + " ";
+          return str;
+        }),
+        show: item.isShow ? "SHOW" : "HIDDEN",
         name: item.name,
         size: item.Size,
         category: item.category,
         subcategory: item.SubCategory,
       });
+
+      //-----------------------------------
+      // if (item._id == "61fd955ae97a443c34262fe3" && counter == 0) {
+      //   counter = counter + 1;
+      //   console.log("EXPERIMENTAL SCRIPT: ", item.name, counter);
+      //   const myForm = new FormData();
+
+      //   myForm.set("name", item.name);
+      //   myForm.set("description", item.description);
+      //   myForm.set("category", item.category);
+      //   myForm.set("SubCategory", item.SubCategory);
+      //   myForm.set("ProductSize", item.ProductSize);
+      //   myForm.set("Stock", item.Stock);
+      //   myForm.set("isShow", true);
+
+      //   item.images.forEach((image) => {
+      //     myForm.append("images", image);
+      //   });
+
+      //   //     var obj = new Object();
+      //   //     obj.name = item.name;
+      //   //     obj.description = item.description;
+      //   //     obj.category = item.category;
+      //   //     obj.SubCategory = item.SubCategory;
+      //   //     obj.ProductSize = item.ProductSize;
+      //   //     obj.Stock = item.Stock;
+      //   //     obj.isShow = true;
+      //   //     item.images.forEach((image) => {
+      //   //       obj.images = image;
+      //   //     });
+      //   // // obj.images = images;
+      //   // var jsonString = obj;
+      //   dispatch(updateProduct(item._id, myForm));
+      // }
+
+      //-----------------------------------
     });
 
   return (

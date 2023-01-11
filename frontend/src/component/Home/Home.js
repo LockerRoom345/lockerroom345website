@@ -35,7 +35,11 @@ const Home = ({ history }) => {
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => {
-    const mapping = state.products.products.reduce((acc, x) => {
+    const showProductList = state.products.products.filter(
+      (product) => product.isShow == true
+    );
+    console.log(showProductList);
+    const mapping = showProductList.reduce((acc, x) => {
       let subcategoryData = x.ProductSize.map((y) => {
         let obj = {};
         obj.size = y.size;
@@ -161,6 +165,7 @@ const Home = ({ history }) => {
           </h3>
           <div className="container" id="container">
             {[...Object.entries(products)]
+
               .sort((a, b) => a[0].localeCompare(b[0]))
               .map(([key, value]) => {
                 return <ProductCard key={value.id} product={value} />;

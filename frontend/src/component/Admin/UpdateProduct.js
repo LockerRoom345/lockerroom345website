@@ -31,6 +31,7 @@ const UpdateProduct = ({ history, match }) => {
   } = useSelector((state) => state.product);
 
   const [name, setName] = useState("");
+  const [isShow, setIsShow] = useState(true);
   // const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -63,14 +64,16 @@ const UpdateProduct = ({ history, match }) => {
       //     x.size == product.ProductSize.size;
       //   })
       // );
+      // console.log(product.name, product.isShow);
       setName(product.name);
+      setIsShow(product.isShow);
       setDescription(product.description);
       // setPrice(product.price);
       setCategory(product.category);
       setSubCategory(product.SubCategory);
+      setProductSize(product.ProductSize[0].size);
       // setProductSize(product.ProductSize[0].size);
-      // setProductSize(product.ProductSize[0].size);
-      // setStock(product.ProductSize[0].stock);
+      setStock(product.ProductSize[0].stock);
       setOldImages(product.images);
     }
     if (error) {
@@ -85,7 +88,8 @@ const UpdateProduct = ({ history, match }) => {
 
     if (isUpdated) {
       alert.success("Product Updated Successfully");
-      history.push("/admin/products");
+      // history.push("/admin/products");
+      dispatch(getProductDetails(productId));
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [
@@ -110,6 +114,7 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("SubCategory", SubCategory);
     myForm.set("ProductSize", [ProductSize]);
     myForm.set("Stock", Stock);
+    myForm.set("isShow", isShow);
 
     images.forEach((image) => {
       myForm.append("images", image);
@@ -118,11 +123,10 @@ const UpdateProduct = ({ history, match }) => {
   };
 
   const handlesizeChange = (e) => {
-   
-    // console.log(e.target.options.selectedIndex);    
+    // console.log(e.target.options.selectedIndex);
     // //console.log("obj",e.target[e.target.selectedIndex].key );
     // console.log((product.ProductSize[(e.target.options.selectedIndex)-1]).size);
-    
+
     //console.log("selectedIndex",selectedIndex);
     //console.log(e.target.options[selectedIndex].datasets.key);
     // for (let node of e.target.children) {
@@ -133,7 +137,9 @@ const UpdateProduct = ({ history, match }) => {
     //     // });
     //   }
     // }
-    setProductSize((product.ProductSize[(e.target.options.selectedIndex)-1]).size);
+    setProductSize(
+      product.ProductSize[e.target.options.selectedIndex - 1].size
+    );
     setStock(e.target.value);
   };
 
@@ -199,7 +205,7 @@ const UpdateProduct = ({ history, match }) => {
                 placeholder="Category"
                 required
                 disabled
-                value = {product.category}
+                value={product.category}
                 // onChange={(e) => setSubCategory(e.target.value)}
               />
               {/* <select
@@ -221,7 +227,7 @@ const UpdateProduct = ({ history, match }) => {
                 placeholder="SubCategory"
                 required
                 disabled
-                value = {product.SubCategory}
+                value={product.SubCategory}
                 // onChange={(e) => setSubCategory(e.target.value)}
               />
               {/* <select
@@ -292,6 +298,18 @@ const UpdateProduct = ({ history, match }) => {
                 required
                 onChange={(e) => setStock(e.target.value)}
                 value={Stock}
+              />
+            </div>
+            <div id="hideWrapper">
+              <div id="hide">Do you want to show this product?</div>
+              <input
+                id="hideCheckbox"
+                type="checkbox"
+                onChange={(value) => {
+                  setIsShow(value.target.checked);
+                  // console.log(value.target.checked);
+                }}
+                checked={isShow}
               />
             </div>
 

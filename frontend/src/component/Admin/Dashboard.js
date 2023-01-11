@@ -109,7 +109,7 @@ const Dashboard = () => {
     var x = outOfStockProductArray.filter((product) => {
       product.ProductSize.filter((item) => {
         if (item.stock == 0 || item.stock == "0") {
-          console.log(product.name, item.size);
+          // console.log(product.name, item.size);
           // if (!outOfStockcheck.includes(product.name))
           renderText.push(
             <div className="outofStockProd">

@@ -31,31 +31,26 @@ import {
   CLEAR_ERRORS,
 } from "../constants/productConstants";
 
-
-
 // Get All Products
 export const getProduct =
   (keyword = "", currentPage = 2, category) =>
   async (dispatch) => {
-    
     try {
       dispatch({ type: ALL_PRODUCT_REQUEST });
 
       let link = "";
-      if (currentPage===1 & category=="") {
+      if ((currentPage === 1) & (category == "")) {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`;
-      }
-      else{
+      } else {
         link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${category}`;
       }
 
-      if (category=="All") {
+      if (category == "All") {
         link = `/api/v1/products`;
       }
       // if (currentPage==1 && category === category) {
-        
+
       // }
-      
 
       const { data } = await axios.get(link);
 
@@ -120,6 +115,7 @@ export const createProduct = (productData) => async (dispatch) => {
 // Update Product
 export const updateProduct = (id, productData) => async (dispatch) => {
   try {
+    console.log(id, productData);
     dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
     const config = {

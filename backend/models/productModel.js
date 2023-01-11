@@ -32,11 +32,11 @@ const productSchema = mongoose.Schema({
       size: {
         type: String,
         required: false,
-       },
+      },
       stock: {
         type: String,
         required: false,
-      }
+      },
     },
   ],
   // ProductSize:[{
@@ -62,6 +62,10 @@ const productSchema = mongoose.Schema({
   additionalComments: {
     type: String,
     required: false,
+  },
+  isShow: {
+    type: Boolean,
+    required: true,
   },
 });
 
