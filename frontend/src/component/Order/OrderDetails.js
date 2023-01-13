@@ -98,7 +98,9 @@ const OrderDetails = ({ match }) => {
                         : "redColor"
                     }
                   >
-                    {order.orderStatus && order.orderStatus}
+                    {order.orderStatus && order.orderStatus == "Printed"
+                      ? "Processing"
+                      : order.orderStatus}
                   </p>
                 </div>
               </div>

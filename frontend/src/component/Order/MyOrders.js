@@ -12,11 +12,7 @@ import LaunchIcon from "@material-ui/icons/Launch";
 import Header from "../layout/Header/Header";
 
 const MyOrders = () => {
-  const categories = [
-    "All",
-    "Current",
-    "Previous"
-  ];
+  const categories = ["All", "Current", "Previous"];
 
   const [category, setCategory] = useState("Current");
 
@@ -70,7 +66,9 @@ const MyOrders = () => {
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
-          :params.getValue(params.id, "status") === "Ready for Pickup" ? "BlueColor": "redColor";
+          : params.getValue(params.id, "status") === "Ready for Pickup"
+          ? "BlueColor"
+          : "redColor";
       },
     },
     {
@@ -99,13 +97,38 @@ const MyOrders = () => {
   ];
   const rows = [];
 
- 
   orders &&
     orders.forEach((item, index) => {
       console.log(category);
       console.log(item.orderStatus);
-      if(category == 'All')
-       {
+      if (category == "All") {
+        rows.push({
+          itemsQty: item.orderItems.length,
+          id: item._id,
+          OrderDate: item.shippingInfo.orderDate,
+          status:
+            item.orderStatus == "Printed" ? "Processing" : item.orderStatus,
+          amount: item.totalPrice,
+          studentId: item.shippingInfo.receivingPersonName,
+          orderfrom: user.name,
+        });
+      }
+      if (
+        category == "Current" &&
+        (item.orderStatus == "Processing" || item.orderStatus == "Printed")
+      ) {
+        rows.push({
+          itemsQty: item.orderItems.length,
+          id: item._id,
+          OrderDate: item.shippingInfo.orderDate,
+          status:
+            item.orderStatus == "Printed" ? "Processing" : item.orderStatus,
+          amount: item.totalPrice,
+          studentId: item.shippingInfo.receivingPersonName,
+          orderfrom: user.name,
+        });
+      }
+      if (category == "Previous" && item.orderStatus == "Delivered") {
         rows.push({
           itemsQty: item.orderItems.length,
           id: item._id,
@@ -114,31 +137,10 @@ const MyOrders = () => {
           amount: item.totalPrice,
           studentId: item.shippingInfo.receivingPersonName,
           orderfrom: user.name,
-        });}
-      if(category == 'Current' && (item.orderStatus == 'Processing' || item.orderStatus == 'Packing'))
-       {
-        rows.push({
-          itemsQty: item.orderItems.length,
-          id: item._id,
-          OrderDate: item.shippingInfo.orderDate,
-          status: item.orderStatus,
-          amount: item.totalPrice,
-          studentId: item.shippingInfo.receivingPersonName,
-          orderfrom: user.name,
-        });}
-      if(category == 'Previous' && (item.orderStatus == 'Delivered') )
-       {
-          rows.push({
-          itemsQty: item.orderItems.length,
-          id: item._id,
-          OrderDate: item.shippingInfo.orderDate,
-          status: item.orderStatus,
-          amount: item.totalPrice,
-          studentId: item.shippingInfo.receivingPersonName,
-          orderfrom: user.name,
-        });}
+        });
+      }
     });
-  
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -157,8 +159,8 @@ const MyOrders = () => {
           <Loader />
         ) : (
           <div className="myOrdersPage">
-            <div className="orderToggle" >
-            <fieldset >
+            <div className="orderToggle">
+              <fieldset>
                 <Typography component="legend">Filter</Typography>
                 <ul className="categoryBox">
                   {categories.map((category) => (
@@ -180,7 +182,6 @@ const MyOrders = () => {
               <div className="eachRadioButton">
                 <input type="radio" value="past" checked={toggle === 'past'} onChange={handleOptionChange2()}/> Past Orders
               </div> */}
-
             </div>
             <DataGrid
               sortModel={sortModel}

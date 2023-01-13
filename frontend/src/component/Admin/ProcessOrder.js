@@ -90,7 +90,7 @@ const ProcessOrder = ({ history, match }) => {
       );
     }
     if (stockIndex >= 0) {
-      stock = products[index].ProductSize[stockIndex].stock;
+      stock = products[index]?.ProductSize[stockIndex].stock;
     }
     if (stockIndex >= 0 && index >= 0) {
       // console.log(stock, deltaList[idx], idx);
@@ -352,6 +352,9 @@ const ProcessOrder = ({ history, match }) => {
                       {/* {order.orderStatus === "Processing" && (
                         <option value="Delivered">Packed and Delivered</option>
                       )}  */}
+                      {order.orderStatus === "Processing" && (
+                        <option value="Printed">Printed</option>
+                      )}
                       {order.orderStatus === "Processing" && (
                         <option value="Ready for Pickup">
                           Ready for Pickup
