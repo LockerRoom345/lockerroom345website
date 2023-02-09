@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Footer from "../../component/layout/Footer/Footer";
 
 const Home = ({ history }) => {
-  const categories = ["All", "Clothing", "FootWear", "Sports", "Miscellaneous"];
+  const categories = ["All", "Clothing", "Footwear", "Sports", "Miscellaneous"];
 
   const alert = useAlert();
   const dispatch = useDispatch();

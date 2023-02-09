@@ -32,7 +32,7 @@ const NewProduct = ({ history }) => {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = ["FootWears", "Clothing", "Sports", "Miscellaneous"];
+  const categories = ["Footwear", "Clothing", "Sports", "Miscellaneous"];
   const subCategories = [
     "One size",
     "Unisex Adult sizing",
@@ -73,7 +73,7 @@ const NewProduct = ({ history }) => {
 
     if (success) {
       alert.success("Product Created Successfully");
-      history.push("/admin/products");
+      // history.push("/admin/products");
       dispatch({ type: NEW_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, history, success]);

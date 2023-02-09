@@ -16,7 +16,7 @@ const Footer = () => {
       <div className="midFooter">        
         <img src={lockerroomlogo} alt="" />
         <p><span>Equipping Students for Success</span></p>
-        <p>&copy; 2022 Locker Room 345 </p>
+        <p>&copy; 2023 Locker Room 345 </p>
       </div>
 
       {/* <div className="rightFooter">

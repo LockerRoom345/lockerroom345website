@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 
 const categories = [
-  "FootWears",
+  "Footwear",
   "Clothing",
   "Sports",
   "Miscellaneous"

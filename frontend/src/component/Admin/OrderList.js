@@ -73,7 +73,7 @@ const OrderList = ({ history }) => {
     },
     {
       field: "studentId",
-      headerName: "Student Id",
+      headerName: "Student ID",
       type: "string",
       minWidth: 50,
       flex: 0.1,
