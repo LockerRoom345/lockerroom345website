@@ -102,7 +102,7 @@
     margin: auto;
 }
 
-.doughnutChart>.rightWrapper>.outOfStockWrapper {
+.outOfStockWrapper {
     width: auto;
     margin: auto;
     height: 300px;
@@ -122,9 +122,9 @@
     text-align: center;
 }
 
-.doughnutChart>.rightWrapper>.outOfStockWrapper>.outofStockProd {
+.outofStockProdWrapper {
     margin-bottom: 5px;
-    border: #5e625821 solid 2px;
+    /* border: #5e625821 solid 2px; */
     border-radius: 5px;
     padding: 6px;
     /* margin: 10px; */
@@ -134,7 +134,25 @@
     justify-content: space-between;
 }
 
-.doughnutChart>.rightWrapper>.outOfStockWrapper>.outofStockProd>.size {
+.outofStockProd {
+    margin-bottom: 5px;
+    border: #5e625821 solid 2px;
+    border-radius: 5px;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    /* margin: 10px; */
+    margin-right: 10px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.outofStockProd>svg {
+    color: #01463494;
+}
+
+.outofStockProd>.size {
     padding: 5px;
     background-color: #0146343a;
     border-radius: 5px;
@@ -143,6 +161,22 @@
     margin-left: 10px;
     height: min-content;
     width: min-content;
+}
+
+.hoversizeText {
+    background-color: #014634;
+    padding: 2px;
+}
+
+.hovername {
+    padding: 5px;
+    background-color: #014634;
+    border-radius: 5px;
+    color: #ffffff;
+    font: 400 15px "Roboto";
+    margin-left: 10px;
+    height: min-content;
+    width: max-content;
 }
 
 .doughnutChart>.donutWrapper {

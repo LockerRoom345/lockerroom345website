@@ -12,6 +12,8 @@ import MetaData from "../layout/MetaData";
 import ReactTooltip from "react-tooltip";
 import lockerroomlogo from "../../images/lockerroomlogo.PNG";
 import Footer from "../../component/layout/Footer/Footer";
+import ReactHover, { Trigger, Hover } from "react-hover";
+import InfoIcon from "@mui/icons-material/Info";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -27,11 +29,12 @@ const Dashboard = () => {
 
   let instock = 0;
   let outstockincr = 0;
+  let totalOutOfStock = 0;
+
   //console.log(products);
   let stockarray = products.map((x) =>
     x.ProductSize.map((y) => y.stock).sort((a, b) => a - b)
   );
-  //console.log(stockarray);
   stockarray.map((x) => {
     if (x.includes("0")) {
       outstockincr += 1;
@@ -46,6 +49,7 @@ const Dashboard = () => {
     //   }
     // }      )
   });
+  // console.log( outstockincr);
   // //console.log("out of stock list", stockarray);
   // //console.log("overall items out of stock is", outstockincr);
 
@@ -97,6 +101,24 @@ const Dashboard = () => {
     ],
   };
 
+  const renderSubCategoryTag = (subCategory) => {
+    // console.log(subCategory);
+    if (subCategory.toLowerCase().includes("men")) return "MENS";
+    if (subCategory.toLowerCase().includes("women")) return "WOMENS";
+    if (subCategory.toLowerCase().includes("boy")) return "BOYS";
+    if (subCategory.toLowerCase().includes("girl")) return "GIRLS";
+    if (subCategory.toLowerCase().includes("toddler")) return "TODDLERS";
+    if (subCategory.toLowerCase().includes("adult")) return "ADULTS";
+  };
+
+  const renderHoverSizeText = (sizes) => {
+    const sizeArray = sizes.split(",");
+    let x = [];
+    sizeArray.filter((size) => {
+      x.push(<div className={"hoversizeText"}>{size}</div>);
+    });
+    return x;
+  };
   const stockData = () => {
     var outOfStockProductArray = products.filter(
       (product) =>
@@ -106,26 +128,66 @@ const Dashboard = () => {
     );
     var renderText = [];
     var outOfStockcheck = [];
-    var x = outOfStockProductArray.filter((product) => {
+    var displayArr = [];
+    // console.log(outOfStockProductArray);
+    // console.log(outOfStockcheck);
+    outOfStockProductArray.filter((product) => {
       product.ProductSize.filter((item) => {
         if (item.stock == 0 || item.stock == "0") {
-          // console.log(product.name, item.size);
-          // if (!outOfStockcheck.includes(product.name))
-          renderText.push(
-            <div className="outofStockProd">
-              {/* {product.name} */}
-              <div className="name">{product.name}</div>
-              <div className="size">{item.size}</div>
-            </div>
-          );
-          outOfStockcheck.push(product.name);
+          const i = outOfStockcheck.findIndex((e) => e.name === product.name);
+          if (i >= 0) {
+            var object = outOfStockcheck[i];
+            object.sizes =
+              object.sizes + "," + product.SubCategory + " | " + item.size;
+          } else {
+            outOfStockcheck.push({
+              name: product.name,
+              sizes: product.SubCategory + " | " + item.size,
+            });
+          }
         }
       });
     });
-    console.log(renderText);
+    // console.log(outOfStockcheck);
+
+    var x = outOfStockProductArray.filter((product, idx1) => {
+      product.ProductSize.filter((item, idx2) => {
+        if (item.stock == 0 || item.stock == "0") {
+          // console.log(product.name, item.size);
+          const i = outOfStockcheck.findIndex((e) => e.name === product.name);
+          if (!displayArr.includes(product.name))
+            renderText.push(
+              <div className="outofStockProdWrapper" id={idx1 + idx2}>
+                <ReactHover
+                  options={{ followCursor: true, shiftX: -100, shiftY: 20 }}
+                >
+                  <Trigger type="trigger">
+                    <div className="outofStockProd">
+                      {/* {product.name} */}
+                      <div className="name">{product.name}</div>
+                      <InfoIcon />
+                      {/* <div className="size">
+                        {" "}
+                        {renderSubCategoryTag(product.SubCategory)}
+                      </div> */}
+                    </div>
+                  </Trigger>
+                  <Hover type="hover">
+                    <div className="hovername">
+                      {renderHoverSizeText(outOfStockcheck[i].sizes)}
+                    </div>
+                  </Hover>
+                </ReactHover>
+              </div>
+            );
+          displayArr.push(product.name);
+        }
+      });
+    });
+    // console.log(renderText);
     return renderText;
   };
-  console.log(products);
+  // console.log(products);
   return (
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
