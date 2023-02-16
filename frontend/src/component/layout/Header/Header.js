@@ -213,7 +213,7 @@ const Header = ({}) => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            PRODUCTS
+            Products
           </Button>
           <Menu
             id="basic-menu"
@@ -264,7 +264,7 @@ const Header = ({}) => {
             aria-expanded={open1 ? "true" : undefined}
             onClick={handleClick1}
           >
-            USERS
+            Users
           </Button>
           <Menu
             id="basic-menu1"

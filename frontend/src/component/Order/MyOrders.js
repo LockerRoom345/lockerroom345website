@@ -62,7 +62,7 @@ const MyOrders = () => {
       field: "status",
       headerName: "Status",
       minWidth: 150,
-      flex: 0.5,
+      flex: 0.4,
       cellClassName: (params) => {
         return params.getValue(params.id, "status") === "Delivered"
           ? "greenColor"
@@ -75,7 +75,7 @@ const MyOrders = () => {
       field: "itemsQty",
       headerName: "Quantity",
       type: "number",
-      minWidth: 400,
+      minWidth: 200,
       flex: 0,
     },
     {

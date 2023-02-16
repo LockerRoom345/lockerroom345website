@@ -40,7 +40,7 @@
     color: white;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr;
-    font: 300 1.2vmax "Roboto";
+    font: 300 25px "Roboto";
 }
 
 .cartHeader>p {
