@@ -61,6 +61,10 @@
     transition: all 0.5s;
 }
 
+.loginEmail>div {
+    width: 100%;
+}
+
 .signUpForm {
     transform: translateY(-100%) translateX(-100vmax);
 }
@@ -72,6 +76,10 @@
     align-items: center;
     padding-inline-start: 1vmax vmax;
     font: 300 15px "Roboto";
+}
+
+.css-b62m3t-container {
+    width: inherit;
 }
 
 .loginForm>div>input,

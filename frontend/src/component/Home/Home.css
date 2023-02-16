@@ -71,6 +71,10 @@ fieldset {
     color: rgb(151, 144, 144);
 }
 
+.MuiTypography-body1 {
+    font-size: 22px !important;
+}
+
 .banner>h1 {
     margin: 5vmax;
     font: 800 1.8vmax "Roboto";
