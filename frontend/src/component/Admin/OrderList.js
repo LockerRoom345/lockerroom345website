@@ -15,6 +15,8 @@ import {
   clearErrors,
 } from "../../actions/orderAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+import moment from 'moment';
+
 
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const OrderList = ({ history }) => {
     {
       field: "OrderDate",
       headerName: "Order Date",
-      type: "date",
+      type: "string",
       minWidth: 50,
       flex: 0.1,
     },
@@ -149,7 +151,7 @@ const OrderList = ({ history }) => {
         orderId: item.orderId,
         itemsQty: item.orderItems.length,
         amount: item.totalPrice,
-        OrderDate: item.shippingInfo.orderDate,
+        OrderDate: moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'),
         status: item.orderStatus,
         studentId: tempname,
         orderfrom: item.shippingInfo.userName,

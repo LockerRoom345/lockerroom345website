@@ -12,6 +12,7 @@ import store from "../../store.js";
 import axios from "axios";
 import { createOrder, clearErrors } from "../../actions/orderAction";
 import { removeAllCartItems } from "../../actions/cartAction";
+import moment from 'moment';
 
 const ConfirmOrder = ({ history, addComments }) => {
   const dispatch = useDispatch();
@@ -158,7 +159,7 @@ const ConfirmOrder = ({ history, addComments }) => {
               </div>
               <div>
                 <p>Order Date:</p>
-                <span>{shippingInfo.orderDate}</span>
+                <span>{moment(shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a')}</span>
               </div>
               <div>
                 <p>Phone:</p>

@@ -139,7 +139,7 @@ div>div>div>p>button {
     width: 20vmax;
     padding: 1vmax;
     margin: 2vmax auto;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     color: rgb(0, 0, 0, 0.7);
 }
 
@@ -286,7 +286,7 @@ div>div>div>p>button {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font-size: 1.2vmax;
+    font-size: 20px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     outline: none;
 }
@@ -299,7 +299,7 @@ div>div>div>p>button {
     box-sizing: border-box;
     border: 1px solid rgba(0, 0, 0, 0.267);
     border-radius: 4px;
-    font-size: 1.2vmax;
+    font-size: 20px;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     outline: none;
     text-transform: capitalize;
@@ -371,8 +371,12 @@ div>div>div>p>button {
     }
     .banner>h1 {
         margin: 2vmax;
-        font: 800 20px "Roboto";
+        font: 800 1.8vmax "Roboto";
         color: rgb(255, 255, 255);
+    }
+    .banner>p {
+        margin-top: 78px;
+        font: 800 3vmax "Roboto";
     }
     .MuiTypography-body1 {
         font-size: 18px !important;
@@ -587,6 +591,7 @@ div>div>div>p>button {
     cursor: pointer;
     color: white;
     transition: all 0.5s;
+    font-size: large;
 }
 
 .searchBoxbar>input[type="submit"]:hover {

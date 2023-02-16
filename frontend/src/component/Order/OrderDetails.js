@@ -9,6 +9,7 @@ import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
+import moment from 'moment';
 
 const OrderDetails = ({ match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -62,7 +63,7 @@ const OrderDetails = ({ match }) => {
                 </div>
                 <div>
                   <p>Order Date:</p>
-                  <span>{order.user && order.shippingInfo.orderDate}</span>
+                  <span>{order.user && moment(order.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a')}</span>
                 </div>
                 <div>
                   <p>Phone:</p>

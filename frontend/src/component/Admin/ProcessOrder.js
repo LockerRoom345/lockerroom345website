@@ -22,6 +22,8 @@ import { TextField } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { submitHandler } from "../Cart/Payment";
+import moment from 'moment';
+
 let deltaList = Array(100).fill(0);
 
 const ProcessOrder = ({ history, match }) => {
@@ -200,7 +202,7 @@ const ProcessOrder = ({ history, match }) => {
                     </div>
                     <div>
                       <p>Order Date:</p>
-                      <span>{order.user && order.shippingInfo.orderDate}</span>
+                      <span>{order.user && moment(order.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a')}</span>
                     </div>
                     <div>
                       <p>Phone:</p>

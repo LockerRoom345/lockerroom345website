@@ -87,6 +87,7 @@
     margin-left: 5px;
     margin-right: 5px;
     height: 25px;
+    font-size: 18px;
 }
 
 .cartitemholderquantity>button {
@@ -95,6 +96,7 @@
     border-radius: 20px transparent;
     text-align: center;
     align-items: center;
+    font-size: 18px;
 }
 
 .orderDetailsContainerBox,
@@ -108,7 +110,7 @@
 }
 
 .orderDetailsContainerBox>div>p {
-    font: 400 15px "Roboto";
+    font: 400 20px "Roboto";
     color: black;
 }
 
@@ -119,7 +121,7 @@
 
 .orderDetailsContainerBox>div>span {
     margin: 0 1vmax;
-    font: 600 15px "Roboto";
+    font: 600 20px "Roboto";
     color: #575757;
 }
 
@@ -134,7 +136,7 @@
 
 .orderDetailsCartItemsContainer>div {
     display: flex;
-    font: 400 15px "Roboto";
+    font: 400 20px "Roboto";
     align-items: center;
     margin: 2vmax 0;
 }

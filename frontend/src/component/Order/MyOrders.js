@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Header from "../layout/Header/Header";
-
+import moment from 'moment';
 const MyOrders = () => {
   const categories = ["All", "Current", "Previous"];
 
@@ -54,7 +54,7 @@ const MyOrders = () => {
     {
       field: "OrderDate",
       headerName: "Order Date",
-      type: "date",
+      type: "string",
       minWidth: 150,
       flex: 0.5,
     },
@@ -105,11 +105,11 @@ const MyOrders = () => {
         rows.push({
           itemsQty: item.orderItems.length,
           id: item._id,
-          OrderDate: item.shippingInfo.orderDate,
+          OrderDate: moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'),
           status:
             item.orderStatus == "Printed" ? "Processing" : item.orderStatus,
           amount: item.totalPrice,
-          studentId: item.shippingInfo.receivingPersonName,
+          studentId: item.shippingInfo.receivingPersonName.split("_")[0],
           orderfrom: user.name,
         });
       }
@@ -117,14 +117,15 @@ const MyOrders = () => {
         category == "Current" &&
         (item.orderStatus == "Processing" || item.orderStatus == "Printed")
       ) {
+        // console.log(moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'));
         rows.push({
           itemsQty: item.orderItems.length,
           id: item._id,
-          OrderDate: item.shippingInfo.orderDate,
+          OrderDate: moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'),
           status:
             item.orderStatus == "Printed" ? "Processing" : item.orderStatus,
           amount: item.totalPrice,
-          studentId: item.shippingInfo.receivingPersonName,
+          studentId: item.shippingInfo.receivingPersonName.split("_")[0],
           orderfrom: user.name,
         });
       }
@@ -132,10 +133,10 @@ const MyOrders = () => {
         rows.push({
           itemsQty: item.orderItems.length,
           id: item._id,
-          OrderDate: item.shippingInfo.orderDate,
+          OrderDate: moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'),
           status: item.orderStatus,
           amount: item.totalPrice,
-          studentId: item.shippingInfo.receivingPersonName,
+          studentId: item.shippingInfo.receivingPersonName.split("_")[0],
           orderfrom: user.name,
         });
       }

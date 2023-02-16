@@ -192,6 +192,9 @@
     .dashboardContainer {
         border-left: none;
     }
+    .dashboardContainer>h1 {
+        font: 300 2rem "Roboto";
+    }
     .dashboardSummary>div>p {
         margin: 0;
     }
@@ -200,9 +203,34 @@
         margin: 1rem;
         font: 300 0.6rem "Roboto";
     }
+    .doughnutChart {
+        flex-direction: column;
+        padding-top: 20px;
+    }
+    .doughnutChart>.donutWrapper {
+        width: 250px;
+    }
+    .doughnutChart>.rightWrapper {
+        padding-top: 20px;
+    }
+    .outOfStockWrapper {
+        width: auto;
+        margin: auto;
+        height: 300px;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        /* display: flex; */
+        width: 54vw;
+        flex-direction: row;
+        color: #5e6258;
+        font: 600 16px "Roboto";
+        margin-top: 15px;
+    }
     .dashboardSummaryBox2>a {
         color: rgb(0, 0, 0);
-        font: 300 0.8rem "Roboto" !important;
+        font: 300 1rem "Roboto" !important;
         text-align: center;
         background-color: #5e6258;
         text-decoration: none;

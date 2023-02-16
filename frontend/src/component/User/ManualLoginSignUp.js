@@ -113,104 +113,120 @@ const ManualLoginSignUp = ({ history, location }) => {
         <Fragment>
           <div className="LoginSignUpContainer">
             <div className="left">
-              <h3>WELCOME  <br></br>
-              <h2>TO</h2></h3>
-            
+              <h3>
+                WELCOME <br></br>
+                <h2>TO</h2>
+              </h3>
+
               <div>
-              <img src={lockerroomlogo} alt="LockerRoom Logo" />
-              
+                <img src={lockerroomlogo} alt="LockerRoom Logo" />
               </div>
             </div>
             <div className="right">
-            <div className="LoginSignUpBox">
-              <div>
-                <div className="login_signUp_toggle">
-                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                  {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
+              <div className="LoginSignUpBox">
+                <div>
+                  <div className="login_signUp_toggle">
+                    <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
+                    {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
+                  </div>
+                  <button ref={switcherTab}></button>
                 </div>
-                <button ref={switcherTab}></button>
-              </div>
-              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
-                <div className="loginEmail">
-                  <MailOutlineIcon />
-                  <input
-                    type="text"
-                    placeholder="Login ID"
-                    required
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                  />
-                </div>
-                <div className="loginPassword">
-                  <LockOpenIcon />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                  />
-                </div>
-                <input type="submit" value="Submit" className="loginBtn" />
-              </form>
-              <form
-                className="signUpForm"
-                ref={registerTab}
-                encType="multipart/form-data"
-                onSubmit={registerSubmit}
-              >
-                <div className="signUpName">
-                  <FaceIcon />
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    required
-                    name="name"
-                    value={name}
-                    onChange={registerDataChange}
-                  />
-                </div>
-                <div className="signUpEmail">
-                  <MailOutlineIcon />
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    required
-                    name="email"
-                    value={email}
-                    onChange={registerDataChange}
-                  />
-                </div>
-                <div className="signUpPassword">
-                  <LockOpenIcon />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    required
-                    name="password"
-                    value={password}
-                    onChange={registerDataChange}
-                  />
-                </div>
+                <form
+                  className="loginForm"
+                  ref={loginTab}
+                  onSubmit={loginSubmit}
+                >
+                  <div className="mobileView">
+                    {/* <div> */}
+                    <h3>
+                      WELCOME <br></br>
+                      <h2>
+                        TO <Link to="/loginmanual"></Link>
+                      </h2>
+                    </h3>
+                    <div>
+                      <img src={lockerroomlogo} alt="LockerRoom Logo" />
+                      <Link to="/loginmanual">BUTTON</Link>
+                    </div>
+                  </div>
+                  <div className="loginEmail">
+                    <MailOutlineIcon />
+                    <input
+                      type="text"
+                      placeholder="Login ID"
+                      required
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="loginPassword">
+                    <LockOpenIcon />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      required
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                    />
+                  </div>
+                  <input type="submit" value="Submit" className="loginBtn" />
+                </form>
+                <form
+                  className="signUpForm"
+                  ref={registerTab}
+                  encType="multipart/form-data"
+                  onSubmit={registerSubmit}
+                >
+                  <div className="signUpName">
+                    <FaceIcon />
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      required
+                      name="name"
+                      value={name}
+                      onChange={registerDataChange}
+                    />
+                  </div>
+                  <div className="signUpEmail">
+                    <MailOutlineIcon />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      required
+                      name="email"
+                      value={email}
+                      onChange={registerDataChange}
+                    />
+                  </div>
+                  <div className="signUpPassword">
+                    <LockOpenIcon />
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      required
+                      name="password"
+                      value={password}
+                      onChange={registerDataChange}
+                    />
+                  </div>
 
-                <div id="registerImage">
-                  <img src={avatarPreview} alt="Avatar Preview" />
-                  <input
-                    type="file"
-                    name="avatar"
-                    accept="image/*"
-                    onChange={registerDataChange}
-                  />
-                </div>
-                <input type="submit" value="Register" className="signUpBtn" />
-              </form>
+                  <div id="registerImage">
+                    <img src={avatarPreview} alt="Avatar Preview" />
+                    <input
+                      type="file"
+                      name="avatar"
+                      accept="image/*"
+                      onChange={registerDataChange}
+                    />
+                  </div>
+                  <input type="submit" value="Register" className="signUpBtn" />
+                </form>
+              </div>
             </div>
-            </div>
-           
-           
           </div>
           <div className="newfooter">
-          <p>&copy; All rights reserved to Locker Room 345 </p>
+            <p>&copy; All rights reserved to Locker Room 345 </p>
           </div>
         </Fragment>
       )}

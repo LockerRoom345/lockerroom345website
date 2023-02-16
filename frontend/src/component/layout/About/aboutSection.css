@@ -184,6 +184,19 @@
         padding: 0vmax;
         box-sizing: border-box;
     }
+    .imageWrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .imageWrapper>img {
+        width: 50%;
+    }
+    .profileContainer>.contentWrapper {
+        padding: 0px;
+    }
     .profileContainer {
         display: flex;
         height: 100vh;
@@ -195,9 +208,22 @@
         background-color: white;
         flex-direction: column;
     }
+    .profileContainer>div>h2 {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .profileContainer>div>p {
+        width: -webkit-fill-available;
+        /* padding-left: 0px; */
+        padding-left: 20px;
+        padding-right: 20px;
+    }
     .profileContainer>div:first-child>h1 {
         font: 500 3.2vmax "Roboto";
         transform: translateY(-2vmax);
+        text-align: center;
+        margin-top: 20px;
     }
     .profileContainer>div:first-child>a {
         font: 400 1.7vmax "Roboto";

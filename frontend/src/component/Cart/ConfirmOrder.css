@@ -41,7 +41,7 @@
 }
 
 .confirmshippingArea>p {
-    font: 400 20px "Roboto";
+    font: 400 22px "Roboto";
 }
 
 .confirmshippingAreaBox {
@@ -79,7 +79,7 @@
 }
 
 .confirmCartItems>p {
-    font: 400 20px "Roboto";
+    font: 400 22px "Roboto";
 }
 
 .confirmCartItemsContainer {
@@ -89,7 +89,7 @@
 
 .confirmCartItemsContainer>div {
     display: flex;
-    font: 400 15px "Roboto";
+    font: 400 18px "Roboto";
     align-items: center;
     justify-content: space-between;
     margin: 1vmax 0;

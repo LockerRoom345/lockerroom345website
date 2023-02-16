@@ -35,15 +35,17 @@ const ProductCard = ({ product, history }) => {
   );
   const [ProductSize, setProductSize] = useState(0);
 
-  const increaseQuantity = () => {       
+  const increaseQuantity = () => {
     let maxstock = product.hashmap[SubCategory][ProductSize].stock;
     // console.log("product Stock currently",maxstock);
     if (maxstock <= quantity) return;
-    const qty = quantity + 1;    
-    setQuantity(qty);
+    if (quantity < 5) {
+      const qty = quantity + 1;
+      setQuantity(qty);
+    }
   };
 
-  const decreaseQuantity = () => {    
+  const decreaseQuantity = () => {
     if (1 >= quantity) return;
     const qty = quantity - 1;
     //console.log("decrease quantity to", qty);
@@ -55,24 +57,28 @@ const ProductCard = ({ product, history }) => {
   };
 
   const handlesizeChange = (e) => {
-   
-      //console.log(product);
-      let k = product.hashmap[SubCategory][e.target.value];
-      if(k.stock < 1){
-        alert.error("Item Out of Stock")
-      }
-      // debugger
-      setProductSize(e.target.value);
-    
+    //console.log(product);
+    let k = product.hashmap[SubCategory][e.target.value];
+    if (k.stock < 1) {
+      alert.error("Item Out of Stock");
+    }
+    // debugger
+    setProductSize(e.target.value);
   };
   const addToCartHandler = (e) => {
     e.preventDefault();
 
-    if(product.hashmap[SubCategory][ProductSize].stock < 1){
-      alert.error("Item Not Available")
-    }
-    else{
-      dispatch(addItemsToCart(product.id, quantity, SubCategory, product.hashmap[SubCategory][ProductSize].size));
+    if (product.hashmap[SubCategory][ProductSize].stock < 1) {
+      alert.error("Item Not Available");
+    } else {
+      dispatch(
+        addItemsToCart(
+          product.id,
+          quantity,
+          SubCategory,
+          product.hashmap[SubCategory][ProductSize].size
+        )
+      );
       alert.success("Item Added To Cart");
     }
     // if (
@@ -83,8 +89,8 @@ const ProductCard = ({ product, history }) => {
     // ) {
     //   alert.show("required Subcategory and Size field");
     // } else {
-      //console.log("clicked");
-      
+    //console.log("clicked");
+
     //}
   };
 
@@ -178,7 +184,8 @@ const ProductCard = ({ product, history }) => {
             //     : false
             // }
           >
-            <AddShoppingCartIcon className="shoppingCartButton"
+            <AddShoppingCartIcon
+              className="shoppingCartButton"
               // disabled={
               //   product.hashmap[SubCategory][ProductSize].stock< 1
               //     ? true

@@ -67,7 +67,7 @@
 
 .loginForm>div,
 .signUpForm>div {
-    display: inline;
+    display: flex;
     width: 100%;
     align-items: center;
     padding-inline-start: 1vmax vmax;
@@ -106,7 +106,7 @@
 .loginForm>div>svg,
 .signUpForm>div>svg {
     position: absolute;
-    transform: translateY(0.8vmax) translateX(1vmax);
+    transform: translateX(1vmax);
     font-size: 1.6vmax;
     color: rgba(0, 0, 0, 0.623);
 }
@@ -270,12 +270,64 @@
     left: 40%;
 }
 
+.mobileView {
+    display: none !important;
+}
+
 @media screen and (max-width: 600px) {
     .LoginSignUpBox {
         width: 75vw !important;
     }
     .left {
         display: none;
+    }
+    .mobileView {
+        display: flex !important;
+        height: 300px;
+        flex-basis: 50%;
+        /* background-color: #065749; */
+        justify-content: center;
+        align-items: center;
+        font: 500 1.3vmax "Roboto";
+    }
+    .mobileView>div {
+        height: 20%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        border-radius: 25px;
+    }
+    .mobileView>div>a {
+        height: 20%;
+        position: absolute;
+        display: flex;
+        z-index: 200;
+        justify-content: center;
+        border-radius: 25px;
+        /* margin-right: 60px; */
+        margin-left: 220px;
+        margin-right: 100px;
+        padding-bottom: 120px;
+        margin-top: 5px;
+        color: transparent;
+        z-index: 9999;
+    }
+    .mobileView>div>img {
+        border-radius: 25px;
+    }
+    .mobileView>h3 {
+        height: 140%;
+        color: rgb(0, 0, 0);
+        position: relative;
+        z-index: 9999;
+        font-size: 20px;
+    }
+    .mobileView>h3>h2 {
+        position: absolute;
+        z-index: 9999;
+        font-size: 20px;
+        left: 35%;
+        top: 35px;
     }
     .right {
         display: flex;
@@ -308,7 +360,7 @@
         height: 5vmax;
     }
     .login_signUp_toggle>p {
-        font: 300 1.5vmax "Roboto";
+        font: 300 20px "Roboto";
     }
     .loginForm,
     .signUpForm {

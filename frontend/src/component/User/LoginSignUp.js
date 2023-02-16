@@ -27,7 +27,7 @@ const LoginSignUp = ({ history, location }) => {
 
   const [loginEmail, setLoginEmail] = useState("");
   let [loginPassword, setLoginPassword] = useState("");
- 
+
   const [userinfo, setUserinfo] = useState({
     name: "",
     email: "",
@@ -79,13 +79,21 @@ const LoginSignUp = ({ history, location }) => {
   let userJsonListObject = [];
   const { users } = useSelector((state) => state.allUsers);
   // console.log(users);
-  const hiddenLoginValues = ["admin","TEST USER", "TEST ADMIN","TEST VOLUNTEER", "lockerroom345","volunteer"]
+  const hiddenLoginValues = [
+    "admin",
+    "TEST USER",
+    "TEST ADMIN",
+    "TEST VOLUNTEER",
+    "lockerroom345",
+    "volunteer",
+  ];
   for (let i = 0; i < users.length; i++) {
     let email_value = users[i].email;
     let name_label = users[i].name;
-    if(hiddenLoginValues.includes(email_value) == false)
-   { const object = { value: email_value, label: name_label };
-    userJsonListObject.push(object);}
+    if (hiddenLoginValues.includes(email_value) == false) {
+      const object = { value: email_value, label: name_label };
+      userJsonListObject.push(object);
+    }
     // console.log(email_value,name_label);
   }
   // console.log("array", userJsonListObject);
@@ -134,8 +142,7 @@ const LoginSignUp = ({ history, location }) => {
       history.push("/admin/dashboard");
     } else if (isAuthenticated && user.role === "volunteer") {
       history.push("/admin/dashboard");
-    }
-    else{
+    } else {
       console.log("reset");
       setLoginPassword("");
     }
@@ -177,10 +184,8 @@ const LoginSignUp = ({ history, location }) => {
                 </h2>
               </h3>
               <div>
-              <img src={lockerroomlogo} alt="LockerRoom Logo" />
-              <Link to="/loginmanual">
-                    BUTTON
-                  </Link>
+                <img src={lockerroomlogo} alt="LockerRoom Logo" />
+                <Link to="/loginmanual">BUTTON</Link>
               </div>
             </div>
             <div className="right">
@@ -197,6 +202,19 @@ const LoginSignUp = ({ history, location }) => {
                   ref={loginTab}
                   onSubmit={loginSubmit}
                 >
+                  <div className="mobileView">
+                    {/* <div> */}
+                    <h3>
+                      WELCOME <br></br>
+                      <h2>
+                        TO <Link to="/loginmanual"></Link>
+                      </h2>
+                    </h3>
+                    <div>
+                      <img src={lockerroomlogo} alt="LockerRoom Logo" />
+                      <Link to="/loginmanual">BUTTON</Link>
+                    </div>
+                  </div>
                   <div className="loginEmail">
                     {/* {JSON.stringify(value)} */}
                     <Select
