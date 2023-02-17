@@ -35,13 +35,13 @@ const NewProduct = ({ history }) => {
   const categories = ["Footwear", "Clothing", "Sports", "Miscellaneous"];
   const subCategories = [
     "One size",
-    "Unisex Adult sizing",
+    "Unisex adult sizing",
     "Men's sizing",
     "Women's sizing",
-    "Unisex Youth sizing",
+    "Unisex youth sizing",
     "Boy's sizing",
     "Girl's sizing",
-    "Toddlers sizing",
+    "Toddler's sizing",
   ];
   // const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }])
   // handle input change
