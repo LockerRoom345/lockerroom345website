@@ -143,7 +143,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   // }
 
   if (req.body.status === "packed" || req.body.status === "Delivered") {
-    order.orderItems.forEach(async (o,idx) => {
+    order.orderItems.forEach(async (o, idx) => {
       o.quantity = newQuantities[idx];
       console.log("orderItems forward", o);
       await updateStock(o.product, o.quantity, o.ProductSize);
@@ -151,12 +151,12 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   }
 
   if (req.body.status === "Processing") {
-    if ((order.orderStatus === "Delivered") || (order.orderStatus === "packed")) {
-    order.orderItems.forEach(async (o,idx) => {
-      console.log("orderItems back", o);
-      await reAddStock(o.product, o.quantity, o.ProductSize);
-    });
-  }
+    if (order.orderStatus === "Delivered" || order.orderStatus === "packed") {
+      order.orderItems.forEach(async (o, idx) => {
+        console.log("orderItems back", o);
+        await reAddStock(o.product, o.quantity, o.ProductSize);
+      });
+    }
   }
   if (req.body.status === "revertpacked") {
     if (order.orderStatus === "Delivered") {
@@ -183,29 +183,37 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
 async function reAddStock(id, quantity, ProductSize) {
   const product = await Product.findById(id);
   console.log("product to be readded");
-  product.ProductSize.forEach((x) => {
-    if (x.size === ProductSize) {
-      //console.log(x.stock);
-      x.stock = parseInt(x.stock) + parseInt(quantity);
-    }
-  });
-  //console.log("after readded", product);
+  try {
+    product.ProductSize.forEach((x) => {
+      if (x.size === ProductSize) {
+        //console.log(x.stock);
+        x.stock = parseInt(x.stock) + parseInt(quantity);
+      }
+    });
+    //console.log("after readded", product);
 
-  await product.save({ validateBeforeSave: false });
+    await product.save({ validateBeforeSave: false });
+  } catch (e) {
+    console.log("PRODUCT NOT FOUND");
+  }
 }
 
 async function updateStock(id, quantity, ProductSize) {
   const product = await Product.findById(id);
   console.log("product to be updated");
-  product.ProductSize.forEach((x) => {
-    if (x.size === ProductSize) {
-      //console.log(x.stock);
-      x.stock -= quantity;
-    }
-  });
-  //console.log("after update", product);
+  try {
+    product.ProductSize.forEach((x) => {
+      if (x.size === ProductSize) {
+        //console.log(x.stock);
+        x.stock -= quantity;
+      }
+    });
+    await product.save({ validateBeforeSave: false });
+  } catch (e) {
+    console.log("PRODUCT NOT FOUND");
+  }
 
-  await product.save({ validateBeforeSave: false });
+  //console.log("after update", product);
 }
 
 // delete Order -- Admin
