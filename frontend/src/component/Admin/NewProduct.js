@@ -89,7 +89,7 @@ const NewProduct = ({ history }) => {
     obj.isShow = true;
     // obj.images = images;
     var jsonString = obj;
-    debugger;
+    // debugger;
 
     // const myForm = new FormData();
     // myForm.set("name", name);

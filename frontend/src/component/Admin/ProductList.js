@@ -28,11 +28,12 @@ const ProductList = ({ history }) => {
 
   const alert = useAlert();
 
-  const { error, products } = useSelector((state) => state.products);
+  let { error, products } = useSelector((state) => state.products);
 
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.product
   );
+  if (products == undefined) products = [];
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));

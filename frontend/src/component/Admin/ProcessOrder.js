@@ -161,7 +161,7 @@ const ProcessOrder = ({ history, match }) => {
             <div
               className="confirmOrderPage"
               style={{
-                display: order.orderStatus === "Delivered" ? "grid" : "grid",
+                display:"grid",
               }}
             >
               <div ref={componentRef}>
