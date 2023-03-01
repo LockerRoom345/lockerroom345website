@@ -7,15 +7,19 @@ const Footer = () => {
   return (
     <div id="footer" className="footer">
       <div className="leftFooter">
-      <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">Contact Us</a>
-       <a href="">Terms of Use</a>
-       <a href="">Privacy Policy</a>       
-       {/* <a href="">Accessibility Policy</a> */}
+        <a href="mailto:lockerroom345@gmail.com?Subject=Locker Room 345 Email">
+          Contact Us
+        </a>
+        <a href="/termsofuse">Terms of Use</a>
+        <a href="/privacypolicy">Privacy Policy</a>
+        {/* <a href="">Accessibility Policy</a> */}
       </div>
 
-      <div className="midFooter">        
+      <div className="midFooter">
         <img src={lockerroomlogo} alt="" />
-        <p><span>Equipping Students for Success</span></p>
+        <p>
+          <span>Equipping Students for Success</span>
+        </p>
         <p>&copy; 2023 Locker Room 345 </p>
       </div>
 
