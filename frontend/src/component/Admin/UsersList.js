@@ -94,7 +94,12 @@ const UsersList = ({ history }) => {
       minWidth: 150,
       flex: 0.1,
     },
-
+    {
+      field: "district",
+      headerName: "District",
+      minWidth: 150,
+      flex: 0.1,
+    },
     {
       field: "role",
       headerName: "Role",
@@ -147,6 +152,7 @@ const UsersList = ({ history }) => {
         role: item.role,
         email: item.email,
         name: item.name,
+        district: item.district,
       });
     });
 

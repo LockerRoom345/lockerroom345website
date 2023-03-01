@@ -44,6 +44,7 @@ const AddUser = () => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [address, setAddress] = useState("");
+  const [district, setDistrict] = useState("");
   const [password, setPassword] = useState("");
 
   const [avatar, setAvatar] = useState("/Profile.png");
@@ -62,6 +63,7 @@ const AddUser = () => {
     myForm.set("role", role);
     console.log(role);
     myForm.set("address", address);
+    myForm.set("district", district);
     dispatch(register(myForm));
     history.push('/registersuccess');
     
@@ -125,6 +127,16 @@ const AddUser = () => {
                   value={address}
                   required
                   onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div>
+                <HomeIcon />
+                <input
+                  type="text"
+                  placeholder="District"
+                  value={district}
+                  required
+                  onChange={(e) => setDistrict(e.target.value)}
                 />
               </div>
 

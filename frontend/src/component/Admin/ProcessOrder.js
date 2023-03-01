@@ -161,7 +161,7 @@ const ProcessOrder = ({ history, match }) => {
             <div
               className="confirmOrderPage"
               style={{
-                display:"grid",
+                display: "grid",
               }}
             >
               <div ref={componentRef}>
@@ -218,7 +218,21 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
                       <p>Address:</p>
                       <span>
-                        {order.shippingInfo && order.shippingInfo.userAddress}
+                        {order.shippingInfo &&
+                          order.shippingInfo.userAddress.split("|")[0]}
+                      </span>
+                    </div>
+                    <div>
+                      <p>District:</p>
+                      <span>
+                        {order.shippingInfo &&
+                          order.shippingInfo.userAddress.split("|").length ==
+                            2 &&
+                          order.shippingInfo.userAddress.split("|")[1]}
+                        {order.shippingInfo &&
+                          order.shippingInfo.userAddress.split("|").length ==
+                            1 &&
+                          "-"}
                       </span>
                     </div>
                     <div>

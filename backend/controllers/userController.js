@@ -13,8 +13,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   //   width: 150,
   //   crop: "scale",
   // });
-
-  const { name, email, password, address, role  } = req.body;
+  console.log(req.body);
+  const { name, email, password, address, role, district } = req.body;
 
   const user = await User.create({
     name,
@@ -22,6 +22,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     password,
     address,
     role,
+    district,
     avatar: {
       public_id: "avatars/pgezji1vvyhd6jfrjjap",
       url: "https://res.cloudinary.com/dspdkirzb/image/upload/v1642117039/avatars/pgezji1vvyhd6jfrjjap.png",

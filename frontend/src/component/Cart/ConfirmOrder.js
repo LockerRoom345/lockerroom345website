@@ -167,8 +167,16 @@ const ConfirmOrder = ({ history, addComments }) => {
               </div>
               <div>
                 <p>Address:</p>
-                <span>{user.address}</span>
+                <span>{user.address.split("|")[0]}</span>
               </div>
+              <div>
+                  <p>District:</p>
+                  <span>
+                    {user.address.split("|").length==2 && user.address.split("|")[1]}
+                    {user.address.split("|").length==1 && "-"}
+
+                  </span>
+                </div>
               <div>
                 <p>Additional Comments:</p>
                 <span>{shippingInfo.additionalComments}</span>

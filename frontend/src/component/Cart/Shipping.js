@@ -72,7 +72,7 @@ const Shipping = ({ history }) => {
           receivingPersonName: studentString,
           additionalComments: addComments,
           userLoggedInDesignation,
-          userAddress: user.address,
+          userAddress: user.address + "|" + user.district,
           orderDate,
           phoneNo,
         })
@@ -139,6 +139,16 @@ const Shipping = ({ history }) => {
                 type="text"
                 placeholder="Address"
                 value={user.address}
+                disabled
+                // onChange={(e) => setAddress(e.target.value)}
+              />
+            </div>
+            <div>
+              <HomeIcon />
+              <input
+                type="text"
+                placeholder="District"
+                value={user.district}
                 disabled
                 // onChange={(e) => setAddress(e.target.value)}
               />

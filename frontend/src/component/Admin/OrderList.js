@@ -15,8 +15,7 @@ import {
   clearErrors,
 } from "../../actions/orderAction";
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
-import moment from 'moment';
-
+import moment from "moment";
 
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
@@ -72,6 +71,13 @@ const OrderList = ({ history }) => {
       type: "string",
       minWidth: 50,
       flex: 0.15,
+    },
+    {
+      field: "district",
+      headerName: "District",
+      type: "string",
+      minWidth: 50,
+      flex: 0.1,
     },
     {
       field: "studentId",
@@ -141,19 +147,29 @@ const OrderList = ({ history }) => {
       let tempname = "";
       if (typeof item.shippingInfo.receivingPersonName === "undefined") {
         tempname = "";
-
       } else {
         tempname = item.shippingInfo.receivingPersonName.split("_")[0];
-
+      }
+      let addressSplit =
+        item.shippingInfo.userAddress &&
+        item.shippingInfo.userAddress.split("|");
+      let district = "";
+      if (addressSplit.length == 2) {
+        district = addressSplit[1];
+      } else {
+        district = "-";
       }
       rows.push({
         id: item._id,
         orderId: item.orderId,
         itemsQty: item.orderItems.length,
         amount: item.totalPrice,
-        OrderDate: moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'),
+        OrderDate: moment(item.shippingInfo.orderDate).format(
+          "MM-DD-YYYY hh:mm a"
+        ),
         status: item.orderStatus,
         studentId: tempname,
+        district: district,
         orderfrom: item.shippingInfo.userName,
       });
     });
