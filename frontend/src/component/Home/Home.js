@@ -38,7 +38,6 @@ const Home = ({ history }) => {
     const showProductList = state.products.products.filter(
       (product) => product.isShow == true
     );
-    console.log(showProductList);
     const mapping = showProductList.reduce((acc, x) => {
       let subcategoryData = x.ProductSize.map((y) => {
         let obj = {};
@@ -76,7 +75,7 @@ const Home = ({ history }) => {
     return { ...state.products, products: mapping };
   });
   // const keyword = match.params.keyword;
-
+  console.log(products);
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
   };

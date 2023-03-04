@@ -33,6 +33,7 @@ const ProductCard = ({ product, history }) => {
   const [SubCategory, setSubCategory] = useState(
     Object.keys(product.hashmap)[0] || ""
   );
+  // console.log(product.name, product);
   const [ProductSize, setProductSize] = useState(0);
 
   const increaseQuantity = () => {
