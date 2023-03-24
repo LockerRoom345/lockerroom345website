@@ -14,7 +14,7 @@ const { user } = useSelector((state) => state.user);
     <div className="player-wrapper">
       <ReactPlayer
         className="react-player"
-        url= {user && user.role=="user" ? "https://youtu.be/znkemTAq2AA" : "https://youtu.be/0_4Q88HDj38"}
+        url= {user && user.role=="user" ? "https://youtu.be/znkemTAq2AA" : "https://youtu.be/sbiujBRjY3M"}
         playing= "false"
         playIcon     
         controls="true"  
