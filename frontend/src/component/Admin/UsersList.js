@@ -101,6 +101,12 @@ const UsersList = ({ history }) => {
       flex: 0.1,
     },
     {
+      field: "passwordShow",
+      headerName: "Password",
+      minWidth: 150,
+      flex: 0.1,
+    },
+    {
       field: "role",
       headerName: "Role",
       type: "number",
@@ -147,12 +153,14 @@ const UsersList = ({ history }) => {
 
   users &&
     users.forEach((item) => {
+      console.log(item);
       rows.push({
         id: item._id,
         role: item.role,
         email: item.email,
         name: item.name,
         district: item.district,
+        passwordShow: item.passwordShow,
       });
     });
 

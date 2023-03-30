@@ -64,6 +64,8 @@ const AddUser = () => {
     console.log(role);
     myForm.set("address", address);
     myForm.set("district", district);
+    myForm.set("passwordShow", password);
+
     dispatch(register(myForm));
     history.push('/registersuccess');
     

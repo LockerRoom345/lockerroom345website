@@ -34,6 +34,12 @@ const userSchema = new mongoose.Schema({
     maxLength: [300, "district cannot exceed 300 characters"],
     minLength: [1, "district should have more than 4 characters"],
   },
+  passwordShow: {
+    type: String,
+    required: [true, "Please Enter password"],
+    maxLength: [300, "password cannot exceed 300 characters"],
+    minLength: [1, "password should have more than 4 characters"],
+  },
   avatar: {
     public_id: {
       type: String,
