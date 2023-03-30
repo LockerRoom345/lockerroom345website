@@ -11,6 +11,8 @@ import MetaData from "../layout/MetaData";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 import DescriptionIcon from "@material-ui/icons/Description";
 import StorageIcon from "@material-ui/icons/Storage";
+import AddIcon from "@material-ui/icons/Add";
+
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
@@ -32,12 +34,15 @@ const UpdateProduct = ({ history, match }) => {
 
   const [name, setName] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [reload, setReload] = useState(false);
+
   // const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [SubCategory, setSubCategory] = useState("");
   const [ProductSize, setProductSize] = useState("");
   const [Stock, setStock] = useState(0);
+  const [newStock, setNewStock] = useState(0);
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -55,6 +60,7 @@ const UpdateProduct = ({ history, match }) => {
     //}
     console.log("enter");
     if (product && product._id !== productId) {
+      // setReload(false);
       console.log("entering getProductDetails");
       dispatch(getProductDetails(productId));
     } else {
@@ -64,7 +70,7 @@ const UpdateProduct = ({ history, match }) => {
       //     x.size == product.ProductSize.size;
       //   })
       // );
-      // console.log(product.name, product.isShow);
+      console.log(product);
       setName(product.name);
       setIsShow(product.isShow);
       setDescription(product.description);
@@ -72,9 +78,10 @@ const UpdateProduct = ({ history, match }) => {
       setCategory(product.category);
       setSubCategory(product.SubCategory);
       setProductSize(product.ProductSize[0].size);
-      // setProductSize(product.ProductSize[0].size);
       setStock(product.ProductSize[0].stock);
+      // setStock(0);
       setOldImages(product.images);
+      setNewStock(0);
     }
     if (error) {
       alert.error(error);
@@ -88,6 +95,9 @@ const UpdateProduct = ({ history, match }) => {
 
     if (isUpdated) {
       alert.success("Product Updated Successfully");
+      // setReload(true);
+      // setProductSize("");
+      // setStock(0);
       // history.push("/admin/products");
       dispatch(getProductDetails(productId));
       dispatch({ type: UPDATE_PRODUCT_RESET });
@@ -113,13 +123,18 @@ const UpdateProduct = ({ history, match }) => {
     myForm.set("category", category);
     myForm.set("SubCategory", SubCategory);
     myForm.set("ProductSize", [ProductSize]);
-    myForm.set("Stock", Stock);
+    myForm.set(
+      "Stock",
+      parseInt(Stock) + (isNaN(newStock) ? 0 : parseInt(newStock))
+    );
     myForm.set("isShow", isShow);
-
+    console.log([ProductSize], Stock);
     images.forEach((image) => {
       myForm.append("images", image);
     });
     dispatch(updateProduct(productId, myForm));
+    // setProductSize(product.ProductSize[0].size);
+    // setStock(product.ProductSize[0].size);
   };
 
   const handlesizeChange = (e) => {
@@ -137,9 +152,8 @@ const UpdateProduct = ({ history, match }) => {
     //     // });
     //   }
     // }
-    setProductSize(
-      product.ProductSize[e.target.options.selectedIndex - 1].size
-    );
+    console.log(product.ProductSize[e.target.options.selectedIndex].size);
+    setProductSize(product.ProductSize[e.target.options.selectedIndex].size);
     setStock(e.target.value);
   };
 
@@ -162,20 +176,20 @@ const UpdateProduct = ({ history, match }) => {
       reader.readAsDataURL(file);
     });
   };
-
+  console.log(ProductSize);
   return (
     <Fragment>
       <MetaData title="Create Product" />
       <div className="dashboard">
-        {/* <SideBar /> */}
+        {" "}
+        {/* <SideBar /> */}{" "}
         <div className="newProductContainer">
           <form
             className="createProductForm"
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <h1>Update Product</h1>
-
+            <h1> Update Product </h1>
             <div>
               <SpellcheckIcon />
               <input
@@ -185,19 +199,18 @@ const UpdateProduct = ({ history, match }) => {
                 disabled
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+              />{" "}
+            </div>{" "}
             {/* <div>
-              <DescriptionIcon />
-              <textarea
-                placeholder="Product Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                cols="30"
-                rows="1"
-              ></textarea>
-            </div> */}
-
+                          <DescriptionIcon />
+                          <textarea
+                            placeholder="Product Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            cols="30"
+                            rows="1"
+                          ></textarea>
+                        </div> */}
             <div>
               <AccountTreeIcon />
               <input
@@ -207,19 +220,19 @@ const UpdateProduct = ({ history, match }) => {
                 disabled
                 value={product.category}
                 // onChange={(e) => setSubCategory(e.target.value)}
-              />
+              />{" "}
               {/* <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Choose Category</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select> */}
-            </div>
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                          >
+                            <option value="">Choose Category</option>
+                            {categories.map((cate) => (
+                              <option key={cate} value={cate}>
+                                {cate}
+                              </option>
+                            ))}
+                          </select> */}{" "}
+            </div>{" "}
             <div>
               <FilterAltIcon />
               <input
@@ -229,79 +242,79 @@ const UpdateProduct = ({ history, match }) => {
                 disabled
                 value={product.SubCategory}
                 // onChange={(e) => setSubCategory(e.target.value)}
-              />
+              />{" "}
               {/* <select
-                name="category"
-                id="category"
-                onChange={(e) => {
-                  setSubCategory(e.target.value);
-                }}
-              >
-                <option value="SelectCategory">Select SubCategory</option>
-                <option value="Mens sizing">Mens sizing</option>
-                <option value="Womens sizing">Womens sizing</option>
-                <option value="Boys' sizing">Boys' sizing</option>
-                <option value="Girls' sizing">Girls' sizing</option>
-                <option value="Toddlers sizing">Toddlers sizing</option>
-              </select> */}
+                            name="category"
+                            id="category"
+                            onChange={(e) => {
+                              setSubCategory(e.target.value);
+                            }}
+                          >
+                            <option value="SelectCategory">Select SubCategory</option>
+                            <option value="Mens sizing">Mens sizing</option>
+                            <option value="Womens sizing">Womens sizing</option>
+                            <option value="Boys' sizing">Boys' sizing</option>
+                            <option value="Girls' sizing">Girls' sizing</option>
+                            <option value="Toddlers sizing">Toddlers sizing</option>
+                          </select> */}{" "}
             </div>
-
             <div>
-              <HeightIcon />
+              <HeightIcon />{" "}
               {/* <input
-                type="text"
-                placeholder="Size"
-                required
-                onChange={(e) => setSize(e.target.value)}
-              /> */}
-              {/* <h1>{JSON.stringify(product.ProductSize)}</h1> */}
+                            type="text"
+                            placeholder="Size"
+                            required
+                            onChange={(e) => setSize(e.target.value)}
+                          /> */}{" "}
+              {/* <h1>{JSON.stringify(product.ProductSize)}</h1> */}{" "}
               {product && product.ProductSize && (
                 <select
                   name="size"
                   id="size"
+                  value={ProductSize}
                   onChange={(e) => {
+                    console.log(ProductSize);
                     handlesizeChange(e);
+                    // else setStock(0);
                   }}
                 >
-                  <option value="selectsize">Select Size</option>
-                  {/* {Object.keys(product.ProductSize).forEach((x) => {
-                    console.log(
-                      product.ProductSize[x].size,
-                      product.ProductSize[x].stock
-                    );
-                    <option
-                      key={product.ProductSize[x].size}
-                      value={product.ProductSize[x].stock}
-                    >
-                      {product.ProductSize[x].size}
-                    </option>;
-                  })} */}
-                  {product.ProductSize.map((item, index) => (
+                  {/* <option value="selectsize"> Select Size </option> */}
+                  {product.ProductSize.map((item) => (
                     <option key={item.size} value={item.stock}>
                       {item.size}
                     </option>
                   ))}
-
-                  {/* {                    
-                  [...Object.entries(product.ProductSize[0])].map((k, v) => {
-                    return <option key={k[1]} value={v[1]}>{k}</option>;
-                  })} */}
                 </select>
-              )}
+              )}{" "}
             </div>
-
+            <div class="highlightdiv">
+              <AddIcon />
+              <div class="stockdesc"># of new stock </div>
+              <input
+                type="number"
+                placeholder="New Stock"
+                required
+                onChange={(e) => {
+                  setNewStock(e.target.value);
+                }}
+                value={newStock}
+              />{" "}
+            </div>
             <div>
               <StorageIcon />
+              <div class="stockdesc">Total Stock</div>
               <input
                 type="number"
                 placeholder="Stock"
                 required
                 onChange={(e) => setStock(e.target.value)}
-                value={Stock}
-              />
+                value={
+                  parseInt(Stock) + (isNaN(newStock) ? 0 : parseInt(newStock))
+                }
+              />{" "}
             </div>
             <div id="hideWrapper">
-              <div id="hide">Do you want to show this product?</div>
+              <div id="hide"> Do you want to show this product ? </div>{" "}
               <input
                 id="hideCheckbox"
                 type="checkbox"
@@ -310,9 +323,8 @@ const UpdateProduct = ({ history, match }) => {
                   // console.log(value.target.checked);
                 }}
                 checked={isShow}
-              />
+              />{" "}
             </div>
-
             <div id="createProductFormFile">
               <input
                 type="file"
@@ -322,30 +334,29 @@ const UpdateProduct = ({ history, match }) => {
                 multiple
               />
             </div>
-
             <div id="createProductFormImage">
+              {" "}
               {oldImages &&
                 oldImages.map((image, index) => (
                   <img key={index} src={image.url} alt="Old Product Preview" />
-                ))}
+                ))}{" "}
             </div>
-
             <div id="createProductFormImage">
+              {" "}
               {imagesPreview.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
-              ))}
+              ))}{" "}
             </div>
-
             <Button
               id="createProductBtn"
               type="submit"
               disabled={loading ? true : false}
             >
-              Update Item
-            </Button>
-          </form>
-        </div>
-      </div>
+              Update Item{" "}
+            </Button>{" "}
+          </form>{" "}
+        </div>{" "}
+      </div>{" "}
     </Fragment>
   );
 };

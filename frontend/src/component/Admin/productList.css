@@ -43,6 +43,7 @@
 .MuiDataGrid-root .MuiDataGrid-cell--textLeft.MuiDataGrid-cell--withRenderer,
 .MuiDataGrid-root .MuiDataGrid-cell--textLeft.MuiDataGrid-cell--editing {
     justify-content: center !important;
+    gap: 50px;
 }
 
 .productListTable a:hover {
@@ -91,6 +92,7 @@
     color: rgb(255, 255, 255);
     font: 500 1.1vmax "Roboto" !important;
 }
+
 .MuiDataGrid-columnHeader svg {
     color: rgb(255, 255, 255);
     /* font: 500 1.1vmax "Roboto" !important; */

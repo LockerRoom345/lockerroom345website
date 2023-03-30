@@ -37,7 +37,8 @@
     margin-left: auto;
     margin-right: auto;
 }
-.orderToggle>p{
+
+.orderToggle>p {
     color: rgba(0, 0, 0, 0.733);
     font: 300 25px "Roboto";
     text-align: center;
@@ -75,6 +76,7 @@
 .MuiDataGrid-root .MuiDataGrid-cell--textRight.MuiDataGrid-cell--withRenderer,
 .MuiDataGrid-root .MuiDataGrid-cell--textRight.MuiDataGrid-cell--editing {
     justify-content: center !important;
+    gap: 50px;
 }
 
 .myOrdersTable a:hover {
