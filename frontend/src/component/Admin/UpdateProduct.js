@@ -52,34 +52,19 @@ const UpdateProduct = ({ history, match }) => {
   const productId = match.params.id;
 
   useEffect(() => {
-    //console.log((product.ProductSize).length);
-    //for(let i =0; i< 3; i++){
-    // for (const [key, value] of Object.entries(product.ProductSize[0])) {
-    //   console.log(`${key}: ${value}`);
-    // }
-    //}
     console.log("enter");
     if (product && product._id !== productId) {
-      // setReload(false);
       console.log("entering getProductDetails");
       dispatch(getProductDetails(productId));
     } else {
-      // console.log(
-      //   "length",
-      //   product.ProductSize.indexOf((x) => {
-      //     x.size == product.ProductSize.size;
-      //   })
-      // );
       console.log(product);
       setName(product.name);
       setIsShow(product.isShow);
       setDescription(product.description);
-      // setPrice(product.price);
       setCategory(product.category);
       setSubCategory(product.SubCategory);
       setProductSize(product.ProductSize[0].size);
       setStock(product.ProductSize[0].stock);
-      // setStock(0);
       setOldImages(product.images);
       setNewStock(0);
     }
@@ -95,9 +80,6 @@ const UpdateProduct = ({ history, match }) => {
 
     if (isUpdated) {
       alert.success("Product Updated Successfully");
-      // setReload(true);
-      // setProductSize("");
-      // setStock(0);
       // history.push("/admin/products");
       dispatch(getProductDetails(productId));
       dispatch({ type: UPDATE_PRODUCT_RESET });
@@ -138,24 +120,17 @@ const UpdateProduct = ({ history, match }) => {
   };
 
   const handlesizeChange = (e) => {
-    // console.log(e.target.options.selectedIndex);
-    // //console.log("obj",e.target[e.target.selectedIndex].key );
-    // console.log((product.ProductSize[(e.target.options.selectedIndex)-1]).size);
-
-    //console.log("selectedIndex",selectedIndex);
-    //console.log(e.target.options[selectedIndex].datasets.key);
-    // for (let node of e.target.children) {
-    //   if (node.value === e.target.value) {
-    //     console.log(node);
-    //     // this.setState({
-    //     //   selected: node.getAttribute('data-id')
-    //     // });
-    //   }
-    // }
-    console.log(product.ProductSize[e.target.options.selectedIndex].size);
+    console.log(
+      product.ProductSize[e.target.options.selectedIndex].size,
+      e.target.options.selectedIndex
+    );
     setProductSize(product.ProductSize[e.target.options.selectedIndex].size);
     setStock(e.target.value);
   };
+
+  useEffect(() => {
+    console.log(ProductSize);
+  }, [ProductSize]);
 
   const updateProductImagesChange = (e) => {
     const files = Array.from(e.target.files);
@@ -201,16 +176,6 @@ const UpdateProduct = ({ history, match }) => {
                 onChange={(e) => setName(e.target.value)}
               />{" "}
             </div>{" "}
-            {/* <div>
-                          <DescriptionIcon />
-                          <textarea
-                            placeholder="Product Description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            cols="30"
-                            rows="1"
-                          ></textarea>
-                        </div> */}
             <div>
               <AccountTreeIcon />
               <input
@@ -221,17 +186,6 @@ const UpdateProduct = ({ history, match }) => {
                 value={product.category}
                 // onChange={(e) => setSubCategory(e.target.value)}
               />{" "}
-              {/* <select
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
-                          >
-                            <option value="">Choose Category</option>
-                            {categories.map((cate) => (
-                              <option key={cate} value={cate}>
-                                {cate}
-                              </option>
-                            ))}
-                          </select> */}{" "}
             </div>{" "}
             <div>
               <FilterAltIcon />
@@ -243,50 +197,38 @@ const UpdateProduct = ({ history, match }) => {
                 value={product.SubCategory}
                 // onChange={(e) => setSubCategory(e.target.value)}
               />{" "}
-              {/* <select
-                            name="category"
-                            id="category"
-                            onChange={(e) => {
-                              setSubCategory(e.target.value);
-                            }}
-                          >
-                            <option value="SelectCategory">Select SubCategory</option>
-                            <option value="Mens sizing">Mens sizing</option>
-                            <option value="Womens sizing">Womens sizing</option>
-                            <option value="Boys' sizing">Boys' sizing</option>
-                            <option value="Girls' sizing">Girls' sizing</option>
-                            <option value="Toddlers sizing">Toddlers sizing</option>
-                          </select> */}{" "}
             </div>
             <div>
               <HeightIcon />{" "}
-              {/* <input
-                            type="text"
-                            placeholder="Size"
-                            required
-                            onChange={(e) => setSize(e.target.value)}
-                          /> */}{" "}
-              {/* <h1>{JSON.stringify(product.ProductSize)}</h1> */}{" "}
               {product && product.ProductSize && (
                 <select
                   name="size"
                   id="size"
                   value={ProductSize}
                   onChange={(e) => {
-                    console.log(ProductSize);
-                    handlesizeChange(e);
-                    // else setStock(0);
+                    // console.log(ProductSize);
+                    // console.log(
+                    //   product.ProductSize[e.target.selectedIndex].size,
+                    //   e.target.selectedIndex
+                    // );
+                    const selectedSize =
+                      product.ProductSize[e.target.selectedIndex].size;
+                    const selectedStock =
+                      product.ProductSize[e.target.selectedIndex].stock;
+                    setProductSize(selectedSize);
+                    setStock(selectedStock);
                   }}
                 >
                   {/* <option value="selectsize"> Select Size </option> */}
                   {product.ProductSize.map((item) => (
-                    <option key={item.size} value={item.stock}>
+                    <option key={item.size} value={item.size}>
                       {item.size}
                     </option>
                   ))}
                 </select>
               )}{" "}
             </div>
+            {/* <div>{ProductSize}</div> */}
             <div class="highlightdiv">
               <AddIcon />
               <div class="stockdesc"># of new stock </div>
