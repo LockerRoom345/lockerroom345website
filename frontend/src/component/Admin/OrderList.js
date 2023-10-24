@@ -8,6 +8,7 @@ import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { confirmAlert } from "react-confirm-alert";
 import SideBar from "./Sidebar";
 import {
   deleteOrder,
@@ -17,15 +18,20 @@ import {
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 import moment from "moment";
 
+  
+
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
 
   const { error, orders } = useSelector((state) => state.allOrders);
+  const deleteOrderHandler = (id) => {
+    dispatch(deleteOrder(id));
+  };
   const [sortModel, setSortModel] = React.useState([
     {
-      field: "orderId",
+      field: "OrderDate",
       sort: "desc",
     },
   ]);
@@ -37,12 +43,26 @@ const OrderList = ({ history }) => {
       setSortModel(model);
     }
   };
+  
+  const submit = (params) => {
+    confirmAlert({
+      title: "Delete Order",
+      message: "Are you sure you want to delete this order",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => deleteOrderHandler(params.getValue(params.id, "id")),
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
   const { order, loading } = useSelector((state) => state.orderDetails);
-  const deleteOrderHandler = (id) => {
-    dispatch(deleteOrder(id));
-  };
-
+  
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -123,8 +143,11 @@ const OrderList = ({ history }) => {
           <Fragment>
             <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
               {/* <EditIcon /> */}
-              <span>View Order</span>
+              <span>View</span>
             </Link>
+            <Button onClick={() => submit(params)}>
+              <DeleteIcon />
+            </Button>
 
             {/* <Button
               onClick={() =>
