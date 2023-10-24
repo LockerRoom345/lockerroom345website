@@ -1,0 +1,108 @@
+.footer {
+    /* position: fixed !important; */
+    /* margin-top: 100vh !important; */
+    padding: 0.5vmax !important;
+    background-color: #006554 !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: column;
+    /* height: 100px; */
+}
+
+.leftFooter>a {
+    text-decoration: none !important;
+    font-size: 1.3vmax !important;
+    font-family: "Roboto" !important;
+    font-weight: 200;
+    color: white !important;
+    transition: all 0.5s !important;
+    margin: 0.5vmax !important;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.leftFooter {
+    /* width: 20% !important; */
+    display: flex !important;
+    text-decoration: none !important;
+    flex-direction: row !important;
+    align-items: center !important;
+}
+
+.leftFooter>h4 {
+    font-family: "Roboto" !important;
+    font-size: 1vmax !important;
+}
+
+.leftFooter>p {
+    text-align: center !important;
+    font-size: 1.2vmax !important;
+    font-family: "Roboto" !important;
+}
+
+.leftFooter>img {
+    width: 10vmax !important;
+    margin: 1vmax !important;
+    cursor: pointer !important;
+}
+
+.leftFooter>a:hover {
+    color: #a1a7a6 !important;
+    transition: all 0.5s !important;
+}
+
+.midFooter {
+    width: 60% !important;
+    text-align: center !important;
+}
+
+.midFooter>h1 {
+    font-size: 4vmax !important;
+    font-family: "Roboto" !important;
+    color: #eb4034 !important;
+}
+
+.midFooter>img {
+    width: 10vmax !important;
+    margin: 1vmax !important;
+    cursor: pointer !important;
+}
+
+.midFooter>p {
+    max-width: 60% !important;
+    font-family: "Roboto" !important;
+    margin: 1vmax auto !important;
+}
+
+.rightFooter {
+    width: 20% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.rightFooter>h4 {
+    font-family: "Roboto" !important;
+    font-size: 1.4vmax !important;
+    text-decoration: underline !important;
+}
+
+.rightFooter>a {
+    text-decoration: none !important;
+    font-size: 1.3vmax !important;
+    font-family: "Roboto" !important;
+    color: white !important;
+    transition: all 0.5s !important;
+    margin: 0.5vmax !important;
+}
+
+.rightFooter>a:hover {
+    color: #a1a7a6 !important;
+}
+
+@media screen and (max-width: 600px) {
+    footer {
+        display: none !important;
+    }
+}
