@@ -165,7 +165,7 @@ const ProcessOrder = ({ history, match }) => {
               }}
             >
               <div ref={componentRef}>
-                <div className="confirmshippingArea">
+                <div className="confirmshippingArea" >
                   <Typography>Shipping Info</Typography>
                   <div className="orderDetailsContainerBox">
                     <div>
@@ -244,7 +244,7 @@ const ProcessOrder = ({ history, match }) => {
                     </div>
                   </div>
                   <Typography>Order Status</Typography>
-                  <div className="orderDetailsContainerBox">
+                  <div className="orderDetailsContainerBox" >
                     <div classaName="statusWrapper">
                       <div
                         className={
@@ -261,10 +261,10 @@ const ProcessOrder = ({ history, match }) => {
                     </div>
                   </div>
                 </div>
-                <div className="confirmCartItems">
+                <div className="confirmCartItems" style={{ maxHeight: '100%'}} >
                   <Typography>Your Cart Items:</Typography>
-                  <div className="confirmCartItemsContainer">
-                    <div className="cartitemHeader">
+                  <div className="confirmCartItemsContainer" style={{ overflowY: 'visible', maxHeight: '100%'}} >
+                    <div className="cartitemHeader" >
                       <div className="cartitemholderimage">
                         <span>Image</span>
                       </div>
