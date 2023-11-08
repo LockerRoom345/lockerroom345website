@@ -166,6 +166,10 @@ const ConfirmOrder = ({ history, addComments }) => {
                 <span>{shippingInfo.phoneNo}</span>
               </div>
               <div>
+                <p>Email:</p>
+                <span>{shippingInfo.Email}</span>
+              </div>
+              <div>
                 <p>Address:</p>
                 <span>{user.address.split("|")[0]}</span>
               </div>

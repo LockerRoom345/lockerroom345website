@@ -3,6 +3,7 @@
     margin-left: 50px;
 }
 
+
 .orderDetailsContainer>h1 {
     font: 300 30px "Roboto";
     margin: 4vmax 0;
@@ -60,6 +61,30 @@
     font: 500 15px "Roboto";
     color: #5e5e5e;
 }
+.emailUsButton {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .emailUsButton a {
+    text-decoration: none;
+  }
+  
+  .emailUsButton button {
+    background-color: #065749; /* Blue color for the button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .emailUsButton button:hover {
+    background-color: #065749; /* Slightly darker blue on hover */
+  }
+  
 
 .cartitemholderimage,
 .cartitemholdername,

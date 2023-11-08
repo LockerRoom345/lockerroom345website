@@ -115,7 +115,7 @@ const MyOrders = () => {
       }
       if (
         category == "Current" &&
-        (item.orderStatus == "Processing" || item.orderStatus == "Printed")
+        (item.orderStatus == "Processing" || item.orderStatus == "Printed" || item.orderStatus == "CheckEmail" )
       ) {
         // console.log(moment(item.shippingInfo.orderDate).format('MM-DD-YYYY hh:mm a'));
         rows.push({

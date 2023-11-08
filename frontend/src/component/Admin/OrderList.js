@@ -84,7 +84,7 @@ const OrderList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    { field: "orderId", headerName: "Order ID", minWidth: 60, flex: 0.1 },
+    //{ field: "orderId", headerName: "Order ID", minWidth: 60, flex: 0.1 },
     {
       field: "orderfrom",
       headerName: "Ordered By",
@@ -184,7 +184,7 @@ const OrderList = ({ history }) => {
       }
       rows.push({
         id: item._id,
-        orderId: item.orderId,
+        //orderId: item.orderId,
         itemsQty: item.orderItems.length,
         amount: item.totalPrice,
         OrderDate: moment(item.shippingInfo.orderDate).format(

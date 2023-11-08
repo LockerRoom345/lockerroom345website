@@ -216,6 +216,12 @@ const ProcessOrder = ({ history, match }) => {
                       </span>
                     </div>
                     <div>
+                      <p>Email:</p>
+                      <span>
+                        {order.shippingInfo && order.shippingInfo.Email}
+                      </span>
+                    </div>
+                    <div>
                       <p>Address:</p>
                       <span>
                         {order.shippingInfo &&
@@ -374,6 +380,9 @@ const ProcessOrder = ({ history, match }) => {
                         <option value="Delivered">Packed and Delivered</option>
                       )}  */}
                       {order.orderStatus === "Processing" && (
+                        <option value="CheckEmail">Check Email</option>
+                      )}
+                      {order.orderStatus === "Processing" && (
                         <option value="Printed">Printed</option>
                       )}
                       {order.orderStatus === "Processing" && (
@@ -386,8 +395,19 @@ const ProcessOrder = ({ history, match }) => {
                           Ready for Pickup
                         </option>
                       )}
+                      {order.orderStatus === "CheckEmail" && (
+                        <option value="Ready for Pickup">
+                          Ready for Pickup
+                        </option>
+                      )}
+                       {order.orderStatus === "CheckEmail" && (
+                        <option value="Delivered">Delivered</option>
+                      )}
                       {order.orderStatus === "Printed" && (
                         <option value="Delivered">Delivered</option>
+                      )}
+                      {order.orderStatus === "CheckEmail" && (
+                        <option value="Processing">Revert to Processing</option>
                       )}
                       {order.orderStatus === "Printed" && (
                         <option value="Processing">Revert to Processing</option>

@@ -102,6 +102,11 @@ const OrderDetails = ({ match }) => {
                   </span>
                 </div>
               </div>
+              <div className="emailUsButton">
+                <a href="mailto:lockerroom345@gmail.com">
+                  <button>Email Us at:  lockerroom345@gmail.com </button>
+                </a>
+              </div>
 
               <Typography>Order Status</Typography>
               <div className="orderDetailsContainerBox">

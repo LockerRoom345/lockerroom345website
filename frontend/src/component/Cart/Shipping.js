@@ -15,6 +15,7 @@ import CheckoutSteps from "../Cart/CheckoutSteps";
 import PersonIcon from "@mui/icons-material/Person";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import EmailIcon from "@material-ui/icons/Email";
 
 const Shipping = ({ history }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Shipping = ({ history }) => {
   // const [state, setState] = useState(shippingInfo.state);
   // const [country, setCountry] = useState(shippingInfo.country);
   // const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
+  const [Email, setEmail] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [addComments, setaddComments] = useState("");
   const regex = /\w+-\d{1,2}/;
@@ -75,6 +77,7 @@ const Shipping = ({ history }) => {
           userAddress: user.address + "|" + user.district,
           orderDate,
           phoneNo,
+          Email,
         })
       );
       history.push("/order/confirm");
@@ -84,13 +87,14 @@ const Shipping = ({ history }) => {
   return (
     <Fragment>
       <MetaData title="Delivery Details" />
+      
 
       <CheckoutSteps activeStep={0} />
 
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Delivery Details</h2>
-
+          <h2 className="shippingHeading">Please make sure the student ID you input is unidentifying</h2>
           <form
             className="shippingForm"
             encType="multipart/form-data"
@@ -161,6 +165,16 @@ const Shipping = ({ history }) => {
                 placeholder="Phone Number"
                 value={phoneNo}
                 onChange={(e) => setPhoneNo(e.target.value)}
+              />
+            </div>
+            <div>
+              <EmailIcon />
+              <input
+                type="text"
+                placeholder="Email"
+                value={Email}
+                required={true}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="additionalComments">
