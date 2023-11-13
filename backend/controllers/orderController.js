@@ -14,6 +14,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    Email,
   } = req.body;
 
   const order = await Order.create({
@@ -24,6 +25,7 @@ exports.newOrder = catchAsyncErrors(async (req, res, next) => {
     taxPrice,
     shippingPrice,
     totalPrice,
+    Email,
     paidAt: Date.now(),
     user: req.user._id,
   });
@@ -229,3 +231,27 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+exports.deleteOrderuser = async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    await order.remove();
+
+    res.status(200).json({
+      success: true,
+      message: "Order deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};

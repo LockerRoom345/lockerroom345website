@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./myOrders.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, myOrders } from "../../actions/orderAction";
+import { clearErrors, deleteOrderuser, myOrders } from "../../actions/orderAction";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
@@ -10,8 +10,17 @@ import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Header from "../layout/Header/Header";
+import { confirmAlert } from "react-confirm-alert";
+import { Button } from "@material-ui/core";
 import moment from 'moment';
-const MyOrders = () => {
+import DeleteIcon from "@material-ui/icons/Delete";
+import {
+  deleteOrder,
+  getAllOrders,
+} from "../../actions/orderAction";
+import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+
+const MyOrders = ({ history }) => {
   const categories = ["All", "Current", "Previous"];
 
   const [category, setCategory] = useState("Current");
@@ -20,6 +29,10 @@ const MyOrders = () => {
   const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
+  const deleteOrderHandler = (id) => {
+    
+    dispatch(deleteOrder(id));
+  };
   console.log(orders);
   const { user } = useSelector((state) => state.user);
   const [sortModel, setSortModel] = React.useState([
@@ -35,6 +48,44 @@ const MyOrders = () => {
       setSortModel(model);
     }
   };
+  const submit = (params) => {
+    confirmAlert({
+      title: "Delete Order",
+      message: "Are you sure you want to delete this order",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => deleteOrderHandler(params.getValue(params.id, "id")),
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+  const { error: deleteError, isDeleted } = useSelector((state) => state.order);
+  
+  
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      alert.success("Order Deleted Successfully");
+      dispatch(getAllOrders());
+      dispatch({ type: DELETE_ORDER_RESET });
+    }
+
+    dispatch(myOrders());
+  }, [dispatch, alert, error, deleteError, history, isDeleted]);
   const columns = [
     //{ field: "id", headerName: "Order ID", minWidth: 250, flex: 0.5 },
     {
@@ -88,9 +139,14 @@ const MyOrders = () => {
       sortable: false,
       renderCell: (params) => {
         return (
+          <Fragment>
           <Link to={`/order/${params.getValue(params.id, "id")}`}>
             <LaunchIcon />
           </Link>
+          <Button onClick={() => submit(params)}>
+          <DeleteIcon />
+        </Button>
+        </Fragment>
         );
       },
     },

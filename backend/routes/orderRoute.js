@@ -1,4 +1,5 @@
 const express = require("express");
+const { deleteOrderuser } = require("../controllers/orderController");
 const {
   newOrder,
   getSingleOrder,
@@ -6,7 +7,8 @@ const {
   getAllOrders,
   updateOrder,
   deleteOrder,
-  emailNewOrder
+  emailNewOrder,
+  
 } = require("../controllers/orderController");
 const router = express.Router();
 
@@ -17,6 +19,7 @@ router.route("/order/email").post(isAuthenticatedUser, emailNewOrder);
 router.route("/order/new").post(isAuthenticatedUser, newOrder);
 
 router.route("/order/:id").get(isAuthenticatedUser, getSingleOrder);
+router.route("/order/:id").get(isAuthenticatedUser, deleteOrderuser);
 
 router.route("/orders/me").get(isAuthenticatedUser, myOrders);
 
@@ -27,6 +30,6 @@ router
 router
   .route("/admin/order/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder)
-  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder);
+  .delete(isAuthenticatedUser, authorizeRoles("admin","user"), deleteOrder);
 
 module.exports = router;
