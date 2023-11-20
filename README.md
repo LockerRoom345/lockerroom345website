@@ -1,3 +1,3 @@
-Created a React Project for LockerRoom 345 donation web application medium.
+Created a React Project for LockerRoom345 donation web application medium.
 Full Responsive application.
-Lockerroom345
+www.Lockerroom345.org
