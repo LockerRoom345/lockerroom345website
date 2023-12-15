@@ -23,9 +23,10 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { submitHandler } from "../Cart/Payment";
 import moment from "moment";
+import { integer } from "sharp/lib/is";
 
 let deltaList = Array(100).fill(0);
-
+let realval = integer
 const ProcessOrder = ({ history, match }) => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error3, updateError, isUpdated } = useSelector(
@@ -39,7 +40,8 @@ const ProcessOrder = ({ history, match }) => {
     // console.log("add", order.orderItems[idx].quantity);
     if (order.orderItems[idx].quantity < 5) {
       order.orderItems[idx].quantity += 1;
-      deltaList[idx] += 1;
+      realval=deltaList[idx] - order.orderItems[idx].quantity;
+      realval += 1;
       // console.log(
       //   "increased",
       //   order.orderItems[idx].quantity,
@@ -54,7 +56,8 @@ const ProcessOrder = ({ history, match }) => {
     // console.log("sub", order.orderItems[idx].quantity);
     if (order.orderItems[idx].quantity > 0) {
       order.orderItems[idx].quantity -= 1;
-      deltaList[idx] -= 1;
+      realval=deltaList[idx] - order.orderItems[idx].quantity;
+      realval -= 1;
       // console.log(
       //   "decreased",
       //   order.orderItems[idx].quantity,
@@ -98,7 +101,7 @@ const ProcessOrder = ({ history, match }) => {
       // console.log(stock, deltaList[idx], idx);
       return (
         <div>
-          {stock - deltaList[idx]}
+          {stock - deltaList[idx] - order.orderItems[idx].quantity}
           {deltaList[idx] < 0 && <ArrowUpwardIcon />}
           {deltaList[idx] > 0 && <ArrowDownwardIcon />}
         </div>
@@ -328,6 +331,7 @@ const ProcessOrder = ({ history, match }) => {
                           </div>
 
                           <div className="cartitemholderquantity">
+                            
                             {findInventory(
                               item.name,
                               item.SubCategory,
@@ -335,13 +339,7 @@ const ProcessOrder = ({ history, match }) => {
                               idx
                             )}
                           </div>
-                          {/* <div className="cartitemholderquantity">
-                            {order.orderItems && findOtherorderQuantity(
-                              item.name,
-                              item.SubCategory,
-                              item.ProductSize.split(",", 1)
-                            )}
-                          </div> */}
+                          
                         </div>
                       ))}
                   </div>

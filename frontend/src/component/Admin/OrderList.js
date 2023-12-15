@@ -182,6 +182,7 @@ const OrderList = ({ history }) => {
       } else {
         district = "-";
       }
+      if (item.orderStatus !== 'Delivered'){
       rows.push({
         id: item._id,
         //orderId: item.orderId,
@@ -195,6 +196,7 @@ const OrderList = ({ history }) => {
         district: district,
         orderfrom: item.shippingInfo.userName,
       });
+    }
     });
 
   return (

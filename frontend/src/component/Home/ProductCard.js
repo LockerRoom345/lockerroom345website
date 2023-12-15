@@ -137,25 +137,28 @@ const ProductCard = ({ product, history }) => {
             <option value="Toddlers sizing">Toddlers sizing</option> */}
           </select>
         </div>
+      {/* sorted sizes alphabetically */}
         <div className="size">
-          <select
-            name="size"
-            id="size"
-            value={ProductSize}
-            onChange={(e) => {
-              handlesizeChange(e);
-            }}
-            required
-          >
-            {/* <option value="selectsize">Select Size</option> */}
+            <select
+              name="size"
+              id="size"
+              value={ProductSize}
+              onChange={(e) => {
+                handlesizeChange(e);
+              }}
+              required
+            >
+              {product.hashmap[SubCategory]
+                .sort((a, b) => parseInt(a.size) - parseInt(b.size))
+                .map((item, i) => (
+                  <option key={item.size} value={i}>
+                    {item.size}
+                  </option>
+                ))}
+            </select>
+          </div>
 
-            {product.hashmap[SubCategory].map((item, i) => (
-              <option key={item.size} value={i}>
-                {item.size}
-              </option>
-            ))}
-          </select>
-        </div>
+
         {
           // <div className="stock">
           //   <p>

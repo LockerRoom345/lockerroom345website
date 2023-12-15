@@ -144,7 +144,10 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   //   return next(new ErrorHander("You have already delivered this order", 400));
   // }
 
-  if (req.body.status === "packed" || req.body.status === "Delivered") {
+  if ( req.body.status === "Printed" ||
+  req.body.status === "Delivered" ||
+  req.body.status === "Ready for Pickup"||
+  req.body.status === "CheckEmail") {
     order.orderItems.forEach(async (o, idx) => {
       o.quantity = newQuantities[idx];
       console.log("orderItems forward", o);
