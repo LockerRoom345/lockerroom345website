@@ -30,6 +30,7 @@ import { integer } from "sharp/lib/is";
 let deltaList = Array(100).fill(0);
 let realval = integer
 const ProcessOrder = ({ history, match }) => {
+  const [copied, setCopied] = useState(false);
   const { order, error, loading } = useSelector((state) => state.orderDetails);
   const { error3, updateError, isUpdated } = useSelector(
     (state) => state.order
@@ -131,7 +132,13 @@ const ProcessOrder = ({ history, match }) => {
 
     dispatch(updateOrder(match.params.id, myForm));
   };
-
+  const handleCopyClick = () => {
+    setCopied(true);
+    // Clear the "Copied" message after 3 seconds (adjust as needed)
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  };
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -223,10 +230,13 @@ const ProcessOrder = ({ history, match }) => {
                     <div>
           <p>Email:</p>
           <span>{order.shippingInfo && order.shippingInfo.Email}</span>
-          {/* Add the CopyToClipboard component */}
           <CopyToClipboard text={order.shippingInfo && order.shippingInfo.Email}>
-            <FileCopyIcon style={{ cursor: 'pointer', marginLeft: '5px' }} />
+            <FileCopyIcon
+              style={{ cursor: 'pointer', marginLeft: '5px' }}
+              onClick={handleCopyClick}
+            />
           </CopyToClipboard>
+          {copied && <span style={{ marginLeft: '5px', color: 'green' }}>Copied to clipboard successfully!</span>}
         </div>
                     <div>
                       <p>Address:</p>
