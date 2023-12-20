@@ -182,7 +182,11 @@ const OrderList = ({ history }) => {
       } else {
         district = "-";
       }
-      if (item.orderStatus !== 'Delivered'){
+      if (
+        item.orderStatus !== 'Delivered' ||
+        (item.orderStatus === 'Delivered' &&
+          moment().diff(moment(item.shippingInfo.deliveryDate), 'months') <= 1)
+      ){
       rows.push({
         id: item._id,
         //orderId: item.orderId,

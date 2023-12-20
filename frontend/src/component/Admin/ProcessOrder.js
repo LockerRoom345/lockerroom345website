@@ -3,6 +3,8 @@ import MetaData from "../layout/MetaData";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import SideBar from "./Sidebar";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {
   getOrderDetails,
   clearErrors,
@@ -219,11 +221,13 @@ const ProcessOrder = ({ history, match }) => {
                       </span>
                     </div>
                     <div>
-                      <p>Email:</p>
-                      <span>
-                        {order.shippingInfo && order.shippingInfo.Email}
-                      </span>
-                    </div>
+          <p>Email:</p>
+          <span>{order.shippingInfo && order.shippingInfo.Email}</span>
+          {/* Add the CopyToClipboard component */}
+          <CopyToClipboard text={order.shippingInfo && order.shippingInfo.Email}>
+            <FileCopyIcon style={{ cursor: 'pointer', marginLeft: '5px' }} />
+          </CopyToClipboard>
+        </div>
                     <div>
                       <p>Address:</p>
                       <span>
