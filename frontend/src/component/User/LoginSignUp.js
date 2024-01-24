@@ -178,7 +178,12 @@ const LoginSignUp = ({ history, location }) => {
             <div className="left">
               {/* <div> */}
               <h3>
-                WELCOME <br></br>
+                WELCOME: Due to the early school closeure on Tuesday 1/23 The LockerRoom 345 will have a special pick up time this Wed. 1/24 from 2:00 -4:00 
+All orders submitted will be ready at that time.
+We will also have our regular Thursday, 7:30 AM - 9:00 AM pick up.
+Please come pick up ASAP.
+ Thank you
+ Kim Myers <br></br>
                 <h2>
                   TO <Link to="/loginmanual"></Link>
                 </h2>
