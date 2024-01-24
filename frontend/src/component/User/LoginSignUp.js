@@ -185,7 +185,7 @@ Please come pick up ASAP.
  Thank you
  Kim Myers <br></br>
                 <h2>
-                  TO <Link to="/loginmanual"></Link>
+                   <Link to="/loginmanual"></Link>
                 </h2>
               </h3>
               <div>
