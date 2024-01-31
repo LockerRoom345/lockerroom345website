@@ -178,9 +178,9 @@ const LoginSignUp = ({ history, location }) => {
             <div className="left">
               {/* <div> */}
               <h3>
-                WELCOME To <br></br>
+                WELCOME <br></br>
                 <h2>
-                   <Link to="/loginmanual"></Link>
+                 TO  <Link to="/loginmanual"></Link>
                 </h2>
               </h3>
               <div>
