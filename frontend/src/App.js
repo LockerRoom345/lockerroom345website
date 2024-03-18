@@ -56,6 +56,7 @@ import RequestFormReplica from "./component/Cart/RequestFormReplica";
 import UserSuccess from "./component/Admin/UserSuccess";
 import ManualLoginSignUp from "./component/User/ManualLoginSignUp";
 import Privacypolicy from "./component/layout/Privacypolicy/Privacypolicy";
+import GenerateReport from './component/Admin/GenerateReport';
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -105,7 +106,7 @@ function App() {
             );
           }}
         />
-
+        <Route path="/generate-report" component={GenerateReport} />
         <Route exact path="/replica" component={RequestFormReplica} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/requestform" component={Requestform} />

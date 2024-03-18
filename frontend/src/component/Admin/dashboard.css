@@ -55,12 +55,27 @@
     width: 100%;
     margin: 0 2rem;
 }
-
 .dashboardSummaryBox2>a {
     color: rgb(255, 255, 255);
     font: 300 1.8rem "Roboto";
     text-align: center;
     background-color: #5e6258;
+    text-decoration: none;
+    padding: 1.5rem;
+    width: 10vmax;
+    height: 10vmax;
+    margin: 2rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.dashboardSummaryBox22>a {
+    color: rgb(255, 255, 255);
+    font: 300 1.8rem "Roboto";
+    text-align: center;
+    background-color: #014634;
     text-decoration: none;
     padding: 1.5rem;
     width: 10vmax;

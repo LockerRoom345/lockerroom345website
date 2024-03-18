@@ -14,9 +14,11 @@ import lockerroomlogo from "../../images/lockerroomlogo.PNG";
 import Footer from "../../component/layout/Footer/Footer";
 import ReactHover, { Trigger, Hover } from "react-hover";
 import InfoIcon from "@mui/icons-material/Info";
+import { useHistory } from 'react-router-dom';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { products } = useSelector((state) => state.products);
 
@@ -65,7 +67,10 @@ const Dashboard = () => {
   //       outOfStock += 1;
   //     }
   //   });
-
+  const navigateToOrderDetails = () => {
+    history.push('/generate-report');
+  };
+  
   useEffect(() => {
     dispatch(getAdminProduct());
     dispatch(getAllOrders());
@@ -192,10 +197,10 @@ const Dashboard = () => {
     <div className="dashboard">
       <MetaData title="Dashboard - Admin Panel" />
       {/* <Sidebar /> */}
-
+      
       <div className="dashboardContainer">
         <Typography component="h1">Inventory Management</Typography>
-
+        
         <div className="dashboardSummary">
           <div>
             <p>
@@ -246,7 +251,23 @@ const Dashboard = () => {
                 <p>{users && users.length}</p>
                 <ReactTooltip id="toolTip3" />
               </Link>
+              
             )}
+            <div className="dashboardSummaryBox22">
+            {user.role == "admin" && (
+              <Link
+                to="/generate-report"
+                data-tip="Click Me"
+                data-for="toolTip4"
+                data-place="bottom"
+                data-type="info"
+              >
+                <p>Generate Report ✨</p>
+                
+                <ReactTooltip id="toolTip4" />
+              </Link>
+              
+            )}</div>
           </div>
           <div>
             <p>
