@@ -180,7 +180,7 @@ const LoginSignUp = ({ history, location }) => {
               <h3>
                 WELCOME <br></br>
                 <h2>
-                  TO <Link to="/loginmanual"></Link>
+                 TO  <Link to="/loginmanual"></Link>
                 </h2>
               </h3>
               <div>
