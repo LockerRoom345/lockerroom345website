@@ -168,7 +168,7 @@ const LoginSignUp = ({ history, location }) => {
     setLoginEmail(e.value);
   };
 
-  return (
+return (
     <Fragment>
       {loading ? (
         <Loader />
@@ -176,24 +176,23 @@ const LoginSignUp = ({ history, location }) => {
         <Fragment>
           <div className="LoginSignUpContainer">
             <div className="left">
-              {/* <div> */}
-              {/* Add the specified lines here to be removed */}
-              <div>
-              <p style={{ fontWeight: 'bold' }}>PLEASE PICK UP YOUR ORDERS DURING THE FOLLOWING PICK UP TIMES</p>
-              <p style={{ fontWeight: 'bold' }}>TUESDAYS: 2:00-4;00</p>
-              <p style={{ fontWeight: 'bold' }}>THURSDAYS: 7:30am- 9:00am</p>
-            </div>
-            {/* End of added lines to be removed */}
               <h3>
                 WELCOME <br></br>
                 <h2>
-                 TO  <Link to="/loginmanual"></Link>
+                  TO  <Link to="/loginmanual"></Link>
                 </h2>
               </h3>
               <div>
                 <img src={lockerroomlogo} alt="LockerRoom Logo" />
                 <Link to="/loginmanual">BUTTON</Link>
               </div>
+              {/* Move the specified lines below the picture */}
+              <div>
+                <p style={{ fontWeight: 'bold' }}>PLEASE PICK UP YOUR ORDERS DURING THE FOLLOWING PICK UP TIMES</p>
+                <p style={{ fontWeight: 'bold' }}>TUESDAYS: 2:00-4;00</p>
+                <p style={{ fontWeight: 'bold' }}>THURSDAYS: 7:30am- 9:00am</p>
+              </div>
+              {/* End of moved lines */}
             </div>
             <div className="right">
               <div className="LoginSignUpBox">
@@ -243,7 +242,7 @@ const LoginSignUp = ({ history, location }) => {
                       onChange={(e) => setLoginPassword(e.target.value)}
                     />
                   </div>
-
+  
                   <input type="submit" value="Submit" className="loginBtn" />
                 </form>
               </div>
@@ -255,7 +254,8 @@ const LoginSignUp = ({ history, location }) => {
         </Fragment>
       )}
     </Fragment>
-  );
+);
+  
 };
 
 export default LoginSignUp;
