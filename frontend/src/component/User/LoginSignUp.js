@@ -187,11 +187,6 @@ return (
                 <Link to="/loginmanual">BUTTON</Link>
               </div>
               {/* Move the specified lines below the picture */}
-              <div>
-                <p style={{ fontWeight: 'bold' }}>PLEASE PICK UP YOUR ORDERS DURING THE FOLLOWING PICK UP TIMES</p>
-                <p style={{ fontWeight: 'bold' }}>TUESDAYS: 2:00-4;00</p>
-                <p style={{ fontWeight: 'bold' }}>THURSDAYS: 7:30am- 9:00am</p>
-              </div>
               {/* End of moved lines */}
             </div>
             <div className="right">
@@ -203,6 +198,11 @@ return (
                   </div>
                   <button ref={switcherTab}></button>
                 </div>
+                <div>
+                <p style={{ fontWeight: 'bold' }}>PLEASE PICK UP YOUR ORDERS DURING THE FOLLOWING PICK UP TIMES</p>
+                <p style={{ fontWeight: 'bold' }}>TUESDAYS: 2:00-4;00</p>
+                <p style={{ fontWeight: 'bold' }}>THURSDAYS: 7:30am- 9:00am</p>
+              </div>
                 <form
                   className="loginForm"
                   ref={loginTab}
