@@ -199,8 +199,8 @@ return (
                   <button ref={switcherTab}></button>
                 </div>
                 <div>
-                <p style={{ fontWeight: 'bold' }}>Closed 3/29 - 4/12. Please pick up all orders </p>
-                <p style={{ fontWeight: 'bold' }}>THURSDAY 3/28 7:30 AM - 9:00</p>
+                <p style={{ fontWeight: 'bold' }}>/*Closed 3/29 - 4/12. Please pick up all orders*/ </p>
+                <p style={{ fontWeight: 'bold' }}>/*THURSDAY 3/28 7:30 AM - 9:00*/</p>
               </div>
                 <form
                   className="loginForm"
