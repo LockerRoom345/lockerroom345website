@@ -169,87 +169,83 @@ const LoginSignUp = ({ history, location }) => {
   };
 
 return (
-    <Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Fragment>
-          <div className="LoginSignUpContainer">
-            <div className="left">
-              <h3>
-                WELCOME <br></br>
-                <h2>
-                  TO  <Link to="/loginmanual"></Link>
-                </h2>
-              </h3>
+  <Fragment>
+    {loading ? (
+      <Loader />
+    ) : (
+      <Fragment>
+        <div className="LoginSignUpContainer">
+          {/* Announcement Container */}
+          <div className="announcementContainer">
+            <p>Announcements: No longer pick up Thursdays @7:30 am - 9:00 am it will be Thursdays  8:00am -9:30 am, Tuesday 2:00 - 4:00 stays as is effective immediately</p>
+          </div>
+
+          {/* Left content */}
+          <div className="left">
+            <h3>
+              WELCOME <br />
+              TO <Link to="/loginmanual"></Link>
+            </h3>
+            <div>
+              <img src={lockerroomlogo} alt="LockerRoom Logo" />
+              <Link to="/loginmanual">BUTTON</Link>
+            </div>
+          </div>
+
+          {/* Right content */}
+          <div className="right">
+            <div className="LoginSignUpBox">
               <div>
-                <img src={lockerroomlogo} alt="LockerRoom Logo" />
-                <Link to="/loginmanual">BUTTON</Link>
-              </div>
-              {/* Move the specified lines below the picture */}
-              {/* End of moved lines */}
-            </div>
-            <div className="right">
-              <div className="LoginSignUpBox">
-                <div>
-                  <div className="login_signUp_toggle">
-                    <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
-                    {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
-                  </div>
-                  <button ref={switcherTab}></button>
+                <div className="login_signUp_toggle">
+                  <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
+                  {/* <p onClick={(e) => switchTabs(e, "register")}>REGISTER</p> */}
                 </div>
-                <form
-                  className="loginForm"
-                  ref={loginTab}
-                  onSubmit={loginSubmit}
-                >
-                  <div className="mobileView">
-                    {/* <div> */}
-                    <h3>
-                      WELCOME <br></br>
-                      <h2>
-                        TO <Link to="/loginmanual"></Link>
-                      </h2>
-                    </h3>
-                    <div>
-                      <img src={lockerroomlogo} alt="LockerRoom Logo" />
-                      <Link to="/loginmanual">BUTTON</Link>
-                    </div>
-                  </div>
-                  <div className="loginEmail">
-                    {/* {JSON.stringify(value)} */}
-                    <Select
-                      placeholder="Select School Name"
-                      name="School name"
-                      options={userJsonListObject}
-                      onChange={handleTypeSelect}
-                      label="Single select"
-                      maxMenuHeight={130}
-                    />
-                  </div>
-                  <div className="loginPassword">
-                    <LockOpenIcon />
-                    <input
-                      type="password"
-                      placeholder="BEDS code"
-                      required
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                    />
-                  </div>
-  
-                  <input type="submit" value="Submit" className="loginBtn" />
-                </form>
+                <button ref={switcherTab}></button>
               </div>
+              <form className="loginForm" ref={loginTab} onSubmit={loginSubmit}>
+                <div className="mobileView">
+                  <h3>
+                    WELCOME <br />
+                    TO <Link to="/loginmanual"></Link>
+                  </h3>
+                  <div>
+                    <img src={lockerroomlogo} alt="LockerRoom Logo" />
+                    <Link to="/loginmanual">BUTTON</Link>
+                  </div>
+                </div>
+                <div className="loginEmail">
+                  <Select
+                    placeholder="Select School Name"
+                    name="School name"
+                    options={userJsonListObject}
+                    onChange={handleTypeSelect}
+                    label="Single select"
+                    maxMenuHeight={130}
+                  />
+                </div>
+                <div className="loginPassword">
+                  <LockOpenIcon />
+                  <input
+                    type="password"
+                    placeholder="BEDS code"
+                    required
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                  />
+                </div>
+                <input type="submit" value="Submit" className="loginBtn" />
+              </form>
             </div>
           </div>
-          <div className="newfooter">
-            <p>&copy; All rights reserved to Locker Room 345 </p>
-          </div>
-        </Fragment>
-      )}
-    </Fragment>
+        </div>
+        <div className="newfooter">
+          <p>&copy; All rights reserved to Locker Room 345 </p>
+        </div>
+      </Fragment>
+    )}
+  </Fragment>
 );
+
   
 };
 
