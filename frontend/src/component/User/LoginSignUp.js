@@ -177,7 +177,14 @@ return (
         <div className="LoginSignUpContainer">
           {/* Announcement Container */}
           <div className="announcementContainer">
-            <p>Announcements: No longer pick up Thursdays @7:30 am - 9:00 am it will be Thursdays  8:00am -9:30 am, Tuesday 2:00 - 4:00 stays as is effective immediately</p>
+            <p>Our regular services are closed for the summer. 
+
+For emergency needs email: Lockerroom345@gmail.com
+
+We will resume regular operations in late Aug. in time for  back to school.
+
+Thank you
+ Kim Myers</p>
           </div>
 
           {/* Left content */}
