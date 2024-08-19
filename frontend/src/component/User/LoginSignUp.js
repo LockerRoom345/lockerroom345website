@@ -177,15 +177,20 @@ return (
         <div className="LoginSignUpContainer">
           {/* Announcement Container */}
           <div className="announcementContainer">
-            <p>Our regular services are closed for the summer. 
+  <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
+        Locker Room 345 will reopen for pick up the week of 8/26.
+    
+        PLEASE Remember: We are a source of last resort!
+    
+        Our inventory is limited, and we cannot grant many items for one individual.
+    
+        Extenuating circumstances: please note in comments
+    
+        Thank you,
+        Kim Myers
+      </p>
+    </div>
 
-For emergency needs email: Lockerroom345@gmail.com
-
-We will resume regular operations in late Aug. in time for  back to school.
-
-Thank you
- Kim Myers</p>
-          </div>
 
           {/* Left content */}
           <div className="left">
