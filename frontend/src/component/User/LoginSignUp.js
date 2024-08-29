@@ -178,16 +178,22 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-        Locker Room 345 will reopen for pick up the week of 8/26.
-    
-        PLEASE Remember: We are a source of last resort!
-    
-        Our inventory is limited, and we cannot grant many items for one individual.
-    
-        Extenuating circumstances: please note in comments
-    
-        Thank you,
-        Kim Myers
+        The Locker Room 345 is now open 
+        Pick up times:
+        Tuesday 2:00-4:00 & Thursday 8:00 AM - 9:30 AM 
+        Available items are ready the next schedule pick up time.
+        
+        PLEASE READ:
+         Respectfully, PLEASE remember and consider:
+        1. We are to be a source of clothing and shoes for individuals with no other means.
+        2. We cannot supply complete wardrobes or large quantities. 
+        3. Check your other possible resources prior to submitting requests from us. 
+        
+        BUT: if there are extenuating circumstances please explain in comments.
+        NOTE: Each individual MUST be filled out on separate form!! 
+            We have no school backpacks (a few small young colors only)
+        
+        Thank you for all you do for families
       </p>
     </div>
 
