@@ -11,6 +11,8 @@ import Donate from "../donate/Donate";
 import Pagination from "react-js-pagination";
 import Typography from "@material-ui/core/Typography";
 import Footer from "../../component/layout/Footer/Footer";
+import sizeGuide from '../../public/sizeguide.jpg';
+import footMeasure from '../../public/footmeasure.jpg';
 
 const Home = ({ history }) => {
   const categories = ["All", "Clothing", "Footwear", "Sports", "Miscellaneous"];
@@ -161,7 +163,27 @@ const Home = ({ history }) => {
           <h3 className="noteText">
             *Images are the graphical representation of the product. Brands of
             specific designs can not be requested
+              <br />
+            <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+              <a 
+                href={sizeGuide} 
+                download 
+                className="button"
+                style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', borderRadius: '5px', textDecoration: 'none', textAlign: 'center' }}
+              >
+                Size Guide
+              </a>
+              <a 
+                href={footMeasure} 
+                download 
+                className="button"
+                style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', borderRadius: '5px', textDecoration: 'none', textAlign: 'center' }}
+              >
+                Foot Measure
+              </a>
+            </div>
           </h3>
+              
           <div className="container" id="container">
             {[...Object.entries(products)]
 
