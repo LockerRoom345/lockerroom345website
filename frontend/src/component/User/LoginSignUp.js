@@ -184,16 +184,12 @@ return (
         Available items are ready the next schedule pick up time.
         
         PLEASE READ:
-         Respectfully, PLEASE remember and consider:
-        1. We are to be a source of clothing and shoes for individuals with no other means.
-        2. We cannot supply complete wardrobes or large quantities. 
-        3. Check your other possible resources prior to submitting requests from us. 
-        
-        BUT: if there are extenuating circumstances please explain in comments.
-        NOTE: Each individual MUST be filled out on separate form!! 
-            We have no school backpacks (a few small young colors only)
-        
-        Thank you for all you do for families
+        We are closed Tuesday 11/26-12/1
+        BUT      
+        SPECIAL PICK UP DATE:
+        MONDAY 11/25- 3:00-5;00! 
+        All orders before noon will be ready for pick up! 
+        Thank you
       </p>
     </div>
 
