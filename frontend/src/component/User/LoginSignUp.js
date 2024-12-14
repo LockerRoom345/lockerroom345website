@@ -178,17 +178,8 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-        The Locker Room 345 is now open 
-        Pick up times:
-        Tuesday 2:00-4:00 & Thursday 8:00 AM - 9:30 AM 
-        Available items are ready the next schedule pick up time.
-        
-        PLEASE READ:
-        We are closed Tuesday 11/26-12/1
-        BUT      
-        SPECIAL PICK UP DATE:
-        MONDAY 11/25- 3:00-5;00! 
-        All orders before noon will be ready for pick up! 
+        Last week to make requests before holiday break!
+        PICK UP: TUESDAY 2;00-4;00 (12/17) or THURSDAY(12/19) 8;00 am -9:30 am
         Thank you
       </p>
     </div>
