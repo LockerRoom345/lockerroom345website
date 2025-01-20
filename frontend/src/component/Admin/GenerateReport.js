@@ -44,7 +44,7 @@ const OrderDetails = () => {
       if (order.createdAt && order.deliveredAt && order.orderStatus === 'Delivered') {
         const createdAt = new Date(order.createdAt);
         const deliveredAt = new Date(order.deliveredAt);
-        totalFulfillmentTime += (deliveredAt - createdAt)/24;
+        totalFulfillmentTime += (deliveredAt - createdAt)/(1000 * 60 * 60);
         countFulfilledOrders++;
       }
     
@@ -68,7 +68,7 @@ const OrderDetails = () => {
     setTotalOrdersFulfilled(countFulfilledOrders);
     setTotalItemsFulfilled(itemsFulfilled);
     if (countFulfilledOrders > 0) {
-      const averageTimeInHours = totalFulfillmentTime / countFulfilledOrders / (1000 * 60 * 60); // Converts to hours
+      const averageTimeInHours = totalFulfillmentTime / countFulfilledOrders;
       setAverageFulfillmentTime(averageTimeInHours); // Set average time in hours
     }
   };
@@ -92,10 +92,11 @@ const OrderDetails = () => {
             <Typography component="h2">Most Ordering Schools</Typography>
             <ul>
               {mostOrderingSchools.map(([name, count], index) => (
-                <li key={index}>{name} - {count}</li>
+                <li key={index}>{name.toUpperCase()} - {count}</li>
               ))}
             </ul>
           </section>
+
 
           {/* <section className="reportSection">
   <Typography component="h2">Most Ordered Sizes</Typography>
@@ -107,7 +108,7 @@ const OrderDetails = () => {
 </section> */}
           <section className="reportSection">
           <Typography component="h2">Average Order Fulfillment Time</Typography>
-          <p>{averageFulfillmentTime.toFixed(0)} Days</p>
+          <p>{averageFulfillmentTime.toFixed(0)} Hours</p>
         </section>
           <section className="reportSection">
             <Typography component="h2">Number of Students Helped</Typography>

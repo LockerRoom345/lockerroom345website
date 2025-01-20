@@ -6,10 +6,8 @@ import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { confirmAlert } from "react-confirm-alert";
-import SideBar from "./Sidebar";
 import {
   deleteOrder,
   getAllOrders,
@@ -18,17 +16,13 @@ import {
 import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
 import moment from "moment";
 
-  
-
 const OrderList = ({ history }) => {
   const dispatch = useDispatch();
-
   const alert = useAlert();
 
   const { error, orders } = useSelector((state) => state.allOrders);
-  const deleteOrderHandler = (id) => {
-    dispatch(deleteOrder(id));
-  };
+  const { error: deleteError, isDeleted } = useSelector((state) => state.order);
+
   const [sortModel, setSortModel] = React.useState([
     {
       field: "OrderDate",
@@ -37,17 +31,19 @@ const OrderList = ({ history }) => {
   ]);
 
   const handleSortChange = (model) => {
-    /* if statement to prevent the infinite loop by confirming model is 
-     different than the current sortModel state */
     if (JSON.stringify(model) !== JSON.stringify(sortModel)) {
       setSortModel(model);
     }
   };
-  
+
+  const deleteOrderHandler = (id) => {
+    dispatch(deleteOrder(id));
+  };
+
   const submit = (params) => {
     confirmAlert({
       title: "Delete Order",
-      message: "Are you sure you want to delete this order",
+      message: "Are you sure you want to delete this order?",
       buttons: [
         {
           label: "Yes",
@@ -60,9 +56,7 @@ const OrderList = ({ history }) => {
       ],
     });
   };
-  const { error: deleteError, isDeleted } = useSelector((state) => state.order);
-  const { order, loading } = useSelector((state) => state.orderDetails);
-  
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -84,7 +78,6 @@ const OrderList = ({ history }) => {
   }, [dispatch, alert, error, deleteError, history, isDeleted]);
 
   const columns = [
-    //{ field: "orderId", headerName: "Order ID", minWidth: 60, flex: 0.1 },
     {
       field: "orderfrom",
       headerName: "Ordered By",
@@ -109,9 +102,13 @@ const OrderList = ({ history }) => {
     {
       field: "OrderDate",
       headerName: "Order Date",
-      type: "string",
+      type: "dateTime",
       minWidth: 50,
       flex: 0.1,
+      valueFormatter: (params) => {
+        // Format the displayed date elegantly
+        return moment(params.value).format("MM-DD-YYYY h:mm A");
+      },
     },
     {
       field: "status",
@@ -138,27 +135,16 @@ const OrderList = ({ history }) => {
       minWidth: 60,
       flex: 0.1,
       sortable: false,
-      renderCell: (params) => {
-        return (
-          <Fragment>
-            <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
-              {/* <EditIcon /> */}
-              <span>View</span>
-            </Link>
-            <Button onClick={() => submit(params)}>
-              <DeleteIcon />
-            </Button>
-
-            {/* <Button
-              onClick={() =>
-                deleteOrderHandler(params.getValue(params.id, "id"))
-              }
-            >
-              <DeleteIcon />
-            </Button> */}
-          </Fragment>
-        );
-      },
+      renderCell: (params) => (
+        <Fragment>
+          <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
+            <span>View</span>
+          </Link>
+          <Button onClick={() => submit(params)}>
+            <DeleteIcon />
+          </Button>
+        </Fragment>
+      ),
     },
   ];
 
@@ -166,41 +152,27 @@ const OrderList = ({ history }) => {
 
   orders &&
     orders.forEach((item) => {
-      console.log(item, item.shippingInfo.receivingPersonName);
-      let tempname = "";
-      if (typeof item.shippingInfo.receivingPersonName === "undefined") {
-        tempname = "";
-      } else {
-        tempname = item.shippingInfo.receivingPersonName.split("_")[0];
-      }
-      let addressSplit =
-        item.shippingInfo.userAddress &&
-        item.shippingInfo.userAddress.split("|");
-      let district = "";
-      if (addressSplit.length == 2) {
-        district = addressSplit[1];
-      } else {
-        district = "-";
-      }
+      const tempname =
+        item.shippingInfo.receivingPersonName?.split("_")[0] || "";
+      const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
+      const district = addressSplit[1] || "-";
+
       if (
-        item.orderStatus !== 'Delivered' ||
-        (item.orderStatus === 'Delivered' &&
-          moment().diff(moment(item.shippingInfo.deliveryDate), 'months') <= 1)
-      ){
-      rows.push({
-        id: item._id,
-        //orderId: item.orderId,
-        itemsQty: item.orderItems.length,
-        amount: item.totalPrice,
-        OrderDate: moment(item.shippingInfo.orderDate).format(
-          "MM-DD-YYYY hh:mm a"
-        ),
-        status: item.orderStatus,
-        studentId: tempname,
-        district: district,
-        orderfrom: item.shippingInfo.userName,
-      });
-    }
+        item.orderStatus !== "Delivered" ||
+        (item.orderStatus === "Delivered" &&
+          moment().diff(moment(item.shippingInfo.deliveryDate), "months") <= 1)
+      ) {
+        rows.push({
+          id: item._id,
+          itemsQty: item.orderItems.length,
+          amount: item.totalPrice,
+          OrderDate: moment(item.shippingInfo.orderDate).toISOString(),
+          status: item.orderStatus,
+          studentId: tempname,
+          district: district,
+          orderfrom: item.shippingInfo.userName,
+        });
+      }
     });
 
   return (
@@ -208,18 +180,12 @@ const OrderList = ({ history }) => {
       <MetaData title={`ALL ORDERS - Admin`} />
 
       <div className="dashboard">
-        {/* <SideBar /> */}
         <div className="productListContainer">
           <h1 id="productListHeading">ALL ORDERS RECEIVED</h1>
 
           <DataGrid
             sortModel={sortModel}
-            onSortModelChange={(model) => handleSortChange(model)}
-            // onSortModelChange={(model) => {
-            //   console.log(model);
-            //   // if(model != sortModel)
-            //   // setSortModel(model);
-            // }}
+            onSortModelChange={handleSortChange}
             rows={rows}
             columns={columns}
             pageSize={15}

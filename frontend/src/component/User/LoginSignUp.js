@@ -226,6 +226,7 @@ return (
                     onChange={handleTypeSelect}
                     label="Single select"
                     maxMenuHeight={130}
+                    getOptionLabel={(e) => e.label.toUpperCase()}
                   />
                 </div>
                 <div className="loginPassword">
