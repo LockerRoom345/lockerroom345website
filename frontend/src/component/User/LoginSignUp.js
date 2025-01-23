@@ -178,11 +178,13 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-        Last week to make requests before holiday break!
-        PICK UP: TUESDAY 2;00-4;00 (12/17) or THURSDAY(12/19) 8;00 am -9:30 am
-        Thank you
-      </p>
-    </div>
+    PICK UP times: <span style={{ color: 'red' }}>TUESDAY 2:00 pm - 4:00 pm</span> or <span style={{ color: 'red' }}>THURSDAY 8:00 am - 9:30 am</span>.
+    <br />
+    Please note that additional inventory arrived. Thank you.
+  </p>
+</div>
+
+
 
 
           {/* Left content */}
