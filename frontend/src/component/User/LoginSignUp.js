@@ -178,9 +178,9 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-    PICK UP times: <span style={{ color: 'red' }}>TUESDAY 2:00 pm - 4:00 pm</span> or <span style={{ color: 'red' }}>THURSDAY 8:00 am - 9:30 am</span>.
+     <span style={{ color: 'red' }}>The Locker Room 345 will be closed for spring break:  April 18-27</span>  <span style={{ color: 'red' }}></span>.
     <br />
-    Please note that additional inventory arrived. Thank you.
+    Thank you.
   </p>
 </div>
 
