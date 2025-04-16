@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import MetaData from "../layout/MetaData";
 import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import SideBar from "./Sidebar";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import {
   getOrderDetails,
@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
-import { Button } from "@material-ui/core";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 import "./processOrder.css";
 import ReactToPrint from "react-to-print";
@@ -28,7 +27,8 @@ import moment from "moment";
 import { integer } from "sharp/lib/is";
 
 let deltaList = Array(100).fill(0);
-let realval = integer
+let realval = integer;
+
 const ProcessOrder = ({ history, match }) => {
   const [copied, setCopied] = useState(false);
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -36,57 +36,41 @@ const ProcessOrder = ({ history, match }) => {
     (state) => state.order
   );
   const { error2, products } = useSelector((state) => state.products);
-  // console.log("hehe",state.products);
   const [dummyRefresher, setdummyRefresher] = useState("");
-  // console.log(deltaList);
+  
   const increaseQuantity = (idx) => {
-    // console.log("add", order.orderItems[idx].quantity);
     if (order.orderItems[idx].quantity < 5) {
       order.orderItems[idx].quantity += 1;
-      realval=deltaList[idx] - order.orderItems[idx].quantity;
+      realval = deltaList[idx] - order.orderItems[idx].quantity;
       realval += 1;
-      // console.log(
-      //   "increased",
-      //   order.orderItems[idx].quantity,
-      //   deltaList[idx],
-      //   idx
-      // );
       setdummyRefresher("refresh" + order.orderItems[idx].quantity);
     } else return;
   };
 
   const decreaseQuantity = (idx) => {
-    // console.log("sub", order.orderItems[idx].quantity);
     if (order.orderItems[idx].quantity > 0) {
       order.orderItems[idx].quantity -= 1;
-      realval=deltaList[idx] - order.orderItems[idx].quantity;
+      realval = deltaList[idx] - order.orderItems[idx].quantity;
       realval -= 1;
-      // console.log(
-      //   "decreased",
-      //   order.orderItems[idx].quantity,
-      //   deltaList[idx],
-      //   idx
-      // );
       setdummyRefresher("refresh" + order.orderItems[idx].quantity);
     } else return;
   };
+
   function findOtherorderQuantity(itemName, subCategory, size) {
     let sum = 0;
     order.orderItems.map((product) => {
-      console.log(product);
       if (
-        product.name == itemName &&
-        product.subCategory == subCategory &&
-        product.ProductSize == size
+        product.name === itemName &&
+        product.subCategory === subCategory &&
+        product.ProductSize === size
       ) {
         sum += product.quantity;
       }
     });
     return sum;
   }
+
   function findInventory(itemName, subCategory, size, idx) {
-    // console.log("inventoryyyyy");
-    // console.log(itemName, subCategory,size[0]);
     let stockIndex = 0,
       stock = 0;
     const index = products.findIndex(
@@ -101,7 +85,6 @@ const ProcessOrder = ({ history, match }) => {
       stock = products[index]?.ProductSize[stockIndex].stock;
     }
     if (stockIndex >= 0 && index >= 0) {
-      // console.log(stock, deltaList[idx], idx);
       return (
         <div>
           {stock - deltaList[idx] - order.orderItems[idx].quantity}
@@ -117,33 +100,62 @@ const ProcessOrder = ({ history, match }) => {
   const { shippingInfo } = useSelector((state) => state.cart);
   const [status, setStatus] = useState("null");
   const componentRef = useRef();
+  const dispatch = useDispatch();
+  const alert = useAlert();
+
+  // Updated submit handler with inventory check:
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
 
+    // Check inventory for non-"Processing" statuses only.
+    if (status !== "Processing") {
+      let hasNegativeInventory = false;
+
+      order.orderItems.forEach((item, index) => {
+        // Find the corresponding product by name and subcategory.
+        const product = products.find(
+          (prod) => prod.name === item.name && prod.SubCategory === item.SubCategory
+        );
+        if (product) {
+          // Use the same size split logic as in rendering.
+          const size = item.ProductSize.split(",", 1)[0];
+          const productSize = product.ProductSize.find((s) => s.size === size);
+          if (productSize) {
+            const availableStock = productSize.stock;
+            // Calculation using the same formula as in findInventory.
+            const computedInventory = availableStock - deltaList[index] - item.quantity;
+            if (computedInventory < 0) {
+              hasNegativeInventory = true;
+            }
+          }
+        }
+      });
+
+      if (hasNegativeInventory) {
+        alert.error("Error: Inventory cannot drop below zero for one or more items!");
+        return;
+      }
+    }
+
     const myForm = new FormData();
     myForm.set("status", status);
-    let temp = [];
+    const temp = [];
     for (let i = 0; i < order.orderItems.length; i++) {
       temp.push(order.orderItems[i].quantity);
     }
-    // console.log(temp);
     myForm.set("newQuantity", temp);
-    //console.log("select status",status);
 
     dispatch(updateOrder(match.params.id, myForm));
   };
+
   const handleCopyClick = () => {
     setCopied(true);
-    // Clear the "Copied" message after 3 seconds (adjust as needed)
     setTimeout(() => {
       setCopied(false);
     }, 3000);
   };
-  const dispatch = useDispatch();
-  const alert = useAlert();
 
   useEffect(() => {
-    ////console.log(order);
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -156,8 +168,6 @@ const ProcessOrder = ({ history, match }) => {
       alert.success("Order Updated Successfully");
       dispatch({ type: UPDATE_ORDER_RESET });
     }
-    //console.log("before dispatch");
-    //console.log("select status",status)
     dispatch(getOrderDetails(match.params.id));
   }, [dispatch, alert, error, match.params.id, isUpdated, updateError]);
 
@@ -177,13 +187,12 @@ const ProcessOrder = ({ history, match }) => {
               }}
             >
               <div ref={componentRef}>
-                <div className="confirmshippingArea" >
+                <div className="confirmshippingArea">
                   <Typography>Shipping Info</Typography>
                   <div className="orderDetailsContainerBox">
                     <div>
                       <p>Order Placed by:</p>
                       <span>{order.user && order.user.name}</span>
-                      {/* <hr></hr> */}
                       <span>&nbsp;</span>
                       <p>Teacher's Name:</p>
                       <span>
@@ -228,16 +237,16 @@ const ProcessOrder = ({ history, match }) => {
                       </span>
                     </div>
                     <div>
-          <p>Email:</p>
-          <span>{order.shippingInfo && order.shippingInfo.Email}</span>
-          <CopyToClipboard text={order.shippingInfo && order.shippingInfo.Email}>
-            <FileCopyIcon
-              style={{ cursor: 'pointer', marginLeft: '5px' }}
-              onClick={handleCopyClick}
-            />
-          </CopyToClipboard>
-          {copied && <span style={{ marginLeft: '5px', color: 'green' }}>Copied to clipboard successfully!</span>}
-        </div>
+                      <p>Email:</p>
+                      <span>{order.shippingInfo && order.shippingInfo.Email}</span>
+                      <CopyToClipboard text={order.shippingInfo && order.shippingInfo.Email}>
+                        <FileCopyIcon
+                          style={{ cursor: 'pointer', marginLeft: '5px' }}
+                          onClick={handleCopyClick}
+                        />
+                      </CopyToClipboard>
+                      {copied && <span style={{ marginLeft: '5px', color: 'green' }}>Copied to clipboard successfully!</span>}
+                    </div>
                     <div>
                       <p>Address:</p>
                       <span>
@@ -249,12 +258,10 @@ const ProcessOrder = ({ history, match }) => {
                       <p>District:</p>
                       <span>
                         {order.shippingInfo &&
-                          order.shippingInfo.userAddress.split("|").length ==
-                            2 &&
+                          order.shippingInfo.userAddress.split("|").length === 2 &&
                           order.shippingInfo.userAddress.split("|")[1]}
                         {order.shippingInfo &&
-                          order.shippingInfo.userAddress.split("|").length ==
-                            1 &&
+                          order.shippingInfo.userAddress.split("|").length === 1 &&
                           "-"}
                       </span>
                     </div>
@@ -267,8 +274,8 @@ const ProcessOrder = ({ history, match }) => {
                     </div>
                   </div>
                   <Typography>Order Status</Typography>
-                  <div className="orderDetailsContainerBox" >
-                    <div classaName="statusWrapper">
+                  <div className="orderDetailsContainerBox">
+                    <div className="statusWrapper">
                       <div
                         className={
                           order.orderStatus && order.orderStatus === "Delivered"
@@ -284,10 +291,10 @@ const ProcessOrder = ({ history, match }) => {
                     </div>
                   </div>
                 </div>
-                <div className="confirmCartItems" style={{ maxHeight: '100%'}} >
+                <div className="confirmCartItems" style={{ maxHeight: '100%' }}>
                   <Typography>Your Cart Items:</Typography>
-                  <div className="confirmCartItemsContainer" style={{ overflowY: 'visible', maxHeight: '100%'}} >
-                    <div className="cartitemHeader" >
+                  <div className="confirmCartItemsContainer" style={{ overflowY: 'visible', maxHeight: '100%' }}>
+                    <div className="cartitemHeader">
                       <div className="cartitemholderimage">
                         <span>Image</span>
                       </div>
@@ -306,9 +313,6 @@ const ProcessOrder = ({ history, match }) => {
                       <div className="cartitemholderquantity">
                         <span>Inventory</span>
                       </div>
-                      {/* <div className="cartitemholderquantity">
-                        <span>Other orders</span>
-                      </div> */}
                     </div>
 
                     {order.orderItems &&
@@ -327,7 +331,7 @@ const ProcessOrder = ({ history, match }) => {
                             <span>{item.ProductSize.split(",", 1)}</span>
                           </div>
                           <div className="cartitemholderquantity">
-                            {order.orderStatus == "Processing" && (
+                            {order.orderStatus === "Processing" && (
                               <button onClick={() => decreaseQuantity(idx)}>
                                 -
                               </button>
@@ -337,15 +341,13 @@ const ProcessOrder = ({ history, match }) => {
                               type="number"
                               value={item.quantity}
                             />
-                            {order.orderStatus == "Processing" && (
+                            {order.orderStatus === "Processing" && (
                               <button onClick={() => increaseQuantity(idx)}>
                                 +
                               </button>
                             )}
                           </div>
-
                           <div className="cartitemholderquantity">
-                            
                             {findInventory(
                               item.name,
                               item.SubCategory,
@@ -353,7 +355,6 @@ const ProcessOrder = ({ history, match }) => {
                               idx
                             )}
                           </div>
-                          
                         </div>
                       ))}
                   </div>
@@ -368,13 +369,7 @@ const ProcessOrder = ({ history, match }) => {
                   </p>
                 </div>
               </div>
-              {/*  */}
-              <div
-                style={{
-                  display:
-                    order.orderStatus === "Delivered" ? "block" : "block",
-                }}
-              >
+              <div style={{ display: "block" }}>
                 <form
                   className="updateOrderForm"
                   onSubmit={updateOrderSubmitHandler}
@@ -385,75 +380,37 @@ const ProcessOrder = ({ history, match }) => {
                     <AccountTreeIcon />
                     <select onChange={(e) => setStatus(e.target.value)}>
                       <option value="null">Choose Category</option>
-                      {/* {order.orderStatus === "Processing" && (
-                        <option value="Packing">Packing started</option>
-                      )} */}
-                      {/* {order.orderStatus === "Processing" && (
-                        <option value="Delivered">Packed and Delivered</option>
-                      )}  */}
                       {order.orderStatus === "Processing" && (
-                        <option value="CheckEmail">Check Email</option>
-                      )}
-                      {order.orderStatus === "Processing" && (
-                        <option value="Printed">Printed</option>
-                      )}
-                      {order.orderStatus === "Processing" && (
-                        <option value="Ready for Pickup">
-                          Ready for Pickup
-                        </option>
+                        <>
+                          <option value="CheckEmail">Check Email</option>
+                          <option value="Printed">Printed</option>
+                          <option value="Ready for Pickup">Ready for Pickup</option>
+                          <option value="Delivered">Delivered</option>
+                        </>
                       )}
                       {order.orderStatus === "Printed" && (
-                        <option value="Ready for Pickup">
-                          Ready for Pickup
-                        </option>
+                        <>
+                          <option value="Ready for Pickup">Ready for Pickup</option>
+                          <option value="Delivered">Delivered</option>
+                          <option value="Processing">Revert to Processing</option>
+                        </>
                       )}
                       {order.orderStatus === "CheckEmail" && (
-                        <option value="Ready for Pickup">
-                          Ready for Pickup
-                        </option>
+                        <>
+                          <option value="Ready for Pickup">Ready for Pickup</option>
+                          <option value="Delivered">Delivered</option>
+                          <option value="Processing">Revert to Processing</option>
+                        </>
                       )}
-                       {order.orderStatus === "CheckEmail" && (
-                        <option value="Delivered">Delivered</option>
-                      )}
-                      {order.orderStatus === "Printed" && (
-                        <option value="Delivered">Delivered</option>
-                      )}
-                      {order.orderStatus === "CheckEmail" && (
-                        <option value="Processing">Revert to Processing</option>
-                      )}
-                      {order.orderStatus === "Printed" && (
-                        <option value="Processing">Revert to Processing</option>
-                      )}
-
-                      {order.orderStatus === "Processing" && (
-                        <option value="Delivered">Delivered</option>
-                      )}
-
-                      {/* {order.orderStatus === "Delivered" && (
-                        <option value="revertpacking">Revert to Packing</option>
-                      )}   */}
-
                       {order.orderStatus === "Delivered" && (
                         <option value="Processing">Revert to Processing</option>
                       )}
-
                       {order.orderStatus === "Packing" && (
-                        <option value="Ready for Pickup">
-                          Ready for Pickup
-                        </option>
+                        <>
+                          <option value="Ready for Pickup">Ready for Pickup</option>
+                          <option value="Delivered">Delivered</option>
+                        </>
                       )}
-
-                      {order.orderStatus === "Packing" && (
-                        <option value="Delivered">Delivered</option>
-                      )}
-
-                      {order.orderStatus === "Ready for Pickup" && (
-                        <option value="Delivered">Delivered</option>
-                      )}
-                      {/* {order.orderStatus === "Ready for Pickup" && (
-                        <option value="revertpacked">Revert to Packing</option>
-                      )}   */}
-
                       {order.orderStatus === "Ready for Pickup" && (
                         <option value="Processing">Revert to Processing</option>
                       )}
@@ -463,9 +420,7 @@ const ProcessOrder = ({ history, match }) => {
                   <Button
                     id="createProductBtn"
                     type="submit"
-                    disabled={
-                      loading ? true : false || status == "null" ? true : false
-                    }
+                    disabled={loading ? true : status === "null"}
                   >
                     Process
                   </Button>

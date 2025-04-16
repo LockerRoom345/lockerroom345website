@@ -106,8 +106,10 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.1,
       valueFormatter: (params) => {
-        // Format the displayed date elegantly
-        return moment(params.value).format("MM-DD-YYYY h:mm A");
+        const date = moment(params.value).isValid()
+          ? moment(params.value)
+          : moment(new Date(params.value));
+        return date.format("MM-DD-YYYY h:mm A");
       },
     },
     {
@@ -157,6 +159,11 @@ const OrderList = ({ history }) => {
       const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
       const district = addressSplit[1] || "-";
 
+      // Ensure the date is in ISO 8601 format
+      const orderDate = moment(item.shippingInfo.orderDate).isValid()
+        ? moment(item.shippingInfo.orderDate).toISOString()
+        : moment(new Date(item.shippingInfo.orderDate)).toISOString();
+
       if (
         item.orderStatus !== "Delivered" ||
         (item.orderStatus === "Delivered" &&
@@ -166,7 +173,7 @@ const OrderList = ({ history }) => {
           id: item._id,
           itemsQty: item.orderItems.length,
           amount: item.totalPrice,
-          OrderDate: moment(item.shippingInfo.orderDate).toISOString(),
+          OrderDate: orderDate, // Use the properly formatted date
           status: item.orderStatus,
           studentId: tempname,
           district: district,
