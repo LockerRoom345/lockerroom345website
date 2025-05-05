@@ -106,9 +106,15 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.1,
       valueFormatter: (params) => {
-        const date = moment.utc(params.value);
-        return date.isValid() ? date.local().format("MM-DD-YYYY h:mm A") : "Invalid";
-      },
+        try {
+          const raw = params.value;
+          if (!raw) return "N/A"; // empty fallback
+          const parsed = moment.utc(new Date(raw)); // force parse
+          return parsed.isValid() ? parsed.local().format("MM-DD-YYYY h:mm A") : "N/A";
+        } catch (e) {
+          return "N/A";
+        }
+      },      
     },
     {
       field: "status",
@@ -157,10 +163,12 @@ const OrderList = ({ history }) => {
       const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
       const district = addressSplit[1] || "-";
 
-      const rawDate = item.shippingInfo.orderDate;
-      const orderDate = moment.utc(rawDate).isValid()
-        ? moment.utc(rawDate).toISOString()
-        : moment.utc(new Date(rawDate)).toISOString();
+      let orderDate = item.shippingInfo?.orderDate;
+      if (!moment(orderDate).isValid()) {
+        orderDate = new Date(orderDate);
+      }
+      orderDate = moment(orderDate).toISOString();
+
 
       if (
         item.orderStatus !== "Delivered" ||
