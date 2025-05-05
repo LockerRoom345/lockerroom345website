@@ -106,10 +106,8 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.1,
       valueFormatter: (params) => {
-        const date = moment(params.value).isValid()
-          ? moment(params.value)
-          : moment(new Date(params.value));
-        return date.format("MM-DD-YYYY h:mm A");
+        const date = moment.utc(params.value);
+        return date.isValid() ? date.local().format("MM-DD-YYYY h:mm A") : "Invalid";
       },
     },
     {
@@ -159,10 +157,10 @@ const OrderList = ({ history }) => {
       const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
       const district = addressSplit[1] || "-";
 
-      // Ensure the date is in ISO 8601 format
-      const orderDate = moment(item.shippingInfo.orderDate).isValid()
-        ? moment(item.shippingInfo.orderDate).toISOString()
-        : moment(new Date(item.shippingInfo.orderDate)).toISOString();
+      const rawDate = item.shippingInfo.orderDate;
+      const orderDate = moment.utc(rawDate).isValid()
+        ? moment.utc(rawDate).toISOString()
+        : moment.utc(new Date(rawDate)).toISOString();
 
       if (
         item.orderStatus !== "Delivered" ||
@@ -173,7 +171,7 @@ const OrderList = ({ history }) => {
           id: item._id,
           itemsQty: item.orderItems.length,
           amount: item.totalPrice,
-          OrderDate: orderDate, // Use the properly formatted date
+          OrderDate: orderDate,
           status: item.orderStatus,
           studentId: tempname,
           district: district,
