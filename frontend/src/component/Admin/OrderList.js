@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./productList.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ const OrderList = ({ history }) => {
   const { error, orders } = useSelector((state) => state.allOrders);
   const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
-  const [sortModel, setSortModel] = React.useState([
+  const [sortModel, setSortModel] = useState([
     {
       field: "OrderDate",
       sort: "desc",
@@ -40,7 +40,7 @@ const OrderList = ({ history }) => {
     dispatch(deleteOrder(id));
   };
 
-  const submit = (params) => {
+  const confirmDelete = (params) => {
     confirmAlert({
       title: "Delete Order",
       message: "Are you sure you want to delete this order?",
@@ -108,9 +108,11 @@ const OrderList = ({ history }) => {
       valueFormatter: (params) => {
         const raw = params.value;
         if (!raw) return "N/A";
-        const parsed = new Date(raw);
-        if (isNaN(parsed.getTime())) return "N/A";
-        return moment(parsed).format("MM-DD-YYYY h:mm A");
+
+        const parsed = moment.utc(raw);
+        if (!parsed.isValid()) return "N/A";
+
+        return parsed.local().format("MM-DD-YYYY h:mm A");
       },
     },
     {
@@ -119,11 +121,10 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.1,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : params.getValue(params.id, "status") === "Ready for Pickup"
-          ? "BlueColor"
-          : "redColor";
+        const status = params.getValue(params.id, "status");
+        if (status === "Delivered") return "greenColor";
+        if (status === "Ready for Pickup") return "BlueColor";
+        return "redColor";
       },
     },
     {
@@ -143,7 +144,7 @@ const OrderList = ({ history }) => {
           <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
             <span>View</span>
           </Link>
-          <Button onClick={() => submit(params)}>
+          <Button onClick={() => confirmDelete(params)}>
             <DeleteIcon />
           </Button>
         </Fragment>
@@ -155,31 +156,30 @@ const OrderList = ({ history }) => {
 
   orders &&
     orders.forEach((item) => {
-      const tempname =
-        item.shippingInfo.receivingPersonName?.split("_")[0] || "";
-      const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
-      const district = addressSplit[1] || "-";
+      const tempname = item.shippingInfo.receivingPersonName?.split("_")[0] || "";
+      const addressParts = item.shippingInfo.userAddress?.split("|") || [];
+      const district = addressParts[1] || "-";
 
-      // ✅ Convert to ISO string using native Date parsing
       let orderDate;
       try {
         const rawDate = item?.shippingInfo?.orderDate;
-        const parsed = new Date(rawDate);
-        orderDate = !isNaN(parsed.getTime()) ? parsed.toISOString() : null;
+        const parsed = moment(rawDate);
+        orderDate = parsed.isValid() ? parsed.toISOString() : null;
       } catch {
         orderDate = null;
       }
 
-      if (
+      // Only include undelivered or recently delivered orders (≤ 1 month ago)
+      const isRecentDelivery =
         item.orderStatus !== "Delivered" ||
-        (item.orderStatus === "Delivered" &&
-          moment().diff(moment(item.shippingInfo.deliveryDate), "months") <= 1)
-      ) {
+        moment().diff(moment(item.shippingInfo.deliveryDate), "months") <= 1;
+
+      if (isRecentDelivery) {
         rows.push({
           id: item._id,
           itemsQty: item.orderItems.length,
           amount: item.totalPrice,
-          OrderDate: orderDate, // ✅ stored in ISO format
+          OrderDate: orderDate,
           status: item.orderStatus,
           studentId: tempname,
           district: district,
