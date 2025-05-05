@@ -163,29 +163,32 @@ const OrderList = ({ history }) => {
       let orderDate;
       try {
         const rawDate = item?.shippingInfo?.orderDate;
-        const parsed = moment(rawDate);
+
+        // Try known formats explicitly
+        const parsed = moment(rawDate, [
+          moment.ISO_8601,
+          "MM-DD-YYYY h:mm A",
+          "YYYY-MM-DD HH:mm:ss",
+          "YYYY-MM-DD",
+          "YYYY/MM/DD HH:mm:ss",
+          "MMM D, YYYY h:mm A",
+        ]);
+
         orderDate = parsed.isValid() ? parsed.toISOString() : null;
       } catch {
         orderDate = null;
       }
 
-      // Only include undelivered or recently delivered orders (≤ 1 month ago)
-      const isRecentDelivery =
-        item.orderStatus !== "Delivered" ||
-        moment().diff(moment(item.shippingInfo.deliveryDate), "months") <= 1;
-
-      if (isRecentDelivery) {
-        rows.push({
-          id: item._id,
-          itemsQty: item.orderItems.length,
-          amount: item.totalPrice,
-          OrderDate: orderDate,
-          status: item.orderStatus,
-          studentId: tempname,
-          district: district,
-          orderfrom: item.shippingInfo.userName,
-        });
-      }
+      rows.push({
+        id: item._id,
+        itemsQty: item.orderItems.length,
+        amount: item.totalPrice,
+        OrderDate: orderDate,
+        status: item.orderStatus,
+        studentId: tempname,
+        district: district,
+        orderfrom: item.shippingInfo.userName,
+      });
     });
 
   return (
