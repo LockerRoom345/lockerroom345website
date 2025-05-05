@@ -106,14 +106,13 @@ const OrderList = ({ history }) => {
       minWidth: 50,
       flex: 0.1,
       valueFormatter: (params) => {
-        try {
-          const raw = params.value;
-          if (!raw) return "N/A"; // empty fallback
-          const parsed = moment.utc(new Date(raw)); // force parse
-          return parsed.isValid() ? parsed.local().format("MM-DD-YYYY h:mm A") : "N/A";
-        } catch (e) {
-          return "N/A";
-        }
+        const raw = params.value;
+        if (!raw) return "N/A";
+      
+        const parsed = new Date(raw);
+        if (isNaN(parsed.getTime())) return "N/A";
+      
+        return moment(parsed).format("MM-DD-YYYY h:mm A");
       },      
     },
     {
@@ -163,11 +162,17 @@ const OrderList = ({ history }) => {
       const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
       const district = addressSplit[1] || "-";
 
-      let orderDate = item.shippingInfo?.orderDate;
-      if (!moment(orderDate).isValid()) {
-        orderDate = new Date(orderDate);
-      }
-      orderDate = moment(orderDate).toISOString();
+      const rawDate = item.shippingInfo?.orderDate;
+
+  let orderDate;
+  if (rawDate) {
+    const parsed = new Date(rawDate);
+    // Use toISOString() which Safari understands
+    orderDate = !isNaN(parsed.getTime()) ? parsed.toISOString() : null;
+  } else {
+    orderDate = null;
+}
+
 
 
       if (
