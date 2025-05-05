@@ -108,12 +108,10 @@ const OrderList = ({ history }) => {
       valueFormatter: (params) => {
         const raw = params.value;
         if (!raw) return "N/A";
-      
         const parsed = new Date(raw);
         if (isNaN(parsed.getTime())) return "N/A";
-      
         return moment(parsed).format("MM-DD-YYYY h:mm A");
-      },      
+      },
     },
     {
       field: "status",
@@ -162,18 +160,15 @@ const OrderList = ({ history }) => {
       const addressSplit = item.shippingInfo.userAddress?.split("|") || [];
       const district = addressSplit[1] || "-";
 
-      const rawDate = item.shippingInfo?.orderDate;
-
-  let orderDate;
-  if (rawDate) {
-    const parsed = new Date(rawDate);
-    // Use toISOString() which Safari understands
-    orderDate = !isNaN(parsed.getTime()) ? parsed.toISOString() : null;
-  } else {
-    orderDate = null;
-}
-
-
+      // ✅ Convert to ISO string using native Date parsing
+      let orderDate;
+      try {
+        const rawDate = item?.shippingInfo?.orderDate;
+        const parsed = new Date(rawDate);
+        orderDate = !isNaN(parsed.getTime()) ? parsed.toISOString() : null;
+      } catch {
+        orderDate = null;
+      }
 
       if (
         item.orderStatus !== "Delivered" ||
@@ -184,7 +179,7 @@ const OrderList = ({ history }) => {
           id: item._id,
           itemsQty: item.orderItems.length,
           amount: item.totalPrice,
-          OrderDate: orderDate,
+          OrderDate: orderDate, // ✅ stored in ISO format
           status: item.orderStatus,
           studentId: tempname,
           district: district,
