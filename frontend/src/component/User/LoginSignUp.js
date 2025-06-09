@@ -178,7 +178,7 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-     <span style={{ color: 'red' }}>NOTE: The last day to pick requests will be Friday, June 20. The Locker Room 345 will be closed EOD June 20 - Aug 20</span>  <span style={{ color: 'red' }}></span>.
+     <span style={{ color: 'red' }}>NOTE: The last day to pick requests will be Friday, June 20 between 8 AM and 10 AM. The Locker Room 345 will be closed June 20 - Aug 20</span>  <span style={{ color: 'red' }}></span>.
     <br />
     Thank you.
   </p>
