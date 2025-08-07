@@ -148,13 +148,12 @@ const ProductCard = ({ product, history }) => {
               }}
               required
             >
-              {product.hashmap[SubCategory]
-                .sort((a, b) => parseInt(a.size) - parseInt(b.size))
-                .map((item, i) => (
-                  <option key={item.size} value={i}>
-                    {item.size}
-                  </option>
-                ))}
+              {product.hashmap[SubCategory].map((item, i) => (
+                <option key={item.size} value={i}>
+                  {item.size}
+                </option>
+              ))}
+
             </select>
           </div>
 
