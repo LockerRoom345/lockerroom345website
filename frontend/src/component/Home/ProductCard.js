@@ -150,7 +150,7 @@ const ProductCard = ({ product, history }) => {
             >
               {product.hashmap[SubCategory].map((item, i) => (
                 <option key={item.size} value={i}>
-                  {item.size}
+                  {item.size.toUpperCase()}
                 </option>
               ))}
 
