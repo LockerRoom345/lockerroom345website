@@ -43,6 +43,7 @@ const NewProduct = ({ history }) => {
     "Girl's sizing",
     "Toddler's boys sizing",
     "Toddler's girls sizing",
+    "Unisex toddler's sizing",
 
   ];
   // const [inputList, setInputList] = useState([{ firstName: "", lastName: "" }])
