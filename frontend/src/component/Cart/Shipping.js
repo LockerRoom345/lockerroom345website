@@ -118,7 +118,7 @@ const Shipping = ({ history }) => {
           <h2 className="shippingHeading">Delivery Details</h2>
           {isTestUser && (
             <h2 className="shippingHeading" style={{ color: "orange" }}>
-              TEST USER - All fields are prefilled for testing
+              TEST USER - All fields are prefilled for dummy orders
             </h2>
           )}
           <h2 className="shippingHeading">Please make sure the student ID you input is unidentifying</h2>
