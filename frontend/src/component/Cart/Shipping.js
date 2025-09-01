@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "./Shipping.css";
 import { useSelector, useDispatch } from "react-redux";
 import { saveShippingInfo } from "../../actions/cartAction";
@@ -23,22 +23,49 @@ const Shipping = ({ history }) => {
   const alert = useAlert();
 
   const { shippingInfo } = useSelector((state) => state.cart);
-  const [receivingPersonName, setreceivingPersonName] = useState("");
-  const [receivingPersonAge, setreceivingPersonAge] = useState("");
-  const [receivingPersonGender, setreceivingPersonGender] = useState("");
-  const [gender, setGender] = useState("");
+  
+  // Check if current user is TEST USER
+  const isTestUser = user?.name === "TEST USER";
+  
+  // Test user default values
+  const testUserDefaults = {
+    receivingPersonName: "345",
+    receivingPersonAge: "NA",
+    receivingPersonGender: "Male",
+    userLoggedInDesignation: "Kim",
+    phoneNo: "1234567890",
+    Email: "testuser@example.com",
+    addComments: "This is a test order for TEST USER"
+  };
 
-  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState("");
-  // const [address, setAddress] = useState(shippingInfo.address);
-  // const [city, setCity] = useState(shippingInfo.city);
-  // const [state, setState] = useState(shippingInfo.state);
-  // const [country, setCountry] = useState(shippingInfo.country);
-  // const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-  const [Email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [addComments, setaddComments] = useState("");
+  const [receivingPersonName, setreceivingPersonName] = useState(
+    isTestUser ? testUserDefaults.receivingPersonName : ""
+  );
+  const [receivingPersonAge, setreceivingPersonAge] = useState(
+    isTestUser ? testUserDefaults.receivingPersonAge : ""
+  );
+  const [receivingPersonGender, setreceivingPersonGender] = useState(
+    isTestUser ? testUserDefaults.receivingPersonGender : ""
+  );
+  const [gender, setGender] = useState(
+    isTestUser ? testUserDefaults.receivingPersonGender : ""
+  );
+  const [userLoggedInDesignation, setuserLoggedInDesignation] = useState(
+    isTestUser ? testUserDefaults.userLoggedInDesignation : ""
+  );
+  const [Email, setEmail] = useState(
+    isTestUser ? testUserDefaults.Email : ""
+  );
+  const [phoneNo, setPhoneNo] = useState(
+    isTestUser ? testUserDefaults.phoneNo : ""
+  );
+  const [addComments, setaddComments] = useState(
+    isTestUser ? testUserDefaults.addComments : ""
+  );
+
   const regex = /\w+-\d{1,2}/;
   let orderDate = "";
+  
   const shippingSubmit = (e) => {
     if (gender == "") {
       e.preventDefault();
@@ -64,10 +91,6 @@ const Shipping = ({ history }) => {
         current.getSeconds();
       let orderDate = cDate + " " + cTime;
 
-      // if (phoneNo.length < 10 || phoneNo.length > 10) {
-      //   alert.error("Phone Number should be 10 digits Long");
-      //   return;
-      // }
       dispatch(
         saveShippingInfo({
           userName: user.name,
@@ -88,12 +111,16 @@ const Shipping = ({ history }) => {
     <Fragment>
       <MetaData title="Delivery Details" />
       
-
       <CheckoutSteps activeStep={0} />
 
       <div className="shippingContainer">
         <div className="shippingBox">
           <h2 className="shippingHeading">Delivery Details</h2>
+          {isTestUser && (
+            <h2 className="shippingHeading" style={{ color: "orange" }}>
+              TEST USER - All fields are prefilled for testing
+            </h2>
+          )}
           <h2 className="shippingHeading">Please make sure the student ID you input is unidentifying</h2>
           <form
             className="shippingForm"
@@ -108,6 +135,8 @@ const Shipping = ({ history }) => {
                 placeholder="Teacher's Name"
                 value={userLoggedInDesignation}
                 onChange={(e) => setuserLoggedInDesignation(e.target.value)}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               />
             </div>
             <div>
@@ -118,6 +147,8 @@ const Shipping = ({ history }) => {
                 value={receivingPersonName}
                 required={true}
                 onChange={(e) => setreceivingPersonName(e.target.value)}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               />
               <input
                 type="text"
@@ -125,16 +156,20 @@ const Shipping = ({ history }) => {
                 value={receivingPersonAge}
                 required={true}
                 onChange={(e) => setreceivingPersonAge(e.target.value)}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               />
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
                 required={true}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               >
                 <option value="">Choose Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="NA">Preder not to say</option>
+                <option value="NA">Prefer not to say</option>
               </select>
             </div>
             <div>
@@ -144,7 +179,6 @@ const Shipping = ({ history }) => {
                 placeholder="Address"
                 value={user.address}
                 disabled
-                // onChange={(e) => setAddress(e.target.value)}
               />
             </div>
             <div>
@@ -154,7 +188,6 @@ const Shipping = ({ history }) => {
                 placeholder="District"
                 value={user.district}
                 disabled
-                // onChange={(e) => setAddress(e.target.value)}
               />
             </div>
 
@@ -165,6 +198,8 @@ const Shipping = ({ history }) => {
                 placeholder="Phone Number"
                 value={phoneNo}
                 onChange={(e) => setPhoneNo(e.target.value)}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               />
             </div>
             <div>
@@ -175,14 +210,16 @@ const Shipping = ({ history }) => {
                 value={Email}
                 required={true}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isTestUser}
+                style={isTestUser ? { backgroundColor: "#f0f0f0" } : {}}
               />
             </div>
             <div className="additionalComments">
               <textarea
                 placeholder="Add if you have any additional comments or request for items here..."
                 onChange={(e) => setaddComments(e.target.value)}
+                value={addComments}
               >
-                {addComments}
               </textarea>
             </div>
 
@@ -190,7 +227,6 @@ const Shipping = ({ history }) => {
               type="submit"
               value="Continue"
               className="shippingBtn"
-              // disabled={state ? false : true}
             />
           </form>
         </div>
