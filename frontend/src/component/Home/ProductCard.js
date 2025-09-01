@@ -11,7 +11,10 @@ const ProductCard = ({ product, history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+  
+  // Check if current user is TEST USER
+  const isTestUser = user?.name === "TEST USER";
 
   const { success, error: reviewError } = useSelector(
     (state) => state.newReview
@@ -40,9 +43,16 @@ const ProductCard = ({ product, history }) => {
     let maxstock = product.hashmap[SubCategory][ProductSize].stock;
     // console.log("product Stock currently",maxstock);
     if (maxstock <= quantity) return;
-    if (quantity < 5) {
+    
+    // For TEST USER, only check stock condition. For others, check both stock and 5-item limit
+    if (isTestUser) {
       const qty = quantity + 1;
       setQuantity(qty);
+    } else {
+      if (quantity < 5) {
+        const qty = quantity + 1;
+        setQuantity(qty);
+      }
     }
   };
 
