@@ -148,26 +148,26 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
   req.body.status === "Delivered" ||
   req.body.status === "Ready for Pickup"||
   req.body.status === "CheckEmail") {
-    order.orderItems.forEach(async (o, idx) => {
-      o.quantity = newQuantities[idx];
-      console.log("orderItems forward", o);
-      await updateStock(o.product, o.quantity, o.ProductSize);
-    });
-
+  for (let idx = 0; idx < order.orderItems.length; idx++) {
+    const orderItem = order.orderItems[idx];
+    orderItem.quantity = newQuantities[idx];
+    console.log("orderItems forward", orderItem);
+    await updateStock(orderItem.product, orderItem.quantity, orderItem.ProductSize);
+}
   }
 
   if (req.body.status === "Processing") {
-    if (order.orderStatus === "Delivered" || order.orderStatus === "packed") {
-      order.orderItems.forEach(async (o, idx) => {
-        console.log("orderItems back", o);
-        await reAddStock(o.product, o.quantity, o.ProductSize);
-      });
-
-
-
+  // If current status is any inventory-affecting status, restore stock
+  const INVENTORY_STATUSES = ["Printed", "Delivered", "Ready for Pickup", "CheckEmail"];
+  
+  if (INVENTORY_STATUSES.includes(order.orderStatus)) {
+    for (let idx = 0; idx < order.orderItems.length; idx++) {
+      const orderItem = order.orderItems[idx];
+      console.log("Restoring stock for:", orderItem);
+      await reAddStock(orderItem.product, orderItem.quantity, orderItem.ProductSize);
     }
   }
-
+}
   if (req.body.status === "revertpacked") {
     if (order.orderStatus === "Delivered") {
       req.body.status = "Packing";
