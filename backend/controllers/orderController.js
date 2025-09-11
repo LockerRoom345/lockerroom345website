@@ -211,6 +211,9 @@ async function updateStock(id, quantity, ProductSize) {
       if (x.size === ProductSize) {
         //console.log(x.stock);
         x.stock -= quantity;
+        if (x.stock < 0) {
+          x.stock = 0;
+        }
       }
     });
     await product.save({ validateBeforeSave: false });
