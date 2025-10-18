@@ -181,7 +181,7 @@ const Home = ({ history }) => {
                 Foot Measure
               </a>
             </div>
-            <div style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
+            <div style={{ marginTop: '8px', fontSize: '18px', color: 'red', fontWeight: 'bold' }}>
               Please check the size guides before placing an order
             </div>
           </h3>
