@@ -163,7 +163,7 @@ const Home = ({ history }) => {
             *Images are the graphical representation of the product. Brands of
             specific designs can not be requested
               <br />
-            <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
               <a 
                 href="/sizeguide.jpg"
                 download 
@@ -180,6 +180,9 @@ const Home = ({ history }) => {
               >
                 Foot Measure
               </a>
+            </div>
+            <div style={{ marginTop: '8px', fontSize: '14px', color: '#666' }}>
+              Please check the size guides before placing an order
             </div>
           </h3>
               
