@@ -18,6 +18,16 @@ const Home = ({ history }) => {
 
   const alert = useAlert();
   const dispatch = useDispatch();
+  const [termsAccepted, setTermsAccepted] = useState(() => {
+    const accepted = sessionStorage.getItem('termsAccepted');
+    const timestamp = sessionStorage.getItem('termsAcceptedTime');
+    const now = Date.now();
+    
+    if (accepted && timestamp && (now - parseInt(timestamp)) < 30 * 60 * 1000) {
+      return true;
+    }
+    return false;
+  });
   // const { loading, error, products } = useSelector((state) => state.products);
   // let hashmap = {}
   // let mapping = {}
@@ -109,6 +119,79 @@ const Home = ({ history }) => {
 
   return (
     <Fragment>
+      {!termsAccepted && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            padding: '30px',
+            borderRadius: '8px',
+            maxWidth: '600px',
+            maxHeight: '80vh',
+            overflowY: 'auto',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h2 style={{ marginTop: 0, marginBottom: '20px', color: '#333' }}>IMPORTANT: PLEASE READ:</h2>
+            <div style={{ fontSize: '14px', lineHeight: '1.6', color: '#555' }}>
+              <h3 style={{ marginTop: '15px', marginBottom: '10px' }}>Important Update on Clothing Requests</h3>
+              <p>We are currently experiencing a high volume of large clothing requests from individuals. Please remember that we are intended to be a source of last resort—an emergency resource to turn to only when all other options have been explored. We cannot supply 20-30 items to one individual, or items such as snow pants etc in Oct, before the weather turns.</p>
+              <p>There are many winter coat drives happening right now, and we strongly encourage you to explore those resources before submitting requests to us.</p>
+              <p>With winter approaching, we know there will be true emergency cases—and we want to be available for those. However, at the current pace, our inventory will not last.</p>
+              
+              <h3 style={{ marginTop: '15px', marginBottom: '10px' }}>Please note the following:</h3>
+              <ul style={{ marginLeft: '20px' }}>
+                <li>Do not request more than 2–3 of any one item. Large quantity requests are very difficult for us to fulfill.</li>
+                <li>Please prioritize requests. Refrain from asking for "some of everything" on the list.</li>
+                <li>While it may appear we have a wide selection, often we have large quantities of the same item (e.g., same size, same color).</li>
+              </ul>
+
+              <h3 style={{ marginTop: '15px', marginBottom: '10px' }}>Our current excessive stock includes:</h3>
+              <ul style={{ marginLeft: '20px' }}>
+                <li>Kids' sneakers (sizes 13–6)</li>
+                <li>Women's winter boots sizes (6-10)</li>
+                <li>Kids' boots (70% are girls' styles, sizes toddler 8 to kids 3)</li>
+                <li>All other items are very limited.</li>
+              </ul>
+
+              <p style={{ marginTop: '15px' }}>Finally, if the request is truly for an emergency, please ensure the items are picked up promptly—ideally at the very next available pickup time. We frequently see items sit for weeks, which contradicts the idea of an "emergency" need.</p>
+              <p>We are doing our very best with limited access to goods and appreciate your understanding.</p>
+              <p>For any questions, feel free to email us, and use the comments section on the request form to note any extenuating circumstances.</p>
+              <p style={{ fontWeight: 'bold' }}>Thank you.</p>
+            </div>
+            <div style={{ marginTop: '30px', display: 'flex', gap: '10px', justifyContent: 'center' }}>
+              <button
+                onClick={() => {
+                  sessionStorage.setItem('termsAccepted', 'true');
+                  sessionStorage.setItem('termsAcceptedTime', Date.now().toString());
+                  setTermsAccepted(true);
+                }}
+                style={{
+                  padding: '10px 30px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold'
+                }}
+              >
+                I Understand & Accept
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {loading ? (
         <Loader />
       ) : (
