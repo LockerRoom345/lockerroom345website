@@ -178,11 +178,9 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-     <span style={{ color: 'red' }}>Locker Room 345 is open for Back to School. 
-PICK UP TIME:
-Tuesdays 2:00-4:00 & Thursday 8:00 - 9:30 am 
-Note: All available requests are ready by the next pick up day/time
-Additional items/sizes continually added as become available.</span>  <span style={{ color: 'red' }}></span>.
+     <span style={{ color: 'red' }}>Locker room last pick up will before Thanksgiving is MONDAY:11/25 2:00-4;00 
+Resume regular house Tuesday 12/2!
+Thx</span>  <span style={{ color: 'red' }}></span>.
     <br />
     Kim
   </p>
