@@ -178,11 +178,9 @@ return (
           {/* Announcement Container */}
           <div className="announcementContainer">
   <p style={{ fontWeight: 'bold', fontSize: '24px' }}>
-     <span style={{ color: 'red' }}>ALERT!!!
-IF there is a SNOW DAY tomorrow (Tuesday 12/2) locker room will be closed
-BUT
-will open for pick up WEDNESDAY 12/3 2:00- 4:00 (only if snow day on Tuesday)
-Thx</span>  <span style={{ color: 'red' }}></span>.
+     <span style={{ color: 'red' }}>The last day for the Locker Room 345 request and pick up will be Thursday Dec 18, 8:00-9:30 am
+NOTE: closed during Holiday break 12/19/25 - 1/4/26 
+Happy Holidays</span>  <span style={{ color: 'red' }}></span>.
     <br />
     Kim
   </p>
